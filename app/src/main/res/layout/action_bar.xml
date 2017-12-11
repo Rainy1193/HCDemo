@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppThemeToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/back"
+        style="?android:borderlessButtonStyle"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/bg_back"
+        android:text="@string/icon_back"
+        android:textColor="@color/colorText"
+        android:textSize="45dp" />
+
+    <LinearLayout
+        style="?android:borderlessButtonStyle"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/bg_back" />
+
+    <TextView
+        android:id="@+id/tvActionBarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/colorText"
+        android:textSize="20dp" />
+</android.support.v7.widget.Toolbar>

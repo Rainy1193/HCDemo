@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/layoutItem"
+        android:layout_width="100dp"
+        android:layout_height="36dp"
+        android:layout_margin="4dp">
+
+        <ImageView
+            android:id="@+id/ivSelected"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_time_selected_book_single"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            style="@style/TextViewMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextMain"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

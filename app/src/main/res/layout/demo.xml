@@ -1,0 +1,1162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:rsb="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9EDF0"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layoutContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:background="@color/colorWhite"
+        android:elevation="2dp">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarThumbVertical="@null">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_filter1"
+                    android:text="@string/type_consumer"
+                    android:textColor="@color/colorBuy"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="@dimen/margin_filter1"
+                    android:layout_marginRight="@dimen/margin_filter1"
+                    android:background="#e9edf0" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_filter1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/layoutTypeAll"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingRight="4dp">
+
+                        <View
+                            android:id="@+id/vTypeAll"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/bg_button_filter" />
+
+                        <TextView
+                            android:id="@+id/tvTypeAll"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="4dp"
+                            android:text="All"
+                            android:textColor="@color/color_text_light_blue_filter" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTypeHouse"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingRight="4dp">
+
+                        <View
+                            android:id="@+id/vTypeHouse"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/bg_button_filter2" />
+
+                        <TextView
+                            android:id="@+id/tvTypeHouse"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="4dp"
+                            android:text="House" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTypeTownhouse"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingRight="4dp">
+
+                        <View
+                            android:id="@+id/vTypeTownhouse"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/bg_button_filter2" />
+
+                        <TextView
+                            android:id="@+id/tvTypeTownhouse"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="4dp"
+                            android:text="Townhouse" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_filter1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/layoutTypeCondo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingRight="4dp">
+
+                        <View
+                            android:id="@+id/vTypeCondo"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/bg_button_filter2" />
+
+                        <TextView
+                            android:id="@+id/tvTypeCondo"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="4dp"
+                            android:text="Condo" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTypeManufacturedHome"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="12"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingRight="4dp">
+
+                        <View
+                            android:id="@+id/vTypeManufacturedHome"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/bg_button_filter2" />
+
+                        <TextView
+                            android:id="@+id/tvTypeManufacturedHome"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="4dp"
+                            android:text="Manufactured Home" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTypeResident"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="7"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingRight="4dp">
+
+                        <View
+                            android:id="@+id/vTypeResident"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/bg_button_filter2" />
+
+                        <TextView
+                            android:id="@+id/tvTypeResident"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="4dp"
+                            android:text="Resident" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_filter1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/layoutTypeResidentialIncome"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingRight="4dp">
+
+                        <View
+                            android:id="@+id/vTypeResidentialIncome"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/bg_button_filter2" />
+
+                        <TextView
+                            android:id="@+id/tvTypeResidentialIncome"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="4dp"
+                            android:text="Residential Income" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTypeResidentialLease"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingRight="4dp">
+
+                        <View
+                            android:id="@+id/vTypeResidentialLease"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@drawable/bg_button_filter2" />
+
+                        <TextView
+                            android:id="@+id/tvTypeResidentialLease"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="4dp"
+                            android:text="Residential Lease" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/margin_filter1"
+                        android:text="@string/price_filter"
+                        android:textColor="@color/colorTextMain" />
+
+                    <com.homecaravan.android.consumer.widget.android.rangeseekbar.RangeSeekBar
+                        android:id="@+id/seekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:splitTrack="false"
+                        rsb:absoluteMaxValue="100"
+                        rsb:absoluteMinValue="0"
+                        rsb:thumbShadow="true"
+                        rsb:thumbShadowBlur="3dp"
+                        rsb:thumbShadowXOffset="1dp"
+                        rsb:thumbShadowYOffset="2dp" />
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_filter1"
+                    android:layout_marginRight="@dimen/margin_filter1"
+                    android:layout_marginTop="@dimen/margin_filter1">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="Min"
+                            android:textColor="@color/colorTextMain" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_button_filter2"
+                            android:paddingBottom="8dp"
+                            android:paddingEnd="16dp"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp">
+
+                            <TextView
+                                android:id="@+id/tvMinPrice"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="0"
+                                android:textColor="@color/colorMain"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/bg_button_filter2"
+                            android:paddingBottom="8dp"
+                            android:paddingEnd="16dp"
+                            android:paddingStart="16dp"
+                            android:paddingTop="8dp">
+
+                            <TextView
+                                android:id="@+id/tvMaxPrice"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="5M"
+                                android:textColor="@color/colorMain"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="Max"
+                            android:textColor="@color/colorTextMain" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <TextView
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_filter1"
+                    android:text="@string/condition_filter"
+                    android:textColor="@color/colorBuy"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="@dimen/margin_filter1"
+                    android:layout_marginRight="@dimen/margin_filter1"
+                    android:background="#e9edf0" />
+
+                <TextView
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_filter1"
+                    android:text="@string/bedrooms_filter"
+                    android:textColor="@color/colorTextMain" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="@dimen/margin_filter1"
+                        android:layout_marginRight="@dimen/margin_filter1"
+                        android:background="@drawable/bg_button_filter2">
+
+                        <RelativeLayout
+                            android:id="@+id/layoutMoveBed"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_button_filter">
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="@dimen/margin_filter1"
+                        android:layout_marginRight="@dimen/margin_filter1">
+
+                        <RelativeLayout
+                            android:id="@+id/layoutBedAny"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:selectableItemBackgroundBorderless">
+
+                            <TextView
+                                android:id="@+id/bedAny"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="@string/any_filter" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutBed1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:selectableItemBackgroundBorderless">
+
+                            <TextView
+                                android:id="@+id/bed1"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="1+" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutBed2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:selectableItemBackgroundBorderless">
+
+                            <TextView
+                                android:id="@+id/bed2"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="2+" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutBed3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:selectableItemBackgroundBorderless">
+
+                            <TextView
+                                android:id="@+id/bed3"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="3+" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutBed4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:selectableItemBackgroundBorderless">
+
+                            <TextView
+                                android:id="@+id/bed4"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="4+" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutBed5"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:selectableItemBackgroundBorderless">
+
+                            <TextView
+                                android:id="@+id/bed5"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="5+" />
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <TextView
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_filter1"
+                    android:text="@string/baths_filter"
+                    android:textColor="@color/colorTextMain" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="@dimen/margin_filter1"
+                        android:layout_marginRight="@dimen/margin_filter1"
+                        android:background="@drawable/bg_button_filter2">
+
+                        <RelativeLayout
+                            android:id="@+id/layoutMoveBath"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_button_filter">
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="@dimen/margin_filter1"
+                        android:layout_marginRight="@dimen/margin_filter1">
+
+                        <RelativeLayout
+                            android:id="@+id/layoutBathAny"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:selectableItemBackgroundBorderless">
+
+                            <TextView
+                                android:id="@+id/bathAny"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="@string/any_filter" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutBath1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:selectableItemBackgroundBorderless">
+
+                            <TextView
+                                android:id="@+id/bath1"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="1+" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutBath2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:selectableItemBackgroundBorderless">
+
+                            <TextView
+                                android:id="@+id/bath2"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="2+" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutBath3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:selectableItemBackgroundBorderless">
+
+                            <TextView
+                                android:id="@+id/bath3"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="3+" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutBath4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:selectableItemBackgroundBorderless">
+
+                            <TextView
+                                android:id="@+id/bath4"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="4+" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutBath5"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="?android:selectableItemBackgroundBorderless">
+
+                            <TextView
+                                android:id="@+id/bath5"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="5+" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<TextView-->
+                <!--style="@style/TextViewMain"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_margin="@dimen/margin_filter1"-->
+                <!--android:text="@string/only_show_single_story_homes"-->
+                <!--android:textColor="@color/colorTextMain" />-->
+
+                <!--<Switch-->
+                <!--android:id="@+id/switchOnly"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_marginRight="@dimen/margin_filter1" />-->
+                <!--</RelativeLayout>-->
+
+                <TextView
+                    android:id="@+id/tvScroll"
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_filter1"
+                    android:text="@string/condition_filter"
+                    android:textColor="@color/colorBuy"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="@dimen/margin_filter1"
+                    android:layout_marginRight="@dimen/margin_filter1"
+                    android:background="#e9edf0" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_filter1"
+                    android:layout_marginRight="@dimen/margin_filter1"
+                    android:layout_marginTop="@dimen/margin_filter1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextViewMain"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2.2"
+                        android:text="Lot size"
+                        android:textColor="@color/colorTextMain" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/bg_button_filter2"
+                        android:paddingLeft="20dp">
+
+                        <EditText
+                            android:id="@+id/tvLotSizeMin"
+                            style="@style/TextViewMain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/bg_edittext1"
+                            android:digits="0123456789"
+                            android:gravity="center_vertical"
+                            android:hint="Min"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:maxLength="10"
+                            android:paddingBottom="4dp"
+                            android:paddingTop="4dp"
+                            android:textColor="@color/colorTextMain"
+                            android:textColorHint="@color/colorTextMain" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/bg_button_filter2"
+                        android:paddingLeft="20dp">
+
+                        <EditText
+                            android:id="@+id/tvLotSizeMax"
+                            style="@style/TextViewMain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/bg_edittext1"
+                            android:digits="0123456789"
+                            android:hint="Max"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:maxLength="10"
+                            android:paddingBottom="4dp"
+                            android:paddingTop="4dp"
+                            android:textColor="@color/colorTextMain"
+                            android:textColorHint="@color/colorTextMain" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_filter1"
+                    android:layout_marginRight="@dimen/margin_filter1"
+                    android:layout_marginTop="@dimen/margin_filter1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextViewMain"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2.2"
+                        android:text="Square feed"
+                        android:textColor="@color/colorTextMain" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/bg_button_filter2"
+                        android:paddingLeft="20dp">
+
+                        <EditText
+                            android:id="@+id/tvSfMin"
+                            style="@style/TextViewMain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/bg_edittext1"
+                            android:digits="0123456789"
+                            android:hint="Min"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:maxLength="10"
+                            android:paddingBottom="4dp"
+                            android:paddingTop="4dp"
+                            android:textColor="@color/colorTextMain"
+                            android:textColorHint="@color/colorTextMain" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/bg_button_filter2"
+                        android:paddingLeft="20dp">
+
+                        <EditText
+                            android:id="@+id/tvSfMax"
+                            style="@style/TextViewMain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/bg_edittext1"
+                            android:digits="0123456789"
+                            android:hint="Max"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:maxLength="10"
+                            android:paddingBottom="4dp"
+                            android:paddingTop="4dp"
+                            android:textColor="@color/colorTextMain"
+                            android:textColorHint="@color/colorTextMain" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_filter1"
+                    android:layout_marginRight="@dimen/margin_filter1"
+                    android:layout_marginTop="@dimen/margin_filter1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextViewMain"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="2.2"
+                        android:text="Year build"
+                        android:textColor="@color/colorTextMain" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/bg_button_filter2"
+                        android:paddingLeft="20dp">
+
+                        <EditText
+                            android:id="@+id/tvYearBuildMin"
+                            style="@style/TextViewMain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/bg_edittext1"
+                            android:digits="0123456789"
+                            android:hint="Min"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:maxLength="10"
+                            android:paddingBottom="4dp"
+                            android:paddingTop="4dp"
+                            android:textColor="@color/colorTextMain"
+                            android:textColorHint="@color/colorTextMain" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/bg_button_filter2"
+                        android:paddingLeft="20dp">
+
+                        <EditText
+                            android:id="@+id/tvYearBuildMax"
+                            style="@style/TextViewMain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/bg_edittext1"
+                            android:digits="0123456789"
+                            android:hint="Max"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:maxLength="10"
+                            android:paddingBottom="4dp"
+                            android:paddingTop="4dp"
+                            android:textColor="@color/colorTextMain"
+                            android:textColorHint="@color/colorTextMain" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_filter1"
+                    android:layout_marginRight="@dimen/margin_filter1"
+                    android:layout_marginTop="@dimen/margin_filter1">
+
+                    <TextView
+                        style="@style/TextViewMain"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="5.2"
+                        android:text="Days on Homecaravan"
+                        android:textColor="@color/colorTextMain" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="-36dp"
+                        android:layout_weight="2.6"
+                        android:background="@drawable/bg_button_filter2"
+                        android:paddingStart="20dp">
+
+                        <EditText
+                            android:id="@+id/tvDayMax"
+                            style="@style/TextViewMain"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/bg_edittext1"
+                            android:digits="123456789"
+                            android:hint="Max"
+                            android:inputType="number"
+                            android:lines="1"
+                            android:maxLength="10"
+                            android:paddingBottom="4dp"
+                            android:paddingTop="4dp"
+                            android:textColor="@color/colorTextMain"
+                            android:textColorHint="@color/colorTextMain" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_filter1"
+                    android:text="@string/keywords_filter"
+                    android:textColor="@color/colorTextMain" />
+
+                <RelativeLayout
+                    android:id="@+id/layoutKeyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_filter3"
+                    android:layout_marginRight="@dimen/margin_filter1"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_filter1">
+
+                    <EditText
+                        android:id="@+id/etKeyword"
+                        style="@style/TextViewMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/et_keywords"
+                        android:gravity="top"
+                        android:lines="4"
+                        android:paddingBottom="@dimen/margin_filter1"
+                        android:paddingLeft="@dimen/margin_filter2"
+                        android:paddingRight="@dimen/margin_filter2"
+                        android:paddingTop="@dimen/margin_filter1"
+                        android:textColorHint="#79828c"
+                        android:textStyle="italic" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="200dp"
+                    android:background="@color/color_bg_group_button_bottom_filter"
+                    android:paddingBottom="@dimen/margin_filter1"
+                    android:paddingTop="@dimen/margin_filter1">
+
+                    <RelativeLayout
+                        android:id="@+id/layoutNoResult"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="@dimen/margin_filter1"
+                        android:layout_marginRight="@dimen/margin_filter3"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_filter">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true">
+
+
+                            <TextView
+                                android:id="@+id/tvApply"
+                                style="@style/TextViewMain"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
+                                android:text="@string/apply_filter"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutReset"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="@dimen/margin_filter3"
+                        android:layout_marginRight="@dimen/margin_filter1"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_filter">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true">
+
+                            <TextView
+                                android:id="@+id/tvReset"
+                                style="@style/TextViewMain"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
+                                android:text="@string/reset_filter"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutSaveSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="@dimen/margin_filter3"
+                        android:layout_marginRight="@dimen/margin_filter1"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_filter"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true">
+
+                            <TextView
+                                android:id="@+id/tvSaveSearch"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="@string/save_search_filter"
+                                android:textColor="@color/white" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

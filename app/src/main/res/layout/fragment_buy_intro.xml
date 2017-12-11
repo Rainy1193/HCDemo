@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutBuyDiscover"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/layoutBuyDiscover1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivBuyDiscover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBgBuy">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_tab"
+                    android:layout_height="@dimen/icon_tab"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_discover" />
+
+                <TextView
+                    style="@style/TextViewTab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_tab"
+                    android:text="@string/buy_discover" />
+
+                <LinearLayout
+                    android:paddingEnd="@dimen/padding_tab_action"
+                    android:paddingStart="@dimen/padding_tab_action"
+                    android:id="@+id/layoutExpandDiscover"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewTabDes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginEnd="@dimen/margin_tab"
+                        android:layout_marginStart="@dimen/margin_tab"
+                        android:layout_marginTop="@dimen/margin_tab"
+                        android:gravity="center"
+                        android:text="@string/buy_discover_des" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:layout_marginTop="@dimen/margin_tab">
+
+                        <LinearLayout
+                            android:id="@+id/viewVideoDiscover"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_tab"
+                            android:layout_marginStart="@dimen/margin_tab"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_tab_action_buy"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/margin_tab_action"
+                                    android:layout_marginTop="@dimen/margin_tab_action"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_tab_action"
+                                        android:layout_height="@dimen/icon_tab_action"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginEnd="@dimen/margin_tab"
+                                        android:src="@drawable/ic_view_video" />
+
+                                    <TextView
+                                        style="@style/TextViewTabAction"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:text="@string/view_video" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/getStartedDiscover"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_tab"
+                            android:layout_marginStart="@dimen/margin_tab"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_tab_action_buy"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/margin_tab_action"
+                                    android:layout_marginTop="@dimen/margin_tab_action"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/TextViewTabAction"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginEnd="@dimen/margin_tab"
+                                        android:text="@string/get_started" />
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_tab_action"
+                                        android:layout_height="@dimen/icon_tab_action"
+                                        android:layout_gravity="center_vertical"
+                                        android:src="@drawable/ic_get_start" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorBottomBarBg" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutBuyVisit"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layoutBuyVisit1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivBuyVisit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBgBuy">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_tab"
+                    android:layout_height="@dimen/icon_tab"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_visit" />
+
+                <TextView
+                    style="@style/TextViewTab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_tab"
+                    android:text="@string/buy_visit" />
+
+                <LinearLayout
+                    android:paddingEnd="@dimen/padding_tab_action"
+                    android:paddingStart="@dimen/padding_tab_action"
+                    android:id="@+id/layoutExpandVisit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewTabDes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginEnd="@dimen/margin_tab"
+                        android:layout_marginStart="@dimen/margin_tab"
+                        android:layout_marginTop="@dimen/margin_tab"
+                        android:gravity="center"
+                        android:text="@string/buy_visit_des" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_tab">
+
+                        <LinearLayout
+                            android:id="@+id/viewVideoVisit"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_tab"
+                            android:layout_marginStart="@dimen/margin_tab"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_tab_action_buy"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/margin_tab_action"
+                                    android:layout_marginTop="@dimen/margin_tab_action"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_tab_action"
+                                        android:layout_height="@dimen/icon_tab_action"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginEnd="@dimen/margin_tab"
+                                        android:src="@drawable/ic_view_video" />
+
+                                    <TextView
+                                        style="@style/TextViewTabAction"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:text="@string/view_video" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/getStartedVisit"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_tab"
+                            android:layout_marginStart="@dimen/margin_tab"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_tab_action_buy"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/margin_tab_action"
+                                    android:layout_marginTop="@dimen/margin_tab_action"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/TextViewTabAction"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginEnd="@dimen/margin_tab"
+                                        android:text="@string/get_started" />
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_tab_action"
+                                        android:layout_height="@dimen/icon_tab_action"
+                                        android:layout_gravity="center_vertical"
+                                        android:src="@drawable/ic_get_start" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorBottomBarBg" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutBuyCollaborate"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layoutBuyCollaborate1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivBuyCollaborate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBgBuy">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_tab"
+                    android:layout_height="@dimen/icon_tab"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_collaborate" />
+
+                <TextView
+                    style="@style/TextViewTab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_tab"
+                    android:text="@string/buy_collaborate" />
+
+                <LinearLayout
+                    android:paddingEnd="@dimen/padding_tab_action"
+                    android:paddingStart="@dimen/padding_tab_action"
+                    android:id="@+id/layoutExpandCollaborate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewTabDes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginEnd="@dimen/margin_tab"
+                        android:layout_marginStart="@dimen/margin_tab"
+                        android:layout_marginTop="@dimen/margin_tab"
+                        android:gravity="center"
+                        android:text="@string/buy_collaborate_des" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_tab">
+
+                        <LinearLayout
+                            android:id="@+id/viewVideoCollaborate"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_tab"
+                            android:layout_marginStart="@dimen/margin_tab"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_tab_action_buy"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/margin_tab_action"
+                                    android:layout_marginTop="@dimen/margin_tab_action"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_tab_action"
+                                        android:layout_height="@dimen/icon_tab_action"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginEnd="@dimen/margin_tab"
+                                        android:src="@drawable/ic_view_video" />
+
+                                    <TextView
+                                        style="@style/TextViewTabAction"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:text="@string/view_video" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/getStartedCollaborate"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_tab"
+                            android:layout_marginStart="@dimen/margin_tab"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_tab_action_buy"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/margin_tab_action"
+                                    android:layout_marginTop="@dimen/margin_tab_action"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/TextViewTabAction"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginEnd="@dimen/margin_tab"
+                                        android:text="@string/get_started" />
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_tab_action"
+                                        android:layout_height="@dimen/icon_tab_action"
+                                        android:layout_gravity="center_vertical"
+                                        android:src="@drawable/ic_get_start" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorBottomBarBg" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

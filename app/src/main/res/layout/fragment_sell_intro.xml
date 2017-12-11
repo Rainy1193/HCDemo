@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutSellYourHome"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layoutSellYourHome1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivYourHome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBgSell">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_tab"
+                    android:layout_height="@dimen/icon_tab"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_your_home" />
+
+                <TextView
+                    style="@style/TextViewTab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_tab"
+                    android:text="@string/sell_your_home" />
+
+                <LinearLayout
+                    android:paddingEnd="@dimen/padding_tab_action"
+                    android:paddingStart="@dimen/padding_tab_action"
+                    android:id="@+id/layoutExpandYourHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewTabDes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginEnd="@dimen/margin_tab"
+                        android:layout_marginStart="@dimen/margin_tab"
+                        android:layout_marginTop="@dimen/margin_tab"
+                        android:gravity="center"
+                        android:text="@string/sell_your_home_des" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_tab">
+
+                        <LinearLayout
+                            android:id="@+id/viewVideoYourHome"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_tab"
+                            android:layout_marginStart="@dimen/margin_tab"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_tab_action_sell"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/margin_tab_action"
+                                    android:layout_marginTop="@dimen/margin_tab_action"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_tab_action"
+                                        android:layout_height="@dimen/icon_tab_action"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginEnd="@dimen/margin_tab"
+                                        android:src="@drawable/ic_view_video" />
+
+                                    <TextView
+                                        style="@style/TextViewTabAction"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:text="@string/view_video" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/getStartedYourHome"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_tab"
+                            android:layout_marginStart="@dimen/margin_tab"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_tab_action_sell"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/margin_tab_action"
+                                    android:layout_marginTop="@dimen/margin_tab_action"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/TextViewTabAction"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginEnd="@dimen/margin_tab"
+                                        android:text="@string/get_started" />
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_tab_action"
+                                        android:layout_height="@dimen/icon_tab_action"
+                                        android:layout_gravity="center_vertical"
+                                        android:src="@drawable/ic_get_start" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorBottomBarBg" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutSellShowCase"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layoutSellShowCase1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivShowcase"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBgSell">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_tab"
+                    android:layout_height="@dimen/icon_tab"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_visit" />
+
+                <TextView
+                    style="@style/TextViewTab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_tab"
+                    android:text="@string/sell_showcase" />
+
+                <LinearLayout
+                    android:paddingEnd="@dimen/padding_tab_action"
+                    android:paddingStart="@dimen/padding_tab_action"
+                    android:id="@+id/layoutExpandShowcase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewTabDes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginEnd="@dimen/margin_tab"
+                        android:layout_marginStart="@dimen/margin_tab"
+                        android:layout_marginTop="@dimen/margin_tab"
+                        android:gravity="center"
+                        android:text="@string/sell_showcase_des" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_tab">
+
+                        <LinearLayout
+                            android:id="@+id/viewVideoShowCase"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_tab"
+                            android:layout_marginStart="@dimen/margin_tab"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_tab_action_sell"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/margin_tab_action"
+                                    android:layout_marginTop="@dimen/margin_tab_action"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_tab_action"
+                                        android:layout_height="@dimen/icon_tab_action"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginEnd="@dimen/margin_tab"
+                                        android:src="@drawable/ic_view_video" />
+
+                                    <TextView
+                                        style="@style/TextViewTabAction"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:text="@string/view_video" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/getStartedShowCase"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_tab"
+                            android:layout_marginStart="@dimen/margin_tab"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_tab_action_sell"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/margin_tab_action"
+                                    android:layout_marginTop="@dimen/margin_tab_action"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/TextViewTabAction"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginEnd="@dimen/margin_tab"
+                                        android:text="@string/get_started" />
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_tab_action"
+                                        android:layout_height="@dimen/icon_tab_action"
+                                        android:layout_gravity="center_vertical"
+                                        android:src="@drawable/ic_get_start" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorBottomBarBg" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutSellAgentFeedBack"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layoutSellAgentFeedBack1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+
+                android:id="@+id/ivFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorBgSell">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_tab"
+                    android:layout_height="@dimen/icon_tab"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_feedback" />
+
+                <TextView
+                    style="@style/TextViewTab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/margin_tab"
+                    android:text="@string/sell_feedback" />
+
+                <LinearLayout
+                    android:paddingEnd="@dimen/padding_tab_action"
+                    android:paddingStart="@dimen/padding_tab_action"
+                    android:id="@+id/layoutExpandFeedBack"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewTabDes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginEnd="@dimen/margin_tab"
+                        android:layout_marginStart="@dimen/margin_tab"
+                        android:layout_marginTop="@dimen/margin_tab"
+                        android:gravity="center"
+                        android:text="@string/sell_feedback_des" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_tab">
+
+                        <LinearLayout
+                            android:id="@+id/viewVideoFeedBack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_tab"
+                            android:layout_marginStart="@dimen/margin_tab"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_tab_action_sell"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/margin_tab_action"
+                                    android:layout_marginTop="@dimen/margin_tab_action"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_tab_action"
+                                        android:layout_height="@dimen/icon_tab_action"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginEnd="@dimen/margin_tab"
+                                        android:src="@drawable/ic_view_video" />
+
+                                    <TextView
+                                        style="@style/TextViewTabAction"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:text="@string/view_video" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/getStartedFeedBack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_tab"
+                            android:layout_marginStart="@dimen/margin_tab"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_tab_action_sell"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?android:selectableItemBackgroundBorderless"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginBottom="@dimen/margin_tab_action"
+                                    android:layout_marginTop="@dimen/margin_tab_action"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/TextViewTabAction"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginEnd="@dimen/margin_tab"
+                                        android:text="@string/get_started" />
+
+                                    <ImageView
+                                        android:layout_width="@dimen/icon_tab_action"
+                                        android:layout_height="@dimen/icon_tab_action"
+                                        android:layout_gravity="center_vertical"
+                                        android:src="@drawable/ic_get_start" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorBottomBarBg" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

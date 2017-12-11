@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBgFragment"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TextViewMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/invite_agent_schedule" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+        <TextView
+
+            style="@style/TextViewMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_select_agents1"
+            android:text="@string/find_by_email" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_select_agents1"
+            android:layout_marginStart="@dimen/margin_select_agents1"
+            android:background="@drawable/bg_find_agent_view">
+
+
+            <EditText
+                android:id="@+id/etEmailAgent"
+                style="@style/TextViewMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_select_agents1"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="@dimen/margin_select_agents1"
+                android:background="@drawable/bg_edittext1"
+                android:hint="agent@email"
+                android:textColorHint="@color/colorTextMain" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutInviteEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="@dimen/margin_select_agents1"
+            android:layout_marginEnd="@dimen/margin_select_agents1"
+            android:layout_marginStart="@dimen/margin_select_agents1"
+            android:layout_marginTop="@dimen/margin_select_agents1"
+            android:background="@drawable/bg_button_filter">
+
+
+            <TextView
+                android:id="@+id/tvInviteByEmail"
+                style="@style/TextViewMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_select_agents1"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="@dimen/margin_select_agents1"
+                android:text="@string/invite"
+                android:textColor="@color/colorWhite" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+        <TextView
+
+            style="@style/TextViewMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_select_agents1"
+            android:text="@string/find_by_phone" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_select_agents1"
+            android:layout_marginStart="@dimen/margin_select_agents1"
+            android:background="@drawable/bg_find_agent_view">
+
+            <LinearLayout
+                android:id="@+id/layoutRegion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp">
+
+                <ImageView
+                    android:id="@+id/ivRegion"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/us" />
+
+                <TextView
+                    android:id="@+id/tvRegion"
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="4dp"
+                    android:text="+1"
+                    android:textColor="@color/colorBlack" />
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="4dp"
+                    android:background="@color/colorBlack" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etPhoneAgent"
+                style="@style/TextViewMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_select_agents1"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="@dimen/margin_select_agents1"
+                android:layout_toRightOf="@id/layoutRegion"
+                android:background="@drawable/bg_edittext1"
+                android:hint="(123) 456 7890"
+                android:inputType="phone"
+                android:textColorHint="@color/colorTextMain" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutInvitePhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="@dimen/margin_select_agents1"
+            android:layout_marginEnd="@dimen/margin_select_agents1"
+            android:layout_marginStart="@dimen/margin_select_agents1"
+            android:layout_marginTop="@dimen/margin_select_agents1"
+            android:background="@drawable/bg_button_filter">
+
+
+            <TextView
+                android:id="@+id/tvInviteByPhone"
+                style="@style/TextViewMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_select_agents1"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="@dimen/margin_select_agents1"
+                android:text="@string/invite"
+                android:textColor="@color/colorWhite" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite">
+
+        <TextView
+            style="@style/TextViewMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/margin_select_agents1"
+            android:text="@string/find_by_phone_contacts" />
+
+        <RelativeLayout
+            android:id="@+id/layoutContactPhone"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="right"
+            android:layout_marginBottom="@dimen/margin_select_agents1"
+            android:layout_marginEnd="@dimen/margin_select_agents1"
+            android:layout_marginStart="@dimen/margin_select_agents1"
+            android:layout_marginTop="@dimen/margin_select_agents1"
+            android:background="@drawable/bg_button_filter">
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

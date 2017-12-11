@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="end"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:layout_marginEnd="8dp"
+    android:id="@+id/layoutItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/layoutMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/consumer_message_rounded_mess_from"
+        android:orientation="vertical">
+
+        <io.github.rockerhieu.emojicon.EmojiconTextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            emojicon:emojiconAlignment="baseline"
+            emojicon:emojiconSize="16sp"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tvChatTime"
+            android:textSize="12sp"
+            android:layout_gravity="end"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgMessage"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true" />
+
+        <ProgressBar
+            android:id="@+id/pbUploadImage"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/vSpace"
+        android:layout_width="match_parent"
+        android:layout_height="12dp" />
+</LinearLayout>

@@ -1,0 +1,43 @@
+-- Merging decision tree log ---
+manifest
+ADDED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:2:1-7:12
+INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:2:1-7:12
+INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:2:1-7:12
+INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:2:1-7:12
+INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:2:1-7:12
+INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:2:1-7:12
+INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:2:1-7:12
+	package
+		ADDED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:3:5-45
+		INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+		INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+		ADDED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:2:1-7:12
+		INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+		ADDED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:2:1-7:12
+		INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:2:11-69
+application
+ADDED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:5:5-20
+uses-permission#android.permission.INTERNET
+ADDED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:6:5-66
+	android:name
+		ADDED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml:6:22-64
+uses-sdk
+INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+		ADDED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+		INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+		ADDED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml
+		INJECTED from G:\android\HCDemo\linkedin-sdk\src\main\AndroidManifest.xml

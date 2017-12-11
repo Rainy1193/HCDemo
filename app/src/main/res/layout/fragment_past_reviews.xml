@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="260dp"
+            android:layout_marginTop="-100dp"
+            android:src="@drawable/ic_consumer_showing_empty" />
+
+        <TextView
+            style="@style/TextViewMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/empty_upcoming" />
+
+    </LinearLayout>
+
+    <com.homecaravan.android.consumer.widget.CustomNestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBgFragment"
+        android:scrollbarThumbVertical="@null">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_line_view_showing" />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvCaravan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f5f7f8"
+                android:nestedScrollingEnabled="false" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvPastSingleShowings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f5f7f8"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+    </com.homecaravan.android.consumer.widget.CustomNestedScrollView>
+</FrameLayout>
+

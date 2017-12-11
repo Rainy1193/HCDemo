@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "157491859989",
+    "firebase_url": "https://hctest-d9e04.firebaseio.com",
+    "project_id": "hctest-d9e04",
+    "storage_bucket": "hctest-d9e04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157491859989:android:22f10f661a6a38f6",
+        "android_client_info": {
+          "package_name": "com.homecaravan.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157491859989-877bnoff0mka16t0qb9v4dscur5hlfp2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6ZAAFii8N9lr2KGOZ8Nk5dKgTvBfTRJg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

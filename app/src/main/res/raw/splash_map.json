@@ -1,0 +1,32 @@
+{
+  "datas": [
+    {
+      "lat": 16.4766206,
+      "long": 107.5747448,
+      "avatar": "consumer_demo_property1.jpg",
+      "priceShort": "$12K",
+      "status": "available"
+    },
+    {
+      "lat": 16.3771564,
+      "long": 106.1712932,
+      "avatar": "consumer_demo_property2.jpg",
+      "priceShort": "$25K",
+      "status": "close"
+    },
+    {
+      "lat": 20.3203247,
+      "long": 104.7358818,
+      "avatar": "consumer_demo_property3.jpg",
+      "priceShort": "$54K",
+      "status": "available"
+    },
+    {
+      "lat": 10.7676563,
+      "long": 106.1338326,
+      "avatar": "consumer_demo_property4.jpg",
+      "priceShort": "$1.9M",
+      "status": "close"
+    }
+  ]
+}

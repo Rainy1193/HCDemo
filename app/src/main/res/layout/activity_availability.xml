@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMain"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layoutBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorMain"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/back"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/bg_back"
+            android:gravity="center"
+            android:onClick="back"
+            android:text="@string/icon_back"
+            android:textColor="@color/colorText"
+            android:textSize="40sp"/>
+
+        <TextView
+            android:id="@+id/tvActionBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="@string/availability"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_size_custom_title"/>
+
+        <ImageView
+            android:id="@+id/ivTeam"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_group"/>
+    </RelativeLayout>
+    <View
+        android:id="@+id/viewHoz"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/layoutBar"
+        android:background="@color/colorButtonPressed"/>
+    <RelativeLayout
+        android:id="@+id/layoutContentAvailability"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewHoz"
+        android:background="@color/colorTransparentMain"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/ivListingHide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/layoutBelow"
+            android:layout_alignLeft="@+id/layoutBelow"
+            android:layout_alignRight="@+id/layoutBelow"
+            android:scaleType="centerCrop"/>
+        <RelativeLayout
+            android:id="@+id/layoutBelow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorTransparentMain"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:id="@+id/layoutDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivListing"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"/>
+                <LinearLayout
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvListingId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/text_size_custom_lang"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/tvAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/text_size_custom_lang"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layoutDetail"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/btEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_edit"
+                    android:drawableLeft="@drawable/ic_edit_available"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="2dp"
+                    android:text="Editing"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_size_custom_normal">
+
+                </Button>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true">
+                        <ImageView
+                            android:id="@+id/ivApptAvailability"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginRight="10dp"
+                            android:onClick="showAppt"/>
+
+                        <ImageView
+                            android:id="@+id/ivCalendarAvailability"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginRight="10dp"
+                            android:onClick="showCalendar"/>
+
+                        <ImageView
+                            android:id="@+id/ivCalendarWeek"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginRight="10dp"
+                            android:onClick="showCalendarWeek"/>
+
+                        <ImageView
+                            android:id="@+id/ivCalendarDay"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginRight="10dp"
+                            android:onClick="showCalendarDay"/>
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+    <!--<RelativeLayout-->
+    <!--android:layout_below="@+id/layoutContentAvailability"-->
+    <!--android:id="@+id/rlAvailability"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+    <!--</RelativeLayout>-->
+    <com.homecaravan.android.ui.MyViewPager
+        android:id="@+id/vpAvailability"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutContentAvailability"
+        android:background="@color/colorWhite">
+
+    </com.homecaravan.android.ui.MyViewPager>
+
+    <LinearLayout
+        android:id="@+id/layout_edit_available"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorText"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_border_layout"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/layout_available"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="available"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivAvailable"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Available"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorButtonGray"/>
+
+            <LinearLayout
+                android:id="@+id/layout_unavailable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="unavailable"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivUnavailable"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Unavailable"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.1dp"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorButtonGray"/>
+
+            <LinearLayout
+                android:id="@+id/layout_open_house"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="openHouse"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivOpenHouse"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Open House"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.1dp"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorButtonGray"/>
+
+            <LinearLayout
+                android:id="@+id/layout_pending"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="pending"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivPending"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Pending"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

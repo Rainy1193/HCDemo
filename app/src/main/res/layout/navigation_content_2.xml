@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:triangle="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    tools:context="com.homecaravan.android.signup.SignUp"
+    tools:showIn="@layout/activity_signup">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/navigation_button_step_bg_inactive">
+        <RelativeLayout
+            android:layout_alignParentLeft="true"
+            android:id="@id/c_step_0"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@id/c_step_1"
+            android:onClick="goToStep"
+            android:tag="step_1"
+            android:layout_width="61dp"
+            android:layout_toRightOf="@id/c_step_0"
+            android:background="@color/navigation_button_step_bg_pass"
+            android:layout_height="50dp">
+
+            <LinearLayout
+                android:layout_width="61dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="0dp"
+                android:paddingRight="0dp">
+
+                <TextView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/circle_number_white"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/navigation_button_step_active_text"
+                    android:textSize="18dp" />
+
+
+            </LinearLayout>
+
+            <com.homecaravan.android.ui.TriangleBg
+                android:layout_width="16dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="left"
+                android:layout_marginLeft="0dp"
+                android:background="@color/navigation_button_step_bg_active"
+                android:padding="0dp"
+                android:rotation="0"
+                triangle:triangleStrokeWidth="0dp"
+                triangle:triangleColor="@color/navigation_button_step_bg_pass"
+                triangle:triangleStrokeColor="@color/navigation_button_step_bg_pass" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@id/c_step_2"
+            android:onClick="goToStep"
+            android:tag="step_2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/c_step_1"
+            android:layout_toLeftOf="@id/c_step_3"
+            android:background="@color/navigation_button_step_bg_active"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="0dp">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginRight="0dp"
+                android:paddingRight="0dp">
+
+                <TextView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_number_white"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="@color/navigation_button_step_active_text"
+                    android:textSize="18dp" />
+                <Button
+                    android:id="@+id/button_step_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:height="50dp"
+                    android:background="@color/navigation_button_step_tran"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/nav_step_title_2"
+                    android:textAllCaps="false"
+                    android:textColor="@color/navigation_button_step_active_text"
+                    android:textSize="14dp"
+                    />
+            </LinearLayout>
+
+            <com.homecaravan.android.ui.TriangleBg
+                android:layout_width="16dp"
+                android:layout_height="50dp"
+                android:layout_margin="0dp"
+                android:padding="0dp"
+                android:rotation="0"
+                android:background="@color/navigation_button_step_bg_inactive"
+                android:layout_alignParentRight="true"
+                triangle:triangleStrokeWidth="0dp"
+                triangle:triangleColor="@color/navigation_button_step_bg_active"
+                triangle:triangleStrokeColor="@color/navigation_button_step_bg_active" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@id/c_step_3"
+            android:onClick="goToStep"
+            android:tag="step_3"
+            android:layout_width="61dp"
+            android:layout_height="50dp"
+            android:layout_toLeftOf="@id/c_step_4"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="0dp">
+
+            <LinearLayout
+                android:layout_width="61dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="0dp"
+                android:paddingRight="0dp">
+
+                <TextView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/cirle_number_gray"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@color/navigation_button_step_inactive_text"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+
+            <com.homecaravan.android.ui.Triangle
+                android:layout_width="16dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="0dp"
+                android:padding="0dp"
+                android:rotation="0"
+                triangle:triangleStrokeWidth="1dp"
+                triangle:triangleColor="@color/navigation_button_step_tran"
+                triangle:triangleStrokeColor="@color/navigation_button_step_gray" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@id/c_step_4"
+            android:onClick="goToStep"
+            android:tag="step_4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="0dp"
+                android:background="@color/navigation_button_step_bg_inactive"
+                android:paddingRight="0dp">
+                <TextView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/cirle_number_gray"
+                    android:gravity="center"
+                    android:textColor="@color/navigation_button_step_inactive_text"
+                    android:text="4"
+                    android:textSize="18dp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

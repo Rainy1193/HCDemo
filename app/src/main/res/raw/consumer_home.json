@@ -1,0 +1,88 @@
+{
+  "datas": [
+    {
+      "lat": 16.4766206,
+      "long": 107.5747448,
+      "image": "consumer_demo_property3.jpg",
+      "address1": "7920 Glenlake Avenue",
+      "address2": "Ankeny, IA 50023",
+      "bed": "4bds",
+      "bath": "2ba",
+      "square": "550",
+      "price": "$4.080.000",
+      "priceShort": "$4M",
+      "avatar": "avatar_cons_dashboard_2.png",
+      "status": "available"
+    },
+    {
+      "lat": 16.3771564,
+      "long": 106.1712932,
+      "image": "consumer_demo_property1.jpg",
+      "address1": "42 West Arch Drive",
+      "address2": "Windermere, FL 34786",
+      "bed": "1bds",
+      "bath": "1ba",
+      "square": "1750",
+      "price": "$2.180.000",
+      "priceShort": "$2.1M",
+      "avatar": "avatar_cons_dashboard_1.png",
+      "status": "close"
+    },
+    {
+      "lat": 20.3203247,
+      "long": 104.7358818,
+      "image": "consumer_demo_property2.jpg",
+      "address1": "8547C Fairview Street",
+      "address2": "Fairhope, AL 36532",
+      "bed": "2bds",
+      "bath": "2ba",
+      "square": "460",
+      "price": "$1.220.000",
+      "priceShort": "$1.2M",
+      "avatar": "avatar_cons_dashboard_2.png",
+      "status": "available"
+    },
+    {
+      "lat": 10.7676563,
+      "long": 106.1338326,
+      "image": "consumer_demo_property3.jpg",
+      "address1": "2333 Forward Rd",
+      "address2": "Camillus , NY 13031",
+      "bed": "3bds",
+      "bath": "2ba",
+      "square": "450",
+      "price": "$980.000",
+      "priceShort": "$980K",
+      "avatar": "avatar_cons_dashboard_1.png",
+      "status": "available"
+    },
+    {
+      "lat": 22.404017,
+      "long": 105.420467,
+      "image": "consumer_demo_property4.jpg",
+      "address1": "KY-2123",
+      "address2": "Camillus , NY 13031",
+      "bed": "3bds",
+      "bath": "2ba",
+      "square": "250",
+      "price": "$3.330.000",
+      "priceShort": "$3.3M",
+      "avatar": "avatar_cons_dashboard_2.png",
+      "status": "close"
+    },
+    {
+      "lat": 19.903358,
+      "long": 105.366632,
+      "image": "consumer_demo_property1.jpg",
+      "address1": "13 Garden St",
+      "address2": "Livingston, NJ 07039",
+      "bed": "2  bds",
+      "bath": "4ba",
+      "square": "410",
+      "price": "$80.000",
+      "priceShort": "$80K",
+      "avatar": "avatar_cons_dashboard_1.png",
+      "status": "available"
+    }
+  ]
+}

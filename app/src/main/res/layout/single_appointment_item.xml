@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutItem"
+    android:layout_width="match_parent"
+    android:layout_height="136dp"
+    android:layout_marginBottom="8dp"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:paddingBottom="8dp"
+    android:paddingLeft="8dp"
+    android:paddingTop="8dp">
+
+    <RelativeLayout
+        android:layout_width="154dp"
+        android:layout_height="120dp"
+        android:layout_marginRight="10dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imgAppointmentHome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:riv_corner_radius="5dip" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/gradient_bottom_shadow" />
+
+        </FrameLayout>
+
+        <View
+            android:id="@+id/vAppointmentAction"
+            android:layout_width="@dimen/icon_size_dot_showing"
+            android:layout_height="@dimen/icon_size_dot_showing"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_green_showing" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingRight="12dp">
+
+            <TextView
+                android:id="@+id/tvAppointmentAddress"
+                style="@style/TextViewMain"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingRight="12dp"
+                android:text="2333 Forward Rd"
+                android:textColor="@color/text_color_icon_showing"
+                android:textSize="15sp" />
+
+            <FrameLayout
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_green_e1_showing">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_edit_showing"
+                    android:layout_height="@dimen/icon_size_edit_showing"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_consumer_showing_edit_color_white" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            android:paddingRight="12dp">
+
+            <com.homecaravan.android.ui.CircleImageView
+                android:id="@+id/imgAppointmentAvatar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="4dp" />
+
+            <TextView
+                android:id="@+id/tvAppointmentName"
+                style="@style/TextViewMain"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_weight="2"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text_color_icon_showing"
+                android:textSize="14sp" />
+
+            <FrameLayout
+                android:id="@+id/frmAppointmentMessage"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_blue_e2">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_contact_agent_listing_agent" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorLine" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:paddingRight="12dp">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_single_showing"
+                android:layout_height="@dimen/icon_size_single_showing"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_consumer_showing_datetime" />
+
+            <TextView
+                android:id="@+id/tvAppointmentDate"
+                style="@style/TextViewItemDashboard3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Monday, May 25"
+                android:textColor="@color/text_color_icon_showing"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal"
+            android:paddingRight="12dp">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_single_showing"
+                android:layout_height="@dimen/icon_size_single_showing"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_consumer_showing_clock_time" />
+
+            <TextView
+                android:id="@+id/tvAppointmentTime"
+                style="@style/TextViewItemDashboard3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:text="11:30 - 12:00am"
+                android:textColor="@color/text_blue_color_caravan_showing"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

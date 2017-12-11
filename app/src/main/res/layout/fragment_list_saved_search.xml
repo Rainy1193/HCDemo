@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/layoutAction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E9EDEF"
+            android:padding="6dp">
+
+            <TextView
+                android:id="@+id/totalListing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorMenuConsumer" />
+
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:id="@+id/switchSavedSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:checked="false"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="13sp"
+                app:kswBackColor="#79828C"
+                app:kswTextOff="  List  "
+                app:kswTextOn="  Map  "
+                app:kswThumbColor="@color/colorBlueUserProfile"
+                app:kswThumbHeight="24dp"
+                app:kswThumbWidth="24dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutMapSavedSearchContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+
+                android:id="@+id/layoutMapSavedSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <fragment
+                    android:id="@+id/mapSaveSearchDetail"
+                    android:name="com.homecaravan.android.ui.MySupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <RelativeLayout
+                    android:id="@+id/layoutErrorZoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#ffffff"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/error_zoom"
+                        android:textStyle="italic" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutLoading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_dialog_loading"
+                    android:padding="4dp"
+                    android:visibility="gone">
+
+                    <ProgressBar
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:indeterminateDrawable="@drawable/bg_progress" />
+
+                    <TextView
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:text="Loading ..."
+                        android:textStyle="italic" />
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/layoutBgActionMap"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#CCFFFFFF"
+                    android:visibility="gone" />
+
+                <FrameLayout
+                    android:id="@+id/layoutDraw"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusableInTouchMode="false"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical">
+
+                    <com.homecaravan.android.consumer.widget.floatactionbutton.FloatingActionMenu
+                        android:id="@+id/fabActionMap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        app:fab_size="normal"
+                        app:menu_colorNormal="@color/colorMenuConsumer"
+                        app:menu_colorPressed="@color/colorMenuConsumer"
+                        app:menu_colorRipple="@color/colorMenuConsumer"
+                        app:menu_icon="@drawable/ic_add_float_action_button"
+                        app:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+                        app:menu_labels_margin="2dp"
+                        app:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+                        app:menu_labels_style="@style/menu_labels_style">
+
+                        <com.homecaravan.android.consumer.widget.floatactionbutton.FloatingActionButton
+                            android:id="@+id/fabRefresh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:src="@drawable/ic_fab_refresh"
+                            app:fab_colorNormal="@color/colorMenuConsumer"
+                            app:fab_colorPressed="@color/colorMenuConsumer"
+                            app:fab_colorRipple="@color/colorMenuConsumer"
+                            app:fab_label="Refresh Map"
+                            app:fab_size="mini" />
+
+
+                        <com.homecaravan.android.consumer.widget.floatactionbutton.FloatingActionButton
+                            android:id="@+id/fabCurrentLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:src="@drawable/ic_fab_current_location"
+                            app:fab_colorNormal="@color/colorMenuConsumer"
+                            app:fab_colorPressed="@color/colorMenuConsumer"
+                            app:fab_colorRipple="@color/colorMenuConsumer"
+                            app:fab_label="Current Location"
+                            app:fab_size="mini" />
+
+                        <com.homecaravan.android.consumer.widget.floatactionbutton.FloatingActionButton
+                            android:id="@+id/fabDrawArea"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:src="@drawable/ic_fab_draw_area"
+                            app:fab_colorNormal="@color/colorMenuConsumer"
+                            app:fab_colorPressed="@color/colorMenuConsumer"
+                            app:fab_colorRipple="@color/colorMenuConsumer"
+                            app:fab_label="Draw Area"
+                            app:fab_size="mini" />
+
+                        <com.homecaravan.android.consumer.widget.floatactionbutton.FloatingActionButton
+                            android:id="@+id/fabSatelliteView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            android:src="@drawable/ic_fab_satellite_map"
+                            app:fab_colorNormal="@color/colorMenuConsumer"
+                            app:fab_colorPressed="@color/colorMenuConsumer"
+                            app:fab_colorRipple="@color/colorMenuConsumer"
+                            app:fab_label="Satellite View"
+                            app:fab_size="mini" />
+
+                    </com.homecaravan.android.consumer.widget.floatactionbutton.FloatingActionMenu>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutRvListing"
+                        android:layout_width="match_parent"
+                        android:layout_height="156dp"
+                        android:layout_marginBottom="8dp"
+                        android:visibility="gone">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvListingMini"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutListingList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:id="@+id/layoutEmpty"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <include layout="@layout/layout_empty_listing" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvListing"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

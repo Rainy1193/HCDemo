@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_border_corner_consumer_popup"
+        android:layout_marginTop="32dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:paddingBottom="24dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/TextViewListingDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Confirm"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvMessage"
+                android:layout_marginTop="22dp"
+                style="@style/TextViewListingDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="44dp"
+                android:layout_marginRight="44dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Are you sure you want to update this custom searche's with changes you've made to this search?\nThis will overwrite any of your previous settings"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_marginTop="26dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <FrameLayout
+                    android:id="@+id/frmButtonNo"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="38dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_consumer_popup_gray">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="No"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorGrayLogin"
+                        />
+                </FrameLayout>
+
+                <View
+                    android:layout_width="16dp"
+                    android:layout_height="1dp"/>
+
+                <FrameLayout
+                    android:id="@+id/frmButtonYes"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="38dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_consumer_popup_confirm">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Yes"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        />
+                </FrameLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_consumer_popup_confirm">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_consumer_popup_confirm"
+            />
+    </FrameLayout>
+</RelativeLayout>

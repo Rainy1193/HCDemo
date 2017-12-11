@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutHeader"
+    android:layout_width="100dp"
+    android:layout_height="150dp"
+    android:background="@color/colorViewImageDashboardItem"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.5"
+        android:scaleType="centerCrop"
+        android:src="@drawable/savedsearch_background_dashboard" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_centerHorizontal="true"
+            android:id="@+id/layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_header_dashboard_item"
+            android:layout_marginRight="@dimen/margin_header_dashboard_item">
+
+            <ImageView
+                android:layout_width="@dimen/icon_item_dashboard"
+                android:layout_height="@dimen/icon_item_dashboard"
+                android:layout_alignParentLeft="true"
+                android:padding="2dp"
+                android:src="@drawable/ic_saved_search_item" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvNumberListing"
+                style="@style/TextViewItemDashboard2"
+                android:layout_width="@dimen/icon_item_dashboard"
+                android:layout_height="@dimen/icon_item_dashboard"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_view_header_dashboard_item"
+                android:gravity="center"
+                android:textColor="@color/colorWhite" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_centerHorizontal="true"
+            style="@style/TextViewItemDashboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout"
+            android:layout_marginLeft="@dimen/margin_header_dashboard_item"
+            android:layout_marginTop="@dimen/margin_header_dashboard_item"
+            android:text="@string/dashboard_saved_search" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        style="@style/TextViewItemDashboard1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:paddingBottom="@dimen/margin_header_dashboard_item"
+        android:text="@string/view_all" />
+</RelativeLayout>

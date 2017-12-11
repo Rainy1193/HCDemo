@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutMapFilter"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/TextViewMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_filter1"
+                android:text="@string/map_style_filter"
+                android:textColor="@color/colorBuy"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/layoutMapClassic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_filter1"
+                android:layout_marginRight="@dimen/margin_filter3"
+                android:background="@drawable/bg_button_filter">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/ivMapClassic"
+                        android:layout_width="@dimen/icon_filter"
+                        android:layout_height="@dimen/icon_filter"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/margin_filter"
+                        android:padding="@dimen/icon_padding_filter"
+                        android:src="@drawable/ic_ticked" />
+
+                    <TextView
+                        android:id="@+id/tvMapClassic"
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="20dp"
+                        android:text="@string/classic_map_style"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutMapSatellite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_filter1"
+                android:layout_marginRight="@dimen/margin_filter3"
+                android:background="@drawable/bg_button_filter2">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:id="@+id/ivMapSatellite"
+                        android:layout_width="@dimen/icon_filter"
+                        android:layout_height="@dimen/icon_filter"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/margin_filter"
+                        android:padding="@dimen/icon_padding_filter"
+                        android:src="@drawable/ic_ticked" />
+
+                    <TextView
+                        android:id="@+id/tvMapSatellite"
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="20dp"
+                        android:text="@string/satellite_map_style" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

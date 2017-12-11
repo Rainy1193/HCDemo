@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutClient"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvBack"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/bg_back"
+            android:gravity="center"
+            android:text="@string/icon_back"
+            android:textColor="@color/colorText"
+            android:textSize="40sp" />
+
+        <TextView
+            android:id="@+id/tvActionBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="HomeCaravan"
+            android:textColor="@color/colorText"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/ivChat"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="50dp"
+            android:padding="12dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bg_back"
+            android:src="@drawable/ic_message_empty"
+            android:gravity="center"
+            android:textColor="@color/colorText"
+            android:textSize="32sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:id="@+id/layout_text_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="15dp"
+                android:text="Respond to a showing request"
+                android:textColor="#4A4A4A"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvIntroText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text=" wants to schedule an appointment in a timeslot you marked unavailable."
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="Respond to this request in one of 3 ways:"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+
+                android:paddingRight="5dp"
+                android:text="1. Select a Date to see requested times."
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+
+                android:paddingRight="5dp"
+                android:text="2. Suggest other times."
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="3. Decline these times and send a note back."
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/layout_text_top">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/listEventLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/listEvent"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+
+                        android:background="@color/colorWhite">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutSuggestAction"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/listEventLayout"
+                    android:orientation="vertical"
+                    android:layout_marginTop="25dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:id="@+id/layoutSuggestActionNotAllow"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="0.25"
+                            >
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutDecline_2"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/text_view_decline"
+                            android:paddingBottom="0dp"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp"
+                            android:paddingTop="0dp">
+
+                            <TextView
+                                android:id="@+id/tvDecline_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:width="30dp"
+                                android:height="30dp"
+                                android:background="@drawable/circle_decline"
+                                android:gravity="center"
+                                android:padding="2dp"
+
+                                android:text="@string/icon_close"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/tvtvDecline1_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_weight=".75"
+                                android:gravity="center"
+                                android:text="Decline"
+                                android:textAlignment="center"
+                                android:textColor="@color/color_decline"
+                                android:textSize="@dimen/text_size_custom_big" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="0.25"
+                            >
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/layoutSuggestActionAllow"
+
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/layoutSuggest"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/text_view_resuggest"
+                            android:gravity="left"
+                            android:paddingBottom="0dp"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp"
+                            android:paddingTop="0dp">
+
+                            <TextView
+                                android:id="@+id/tvSuggest"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:width="30dp"
+
+                                android:height="30dp"
+                                android:background="@drawable/circle_resugest"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="@string/icon_book"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/tvSuggest1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="5dp"
+
+                                android:layout_weight=".75"
+                                android:text="Suggest times"
+                                android:textColor="@color/color_resuggest"
+                                android:textSize="@dimen/text_size_custom_big" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutDecline"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/text_view_decline"
+                            android:gravity="left"
+                            android:paddingBottom="0dp"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp"
+                            android:paddingTop="0dp">
+
+                            <TextView
+                                android:id="@+id/tvDecline"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="5dp"
+                                android:width="30dp"
+                                android:height="30dp"
+                                android:background="@drawable/circle_decline"
+                                android:gravity="center"
+                                android:padding="2dp"
+                                android:text="@string/icon_close"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/tvtvDecline1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="10dp"
+                                android:layout_weight=".75"
+                                android:gravity="center"
+                                android:text="Decline"
+                                android:textAlignment="center"
+                                android:textColor="@color/color_decline"
+                                android:textSize="@dimen/text_size_custom_big" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+</LinearLayout>

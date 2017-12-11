@@ -1,0 +1,335 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/svAccountProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:id="@+id/layoutAccountProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp">
+
+            <FrameLayout
+                android:id="@+id/flAvatar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ic_border">
+
+                <com.homecaravan.android.ui.CircleImageView
+                    android:id="@+id/ivAvatarProfile"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:onClick="takeAvatarAccount"
+                    android:src="@drawable/image_default"/>
+
+                <Button
+                    android:id="@+id/btTakeAvatar"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/ic_add_avatar"
+                    android:onClick="takeAvatarAccount"/>
+            </FrameLayout>
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/tvFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:hint="@string/first_name"
+                android:inputType="text"
+                android:paddingLeft="0dp"
+                android:paddingRight="40dp"
+                android:textSize="@dimen/text_size_custom_lang"
+                app:met_baseColor="@color/colorEditText"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelTextColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_underlineColor="@color/colorTransparentImage"
+            />
+
+            <ImageView
+                android:id="@+id/ivClearEtFirstName"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:onClick="clear"
+                android:src="@drawable/bg_remove_text"
+                android:visibility="invisible"
+            />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/tvLastName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:hint="@string/last_name"
+                android:inputType="text"
+                android:paddingLeft="0dp"
+                android:paddingRight="40dp"
+                android:textSize="@dimen/text_size_custom_lang"
+                app:met_baseColor="@color/colorEditText"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelTextColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_underlineColor="@color/colorTransparentImage"
+            />
+
+            <ImageView
+                android:id="@+id/ivClearEtLastName"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:onClick="clear"
+                android:src="@drawable/bg_remove_text"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/tvMobilePhone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:digits="0123456789"
+                android:hint="@string/mobile_phone"
+                android:inputType="numberDecimal"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:textSize="@dimen/text_size_custom_lang"
+                app:met_baseColor="@color/colorEditText"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelTextColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_underlineColor="@color/colorTransparentImage"/>
+
+            <ImageView
+                android:id="@+id/ivCountry"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:onClick="showPassword"
+                android:src="@drawable/us"/>
+
+            <ImageView
+                android:id="@+id/ivClearEtMobilePhone"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:onClick="clear"
+                android:src="@drawable/bg_remove_text"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/tvEmail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:clickable="true"
+                android:hint="@string/email"
+                android:inputType="textWebEmailAddress"
+                android:paddingLeft="0dp"
+                android:paddingRight="40dp"
+                android:textSize="@dimen/text_size_custom_lang"
+                app:met_baseColor="@color/colorEditText"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelTextColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_underlineColor="@color/colorTransparentImage"/>
+
+            <ImageView
+                android:id="@+id/ivClearEtEmail"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:onClick="clear"
+                android:src="@drawable/bg_remove_text"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/tvTimeZone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:focusableInTouchMode="false"
+                android:hint="@string/timezone"
+                android:inputType="textNoSuggestions|textVisiblePassword"
+                android:paddingLeft="0dp"
+                android:textSize="@dimen/text_size_custom_lang"
+                app:met_baseColor="@color/colorEditText"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelTextColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_underlineColor="@color/colorTransparentImage"/>
+
+            <TextView
+                android:id="@+id/tvDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="15dp"
+                android:text="@string/icon_down"/>
+        </RelativeLayout>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp">
+
+            <TableRow>
+
+                <CheckBox
+                    android:id="@+id/cbPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/real_estate_professional"/>
+            </TableRow>
+
+            <TableRow>
+
+                <CheckBox
+                    android:id="@+id/cbNonPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvNonPro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/non_professional"/>
+            </TableRow>
+        </TableLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btNext"
+                    style="?android:borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_green_large"
+                    android:onClick="next"
+                    android:text="@string/next"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorText"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="2dp"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_next"/>
+        </FrameLayout>
+        <!--</com.andexert.library.RippleView>-->
+    </LinearLayout>
+</ScrollView>

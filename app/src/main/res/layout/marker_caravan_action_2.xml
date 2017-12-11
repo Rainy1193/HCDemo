@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorTransparent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutMain"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_marker_caravan2"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <com.homecaravan.android.ui.CircleImageView
+            android:id="@+id/ivAgent"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvNameAgent"
+                style="@style/TextViewMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorTextMain"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv2"
+                style="@style/TextViewMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/colorTextMain" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.homecaravan.android.consumer.widget.ViewArrow
+        android:id="@+id/view"
+        android:layout_width="15dp"
+        android:layout_height="7dp"
+        android:layout_gravity="center_horizontal"
+        app:color_view_arrow="@color/white" />
+
+    <ImageView
+        android:id="@+id/imgFlag"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="-5dp"
+        android:src="@drawable/ic_consumer_caravan_car_2"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>

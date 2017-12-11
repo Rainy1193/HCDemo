@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/action_bar_temp"/>
+
+    <ScrollView
+        android:id="@+id/svAccountSetting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <LinearLayout
+            android:id="@+id/layoutAccountSetting"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBgText"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="@string/account_type"
+                android:textSize="@dimen/text_size_custom_title"/>
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp">
+
+                <TableRow
+                    android:id="@+id/trPro">
+
+                    <CheckBox
+                        android:id="@+id/cbPro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/real_estate_professional"
+                        android:textSize="@dimen/text_size_custom_normal"/>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/trNonPro">
+
+                    <CheckBox
+                        android:id="@+id/cbNonPro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/non_professional"
+                        android:textSize="@dimen/text_size_custom_normal"/>
+                </TableRow>
+            </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/choose_realtor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/do_you_have_a_realtor_agent_yet"
+                    android:textSize="@dimen/text_size_custom_normal"/>
+
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/choose_realtor"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp">
+
+                    <TableRow>
+
+                        <RadioButton android:id="@+id/rbYes"/>
+
+                        <RadioButton
+                            android:id="@+id/rbYesHidden"
+                            android:theme="@style/MyRadioButton"
+                            android:visibility="gone"/>
+
+                        <TextView
+                            android:id="@+id/tvYes"
+                            android:text="@string/yes"
+                            android:textSize="@dimen/text_size_custom_normal"/>
+
+                        <RadioButton android:id="@+id/rbNo"/>
+
+                        <RadioButton
+                            android:id="@+id/rbNoHidden"
+                            android:theme="@style/MyRadioButton"
+                            android:visibility="gone"/>
+
+                        <TextView
+                            android:id="@+id/tvNo"
+                            android:text="@string/no"
+                            android:textSize="@dimen/text_size_custom_normal"/>
+                    </TableRow>
+                </TableLayout>
+
+                <TextView
+                    android:id="@+id/tvChange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/enter_agent"
+                    android:textSize="@dimen/text_size_custom_normal"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:id="@+id/etEmailAgent"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:background="@drawable/edit_text_gray"
+                        android:clickable="false"
+                        android:enabled="false"
+                        android:inputType="text"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/text_size_custom_normal"/>
+
+                    <Button
+                        android:id="@+id/btChange"
+                        style="?android:borderlessButtonStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_green"
+                        android:onClick="changeAgent"
+                        android:text="Find Agent"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/text_size_custom_normal"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorBgText"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="@string/communication_preference"
+                android:textSize="@dimen/text_size_custom_title"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/tvPreference"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:textSize="@dimen/text_size_custom_normal"/>
+
+                <TextView
+                    android:id="@+id/tvDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:paddingRight="10dp"
+                    android:text="@string/icon_down"/>
+            </RelativeLayout>
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp">
+
+                <TableRow>
+
+                    <CheckBox android:id="@+id/cbSync"/>
+
+                    <TextView
+                        android:text="@string/sync_appointments_with_personal_calendar"
+                        android:textSize="@dimen/text_size_custom_normal"/>
+                </TableRow>
+            </TableLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btApply"
+                        style="?android:borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button_green_large"
+                        android:onClick="applyChange"
+                        android:text="@string/apply_changes"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorText"
+                        android:textSize="@dimen/text_size_custom_title"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical|left"
+                    android:layout_marginLeft="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/ic_apply_change"/>
+
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

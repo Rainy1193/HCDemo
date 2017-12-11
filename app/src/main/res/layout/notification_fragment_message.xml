@@ -1,0 +1,93 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/notification_message"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:orientation="vertical"
+    android:background="@color/colorWhite"
+    tools:context="com.homecaravan.android.notification.NotificationFragmentAll">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+
+        android:id="@+id/swipeRefreshLayoutMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvNotificationMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <RelativeLayout
+        android:id="@+id/layoutLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/bg_dialog_message"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/lvEmptyPage"
+        android:visibility="gone"
+        android:layout_below="@+id/layoutSort"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_gravity="center_vertical|center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+            <com.jrummyapps.android.widget.AnimatedSvgView
+                android:id="@+id/animated_svg_view"
+                android:layout_width="80dp"
+                android:layout_height="130dp"
+                android:gravity="center"
+                android:layout_marginBottom="0dp"
+                app:animatedSvgFillColors="@array/notification_glyph_colors"
+                app:animatedSvgGlyphStrings="@array/notification_glyph_strings"
+                app:animatedSvgFillStart="1200"
+                app:animatedSvgFillTime="1000"
+                app:animatedSvgImageSizeX="177"
+                app:animatedSvgImageSizeY="165"
+                app:animatedSvgTraceTime="2000"
+                app:animatedSvgTraceTimePerGlyph="1000"
+                android:layout_gravity="center" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tvNoUpcoming"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/mylisting_icon"
+            android:paddingLeft="45dp"
+            android:paddingRight="45dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:text="@string/notification_no_item"
+            />
+    </LinearLayout>
+</RelativeLayout>

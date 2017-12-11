@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="icon_back">&#xf104;</string>
+    <string name="icon_android">&#xf17b;</string>
+    <string name="icon_facebook">&#xf09a;</string>
+    <string name="icon_twitter">&#xf099;</string>
+    <string name="icon_linkedin">&#xf0e1;</string>
+    <string name="fa_icon_areachart">&#xf1fe;</string>
+    <string name="fa_icon_piechart">&#xf200;</string>
+    <string name="fa_icon_linechart">&#xf201;</string>
+    <string name="icon_help">&#xf05a;</string>
+    <string name="icon_privacy">&#xf023;</string>
+    <string name="icon_terms">&#xf0f6;</string>
+    <string name="icon_thank">&#xf08a;</string>
+    <string name="icon_use">&#xf007;</string>
+    <string name="icon_company">&#xf1ad;</string>
+    <string name="icon_setting">&#xf013;</string>
+    <string name="icon_account_setting">&#xf085;</string>
+    <string name="icon_sign_out">&#xf08b;</string>
+    <string name="icon_right">&#xf105;</string>
+    <string name="icon_left">&#xf104;</string>
+    <string name="icon_down">&#xf0dd;</string>
+    <string name="icon_check">&#xf00c;</string>
+    <string name="icon_close">&#xf00d;</string>
+    <string name="icon_list">&#xf03a;</string>
+    <string name="icon_message">&#xf0e0;</string>
+    <string name="icon_bell">&#xf0f3;</string>
+    <string name="icon_showing">&#xf017;</string>
+    <string name="icon_search_plus">&#xf00e;</string>
+    <string name="icon_search">&#xf002;</string>
+    <string name="icon_agent">&#xf0a1;</string>
+    <string name="icon_bar">&#xf0c9;</string>
+    <string name="icon_list_menu">&#xf00b;</string>
+    <string name="icon_plus">&#xf067;</string>
+    <string name="icon_map">&#xf278;</string>
+    <string name="icon_heart_full">&#xf004;</string>
+    <string name="icon_asc">&#xf160;</string>
+    <string name="icon_desc">&#xf161;</string>
+    <string name="icon_book">&#xf073;</string>
+    <string name="icon_share">&#xf1e0;</string>
+    <string name="icon_camera">&#xf030;</string>
+    <string name="icon_phone">&#xf095;</string>
+    <string name="icon_sms">&#xf075;</string>
+    <string name="icon_chat">&#xf0e5;</string>
+    <string name="icon_send">&#xf1d8;</string>
+    <string name="icon_edit">&#xf040;</string>
+    <string name="icon_create">&#xf055;</string>
+    <string name="icon_angle_down">&#xf107;</string>
+    <string name="icon_angle_up">&#xf106;</string>
+    <string name="icon_angle_right">&#xf105;</string>
+    <string name="icon_marker">&#xf041;</string>
+    <string name="icon_repeat">&#xf01e;</string>
+    <string name="icon_minus">&#xf068;</string>
+    <string name="icon_phone_main">&#xf098;</string>
+    <string name="icon_info_circle">&#xf05a;</string>
+    <string name="icon_home">&#xf015;</string>
+    <string name="icon_pause">&#xf04c;</string>
+    <string name="icon_cancel_all">&#xf057;</string>
+    <string name="icon_move">&#xf047;</string>
+    <string name="icon_suspend">&#xf05e;</string>
+    <string name="icon_th">&#xf009;</string>
+    <string name="icon_reply">&#xf112;</string>
+    <string name="icon_select">&#xf058;</string>
+    <string name="icon_question">&#xf128;</string>
+    <string name="icon_flag">&#xf024;</string>
+
+    <string name="icon_key">&#xf084;</string>
+    <string name="icon_arrow_down">&#xf078;</string>
+    <string name="icon_arrow_up">&#xf077;</string>
+    <string name="icon_back_big">&#xf053;</string>
+    <string name="icon_drive">&#xf1b9;</string>
+    <string name="icon_free">&#xf0f4;</string>
+    <string name="icon_tbt">&#xf176;</string>
+
+    <!--62ac01-->
+
+</resources>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.homecaravan.android.consumer.activity.NotificationsActivityConsumer">
+
+    <LinearLayout
+        android:id="@+id/layoutBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorBuy"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/icon_bar_notifications"
+            android:layout_height="@dimen/icon_bar_notifications"
+            android:background="@drawable/ripple"
+            android:padding="12dp"
+            android:rotation="180"
+            android:src="@drawable/ic_right_arrow_consumer" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notifications"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:textSize="16sp"/>
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/ivFilter"
+            android:layout_width="@dimen/icon_bar_notifications"
+            android:layout_height="@dimen/icon_bar_notifications"
+            android:background="@drawable/ripple"
+            android:padding="12dp"
+            android:rotation="90"
+            android:src="@drawable/ic_filter_white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+        android:visibility="gone"
+        android:layout_below="@id/layoutBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_marginTop="-100dp"
+            android:layout_width="150dp"
+            android:layout_height="260dp"
+            android:src="@drawable/ic_consumer_notifications_bell"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_text_notifications"
+            android:textSize="17sp"
+            android:text="@string/dont_yet_have_notifications"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvNotifications"
+        android:layout_below="@id/layoutBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"/>
+
+    <LinearLayout
+        android:id="@+id/layoutMenu"
+        android:layout_below="@id/layoutBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-8dp"
+        android:background="@color/colorDiscoverMenu"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBuy">
+
+            <com.homecaravan.android.consumer.widget.ViewArrow
+                android:layout_width="12dp"
+                android:layout_height="6dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:rotation="180"
+                app:color_view_arrow="@color/white" />
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layoutMenuContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/layoutAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="?android:selectableItemBackground"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_menu_notifications"
+                    android:layout_height="@dimen/icon_menu_notifications"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/margin_menu_discover"
+                    android:src="@drawable/ic_consumer_user_notification_color" />
+
+                <TextView
+                    style="@style/TextViewMain"
+                    android:layout_marginLeft="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/all_notifications"
+                    android:textColor="@color/color_text_popup_menu_notifications"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutShowings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:paddingBottom="4dp"
+                android:background="?android:selectableItemBackground"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_menu_notifications"
+                    android:layout_height="@dimen/icon_menu_notifications"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/margin_menu_discover"
+                    android:src="@drawable/ic_consumer_notifications_calendar" />
+
+                <TextView
+                    style="@style/TextViewMain"
+                    android:layout_marginLeft="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/showings_notifications"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutListings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:paddingBottom="4dp"
+                android:background="?android:selectableItemBackground"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_menu_notifications"
+                    android:layout_height="@dimen/icon_menu_notifications"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/margin_menu_discover"
+                    android:src="@drawable/ic_consumer_notifications_listings" />
+
+                <TextView
+                    style="@style/TextViewMain"
+                    android:layout_marginLeft="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/listings_notifications"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutMessages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:layout_marginLeft="4dp"
+                android:background="?android:selectableItemBackground"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_menu_notifications"
+                    android:layout_height="@dimen/icon_menu_notifications"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/margin_menu_discover"
+                    android:src="@drawable/ic_consumer_myteam_message" />
+
+                <TextView
+                    style="@style/TextViewMain"
+                    android:layout_marginLeft="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/messages_notifications"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutItem"
+    android:layout_width="120dp"
+    android:layout_height="150dp"
+    android:background="@drawable/bg_save_search_item_1"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_save_search_item">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imgLogoTitleInsurance"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:scaleType="centerCrop" />
+        </RelativeLayout>
+
+        <TextView
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:id="@+id/tvCompanyName"
+            style="@style/TextViewItemDashboard3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorMenuConsumer"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/slayoutItem"
+    android:layout_width="match_parent"
+    android:layout_height="94dp">
+
+    <LinearLayout
+        android:tag="SwipeLayoutAction"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imgFavorite"
+            android:src="@drawable/ic_consumer_message_star"
+            android:layout_width="70dp"
+            android:background="@color/consumer_message_favorite"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:id="@+id/imgDelete"
+            android:src="@drawable/ic_consumer_message_trash"
+            android:layout_width="70dp"
+            android:background="@color/consumer_message_trash"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@drawable/bg_message_thread_item"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:id="@+id/layoutPersonal"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:layout_width="90dp"
+            android:layout_height="74dp">
+
+            <View
+                android:visibility="gone"
+                android:id="@+id/vStatusConversation"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/bg_red_e2" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imgAvatarPersonal"
+                android:layout_width="74dp"
+                android:layout_height="74dp"
+                android:layout_alignParentEnd="true"
+                app:riv_corner_radius="30dip" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvAvatarPersonal"
+                android:layout_width="74dp"
+                android:layout_height="74dp"
+                android:background="@drawable/bg_avatar_message_thread"
+                android:layout_alignParentEnd="true"
+                android:padding="3dp"
+                android:maxLines="1"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/vStatus"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:visibility="gone"
+                android:layout_marginStart="-20dp"
+                android:layout_marginBottom="2dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/imgAvatarPersonal"
+                android:background="@drawable/dot_green_online" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_marginStart="10dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:layout_marginEnd="4dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvMessageName"
+                    style="@style/TextViewItemDashboard3"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:textColor="@color/colorDashboardText"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvMessageLastTime"
+                    style="@style/TextViewItemDashboard3"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:maxLines="1"
+                    android:layout_gravity="end"
+                    android:gravity="center"
+                    android:textColor="@color/colorDashboardText"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <io.github.rockerhieu.emojicon.EmojiconTextView
+                android:id="@+id/tvLastMessage"
+                style="@style/TextViewItemDashboard3"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                emojicon:emojiconSize="15sp"
+                android:maxLines="1"
+                emojicon:emojiconAlignment="baseline"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorDashboardText"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</com.daimajia.swipe.SwipeLayout>

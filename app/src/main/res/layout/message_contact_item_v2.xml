@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:id="@+id/layoutItem"
+    android:baselineAligned="false"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+        <com.homecaravan.android.ui.CircleImageView
+            android:id="@+id/imgAvatarPersonal"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tvAvatarPersonal"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_avatar_message_contact"
+            android:padding="3dp"
+            android:maxLines="1"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:layout_height="0dp">
+
+            <TextView
+                android:id="@+id/tvName"
+                style="@style/TextViewItemDashboard3"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:maxLines="1"
+                android:textStyle="bold"
+                android:textColor="@color/colorDashboardText"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvCompany"
+            style="@style/TextViewItemDashboard3"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="6dp"
+            android:maxLines="1"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorDashboardText"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorViewSplash"
+            android:layout_marginStart="-10dp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgContactMessage"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_chat_contact"/>
+
+    <ImageView
+        android:id="@+id/imgContactCall"
+        android:layout_marginStart="8dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/ic_call_contact"/>
+
+
+</LinearLayout>

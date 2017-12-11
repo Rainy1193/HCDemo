@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBgFragment"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layoutNavigateDiscover"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/layoutFilter"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_filter_consumer" />
+
+                    <TextView
+                        style="@style/TextViewMenu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="4dp"
+                        android:text="@string/discover_filter"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutSearchAction"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_save_search" />
+
+                    <TextView
+                        style="@style/TextViewMenu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="4dp"
+                        android:text="@string/discover_search_action"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:selectableItemBackground">
+
+                <LinearLayout
+                    android:id="@+id/layoutViewList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_discover_view_list" />
+
+                    <TextView
+                        style="@style/TextViewMenu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="4dp"
+                        android:text="@string/view_list"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutViewMap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_discover_view_map" />
+
+                    <TextView
+                        style="@style/TextViewMenu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="4dp"
+                        android:text="@string/view_map"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutDiscoverContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/layoutMapDiscover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp">
+
+                <fragment
+                    android:id="@+id/mapDiscover"
+                    android:name="com.homecaravan.android.consumer.map.MySupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <RelativeLayout
+                    android:id="@+id/layoutErrorZoom"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#ffffff"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="@string/error_zoom"
+                        android:textStyle="italic" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutLoading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_dialog_loading"
+                    android:padding="4dp"
+                    android:visibility="gone">
+
+                    <ProgressBar
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:indeterminateDrawable="@drawable/bg_progress" />
+
+                    <TextView
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:text="Loading ..."
+                        android:textStyle="italic" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutBgActionMap"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#CCFFFFFF"
+                    android:visibility="gone">
+
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:id="@+id/layoutDraw"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusableInTouchMode="false"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical">
+
+                    <com.homecaravan.android.consumer.widget.floatactionbutton.FloatingActionMenu
+                        android:id="@+id/fabActionMap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        app:fab_size="normal"
+                        app:menu_colorNormal="@color/colorMenuConsumer"
+                        app:menu_colorPressed="@color/colorMenuConsumer"
+                        app:menu_colorRipple="@color/colorMenuConsumer"
+                        app:menu_icon="@drawable/ic_add_float_action_button"
+                        app:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+                        app:menu_labels_margin="2dp"
+                        app:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+                        app:menu_labels_style="@style/menu_labels_style">
+
+                        <com.homecaravan.android.consumer.widget.floatactionbutton.FloatingActionButton
+                            android:id="@+id/fabRefresh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            android:src="@drawable/ic_fab_refresh"
+                            app:fab_colorNormal="@color/colorMenuConsumer"
+                            app:fab_colorPressed="@color/colorMenuConsumer"
+                            app:fab_colorRipple="@color/colorMenuConsumer"
+                            app:fab_label="Refresh Map"
+                            app:fab_size="mini" />
+
+
+                        <com.homecaravan.android.consumer.widget.floatactionbutton.FloatingActionButton
+                            android:id="@+id/fabCurrentLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            android:src="@drawable/ic_fab_current_location"
+                            app:fab_colorNormal="@color/colorMenuConsumer"
+                            app:fab_colorPressed="@color/colorMenuConsumer"
+                            app:fab_colorRipple="@color/colorMenuConsumer"
+                            app:fab_label="Current Location"
+                            app:fab_size="mini" />
+
+                        <com.homecaravan.android.consumer.widget.floatactionbutton.FloatingActionButton
+                            android:id="@+id/fabDrawArea"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            android:src="@drawable/ic_fab_draw_area"
+                            app:fab_colorNormal="@color/colorMenuConsumer"
+                            app:fab_colorPressed="@color/colorMenuConsumer"
+                            app:fab_colorRipple="@color/colorMenuConsumer"
+                            app:fab_label="Draw Area"
+                            app:fab_size="mini" />
+
+                        <com.homecaravan.android.consumer.widget.floatactionbutton.FloatingActionButton
+                            android:id="@+id/fabSatelliteView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            android:src="@drawable/ic_fab_satellite_map"
+                            app:fab_colorNormal="@color/colorMenuConsumer"
+                            app:fab_colorPressed="@color/colorMenuConsumer"
+                            app:fab_colorRipple="@color/colorMenuConsumer"
+                            app:fab_label="Satellite View"
+                            app:fab_size="mini" />
+
+                    </com.homecaravan.android.consumer.widget.floatactionbutton.FloatingActionMenu>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutRvListing"
+                        android:layout_width="match_parent"
+                        android:layout_height="156dp"
+                        android:layout_marginBottom="8dp"
+                        android:visibility="gone">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvListingMap"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutListingList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorWhite"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/layoutEmpty"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhite"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <include layout="@layout/layout_empty_listing" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvDiscover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layoutMenu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorDiscoverMenu"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.homecaravan.android.consumer.widget.ViewArrow
+                    android:layout_width="12dp"
+                    android:layout_height="6dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:rotation="180"
+                    app:color_view_arrow="@color/white" />
+
+                <LinearLayout
+                    android:id="@+id/layoutMenuContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/layoutSaveCurrentSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:background="?android:selectableItemBackground"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_menu_discover"
+                            android:layout_height="@dimen/icon_menu_discover"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_menu_discover"
+                            android:src="@drawable/ic_save_current_search" />
+
+                        <TextView
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/save_current_search"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutUpdateSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:background="?android:selectableItemBackground"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_menu_discover"
+                            android:layout_height="@dimen/icon_menu_discover"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_menu_discover"
+                            android:src="@drawable/ic_update_search" />
+
+                        <TextView
+                            android:id="@+id/tvUpdateSearch"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/layoutEditSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:background="?android:selectableItemBackground"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_menu_discover"
+                            android:layout_height="@dimen/icon_menu_discover"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_menu_discover"
+                            android:src="@drawable/ic_edit_search_criteria" />
+
+                        <TextView
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/edit_search_criteria"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutOpenSavedSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:background="?android:selectableItemBackground"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_menu_discover"
+                            android:layout_height="@dimen/icon_menu_discover"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_menu_discover"
+                            android:src="@drawable/ic_open_saved_search" />
+
+                        <TextView
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/open_saved_search"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutDrawArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:background="?android:selectableItemBackground"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_menu_discover"
+                            android:layout_height="@dimen/icon_menu_discover"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_menu_discover"
+                            android:src="@drawable/ic_draw_area_discover" />
+
+                        <TextView
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/draw_area"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutClearSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:background="?android:selectableItemBackground"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_menu_discover"
+                            android:layout_height="@dimen/icon_menu_discover"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_menu_discover"
+                            android:src="@drawable/ic_clear_search" />
+
+                        <TextView
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/clear_search"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/layoutFragmentSavedSearch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/layoutFragmentSavedSearchDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</RelativeLayout>

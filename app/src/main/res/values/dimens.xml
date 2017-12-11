@@ -1,0 +1,149 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="sliding_menu_offset">80dp</dimen>
+    <dimen name="list_padding">5dp</dimen>
+    <dimen name="shadow_width">1dp</dimen>
+    <dimen name="text_size_custom_small">10sp</dimen>
+    <dimen name="text_size_custom_normal">12sp</dimen>
+    <dimen name="text_size_custom_lang">14sp</dimen>
+    <dimen name="text_size_custom_big">16sp</dimen>
+    <dimen name="text_size_custom_title">18sp</dimen>
+    <dimen name="text_size_custom_xlang">20sp</dimen>
+    <dimen name="text_size_custom_xxlang">22sp</dimen>
+    <dimen name="card_cover_height">150dp</dimen>
+
+    <dimen name="tab_max_width">264dp</dimen>
+    <dimen name="tab_padding_bottom">16dp</dimen>
+    <dimen name="tab_label">14sp</dimen>
+    <dimen name="custom_tab_layout_height">72dp</dimen>
+    <dimen name="grid_column_width">96dp</dimen>
+    <dimen name="item_decoration">1dp</dimen>
+
+    // consumer module
+
+
+    <dimen name="icon_dashboard_intro">50dp</dimen>
+    <dimen name="icon_dashboard_intro_bottom">40dp</dimen>
+    <dimen name="icon_search_bar_size">30dp</dimen>
+    <dimen name="text_size_choose">16sp</dimen>
+    <dimen name="text_size_bottom_bar">12sp</dimen>
+    <dimen name="text_size_menu">15sp</dimen>
+    <dimen name="padding_icon_bottom_bar">4dp</dimen>
+    <dimen name="icon_tab">50dp</dimen>
+    <dimen name="icon_tab_action">26sp</dimen>
+    <dimen name="margin_tab">10dp</dimen>
+    <dimen name="margin_tab_action">4dp</dimen>
+    <dimen name="padding_tab_action">16dp</dimen>
+    <dimen name="margin_menu">8dp</dimen>
+    <dimen name="padding_menu">8dp</dimen>
+    <dimen name="margin_menu1">16dp</dimen>
+    <dimen name="padding_menu1">16dp</dimen>
+    <dimen name="icon_menu_consumer">30dp</dimen>
+    <dimen name="icon_dashboard_tab_top">28dp</dimen>
+    <dimen name="margin_dashboard_tab_top">8dp</dimen>
+    <dimen name="margin_dashboard_tab_top1">16dp</dimen>
+    <dimen name="icon_item_dashboard">30dp</dimen>
+    <dimen name="margin_header_dashboard_item">10dp</dimen>
+    <dimen name="margin_header_dashboard_item1">24dp</dimen>
+    <dimen name="icon_save_search_item">20dp</dimen>
+    <dimen name="margin_save_search_item">8dp</dimen>
+    <dimen name="margin_layout_agent_dashboard">8dp</dimen>
+    <dimen name="margin_layout_agent_dashboard1">10dp</dimen>
+    <dimen name="margin_grid_item">2dp</dimen>
+    <dimen name="margin_grid_item1">0.5dp</dimen>
+    <dimen name="margin_listing_detail">4dp</dimen>
+    <dimen name="margin_listing_detail2">8dp</dimen>
+    <dimen name="margin_listing_detail1">12dp</dimen>
+    <dimen name="margin_layout_listing_detail">8dp</dimen>
+    <dimen name="icon_listing_detail">40dp</dimen>
+    <dimen name="icon_listing_detail1">25dp</dimen>
+    <dimen name="icon_listing_detail2">10dp</dimen>
+    <dimen name="text_size_listing_detail_property">13sp</dimen>
+    <dimen name="image_height">200dp</dimen>
+
+    // discover
+    <dimen name="discover_margin3">2dp</dimen>
+    <dimen name="discover_margin">8dp</dimen>
+    <dimen name="discover_margin1">16dp</dimen>
+    <dimen name="discover_margin2">10dp</dimen>
+    <dimen name="discover_margin4">6dp</dimen>
+    <dimen name="icon_discover">22dp</dimen>
+    <dimen name="icon_discover1">23dp</dimen>
+    <dimen name="icon_menu_discover">30dp</dimen>
+    <dimen name="margin_menu_discover">6dp</dimen>
+    <dimen name="icon_padding_filter">5dp</dimen>
+    <dimen name="icon_filter">24dp</dimen>
+    <dimen name="icon_filter1">20dp</dimen>
+    <dimen name="margin_filter">8dp</dimen>
+    <dimen name="margin_filter1">12dp</dimen>
+    <dimen name="margin_filter2">16dp</dimen>
+    <dimen name="margin_filter3">4dp</dimen>
+
+    <dimen name="fab_size_normal">42dp</dimen>
+    <dimen name="fab_size_mini">36dp</dimen>
+    <dimen name="labels_text_size">13sp</dimen>
+
+    <dimen name="thumb_width">20dp</dimen>
+    <dimen name="thumb_height">20dp</dimen>
+
+    <dimen name="bubble_thumb_width">70dp</dimen>
+    <dimen name="bubble_thumb_height">70dp</dimen>
+
+    <dimen name="margin_invite_agent">12dp</dimen>
+    <dimen name="icon_action_discover">40dp</dimen>
+    <dimen name="margin_action_discover">8dp</dimen>
+    <dimen name="margin_action_discover1">12dp</dimen>
+    <dimen name="text_size_action_discover">13sp</dimen>
+
+    //agent profile infomation
+    <dimen name="margin_top_bottom_agent_profile">10dp</dimen>
+    <dimen name="margin_left_right_agent_profile">10dp</dimen>
+    <dimen name="icon_in_message_button">14dp</dimen>
+
+    //my team - my team tab
+    <dimen name="non_border_width">0dp</dimen>
+    <dimen name="margin_item_my_team">8dp</dimen>
+
+    //showing tab
+    <dimen name="padding_item_showing">10dp</dimen>
+    <dimen name="padding_item_bottom_showing">16dp</dimen>
+    <dimen name="icon_size_showing">12dp</dimen>
+    <dimen name="icon_size_dot_showing">14dp</dimen>
+    <dimen name="icon_size_single_showing">12dp</dimen>
+    <dimen name="icon_size_edit_showing">12dp</dimen>
+
+    <dimen name="icon_menu_showing">28dp</dimen>
+
+    //notifications
+    <dimen name="icon_menu_notifications">24dp</dimen>
+    <dimen name="icon_menu_for_height_notifications">20dp</dimen>
+    <dimen name="icon_bar_notifications">56dp</dimen>
+
+    <dimen name="margin_schedule">4dp</dimen>
+    <dimen name="margin_schedule1">8dp</dimen>
+    <dimen name="margin_schedule2">12dp</dimen>
+    <dimen name="margin_schedule3">16dp</dimen>
+    <dimen name="margin_select_agents">4dp</dimen>
+    <dimen name="margin_select_agents1">8dp</dimen>
+    <dimen name="margin_invite_others">8dp</dimen>
+    <dimen name="margin_review">4dp</dimen>
+    <dimen name="margin_review1">8dp</dimen>
+    <dimen name="margin_intro">24dp</dimen>
+    <dimen name="margin_intro1">16dp</dimen>
+    <dimen name="margin_intro2">6dp</dimen>
+
+    //Message
+    <dimen name="consumer_message_icon_layout_bar">50dp</dimen>
+    <dimen name="consumer_message_icon_layout_bar_40">40dp</dimen>
+    <dimen name="consumer_message_icon_layout_bar_38">38dp</dimen>
+    <dimen name="consumer_message_icon_layout_bar_34">34dp</dimen>
+    <dimen name="consumer_message_icon_message">50dp</dimen>
+
+    <dimen name="borderLine">16dp</dimen>
+    <dimen name="margin_unlock_agent">20dp</dimen>
+    <dimen name="text_size_agent_unlock">20sp</dimen>
+
+</resources>

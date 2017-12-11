@@ -1,0 +1,145 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:id="@+id/layoutAccountProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/image_account_profile" />
+        <com.homecaravan.android.ui.MaterialEditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/bg_edit_text"
+            android:hint="@string/first_name"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_baseColor="@color/colorEditText"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelPadding="10dp"
+            app:met_hideUnderline="true"
+            app:met_primaryColor="@color/colorMain" />
+
+        <com.homecaravan.android.ui.MaterialEditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/bg_edit_text"
+            android:hint="@string/last_name"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_baseColor="@color/colorEditText"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelPadding="10dp"
+            app:met_hideUnderline="true"
+            app:met_primaryColor="@color/colorMain" />
+
+        <com.homecaravan.android.ui.MaterialEditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/bg_edit_text"
+            android:hint="@string/mobile_phone"
+            android:digits="0123456789"
+            android:inputType="numberDecimal"
+            android:paddingLeft="10dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_baseColor="@color/colorEditText"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelPadding="10dp"
+            app:met_hideUnderline="true"
+            app:met_primaryColor="@color/colorMain" />
+
+        <com.homecaravan.android.ui.MaterialEditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/bg_edit_text"
+            android:hint="@string/email"
+            android:inputType="textWebEmailAddress"
+            android:paddingLeft="10dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_baseColor="@color/colorEditText"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelPadding="10dp"
+            app:met_hideUnderline="true"
+            app:met_primaryColor="@color/colorMain" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_button"
+            android:text="Skip it,I'm a buyer or seller "
+            android:textAllCaps="false"
+            android:textColor="@color/colorText"
+            android:textSize="18dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_button"
+                    android:text="@string/next"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorText"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="2dp"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_next" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+</ScrollView>

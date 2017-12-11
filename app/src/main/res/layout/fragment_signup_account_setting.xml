@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/svAccountSetting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <LinearLayout
+        android:id="@+id/layoutAccountSetting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/choose_realtor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/do_you_have_a_realtor_agent_yet"/>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/choose_realtor"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp">
+
+            <TableRow>
+
+                <RadioButton android:id="@+id/rbYes"/>
+
+                <RadioButton
+                    android:id="@+id/rbYesHidden"
+                    android:theme="@style/MyRadioButton"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/tvYes"
+                    android:text="@string/yes"/>
+
+                <RadioButton android:id="@+id/rbNo"/>
+
+                <RadioButton
+                    android:id="@+id/rbNoHidden"
+                    android:theme="@style/MyRadioButton"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/tvNo"
+                    android:text="@string/no"/>
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/tvFindAgent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:text="@string/enter_agent_create"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/etEmailAgent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:background="@drawable/edit_text_gray"
+                android:focusable="false"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingLeft="10dp"
+                android:textSize="@dimen/text_size_custom_lang"
+                app:met_baseColor="@color/colorEditText"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"/>
+
+            <Button
+                android:id="@+id/btFindAgent"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1.5"
+                android:background="@drawable/bg_button_green_disable"
+                android:onClick="findAgent"
+                android:text="@string/find_agent"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_size_custom_normal"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBgText"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="@string/account_settings"
+            android:textSize="@dimen/text_size_custom_title"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/communication_preference"/>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp">
+
+            <TableRow>
+
+                <RadioButton android:id="@+id/rbSms"/>
+
+                <TextView android:text="@string/sms"/>
+
+                <RadioButton android:id="@+id/rbEmail"/>
+
+                <TextView android:text="@string/email_setting"/>
+
+                <RadioButton android:id="@+id/rbEmailAndSms"/>
+
+                <TextView android:text="@string/email_and_sms"/>
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp">
+
+            <TableRow>
+
+                <CheckBox android:id="@+id/cbSync"/>
+
+                <TextView android:text="@string/sync_appointments_with_personal_calendar"/>
+            </TableRow>
+        </TableLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorGrey"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/bg_edit_text"
+                android:hint="@string/login_password"
+                android:inputType="textNoSuggestions|textPassword"
+                android:paddingLeft="0dp"
+                android:paddingRight="45dp"
+                android:textColorHint="@color/colorEditTextHint"
+                android:textSize="@dimen/text_size_custom_lang"
+                app:met_baseColor="@color/colorEditText"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelTextColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_underlineColor="@color/colorTransparentImage"/>
+
+            <ImageView
+                android:id="@+id/ivShowPassword"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/etPassword"
+                android:layout_marginTop="5dp"
+                android:onClick="showPassword"
+                android:padding="10dp"
+                android:src="@drawable/ic_show_password_account"/>
+        </RelativeLayout>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etRePassword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/bg_edit_text"
+            android:hint="@string/re_type_your_password"
+            android:inputType="textNoSuggestions|textPassword"
+            android:paddingLeft="0dp"
+            android:paddingRight="10dp"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textSize="@dimen/text_size_custom_lang"
+            app:met_baseColor="@color/colorEditText"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_underlineColor="@color/colorTransparentImage"/>
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp">
+
+            <TableRow>
+
+                <CheckBox android:id="@+id/cbAgree"/>
+
+                <TextView android:text="@string/i_agree_to_the_terms_to_conditions"/>
+            </TableRow>
+        </TableLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btNext"
+                    style="?android:borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_green_large"
+                    android:onClick="next"
+                    android:text="@string/next"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorText"
+                    android:textSize="18dp"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="2dp"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_next"/>
+
+        </FrameLayout>
+    </LinearLayout>
+</ScrollView>

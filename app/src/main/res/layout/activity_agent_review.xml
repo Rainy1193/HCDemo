@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.homecaravan.android.consumer.widget.CustomNestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBgFragment"
+    android:scrollbarThumbVertical="@null">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:elevation="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="124dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_save_search_item_1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/margin_top_bottom_agent_profile"
+                android:layout_marginLeft="@dimen/margin_left_right_agent_profile"
+                android:layout_marginRight="@dimen/margin_left_right_agent_profile"
+                android:layout_marginTop="@dimen/margin_top_bottom_agent_profile"
+                android:orientation="horizontal">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/imgAvatar"
+                    android:layout_width="90dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/sana"
+                    app:riv_corner_radius="40dip"
+                    app:riv_border_color="@color/color_around_image_agent_review"
+                    app:riv_border_width="2dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginRight="2dp"
+                    android:orientation="vertical">
+                    <TextView
+                        style="@style/TextViewItemDashboard3"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:text="Phoebe"
+                        android:textColor="@color/colorNameAgent"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        style="@style/TextViewItemDashboard3"
+                        android:layout_height="0dp"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:paddingBottom="8dp"
+                        android:singleLine="true"
+                        android:gravity="center_vertical"
+                        android:text="CEO at Remeorealtly"
+                        android:textColor="@color/colorNameCompany"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/imgLogo"
+                        android:layout_height="0dp"
+                        android:layout_width="66dp"
+                        android:layout_gravity="left"
+                        android:src="@drawable/ic_consumer_agent_profile_logo_corp"
+                        android:layout_weight="2" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="12dp"
+                    >
+                    <FrameLayout
+                        android:layout_width="110dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/button_user_profile_consumer"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="13sp"
+                            android:text="Add to favorite"
+                            android:textColor="@color/white"
+                            />
+                    </FrameLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center"
+            android:background="@color/colorBackgroundContact"
+            android:textSize="13sp"
+            android:textColor="@color/colorNameCompany"
+            android:gravity="center"
+            android:text="Please share with us your opinion about Christine Dircalo"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_text_submit_reviews"
+                android:text="Friendliness"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="10dp">
+
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+
+                </View>
+
+                <LinearLayout
+                    android:id="@+id/lnFriendliness1"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgFriendliness1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_consumer_agent_review_bad"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvFriendliness1"
+                        android:visibility="invisible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="Bad"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+
+                </View>
+
+                <LinearLayout
+                    android:id="@+id/lnFriendliness2"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgFriendliness2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_consumer_agent_review_good_color"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvFriendliness2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:text="Good"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+
+                </View>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_text_submit_reviews"
+                android:text="Helpfulness"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:id="@+id/lnHelpfulness1"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgHelpfulness1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_consumer_agent_review_terrible"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvHelpfulness1"
+                        android:visibility="invisible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="Terrible"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lnHelpfulness2"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgHelpfulness2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_consumer_agent_review_bad"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvHelpfulness2"
+                        android:visibility="invisible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="Bad"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lnHelpfulness3"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgHelpfulness3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_consumer_agent_review_okay"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvHelpfulness3"
+                        android:visibility="invisible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="Okay"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lnHelpfulness4"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgHelpfulness4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_consumer_agent_review_good"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvHelpfulness4"
+                        android:visibility="invisible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="Good"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lnHelpfulness5"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgHelpfulness5"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_consumer_agent_review_excellent"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvHelpfulness5"
+                        android:visibility="invisible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="Excellent"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/color_text_submit_reviews"
+                android:text="Knowledgably"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:id="@+id/lnKnowledgably1"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgKnowledgably1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_consumer_agent_review_terrible_color"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvKnowledgably1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="Terrible"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lnKnowledgably2"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgKnowledgably2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_consumer_agent_review_bad_color"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvKnowledgably2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="Bad"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lnKnowledgably3"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgKnowledgably3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_consumer_agent_review_okay_color"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvKnowledgably3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="Okay"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lnKnowledgably4"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgKnowledgably4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_consumer_agent_review_good_color"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvKnowledgably4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="Good"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lnKnowledgably5"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgKnowledgably5"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_consumer_agent_review_excellent_color"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tvKnowledgably5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="Excellent"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/frmSetExclusive"
+                    android:layout_width="150dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/button_user_profile_consumer"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="13sp"
+                        android:text="Set Exclusive"
+                        android:textColor="@color/white"
+                        />
+                </FrameLayout>
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"/>
+
+                <FrameLayout
+                    android:id="@+id/frmMoveOn"
+                    android:layout_width="150dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/button_background_white"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="13sp"
+                        android:text="Move on"
+                        android:textColor="@color/color_text_on_button_agent_review"
+                        />
+                </FrameLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</com.homecaravan.android.consumer.widget.CustomNestedScrollView>
+

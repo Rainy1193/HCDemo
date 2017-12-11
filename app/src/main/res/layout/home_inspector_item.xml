@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="114dp"
+    android:layout_height="150dp"
+    android:id="@+id/layoutItem"
+    android:background="@drawable/bg_save_search_item_1"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="8"
+            android:gravity="center"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_height="0dp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imgAvatarHomeInspector"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                app:riv_border_width="2dip"
+                app:riv_border_color="@color/colorLightBlue"
+                app:riv_corner_radius="34dip" />
+
+            <View
+                android:id="@+id/vStatus"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="-20dp"
+                android:layout_marginBottom="4dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/imgAvatarHomeInspector"
+                android:background="@drawable/dot_green_online" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/TextViewItemDashboard3"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:paddingTop="6dp"
+            android:text="Dao Anh Le"
+            android:gravity="center"
+            android:textColor="@color/colorDashboardText"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tvJobs"
+            style="@style/TextViewItemDashboard3"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Android Developer"
+            android:textColor="@color/colorBottomBar"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:id="@+id/imgLogoCompany"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="2"/>
+    </LinearLayout>
+
+</RelativeLayout>

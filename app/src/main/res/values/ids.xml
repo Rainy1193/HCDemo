@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="c_step_0" type="id" />
+    <item name="c_step_1" type="id" />
+    <item name="c_step_2" type="id" />
+    <item name="c_step_3" type="id" />
+    <item name="c_step_4" type="id" />
+    <item name="c_step_5" type="id" />
+    <item name="arrow_right" type="id" />
+    <item name="arrow_right2" type="id" />
+    <item name="arrow_right3" type="id" />
+
+    <item name="bt_send" type="id" />
+    <item name="ivCountry" type="id" />
+
+    <item name="tvNameCountry" type="id" />
+    <item name="tvPhoneCountry" type="id" />
+    <item name="banner_indicatorId" type="id" />
+    <item name="calendar_day_id" type="id" />
+    <item name="calendar_week_id" type="id" />
+    <item name="footer_id" type="id" />
+    <item name="progress_item_id" type="id" />
+    <item name="caravan_item_id" type="id" />
+
+    <item name="caravan_appt_item_id" type="id" />
+    <item name="caravan_appt_detail_item_id" type="id" />
+    <item name="caravan_appt_detail_item_id_stop" type="id" />
+
+    <item name="selected_view" type="id" />
+
+    <item name="fab_label" type="id" />
+    // consumer item id
+    <item name="search_map_mini_item" type="id" />
+    <item name="search_map_list_item" type="id" />
+    <item name="save_search_item" type="id" />
+    <item name="team_save_search_item" type="id" />
+    <item name="save_search_detail_item" type="id" />
+    <item name="save_search_item1" type="id" />
+    <item name="schedule_listing_item" type="id" />
+    <item name="caravan_showing_item" type="id" />
+    <item name="appt_showing_item" type="id" />
+    <item name="appt_caravan_showing_item" type="id" />
+    <item name="calendar_showing_item" type="id" />
+    <item name="weekly_ast_item" type="id"/>
+</resources>

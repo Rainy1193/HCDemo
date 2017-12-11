@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutInvite"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvBack"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/bg_back"
+            android:gravity="center"
+            android:text="@string/icon_back"
+            android:textColor="@color/colorText"
+            android:textSize="40sp" />
+
+
+        <TextView
+            android:id="@+id/tvActionBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="No Realtor Found"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_size_custom_title" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:text="We cannot find the HomeCaravan agent using your details."
+        android:textStyle="bold" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Do you want to invite him/her to be your HomeCaravan agent? Please enter complete information about your agent." />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp">
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/first_name"
+            android:inputType="text"
+            android:paddingLeft="0dp"
+            android:paddingRight="40dp"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textSize="14sp"
+            app:met_baseColor="@color/colorEditText"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_underlineColor="@color/colorTransparentImage" />
+
+        <ImageView
+            android:id="@+id/ivClearEtFirstName"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:hint="Last name"
+            android:inputType="text"
+            android:paddingLeft="0dp"
+            android:paddingRight="40dp"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textSize="14sp"
+            app:met_baseColor="@color/colorEditText"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_underlineColor="@color/colorTransparentImage" />
+
+        <ImageView
+            android:id="@+id/ivClearEtLastName"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etMobilePhone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:digits="0123456789"
+            android:hint="@string/mobile_phone"
+            android:inputType="numberDecimal"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textSize="14sp"
+            app:met_baseColor="@color/colorEditText"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_underlineColor="@color/colorTransparentImage" />
+
+        <ImageView
+            android:id="@+id/ivCountry"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:onClick="pickCountry"
+            android:src="@drawable/us" />
+
+        <ImageView
+            android:id="@+id/ivClearEtMobilePhone"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/email"
+            android:inputType="textWebEmailAddress"
+            android:paddingLeft="0dp"
+            android:paddingRight="40dp"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textSize="14sp"
+            app:met_baseColor="@color/colorEditText"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_underlineColor="@color/colorTransparentImage" />
+
+        <ImageView
+            android:id="@+id/ivClearEtEmail"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/btInvite"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:background="@color/colorGreen"
+            android:text="Invite"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/btCancel"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:background="@color/colorGreen"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+</LinearLayout>

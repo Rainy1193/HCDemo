@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutNotification"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/layoutNotificationBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorBuy"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivNotificationClose"
+            android:layout_width="@dimen/icon_bar_notifications"
+            android:layout_height="@dimen/icon_bar_notifications"
+            android:background="@drawable/ripple"
+            android:padding="12dp"
+            android:src="@drawable/ic_arrow_while" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/notifications"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/ivNotificationFilter"
+            android:layout_width="@dimen/icon_bar_notifications"
+            android:layout_height="@dimen/icon_bar_notifications"
+            android:background="@drawable/ripple"
+            android:padding="12dp"
+            android:rotation="90"
+            android:src="@drawable/ic_filter_white" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvNotifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutNotificationBar"
+        android:background="@color/white"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/layoutNotificationEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layoutNotificationBar"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="260dp"
+            android:layout_marginTop="-100dp"
+            android:contentDescription="@string/image"
+            android:src="@drawable/ic_consumer_notifications_bell" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/dont_yet_have_notifications"
+            android:textColor="@color/color_text_notifications"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pbLoadNotification"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/consumer_message_blue" />
+
+    <LinearLayout
+        android:id="@+id/layoutNotificationMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layoutNotificationBar"
+        android:background="@color/colorDiscoverMenu"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBuy">
+
+            <com.homecaravan.android.consumer.widget.ViewArrow
+                android:layout_width="12dp"
+                android:layout_height="6dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:rotation="180"
+                app:color_view_arrow="@color/white" />
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layoutNotificationMenuContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/layoutNotificationAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:background="?android:selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imgNotificationAll"
+                    android:layout_width="@dimen/icon_menu_notifications"
+                    android:layout_height="@dimen/icon_menu_notifications"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/margin_menu_discover"
+                    android:src="@drawable/ic_consumer_user_notification_color" />
+
+                <TextView
+                    android:id="@+id/tvNotificationAll"
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="6dp"
+                    android:text="@string/all_notifications"
+                    android:textColor="@color/color_text_popup_menu_notifications"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutNotificationShowings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:background="?android:selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/imgNotificationShowings"
+                    android:layout_width="@dimen/icon_menu_notifications"
+                    android:layout_height="@dimen/icon_menu_notifications"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/margin_menu_discover"
+                    android:src="@drawable/ic_consumer_notifications_calendar" />
+
+                <TextView
+                    android:id="@+id/tvNotificationShowings"
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="6dp"
+                    android:text="@string/showings_notifications"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutNotificationListings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:background="?android:selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/imgNotificationListings"
+                    android:layout_width="@dimen/icon_menu_notifications"
+                    android:layout_height="@dimen/icon_menu_notifications"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/margin_menu_discover"
+                    android:src="@drawable/ic_consumer_notifications_listings" />
+
+                <TextView
+                    android:id="@+id/tvNotificationListings"
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="6dp"
+                    android:text="@string/listings_notifications"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutNotificationContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:background="?android:selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/imgNotificationContact"
+                    android:layout_width="@dimen/icon_menu_notifications"
+                    android:layout_height="@dimen/icon_menu_notifications"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/margin_menu_discover"
+                    android:src="@drawable/ic_consumer_notifications_contact" />
+
+                <TextView
+                    android:id="@+id/tvNotificationContact"
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="6dp"
+                    android:text="@string/contact_notifications"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutNotificationCaravan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:background="?android:selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/imgNotificationCaravan"
+                    android:layout_width="@dimen/icon_menu_notifications"
+                    android:layout_height="@dimen/icon_menu_notifications"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/margin_menu_discover"
+                    android:src="@drawable/ic_consumer_notifications_caravan" />
+
+                <TextView
+                    android:id="@+id/tvNotificationCaravan"
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="6dp"
+                    android:text="@string/caravan_notifications"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutNotificationSaveSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:background="?android:selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/imgNotificationSaveSearch"
+                    android:layout_width="@dimen/icon_menu_notifications"
+                    android:layout_height="@dimen/icon_menu_notifications"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/margin_menu_discover"
+                    android:src="@drawable/ic_consumer_notifications_save_search" />
+
+                <TextView
+                    android:id="@+id/tvNotificationSaveSearch"
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="6dp"
+                    android:text="@string/save_search_notifications"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

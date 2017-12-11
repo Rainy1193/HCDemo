@@ -1,0 +1,1024 @@
+<resources>
+    <string name="app_name">Home Caravan</string>
+    <string name="action_settings">Settings</string>
+    <string name="facebook_app_id">"337389436693834"</string>
+
+
+    <!-- Other-->
+
+    <string name="loading">Loading</string>
+    <string name="image">Image</string>
+    <string name="message">Message</string>
+    <string name="share">Share Success</string>
+    <string name="share_error">Share Error</string>
+    <string name="ok">OK</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="apply_changes">Apply Changes</string>
+    <string name="change">Change</string>
+    <string name="next">Next</string>
+    <string name="update">Update</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="cancel_request">Cancel</string>
+    <string name="accept">Accept</string>
+    <string name="invite_agent">Invite this agent</string>
+    <!-- End Other-->
+
+
+    <!-- RealtorLoginActivity-->
+
+    <string name="login_name">Email or Mobile Phone Number</string>
+    <string name="login_password">Password</string>
+    <string name="sign_up">Sign Up now</string>
+    <string name="log_in">Login</string>
+    <string name="forgot_password_login">Forgot Password?</string>
+    <string name="activate_account">Activate Account</string>
+    <string name="forgot_password_detail">Help us find your account</string>
+    <string name="mobile_email">Mobile/Email Address</string>
+    <string name="mobile_number">Mobile number</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="activate_detail">If you forgot active code, you can enter email and tap resend
+        button. Otherwise, enter active code and touch on submit button
+    </string>
+    <string name="verification_code">Verification code*</string>
+    <string name="mobile_email_activate">Your email or mobile phone*</string>
+    <string name="resend">Resend</string>
+    <string name="confirm">Confirm</string>
+
+    <!-- End RealtorLoginActivity-->
+
+    <!-- Start Change Phone and Email -->
+    <string name="mobile_email_text_change_note">You can change your phone or email below:</string>
+
+    <!-- End Change Phone and Email -->
+    <!-- Sign Up-->
+
+    <string name="takePictureError">Take Picture Error</string>
+
+    <string name="create_account">Create An Account</string>
+    <string name="account_profile">Account Profile</string>
+    <string name="company">Company</string>
+    <string name="account_settings">Account Settings</string>
+
+    <string name="first_name">First Name*</string>
+    <string name="last_name">Last Name*</string>
+    <string name="mobile_phone">Mobile Phone*</string>
+    <string name="email">Email*</string>
+    <string name="email2">Email</string>
+    <string name="skip">Skip it, Im a buyer or seller</string>
+
+    <string name="company_name">Company Name</string>
+    <string name="company_name_2">Company name</string>
+    <string name="company_name_buyer">Company Name</string>
+    <string name="address">Address</string>
+    <string name="address1">Address 1</string>
+    <string name="address2">Address 2</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="zip_code">Zipcode</string>
+    <string name="phone">Phone</string>
+
+    <string name="real_estate_professional">Real Estate Professional (Realtor)</string>
+    <string name="non_professional">Non-Professional (Buyer or Seller)</string>
+    <string name="do_you_have_a_realtor_agent_yet">Are you committed to a Realtor?</string>
+    <string name="please_enter_your_agents_email_or_mobile_phone">Please enter your agents email or
+        mobile phone
+    </string>
+    <string name="communication_preference">Communication Preference</string>
+    <string name="sms">SMS</string>
+    <string name="email_setting">Email</string>
+    <string name="email_and_sms">Email and SMS</string>
+    <string name="sync_appointments_with_personal_calendar">Sync appointments with personal
+        calendar
+    </string>
+    <string name="re_type_your_password">Re-type your password</string>
+    <string name="i_agree_to_the_terms_to_conditions">I agree to the terms to conditions</string>
+    <string name="find_agent">Find Agent</string>
+    <string name="enter_agent_create">Please enter your agents email address so that we can have
+        theme accompany you on showings.
+    </string>
+    <string name="home_caravan_realtor">Home Caravan Realtor</string>
+    <string name="enter_your_agent_details">Enter your agent details</string>
+    <string name="fist_name_agent">First Name*</string>
+    <string name="last_name_agent">Last Name*</string>
+    <string name="email_agent">Email*</string>
+    <string name="phone_agent">Phone*</string>
+    <string name="realtor_found">Realtor found</string>
+    <string name="realtor_not_found">Realtor not found</string>
+    <string name="homecaravan_agent_found">HomeCaravan Agent found</string>
+    <string name="correct_agent">Is this your correct agent?</string>
+
+
+    <!-- End Sign Up-->
+
+
+    <string name="forgot_password">Forgot Password</string>
+
+
+    // account
+    <string name="account">Account</string>
+    <string name="about">About</string>
+    <string name="connect">Connect</string>
+    <string name="help">Help</string>
+    <string name="privacy">Privacy</string>
+    <string name="term">Terms of Service</string>
+    <string name="thank">Thank-You\'s</string>
+    <string name="let_talk">Let\'s Talk</string>
+    <string name="let_talk_detail">We love hearing from our users, and we hope you will be our
+        friend on the internet
+    </string>
+    <string name="rate_google_play">Rate Us on the Google Play</string>
+    <string name="company_name_account">Company Name</string>
+    <string name="edit_company">Edit Company</string>
+    <string name="account_type">Account Type</string>
+    <string name="library">Libraries We Use</string>
+    <string name="library_detail">The following stes forth attribution
+        notices for third party software that
+        may be contained in portions of the
+        HomeCaravan mobile application.
+        We thank the open source community for all
+        of their contributions
+    </string>
+    <string name="change_password">Change Password</string>
+    <string name="old_password">Old Password*</string>
+    <string name="new_password">New Password*</string>
+    <string name="confirm_password">Confirm Password*</string>
+    <string name="about_me">About Me</string>
+    <string name="my_company">My Company</string>
+    <string name="enter_agent">Please enter your agent\'s email address</string>
+    <string name="settings">Settings</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_message">New Message</string>
+    <string name="to">To:</string>
+    <string name="cc_bcc">CcBcc:</string>
+    <string name="subject">Subject:</string>
+    <string name="email_homecaravan">support@homecaravan.com</string>
+    <string name="send">Send from my phone</string>
+    <string name="select_country">Select a Country</string>
+
+
+    // advance search
+    <string name="advance_search">Advanced Search</string>
+    <string name="favorite">Favorites</string>
+    <string name="result">Results</string>
+    // showing
+    <string name="my_showing">My Showings</string>
+    <string name="upcoming">UpComing</string>
+    <string name="past">Past</string>
+    <string name="pending">Pending</string>
+    <string name="approved">Approved</string>
+
+
+    // listing
+    <string name="properties">Properties</string>
+    <string name="availability">Availability</string>
+    <string name="facts">Facts</string>
+    <string name="contact_agent">Contact Agent</string>
+    <string name="contact">Contact</string>
+    <string name="interaction">Interaction</string>
+    <string name="view_on_map">View on Map</string>
+    <string name="description_listing">Description</string>
+
+    <string name="sort_listing">Sort by:</string>
+    <string name="my_listing">My Listings</string>
+    <string name="listing_description">Listing Description</string>
+    <string name="zip">Zip*</string>
+    <string name="property_type">Property Type*</string>
+    <string name="listing_type">Listing Type*</string>
+    <string name="price_unit">Price Unit*</string>
+    <string name="price">Price*</string>
+    <string name="sale_type">Sale Type*</string>
+    <string name="baths">Baths*</string>
+    <string name="bedrooms">Bedrooms*</string>
+    <string name="garage">Garage*</string>
+    <string name="pool">Pool*</string>
+    <string name="square_feet">Square Feet*</string>
+    <string name="lot_size">Lot Size*</string>
+    <string name="year_built">Year Built*</string>
+    <string name="timezone">Timezone*</string>
+    <string name="add1">Address 1*</string>
+    <string name="city_create">City*</string>
+    <string name="state_create">State*</string>
+    <string name="zip_create">Zip*</string>
+    <string name="listing_contact_name">Contact Name</string>
+    <string name="listing_office_phone">Office Phone</string>
+    <string name="listing_mobile_phone">Mobile Phone</string>
+    <string name="listing_email">Email</string>
+    <string name="description">Description*</string>
+    <string name="date_first_available">Date First Available</string>
+    <string name="book_through">Book Through</string>
+    <string name="appointment_length">Appointment Length</string>
+    <string name="first_daily_appointment">First Daily Appointment</string>
+    <string name="showing_conclude_daily">Showing Conclude Daily</string>
+    <string name="time_format">Time Format</string>
+    <string name="advanced_settings">Advanced Settings</string>
+    <string name="days_available">Days Available</string>
+    <string name="required_showings">Required Notice of Showings:</string>
+    <string name="number_appointments">Number of Concurrent Appointments:</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="ld_settings">Settings</string>
+    <string name="ld_messages">Messages</string>
+    <string name="introductions">Introductions</string>
+    <string name="intro_content">These notes are custom messages that you can have sent along with
+        the standard messages sent by the scheduling system.
+    </string>
+    <string name="confirmation_note">Confirmation Note</string>
+    <string name="auto_send">Auto-send Reminder/Feedback?</string>
+    <string name="remind">When to remind?</string>
+    <string name="for_agents">For Agents</string>
+    <string name="reminder_note">Appointment Reminder Note</string>
+    <string name="selling_team">Selling Team</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="listing_details">Listing Details</string>
+
+    <string name="route">Listing Details</string>
+    <string name="search">Listing Details</string>
+    <string name="refresh">Refresh map &amp; See all map listings</string>
+    <string name="location">Listing Details</string>
+    <string name="draw">Listing Details</string>
+
+
+    <string name="transition_avatar">AvatarTransition</string>
+    <string name="transition_morph_view" translatable="false">morph_view_transition</string>
+    <string name="transition_name" translatable="false">square_transition</string>
+    <string name="transition_toolbar_name" translatable="false">toolbar_transition</string>
+    <string name="transition_shared_toolbar" translatable="false">shared_toolbar_transition</string>
+
+
+    <array name="house11">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+    </array>
+
+    <array name="house12">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </array>
+
+    <array name="minute">
+        <item>00</item>
+        <item>30</item>
+    </array>
+    <array name="haft">
+        <item>AM</item>
+        <item>PM</item>
+
+    </array>
+    <string name="nav_step_title_1">Account Profile</string>
+    <string name="nav_step_title_2">Company</string>
+    <string name="nav_step_title_3">Account Settings</string>
+    <string name="nav_step_title_4">Verification</string>
+    <string name="change_method_title">Receive verification code via:</string>
+    <string name="status_comment_hint">Describe current your property status here...</string>
+
+    <string name="all_listings">All Listings</string>
+    <string name="active_listings">Active Listings</string>
+    <string name="on_hold_listings">On Hold Listings</string>
+    <string name="closed_listings">Closed Listings</string>
+
+    <string name="notification_no_item">You haven\'t new notification. Let\'s do something.</string>
+    <string name="no_network">No active network connection available. Please try again later</string>
+
+
+    <string name="lbl_you_are_at">YOU ARE AT</string>
+    <string name="btn_get_location">GET MY LOCATION</string>
+    <string name="btn_start_location_updates">START LOCATION UPDATES</string>
+    <string name="btn_stop_location_updates">STOP LOCATION UPDATES</string>
+    <string name="caravan_detail">Caravan Detail</string>
+
+
+    <color name="color_icon_empty">#b7b7b7</color>
+    <string-array name="mylisting_glyph_strings">
+        <item>M148.21,86.85a8.92,8.92,0,1,1-8.92,8.92A8.92,8.92,0,0,1,148.21,86.85Zm-58.43,1a8.92,8.92,0,1,1-8.92,8.92A8.92,8.92,0,0,1,89.78,87.81Zm147.77,4.93a7.1,7.1,0,0,0-1.71-2.64c-.19-.18-.46-.35-.66-.52L203.74,65V19.1a10.08,10.08,0,0,0,.08-1,10.29,10.29,0,0,0-.37-2.3,10.5,10.5,0,0,0-8.62-7c-.35,0-.71-.07-1.06-.08-7.76-.1-15.51,0-23.27,0-.34,0-.69,0-1,.05a10.58,10.58,0,0,0-6.21,2.85,10.64,10.64,0,0,0-2.74,4.23,10.65,10.65,0,0,0-.58,2.3c0,.34-.2.68-.2,1V30.38L123.17,1.5A5.89,5.89,0,0,0,122,.68a7,7,0,0,0-1.47-.51c-.25-.06-.51-.09-.77-.13L119,0c-.26,0-.52,0-.78,0a7,7,0,0,0-3.55,1.46L2.67,89.58c-.2.17-.4.34-.59.52a7,7,0,0,0,3.36,11.83l.78.16.79.1H37.74v66.07a18.61,18.61,0,0,0,1,6.93,20.91,20.91,0,0,0,17.6,13.86c.7.07,1.4.1,2.11.11,41.93,0,83.85.26,125.78,0a22.11,22.11,0,0,0,2.38-.17,20.78,20.78,0,0,0,18.05-18.09c.09-.7.09-1.41.12-2.12,0-.26-.08-.26-.08-.51V102.2H231l.78-.1a7.11,7.11,0,0,0,2.26-.71,7,7,0,0,0,3.52-8.65ZM197.92,88.2a5.77,5.77,0,0,0-2.32.28,8.36,8.36,0,0,0-4.85,6.61v73.14a7.36,7.36,0,0,1,0,.82,6.67,6.67,0,0,1-.28,1.57,7,7,0,0,1-4.12,4.13,7,7,0,0,1-2.28.42q-62.84.4-125.67,0a6.91,6.91,0,0,1-6.83-6.82c-.16-24.42,0-48.83,0-73.25,0-.26,0-.52,0-.78a6.91,6.91,0,0,0-5.4-6c-.26-.06-.52-.06-.77-.1H27.22L118.92,16l41,32.23,13.85,11v-37h16V71.76l12.84,10,8.19,6.39Zm-46.3,62.19a7.5,7.5,0,0,0-.79-10.58c-14.2-12.22-50-12.17-63.77.08a7.5,7.5,0,0,0,10,11.22c8.09-7.17,35.66-7.13,44,.08a7.5,7.5,0,0,0,10.58-.79Z</item>
+    </string-array>
+    <integer-array name="mylisting_glyph_colors">
+        <item>@color/color_icon_empty</item>
+    </integer-array>
+
+    <string-array name="myshowing_glyph_strings">
+        <item>M81,161.93a81,81,0,1,1,81-81A81.06,81.06,0,0,1,81,161.93ZM81,12a69,69,0,1,0,69,69A69,69,0,0,0,81,12ZM93.46,90.33a3.08,3.08,0,0,1-3.12,3.12H49.1A3.08,3.08,0,0,1,46,90.33V84.09A3.08,3.08,0,0,1,49.1,81H81V38.61a3.08,3.08,0,0,1,3.12-3.12h6.25a3.08,3.08,0,0,1,3.12,3.12Z</item>
+    </string-array>
+    <integer-array name="myshowing_glyph_colors">
+        <item>@color/color_icon_empty</item>
+    </integer-array>
+
+    <string-array name="notification_glyph_strings">
+        <item>M102.34,162.88c19.07,6.63,45.42-1.9,58.44-26.87a10.57,10.57,0,0,0,3.6,2.14A10.09,10.09,0,0,0,171,119.08a10.59,10.59,0,0,0-4.15-.55c5.28-27.66-10.08-50.71-29.15-57.34C89.75,44.5,73.64,19.74,66.34.73A13.38,13.38,0,0,0,49.4,9.08L.76,148.91A13.38,13.38,0,0,0,8.85,166C26.38,155.6,54.37,146.19,102.34,162.88ZM59.81,18.72c14.59,25,38.11,42.87,73.46,55.17,12.81,4.46,27.58,23.17,18.52,49.19s-32.25,31.53-45.06,27.07c-35.35-12.3-64.87-12.88-91.83-2.33Z</item>
+    </string-array>
+    <integer-array name="notification_glyph_colors">
+        <item>@color/color_icon_empty</item>
+    </integer-array>
+
+    <string-array name="caravan_glyph_strings">
+        <item>M114.78,164.56a17.3,17.3,0,0,1-17.28-17.28v-4.39H45.38v4.39a17.28,17.28,0,0,1-34.55,0v-4.39H0V85.41A85.38,85.38,0,0,1,2.27,65.12L10.93,27c2.28-16.4,26-27,60.52-27S129.67,10.57,132,27l8.82,38.12a85,85,0,0,1,2.11,20.33v57.48H132.06v4.39A17.3,17.3,0,0,1,114.78,164.56ZM32.5,130h77.89v17.28a4.39,4.39,0,0,0,8.79,0V130H130V85.41a71.91,71.91,0,0,0-1.79-17.46l-9-38.73,0-.35c-.93-7.86-19.06-16-47.77-16S24.61,21,23.67,28.87l-.12.67L14.84,68a72.55,72.55,0,0,0-2,17.45V130H23.72v17.28a4.39,4.39,0,0,0,8.79,0ZM28.11,76.27A10.83,10.83,0,1,0,38.94,87.11,10.8,10.8,0,0,0,28.11,76.27Zm83-42.78a4.89,4.89,0,0,0-4.79-4H36.54a4.89,4.89,0,0,0-4.79,4L26.28,62.7a4.88,4.88,0,0,0,4.79,5.78h80.76a4.88,4.88,0,0,0,4.79-5.78Zm4.61,42.82a10.84,10.84,0,1,0,9.82,9.82A10.81,10.81,0,0,0,115.76,76.31Zm-14.28,40.14a6.9,6.9,0,0,0-.73-9.73c-13.07-11.24-46-11.2-58.68.07a6.9,6.9,0,1,0,9.16,10.33c7.44-6.6,32.81-6.56,40.52.07a6.9,6.9,0,0,0,9.73-.73Z</item>
+    </string-array>
+    <integer-array name="caravan_glyph_colors">
+        <item>@color/color_icon_empty</item>
+    </integer-array>
+
+
+    <string-array name="client_glyph_strings">
+        <item>M168,166.58H5a5,5,0,0,1-5-5.42c.31-3.67,3.53-36,20.13-42.76,6.85-2.78,13.42-4,19.21-5.07,13.24-2.45,20.8-3.86,24-19.86a82.26,82.26,0,0,1-6-7.08,5,5,0,0,1-.55-.92,88,88,0,0,1-4.95-13.29c-2.46-1.12-4-3.64-4.45-7.51A8.51,8.51,0,0,0,47,62.61a15.42,15.42,0,0,0-1.28-2.2A10.83,10.83,0,0,1,43.5,54a10.28,10.28,0,0,1,3.78-8.21,9,9,0,0,1,1-.71c-.37-1.55-.82-3.28-1.19-4.67C45.32,33.44,44.23,29,44.87,26c1.77-8.35,8-15.3,18-20.07A64.69,64.69,0,0,1,88,0h.23C102.57.33,110.08,5.41,113,11.2A14.91,14.91,0,0,1,121.31,14c3.75,2.72,6.11,7.19,7,13.28.81,5.38-1.4,11.41-3.17,16.26-.2.56-.43,1.17-.65,1.78q.34.22.66.48A10.3,10.3,0,0,1,129,54a10.83,10.83,0,0,1-2.22,6.44,15.37,15.37,0,0,0-1.28,2.2,8.6,8.6,0,0,0-.41,2.06c-.5,3.87-2,6.38-4.42,7.52a83.41,83.41,0,0,1-4.84,13.49,5,5,0,0,1-.55.92c-1.57,2.08-3.56,4.64-5.76,7,3.07,16.43,10.5,17.68,23.64,19.89,5.94,1,12.67,2.13,19.73,5h0c16.6,6.73,19.82,38.94,20.13,42.6a5,5,0,0,1-5,5.43Zm-157.36-10H162.35c-1.76-11.31-6.19-25.89-13.26-28.75-6-2.45-11.93-3.44-17.63-4.4-13.84-2.33-28.15-4.73-32.15-29.89,0-.12-.06-.54-.08-.95v-.16a5,5,0,0,1,1.44-4,74.83,74.83,0,0,0,6.27-7.4,76.57,76.57,0,0,0,4.75-14.25,5,5,0,0,1,3.49-3.67,15.7,15.7,0,0,1,1.21-4.67,24.9,24.9,0,0,1,2-3.54A4.33,4.33,0,0,0,119,54h0a5.36,5.36,0,0,1-3.49-1,5,5,0,0,1-2-3.78c-.11-2.61.94-5.49,2.28-9.15s3.1-8.49,2.67-11.34c-.34-2.29-1.15-5.31-3-6.67-1.18-.86-2.94-1.1-5.26-.71a5,5,0,0,1-5.8-4.48C104,12.16,94.23,10.16,88.13,10a54.19,54.19,0,0,0-21,5c-4.91,2.35-11,6.5-12.48,13-.06,1.55,1.31,6.77,2.13,9.91,1.43,5.45,2.3,8.91,2.19,11.36A5.28,5.28,0,0,1,56.76,53,4.67,4.67,0,0,1,53,54h0c1,.15.58.59.79.91a23.58,23.58,0,0,1,2.14,3.52A15.81,15.81,0,0,1,57.19,63a5.05,5.05,0,0,1,3.52,3.65,75.27,75.27,0,0,0,4.91,14.12,71.86,71.86,0,0,0,6.61,7.45,5,5,0,0,1,1.45,4.36c-4,25.29-18.5,28-32.5,30.57-5.58,1-11.36,2.11-17.27,4.5C16.8,130.54,12.38,145.21,10.64,156.58Zm88.6-64.1c0,.12,0,.22,0,.27S99.24,92.57,99.23,92.48Z</item>
+    </string-array>
+    <integer-array name="client_glyph_colors">
+        <item>@color/color_icon_empty</item>
+    </integer-array>
+
+
+    <string-array name="message_glyph_strings">
+        <item>M93,99V86h5.88c3.29,0,6.12-3.63,6.12-6.92V60h14V85.66A13.7,13.7,0,0,1,105.45,99ZM72,86H66L40,98.81V92.23C40,88.29,37.07,86,33.13,86H20c-3.29,0-7-3.63-7-6.92V19.91C13,16.62,16.69,13,20,13h78.9c3.29,0,6.12,3.62,6.12,6.91V39h14V13.33A13.69,13.69,0,0,0,105.45,0H13.4A13.56,13.56,0,0,0,0,13.33V85.66A13.57,13.57,0,0,0,13.4,99H27v9c0,4.6,5,8,9,6L66,99h6Zm17,35.9a6.46,6.46,0,0,0,6.38,6.1h32.88L155,141.63v-6.58c0-3.95,2.19-7.05,6.13-7.05h13.15c3.29,0,6.72-2.81,6.72-6.1V62.73c0-3.29-3.43-6.73-6.72-6.73H95.38C92.1,56,89,59.44,89,62.73ZM88.81,43h92.05A13.18,13.18,0,0,1,194,56.15v72.33c0,7.23-5.91,13.52-13.14,13.52H168v8.83c0,4.6-5.41,8.08-9.35,6.1L128.26,142H88.81C81.58,142,76,135.71,76,128.48V56.15A12.9,12.9,0,0,1,88.81,43Z</item>
+    </string-array>
+    <integer-array name="message_glyph_colors">
+        <item>@color/color_icon_empty</item>
+    </integer-array>
+
+
+    // consumer module
+
+
+    //splash consumer
+    <string name="location_splash">Hue, Viet nam</string>
+    <string name="location_escription_splash">You are seconds away from your best homes</string>
+    <string name="imLooking">I\'M LOOKING TO\nBUY / RENT / SELL\nA HOME</string>
+    <string name="imLookingDescription">Collaborate with your partner and\nfriends in real-time to purchase, rent\nor sell a home of your dream.</string>
+    <string name="go">GO</string>
+    <string name="imRealtor">I\'M A REALTOR</string>
+    <string name="imRealtorDescription">HomeCaravan will help you take charge\nof the process and keep everyone\ninformed so you always know when\nyour home needs to be looking its best</string>
+
+    //login and register consumer
+    <string name="title_activity_login_le_anh_dao">Sign in</string>
+    <string name="title_activity_register_le_anh_dao">Register</string>
+    <string name="login">LOGIN</string>
+    <string name="register">REGISTER</string>
+    <string name="login_with">Login with?</string>
+    <string name="have_not_account">Haven\'t got an account?</string>
+    <string name="have_an_account">Have an account?</string>
+    <string name="first_name_register">First Name</string>
+    <string name="last_name_register">Last Name</string>
+    <string name="prompt_password">Password</string>
+    <string name="confirm_password_register">Confirm Password</string>
+    <string name="login_now">Login now</string>
+    <string name="prompt_email">Mobile number or email address</string>
+    <string name="enter_code">Enter code</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_register_short">Register</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="facebook">FACEBOOK</string>
+    <string name="linkedin">LINKEDIN</string>
+    <string name="sell">Sell</string>
+    <string name="buy">Buy</string>
+    <string name="rent">Rent</string>
+    <string name="search_consumer">Address, city or zipcode</string>
+    <string name="main_dashboard">Dashboard</string>
+    <string name="main_discover">Discover</string>
+    <string name="main_schedule">Schedule</string>
+    <string name="main_showing">Showing</string>
+    <string name="main_my_team">My Team</string>
+
+
+    <string name="view_video">View Video</string>
+    <string name="get_started">Get Started</string>
+    <string name="buy_discover">DISCOVER</string>
+    <string name="buy_discover_des">Search the entire universe of homes for sale - in real time</string>
+    <string name="buy_visit">VISIT</string>
+    <string name="buy_visit_des">Schedule showings instantly, whether you have an agent or not</string>
+    <string name="buy_collaborate">COLLABORATE</string>
+    <string name="buy_collaborate_des">Find the right professionals, get instant answers and learn about the market</string>
+    <string name="rent_discover">DISCOVER</string>
+    <string name="rent_discover_des">Search the entire universe of homes for sale - in real time</string>
+    <string name="rent_visit">VISIT</string>
+    <string name="rent_visit_des">Schedule showings instantly, whether you have an agent or not</string>
+    <string name="rent_collaborate">COLLABORATE</string>
+    <string name="rent_collaborate_des">Find the right professionals, get instant answers and learn about the market</string>
+    <string name="sell_your_home">DESCRIBE YOUR HOME</string>
+    <string name="sell_your_home_des">Create a portfolio for your home by taking picture and videos with you phone</string>
+    <string name="sell_showcase">INVITE AGENTS</string>
+    <string name="sell_showcase_des">Choose agents to give you their opinions about pricing and sales strategy</string>
+    <string name="sell_feedback">INTERVIEW</string>
+    <string name="sell_feedback_des">Interview agents online to see who is good fit ti represent you in the sale</string>
+
+    // menu consumer
+    <string name="menu_showings">Showings</string>
+    <string name="menu_schedule">Schedule</string>
+    <string name="menu_discover">Discover</string>
+    <string name="menu_saved_search">Saved Search</string>
+    <string name="menu_favorites">Favorites</string>
+    <string name="menu_my_account">My Account</string>
+    <string name="menu_my_listing">My Listing</string>
+    <string name="menu_my_team">My Team</string>
+    <string name="menu_app">Appointment</string>
+    <string name="menu_agent">Interview Agent</string>
+    <string name="menu_setting">Settings</string>
+    <string name="menu_message">Message</string>
+    <string name="menu_property">My property</string>
+    <string name="menu_log_out">Log out</string>
+    <string name="menu_buyer">FOR BUYER</string>
+    <string name="menu_renter">FOR RENTER</string>
+    <string name="menu_seller">FOR SELLER</string>
+    <string name="menu_my_homecaravan">MY HOMECARAVAN</string>
+    <string name="menu_account">ACCOUNT</string>
+
+    // dashboard
+
+    <string name="dashboard_upcoming">Upcoming</string>
+    <string name="dashboard_showings">Showings</string>
+    <string name="dashboard_new">New</string>
+    <string name="dashboard_messages">Messages</string>
+    <string name="see_all">see all</string>
+    <string name="dashboard_saved_search">Saved Search</string>
+    <string name="dashboard_just_listed">Just Listed</string>
+    <string name="dashboard_trending">Trending</string>
+    <string name="dashboard_showing_history">Showing History</string>
+    <string name="dashboard_featured_agents">Feature Agent</string>
+    <string name="dashboard_agent_news">News</string>
+    <string name="dashboard_agent_pro">Professional</string>
+    <string name="dashboard_agent_help">Help</string>
+    <string name="dashboard_agent_my">My Agent</string>
+    <string name="saved_search_found">Found:</string>
+    <string name="saved_search_new">New:</string>
+    <string name="view_all">view all</string>
+    // discover
+
+    <string name="draw_area">Draw area</string>
+    <string name="save_search">Save search</string>
+    <string name="view_map">View map</string>
+    <string name="view_list">View list</string>
+    <string name="discover_filter">Filter</string>
+    <string name="discover_map_style">Map Style</string>
+    <string name="discover_search_action">Search action</string>
+    <string name="add_to_queue">Add to queue</string>
+    <string name="discover_more">More</string>
+    <string name="discover_added">Added</string>
+    <string name="discover_favorite">Favorite</string>
+    <string name="discover_favored">Favored</string>
+    <string name="book_showing">Book showing</string>
+    // schedule
+
+    <string name="book_a_showing">BOOK SHOWING</string>
+    <string name="listing_detail">Listing Detail</string>
+    <string name="description_listing_detail">Description</string>
+    <string name="video_listing_detail">Video</string>
+    <string name="my_review_listing_detail">My Review</string>
+    <string name="price_listing_detail">Price</string>
+    <string name="listed_listing_detail">Listed:</string>
+    <string name="overview_listing_detail">Overview</string>
+    <string name="vote_up_listing_detail">I like it</string>
+    <string name="vote_down_listing_detail">Not for me</string>
+    <string name="view_map_listing_detail">View Map</string>
+    <string name="property_status_listing_detail">Property Status</string>
+    <string name="contact_agent_listing_detail">Contact Agent</string>
+
+    <string name="save_current_search">Save current search</string>
+    <string name="edit_search_criteria">Edit search criteria</string>
+    <string name="open_saved_search">Open saved search</string>
+    <string name="draw_area_discover">Draw area</string>
+    <string name="clear_search">Clear search</string>
+    <string name="type_consumer">Property type</string>
+    <string name="for_sale_consumer">For Sale</string>
+    <string name="potential_listings">Potential Listings</string>
+    <string name="for_rent_discover">For Rent</string>
+    <string name="recently_sold">Recently Sold</string>
+    <string name="price_filter">Price</string>
+    <string name="sale_filter">Sale</string>
+    <string name="rent_filter">Rent</string>
+    <string name="bedrooms_filter">Bedrooms</string>
+    <string name="any_filter">Any</string>
+    <string name="use_extract_match_for_bedrooms">Use Extract Match for Bedrooms</string>
+    <string name="baths_filter">Baths</string>
+    <string name="only_show_single_story_homes">Only Show Single Story Homes</string>
+    <string name="apply_filter">Apply</string>
+    <string name="no_result_filter">No Result</string>
+    <string name="reset_filter">Reset</string>
+    <string name="school_filter">Schools</string>
+    <string name="condition_filter">Condition</string>
+    <string name="home_type_filter">Home Type</string>
+    <string name="square_feet_filter">Square Feet</string>
+    <string name="pets_allowed_filter">Pets Allowed</string>
+    <string name="on_site_parking_filter">On -Site Parking</string>
+    <string name="pool_filter">Pool</string>
+    <string name="in_unit_laundry_filter">In-Unit Laundry</string>
+    <string name="garage_filter">Garage</string>
+    <string name="keywords_filter">Keywords</string>
+    <string name="keywords_filter_des"><i>waterfront, est...</i></string>
+    <string name="no_results_filter">No Results</string>
+    <string name="save_search_filter">Save Search</string>
+    <string name="listings_filter">Listings</string>
+    <string name="map_options_filter">Map options</string>
+    <string name="map_style_filter">Map Style</string>
+    <string name="classic_map_style">Classic</string>
+    <string name="satellite_map_style">Satellite</string>
+
+    // save search
+    <string name="save_search1">Save Search</string>
+    <string name="notification_save_search">Notification</string>
+    <string name="show_group_result">Show group result</string>
+    <string name="allow_group_discussion">Allow group discussion</string>
+    <string name="allow_group_comments">Allow group comments</string>
+    <string name="add_collaborator">Add collaborator</string>
+    <string name="add_recent">Add recent</string>
+    <string name="invite_to_hc">Invite to HomeCaravan</string>
+    <string name="contact_preference">Contact preference</string>
+    <string name="role_consumer">Role</string>
+    <string name="priority_consumer">Priority</string>
+    <string name="fn_invite_agent">First name *</string>
+    <string name="ln_invite_agent">Last name *</string>
+    <string name="email_invite_agent">Email *</string>
+    <string name="phone_invite_agent">Phone *</string>
+    <string name="discover_team">Team</string>
+    <string name="discover_settings">Settings</string>
+    <string name="discover_top_rated">Top Rated</string>
+    <string name="discover_just_listed">Just Listed</string>
+    <string name="discover_to_review">To Review</string>
+    <string name="discover_reviewed">Reviewed</string>
+    <string name="discover_listings">Listings</string>
+    <string name="discover_recently_updated">Recently Updated</string>
+    <string name="like_description">What next?</string>
+    <string name="dislike_description">What didn\'t you like about it?</string>
+    <string name="like_back">Back</string>
+    <string name="like_favorite">Favorite</string>
+    <string name="like_super_vote">Super vote</string>
+    <string name="like_share">Share</string>
+    <string name="like_schedule">Schedule</string>
+    <string name="dislike_price">Price</string>
+    <string name="dislike_location">Location</string>
+    <string name="dislike_condition">Condition</string>
+    <string name="dislike_size">Size</string>
+    <string name="home_to_visit">Home to visit</string>
+    <string name="team_tab_search_hint_text">Name, phone or email</string>
+    <string name="write_a_comment">Write a comment…</string>
+    <string name="step_schedule_one">Schedule your showings (step 1 of 5)</string>
+    <string name="step_schedule_two">Customize your Route (step 2 of 5)</string>
+    <string name="give_it_a_name">Give it a name (optional)</string>
+    <string name="pick_time">Pick a date for your showings</string>
+    <string name="pick_property">At which property would you like to start?</string>
+    <string name="start_here">Start here</string>
+    <string name="mon_schedule">Mon</string>
+    <string name="hour_schedule">Hour</string>
+    <string name="min_schedule">Min</string>
+    <string name="am_pm_schedule">AM/PM</string>
+    <string name="duration_schedule">Duration</string>
+    <string name="drag_schedule">Hold property and drag to re-order</string>
+    <string name="select_a_date_and_time">Select a date and time above</string>
+    <string name="select_option_agent">Select an option above</string>
+    <string name="step_schedule_three">Invite Others (step 3 of 5)</string>
+    <string name="who_else">Who else would you like to invite join you ?</string>
+    <string name="invite_agent_consumer">Invite</string>
+    <string name="send_invite_agent_consumer">Send Invite</string>
+    <string name="recently_invited">Recently invited</string>
+    <string name="step_schedule_four">Select an Agent (step 4 of 5)</string>
+    <string name="step_schedule_five">Final step (step 5 of 5)</string>
+    <string name="select_agent_tab1">Select an Agent</string>
+    <string name="select_agent_tab1_1">An agent must accompany you at each showing</string>
+    <string name="select_agent_tab1_2">Select one of the following options:</string>
+    <string name="select_agent_tab2">I would like to meet several agents\n (a different agent at each property)</string>
+    <string name="select_agent_tab3">I would you like to be introduced\n to one local expert</string>
+    <string name="select_agent_tab4">I want to meet listing agents</string>
+    <string name="select_agent_tab5">I am loyal to an agent\n (select you agent)</string>
+    <string name="select_agent_name">Agent name</string>
+    <string name="sponsored">Sponsored</string>
+    <string name="recent_agents">Recent Agents</string>
+    <string name="agent_resources">Agent Resources</string>
+    <string name="dont_see_agent">Don\'t see your agent here ?\nSend them an <i>invite.</i></string>
+    <string name="email_or_phone">Email or Phone</string>
+    <string name="qr_code">QR Code</string>
+    <string name="invite_agent_schedule">Invite Agent</string>
+    <string name="find_by_email">Find by email</string>
+    <string name="invite">Invite</string>
+    <string name="find_by_phone">Find by Phone number</string>
+    <string name="find_by_phone_contacts">Find by Phone number in the contacts</string>
+    <string name="search_name">Search name</string>
+
+
+    //showing
+    <string name="newest_to_oldest_menu_showing">Newest to Oldest</string>
+    <string name="oldest_to_newest_menu_showing">Oldest to Newest</string>
+    <string name="by_caravan_menu_showing">By Caravan</string>
+    <string name="by_appointments_menu_showing">By Appointments</string>
+
+    //notifications
+    <string name="dont_yet_have_notifications">You don\'t yet have any notification</string>
+    <string name="notifications">Notifications</string>
+    <string name="notifications_message">Notifications message</string>
+    <string name="all_notifications">All</string>
+    <string name="showings_notifications">Showings</string>
+    <string name="listings_notifications">Listings</string>
+    <string name="messages_notifications">Messages</string>
+    <string name="caravan_notifications">Caravan</string>
+    <string name="save_search_notifications">Save search</string>
+    <string name="contact_notifications">Contact</string>
+    <string name="text_notifications">
+    <![CDATA[<b>Nam Nguyen</b> booked a showing with you for listing <b>2130 Main Street</b>
+    ]]>
+    </string>
+
+    // my team
+    <string name="text_history_my_team">
+    <![CDATA[<b>Rin Le</b> contacted with you for listing <b>2130 Main Street</b>
+    ]]>
+    </string>
+    <string name="intro1">Schedule and Go!</string>
+    <string name="intro1_des">Schedule showing instantly, at times convenient for you</string>
+    <string name="intro2">Instant Chat</string>
+    <string name="intro2_des">Agents are available 24/7 to answer questions - instantly and without obligation</string>
+    <string name="intro3">Search Together</string>
+    <string name="intro3_des">Invite friends and family to help you find the perfect home</string>
+    <string name="intro4">Privacy</string>
+    <string name="intro4_des">Communicate with agents in app no sales calls or emails</string>
+    <string name="get_started_intro">GET STARTED</string>
+
+    <string name="dialog_messages">Messages</string>
+    <string name="dialog_success">Success</string>
+    <string name="dialog_confirm">Confirm</string>
+    <string name="dialog_error">Error</string>
+    <string name="dialog_warning">Warning</string>
+
+    // error consumer
+    <string name="error_network">No active network connection available. Please try again later</string>
+    <string name="error_email_phone_required">Email or Phone is required</string>
+    <string name="error_email_phone_not_correct">Please correct your Email or Phone format</string>
+    <string name="error_email_not_correct">Please correct your Emailformat</string>
+    <string name="error_phone_not_correct">Please correct your Phone format</string>
+    <string name="error_code_not_correct">Please correct your Code format</string>
+    <string name="error_url_not_correct">Please correct your Url format</string>
+    <string name="error_password_length">Your password must be at least 5 characters long</string>
+    <string name="error_password_length_2">Your password must be between 6 and 24 characters</string>
+    <string name="error_server">We are current experiencing technical difficulties and are working to resolve the issue as soon as possible</string>
+    <string name="error_account_not_yet_activated">Your account has been created but not yet activated. To complete the activation process, please click on the link in the text or email that was sent to you.</string>
+    <string name="error_account_activated">Account has already been activated</string>
+    <string name="error_first_name">First name is required</string>
+    <string name="error_last_name">Last name is required</string>
+    <string name="error_first_name_correct">Please correct your first name</string>
+    <string name="error_last_name_correct">Please correct your last name</string>
+    <string name="error_email">Please correct your email</string>
+    <string name="error_phone">Please correct your phone</string>
+    <string name="error_caravan_name">Name caravan is required</string>
+    <string name="error_zoom">Please zoom in to see your results</string>
+    <string name="error_vote">You need update new conditions search before vote listing</string>
+    <string name="error_vote1">You need save search before vote listing</string>
+    <string name="register_response">Your registration is now completed. Please check your email/phone inbox for the activation</string>
+    <string name="error_name">Only alpha characters and space</string>
+    <string name="error_empty">This field is required</string>
+    <string name="error_long_text">This field is too long</string>
+    <string name="error_no_image">You have not selected a photo yet</string>
+    <string name="error_re_password">Please enter the same password as above</string>
+    // message dialog consumer
+
+    <string name="add_participant_ok">Add participant success</string>
+    <string name="add_participant_fail">Add participant fail</string>
+    <string name="remove_participant_fail">Remove participant fail</string>
+    <string name="remove_participant_ok">Remove participant success</string>
+    <string name="invite_success">Your invitation has been successful sent</string>
+    <string name="update_conditions_success">Update conditions success</string>
+    <string name="delete_contact_success">Delete contact success</string>
+    <string name="permission_denied">Permission denied</string>
+
+    // empty
+
+    <string name="empty_dashboard">You don\'t have any shows</string>
+    <string name="empty_team">You don\'t yet have agents</string>
+    <string name="empty_team_action">Add Collaborator</string>
+    <string name="empty_discover">You don\'t yet have any search result list mode</string>
+    <string name="create_search_now">Create a search now</string>
+    <string name="empty_favorite">You don\'t yet any Favorite listing list</string>
+    <string name="empty_resource">You don\'t yet have any your resource agent</string>
+    <string name="empty_upcoming">You don\'t yet have any saved search list</string>
+    <string name="empty_past">You don\'t yet have any saved search list</string>
+    <string name="empty_team_history">You don\'t yet have any activities</string>
+    <string name="empty_schedules">You don\'t yet have any schedules</string>
+    <string name="no_listing_result">No listing result</string>
+    // user profile
+    <string name="user_profile_edit_name">Name</string>
+    <string name="user_profile_edit_phone">Phone</string>
+    <string name="user_profile_edit_mail">Mail</string>
+    <string name="user_profile_edit_address">Address</string>
+    <string name="user_profile_edit_company">Company</string>
+    <string name="user_profile_edit_job">Job</string>
+    <string name="user_profile_edit_add_work">Add work</string>
+    <string name="user_profile_edit_general">GENERAL</string>
+    <string name="user_profile_edit_work">COMPANY</string>
+    <string name="user_profile_edit_extra">EXTRA INFOMATION</string>
+    <string name="user_profile_user_profile">User Profile</string>
+    <string name="user_profile_edit_profile">Edit Profile</string>
+    <string name="hint_password_6_dot">\u2022\u2022\u2022\u2022\u2022\u2022</string>
+
+    <string name="mortgage">Mortgage</string>
+    <string name="mortgage_detail">Affordable? Get prequalified instantly</string>
+
+    <string name="title_insurance">Title Insurance</string>
+    <string name="title_insurance_detail">Protect your nest with Title Insurance!</string>
+
+    <string name="escrow">Escrow</string>
+    <string name="escrow_detail">Escrow Explained</string>
+
+    <string name="agent">Agent</string>
+    <string name="agent_detail">Market report for Southern California</string>
+
+    <string name="hc_help">HC Help</string>
+    <string name="hc_help_detail">Pros only - Advanced Search Techniques</string>
+
+    <string name="home_inspector">Home Inspector</string>
+    <string name="home_inspector_detail">Pros only - Advanced Search Techniques</string>
+
+    <string name="tutorial">Whether you are looking to BUY,RENT,SELL\n or a combination of these, you can change\n your focus easily at any time</string>
+    <string name="tutorial1">Please SELECT OR TOUCH the button above</string>
+    <string name="unlock_your_agent">Unlock \nyour agent</string>
+    <string name="verify_account">Verify account</string>
+    <string name="unlock_your_agent_2">Unlock your agent</string>
+    <string name="enter_your_code">Enter \n your code</string>
+    <string name="agent_unlocked">Agent unlocked</string>
+    <string name="i_already_have_an_agent">I already have an agent</string>
+    <string name="scan_your_agent_key">I have an agent QR key</string>
+    <string name="i_loyal_to_an_agent">Not ready for an agent yet</string>
+    <string name="search_for_agent_by_name">Search for agents by name</string>
+    <string name="i_dont_want_connect_with_an_agent">I don\'t want to connect with an agent</string>
+    <string name="do_i_have_to_have_an_agent">Do I have to have an agent?</string>
+    <string name="let_start">Let\'s get started!</string>
+    <string name="resend_code">RESEND CODE</string>
+
+
+    <string-array name="CountryCodes">
+        <item>93,AF</item>
+        <item>355,AL</item>
+        <item>213,DZ</item>
+        <item>376,AD</item>
+        <item>244,AO</item>
+        <item>672,AQ</item>
+        <item>54,AR</item>
+        <item>374,AM</item>
+        <item>297,AW</item>
+        <item>61,AU</item>
+        <item>43,AT</item>
+        <item>994,AZ</item>
+        <item>973,BH</item>
+        <item>880,BD</item>
+        <item>375,BY</item>
+        <item>32,BE</item>
+        <item>501,BZ</item>
+        <item>229,BJ</item>
+        <item>975,BT</item>
+        <item>591,BO</item>
+        <item>387,BA</item>
+        <item>267,BW</item>
+        <item>55,BR</item>
+        <item>673,BN</item>
+        <item>359,BG</item>
+        <item>226,BF</item>
+        <item>95,MM</item>
+        <item>257,BI</item>
+        <item>855,KH</item>
+        <item>237,CM</item>
+        <item>1,CA</item>
+        <item>238,CV</item>
+        <item>236,CF</item>
+        <item>235,TD</item>
+        <item>56,CL</item>
+        <item>86,CN</item>
+        <item>61,CX</item>
+        <item>61,CC</item>
+        <item>57,CO</item>
+        <item>269,KM</item>
+        <item>242,CG</item>
+        <item>243,CD</item>
+        <item>682,CK</item>
+        <item>506,CR</item>
+        <item>385,HR</item>
+        <item>53,CU</item>
+        <item>357,CY</item>
+        <item>420,CZ</item>
+        <item>45,DK</item>
+        <item>253,DJ</item>
+        <item>670,TL</item>
+        <item>593,EC</item>
+        <item>20,EG</item>
+        <item>503,SV</item>
+        <item>240,GQ</item>
+        <item>291,ER</item>
+        <item>372,EE</item>
+        <item>251,ET</item>
+        <item>500,FK</item>
+        <item>298,FO</item>
+        <item>679,FJ</item>
+        <item>358,FI</item>
+        <item>33,FR</item>
+        <item>689,PF</item>
+        <item>241,GA</item>
+        <item>220,GM</item>
+        <item>995,GE</item>
+        <item>49,DE</item>
+        <item>233,GH</item>
+        <item>350,GI</item>
+        <item>30,GR</item>
+        <item>299,GL</item>
+        <item>502,GT</item>
+        <item>224,GN</item>
+        <item>245,GW</item>
+        <item>592,GY</item>
+        <item>509,HT</item>
+        <item>504,HN</item>
+        <item>852,HK</item>
+        <item>36,HU</item>
+        <item>91,IN</item>
+        <item>62,ID</item>
+        <item>98,IR</item>
+        <item>964,IQ</item>
+        <item>353,IE</item>
+        <item>44,IM</item>
+        <item>972,IL</item>
+        <item>39,IT</item>
+        <item>225,CI</item>
+        <item>81,JP</item>
+        <item>962,JO</item>
+        <item>7,KZ</item>
+        <item>254,KE</item>
+        <item>686,KI</item>
+        <item>965,KW</item>
+        <item>996,KG</item>
+        <item>856,LA</item>
+        <item>371,LV</item>
+        <item>961,LB</item>
+        <item>266,LS</item>
+        <item>231,LR</item>
+        <item>218,LY</item>
+        <item>423,LI</item>
+        <item>370,LT</item>
+        <item>352,LU</item>
+        <item>853,MO</item>
+        <item>389,MK</item>
+        <item>261,MG</item>
+        <item>265,MW</item>
+        <item>60,MY</item>
+        <item>960,MV</item>
+        <item>223,ML</item>
+        <item>356,MT</item>
+        <item>692,MH</item>
+        <item>222,MR</item>
+        <item>230,MU</item>
+        <item>262,YT</item>
+        <item>52,MX</item>
+        <item>691,FM</item>
+        <item>373,MD</item>
+        <item>377,MC</item>
+        <item>976,MN</item>
+        <item>382,ME</item>
+        <item>212,MA</item>
+        <item>258,MZ</item>
+        <item>264,NA</item>
+        <item>674,NR</item>
+        <item>977,NP</item>
+        <item>31,NL</item>
+        <item>599,AN</item>
+        <item>687,NC</item>
+        <item>64,NZ</item>
+        <item>505,NI</item>
+        <item>227,NE</item>
+        <item>234,NG</item>
+        <item>683,NU</item>
+        <item>850,KP</item>
+        <item>47,NO</item>
+        <item>968,OM</item>
+        <item>92,PK</item>
+        <item>680,PW</item>
+        <item>507,PA</item>
+        <item>675,PG</item>
+        <item>595,PY</item>
+        <item>51,PE</item>
+        <item>63,PH</item>
+        <item>870,PN</item>
+        <item>48,PL</item>
+        <item>351,PT</item>
+        <item>1,PR</item>
+        <item>974,QA</item>
+        <item>40,RO</item>
+        <item>7,RU</item>
+        <item>250,RW</item>
+        <item>590,BL</item>
+        <item>685,WS</item>
+        <item>378,SM</item>
+        <item>239,ST</item>
+        <item>966,SA</item>
+        <item>221,SN</item>
+        <item>381,RS</item>
+        <item>248,SC</item>
+        <item>232,SL</item>
+        <item>65,SG</item>
+        <item>421,SK</item>
+        <item>386,SI</item>
+        <item>677,SB</item>
+        <item>252,SO</item>
+        <item>27,ZA</item>
+        <item>82,KR</item>
+        <item>34,ES</item>
+        <item>94,LK</item>
+        <item>290,SH</item>
+        <item>508,PM</item>
+        <item>249,SD</item>
+        <item>597,SR</item>
+        <item>268,SZ</item>
+        <item>46,SE</item>
+        <item>41,CH</item>
+        <item>963,SY</item>
+        <item>886,TW</item>
+        <item>992,TJ</item>
+        <item>255,TZ</item>
+        <item>66,TH</item>
+        <item>228,TG</item>
+        <item>690,TK</item>
+        <item>676,TO</item>
+        <item>216,TN</item>
+        <item>90,TR</item>
+        <item>993,TM</item>
+        <item>688,TV</item>
+        <item>971,AE</item>
+        <item>256,UG</item>
+        <item>44,GB</item>
+        <item>380,UA</item>
+        <item>598,UY</item>
+        <item>1,US</item>
+        <item>998,UZ</item>
+        <item>678,VU</item>
+        <item>39,VA</item>
+        <item>58,VE</item>
+        <item>84,VN</item>
+        <item>681,WF</item>
+        <item>967,YE</item>
+        <item>260,ZM</item>
+        <item>263,ZW</item>
+    </string-array>
+
+
+    //CIA
+    <string name="caravan_popup_appointment_updates">
+    <![CDATA[Peter Pan wants to inform you that he cannot make it to the appointment on time, <b>and need an adjustment of 30 minutes</b>, the new appointment time for 2130 Mainstreet is 11:30, please take your action
+    ]]>
+    </string>
+    <string name="caravan_popup_show_popup_caravan">
+    <![CDATA["Your Caravan at 10:30 for 5 listings about to start, you can activate \"<b>in action mode</b>\" now to share your location, your readiness and your ETA to other parties now"
+    ]]>
+    </string>
+    <string name="caravan_popup_appointment_commencement">
+    <![CDATA[<p>It\'s time to leave, it would take you 15 minutes to drive from here to your next appointment.</p><b>Have a good trip!</b>
+    ]]>
+    </string>
+    <string name="caravan_popup_appointment_warning">
+    <![CDATA[Your next appointment for State Rd 2212 is <b>estimated to be late for 15 minutes</b>, please take action now to inform other parties
+    ]]>
+    </string>
+
+    <string name="caravan_radio_1">10 minutes</string>
+    <string name="caravan_radio_2">5 minutes</string>
+    <string name="caravan_radio_3">1 minute</string>
+    <string name="caravan_radio_4">30 seconds</string>
+    <string name="caravan_radio_5">15 seconds</string>
+    <string name="caravan_radio_6">5 seconds</string>
+    <string name="caravan_radio_title">Time Update Location</string>
+    <string name="caravan_call_name">Call name</string>
+    <string name="caravan_send_message">Send message</string>
+    <string name="caravan_view_profile">View profile</string>
+    <string name="caravan_get_direction">Get direction</string>
+    <string name="caravan_send_group_messages">Send group messages</string>
+    <string name="caravan_reschedule_appointments">Reschedule appointments</string>
+    <string name="caravan_cancel_this_appointment">Cancel this appointment</string>
+    <string name="caravan_who_have_come_here">Those who have come here</string>
+    <string name="caravan_who_see_the_house">Those who see the house</string>
+    <string name="search_name_pick"><i>Search name</i></string>
+
+
+    <string name="submit">Submit</string>
+    <string name="add_note">Add note</string>
+    <string name="receive_confirmation_via">Receive Confirmation via:</string>
+    <string name="you_are">You are:</string>
+    <string name="enter_a_note_for_listing_agent_optional"><i>Enter a note for listing agent (optional)</i></string>
+
+
+</resources>

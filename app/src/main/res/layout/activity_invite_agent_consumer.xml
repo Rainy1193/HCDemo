@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layoutBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorDashboardStatusBar"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/ic_arrow_while" />
+
+        <TextView
+            style="@style/TextViewMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Invite"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/ivCheck"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/ic_check_while" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutInviteAgent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutBar"
+        android:background="@color/colorBgFragment">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarThumbVertical="@null">
+
+            <LinearLayout
+                android:id="@+id/layoutInviteAgentContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical"
+                    android:padding="@dimen/margin_invite_agent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_recent"
+                        android:textColor="@color/colorMenuConsumer" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvAgent"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="6dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_invite_agent"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/margin_invite_agent"
+                    android:paddingRight="@dimen/margin_invite_agent"
+                    android:paddingTop="@dimen/margin_invite_agent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/invite_to_hc"
+                        android:textColor="@color/colorMenuConsumer" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/etFirstName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/margin_invite_agent"
+                            android:layout_weight="1"
+                            android:hint="@string/fn_invite_agent"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textSize="14sp"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelAnimating="true"
+                            app:met_floatingLabelTextColor="@color/colorMenuConsumer" />
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/etLastName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_invite_agent"
+                            android:layout_weight="1"
+                            android:hint="@string/ln_invite_agent"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:textSize="14sp"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelAnimating="true"
+                            app:met_floatingLabelTextColor="@color/colorMenuConsumer" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/etEmail"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/margin_invite_agent"
+                            android:layout_weight="1"
+                            android:hint="@string/email_invite_agent"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:textSize="14sp"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelAnimating="true"
+                            app:met_floatingLabelTextColor="@color/colorMenuConsumer" />
+
+                        <com.rengwuxian.materialedittext.MaterialEditText
+                            android:id="@+id/etPhone"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_invite_agent"
+                            android:layout_weight="1"
+                            android:digits="0123456789"
+                            android:hint="@string/phone_invite_agent"
+                            android:inputType="numberDecimal"
+                            android:maxLines="1"
+                            android:textSize="14sp"
+                            app:met_floatingLabel="highlight"
+                            app:met_floatingLabelAnimating="true"
+                            app:met_floatingLabelTextColor="@color/colorMenuConsumer" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/margin_invite_agent"
+                    android:paddingRight="@dimen/margin_invite_agent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/contact_preference"
+                        android:textColor="@color/colorMenuConsumer" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_invite_agent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/layoutEmail"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingRight="4dp">
+
+                            <View
+                                android:id="@+id/vEmail"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:background="@drawable/bg_button_filter" />
+
+                            <TextView
+                                android:id="@+id/tvEmail"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="4dp"
+                                android:text="Email"
+                                android:textColor="@color/color_text_light_blue_filter" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutPhone"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingRight="4dp">
+
+                            <View
+                                android:id="@+id/vPhone"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:background="@drawable/bg_button_filter2" />
+
+                            <TextView
+                                android:id="@+id/tvPhone"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="4dp"
+                                android:text="Phone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutBoth"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingRight="4dp">
+
+                            <View
+                                android:id="@+id/vBoth"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:background="@drawable/bg_button_filter2" />
+
+                            <TextView
+                                android:id="@+id/tvBoth"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="4dp"
+                                android:text="Both" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/margin_invite_agent"
+                    android:paddingRight="@dimen/margin_invite_agent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/role_consumer"
+                        android:textColor="@color/colorMenuConsumer" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_invite_agent"
+                        android:layout_marginTop="@dimen/margin_invite_agent"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/layoutAdmin"
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_button_filter">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true">
+
+                                <TextView
+                                    android:id="@+id/tvAdmin"
+                                    style="@style/TextViewMain"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="Admin"
+                                    android:textColor="@color/colorWhite" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutMember"
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_button_filter1">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true">
+
+                                <TextView
+                                    android:id="@+id/tvMember"
+                                    style="@style/TextViewMain"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="Member" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutReadonly"
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_button_filter1">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true">
+
+                                <TextView
+                                    android:id="@+id/tvReadonly"
+                                    style="@style/TextViewMain"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="Readonly" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/margin_invite_agent"
+                    android:paddingRight="@dimen/margin_invite_agent"
+                    android:paddingTop="@dimen/margin_invite_agent">
+
+                    <RelativeLayout
+                        android:id="@+id/rlInvite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="12dp">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/bg_consumer_popup_success"
+                            android:paddingLeft="6dp">
+
+                            <TextView
+                                android:id="@+id/tvInvite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Send invite"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+                        </FrameLayout>
+
+                        <ImageView
+                            android:id="@+id/imgButtonSend"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/consumer_discover_save_search_team_send" />
+
+                        <View
+                            android:layout_width="1px"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="8dp"
+                            android:layout_toEndOf="@id/imgButtonSend"
+                            android:background="@color/colorLine" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent" >
+
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:name="com.google.android.gms.maps.MapFragment"/>
+    <Button
+        android:id="@+id/btn_draw_State"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Free Draw" />
+    <FrameLayout
+        android:visibility="gone"
+        android:focusableInTouchMode="false"
+        android:id="@+id/fram_map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </FrameLayout>
+</FrameLayout>

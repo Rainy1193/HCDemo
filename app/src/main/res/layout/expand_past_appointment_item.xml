@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutItem"
+    android:layout_width="170dp"
+    android:layout_height="205dp"
+    android:layout_marginRight="8dp"
+    android:background="@drawable/bg_border_item_expand_appointment_showing"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imgAppointmentHome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:riv_corner_radius="5dip" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/gradient_bottom_shadow" />
+
+            <RelativeLayout
+                android:id="@+id/rlReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_review_showing"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+
+                    <ImageView
+                        android:id="@+id/imgReview"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_consumer_showing_star_reviews" />
+
+                    <TextView
+                        android:id="@+id/tvReview"
+                        android:layout_width="46dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingLeft="4dp"
+                        android:text="Review"
+                        android:textColor="@color/color_blue_review_showing"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+            </RelativeLayout>
+        </FrameLayout>
+
+        <View
+            android:id="@+id/vAppointmentAction"
+            android:layout_width="@dimen/icon_size_dot_showing"
+            android:layout_height="@dimen/icon_size_dot_showing"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_green_showing" />
+
+        <TextView
+            android:id="@+id/tvAppointmentAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="6dp"
+            android:layout_marginLeft="6dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="KY-2123"
+            android:textColor="@color/color_white_address_showing"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.homecaravan.android.ui.CircleImageView
+                android:id="@+id/imgAppointmentAvatar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="4dp" />
+
+            <TextView
+                android:id="@+id/tvAppointmentName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="4dp"
+                android:layout_weight="2"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Loan Tran"
+                android:textColor="@color/text_color_icon_showing"
+                android:textSize="15sp" />
+
+            <FrameLayout
+                android:id="@+id/frmAppointmentMessage"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_blue_e2">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_contact_agent_listing_agent" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_single_showing"
+                android:layout_height="@dimen/icon_size_single_showing"
+                android:layout_gravity="center"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_consumer_showing_clock_time" />
+
+            <TextView
+                android:id="@+id/tvAppointmentTime"
+                style="@style/TextViewItemDashboard3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="11:30 - 12:00am"
+                android:textColor="@color/text_blue_color_caravan_showing"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+

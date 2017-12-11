@@ -1,0 +1,371 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+
+        <item name="colorPrimary">@color/colorMain</item>
+        <item name="colorPrimaryDark">@color/colorMain</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ThemeNoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorPrimary">@color/colorMain</item>
+        <item name="colorPrimaryDark">@color/colorMain</item>
+        <item name="colorAccent">@color/colorMain</item>
+    </style>
+
+    <style name="ThemeActionBar" parent="Theme.AppCompat.Light">
+
+        <item name="colorPrimary">@color/colorMain</item>
+        <item name="colorPrimaryDark">@color/colorMain</item>
+        <item name="colorAccent">@color/colorMain</item>
+    </style>
+
+    <style name="ThemeMain" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorPrimary">@color/colorMain</item>
+        <item name="colorPrimaryDark">@color/colorMain</item>
+        <item name="colorAccent">@color/colorMain</item>
+    </style>
+
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+
+    </style>
+
+
+    <style name="WhiteDrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <style name="AppThemeToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item>
+
+    </style>
+
+    <style name="Theme.Transparent.MyDemo" parent="Theme.AppCompat">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="ThemDialog" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/colorMain</item>
+        <item name="colorPrimaryDark">@color/colorMain</item>
+        <item name="colorAccent">@color/colorWhite</item>
+    </style>
+
+    <style name="ThemBlueMain" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlNormal">@color/colorGrayBackground</item>
+        <item name="colorControlActivated">@color/colorBlueMain</item>
+        <item name="colorPrimary">@color/colorMain</item>
+        <item name="colorPrimaryDark">@color/colorMain</item>
+    </style>
+
+    <style name="MyRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/colorGrayBackground</item>
+        <item name="colorControlActivated">@color/colorBlueMain</item>
+    </style>
+
+    <style name="SwitchStatus" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/colorBlueMain</item>
+        <item name="colorControlActivated">@color/colorBlueMain</item>
+    </style>
+
+    <style name="SCBSwitch" parent="Theme.AppCompat.Light">
+
+        <item name="colorControlActivated">@color/colorBlueMain</item>
+        <item name="colorSwitchThumbNormal">#f1f1f1</item>
+        <item name="android:colorForeground">#42221f1f</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="menu_labels_style">
+        <item name="android:background">@color/colorTransparent</item>
+        <item name="android:textColor">@color/colorBuy</item>
+    </style>
+
+    <style name="MySwitch" parent="ThemeActionBar">
+        <item name="colorControlActivated">@color/colorGreen</item>
+        <item name="colorSwitchThumbNormal">@color/colorGreen</item>
+        <item name="android:colorForeground">@color/colorWhite</item>
+    </style>
+
+    <style name="SwitchButtonStyle">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
+    <style name="AppTheme.Fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AppTheme.TextEditWhite" parent="MyMaterialTheme.Base"></style>
+
+
+    <style name="MyMaterialTheme.Base" parent="AppTheme.NoActionBar">
+        <item name="colorAccent">@color/colorText</item>
+        <item name="colorControlNormal">#c5c5c5</item>
+        <item name="colorControlActivated">@color/accent</item>
+        <item name="colorControlHighlight">@color/accent</item>
+    </style>
+
+
+    <style name="TabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="WhiteEditText">
+        <item name="android:textColorHint">@color/colorText</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="colorControlNormal">#c5c5c5</item>
+        <item name="colorControlActivated">@color/accent</item>
+        <item name="colorControlHighlight">@color/accent</item>
+
+    </style>
+
+    <style name="ThemeBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+
+        <item name="colorPrimary">@color/colorWhite</item>
+        <item name="colorPrimaryDark">@color/colorWhite</item>
+        <item name="colorAccent">@color/colorWhite</item>
+    </style>
+
+    <style name="MyTabLayout" parent="Widget.Design.TabLayout">
+
+        <item name="tabMaxWidth">0dp</item>
+    </style>
+
+    // consumer module
+
+    //splash consumer
+
+    <style name="SplashTransparentStatusBar" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorPrimary">@color/colorWhite</item>
+        <item name="colorPrimaryDark">@color/color_intro</item>
+        <item name="colorAccent">@color/colorWhite</item>
+        <item name="android:windowTranslucentStatus">true</item>
+
+    </style>
+
+    <style name="CaravanInActionTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorDashboardStatusBar</item>
+        <item name="colorPrimaryDark">@color/color_intro</item>
+        <item name="colorAccent">@color/colorDashboardStatusBar</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    //login and register consumer
+
+    <style name="LoginThemeConsumer" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorTextTransparentWhiteLogin80</item>
+        <item name="colorPrimaryDark">@color/colorStatusBarLogin</item>
+        <item name="colorAccent">@color/colorTextTransparentWhiteLogin80</item>
+    </style>
+
+
+    <style name="ThemeDashboard" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorDashboardStatusBar</item>
+        <item name="colorPrimaryDark">@color/colorDashboardStatusBar</item>
+        <item name="colorAccent">@color/colorDashboardStatusBar</item>
+
+    </style>
+
+
+    <style name="SearchDashboardStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:hint">@string/search_consumer</item>
+        <item name="android:textColorHint">@color/colorHintSearch</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:background">@drawable/bg_search_dashboard_consumer</item>
+    </style>
+
+    <style name="TextViewBottomBarStyle" parent="android:Widget.TextView">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_marginTop">-6dp</item>
+        <item name="android:textSize">@dimen/text_size_bottom_bar</item>
+        <item name="android:textColor">@color/colorDashboardText</item>
+    </style>
+
+    <style name="TextViewMenu" parent="android:Widget.TextView">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">@dimen/text_size_menu</item>
+        <item name="android:textColor">@color/colorDashboardText</item>
+    </style>
+
+    <style name="ThemeBuy" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorBuy</item>
+        <item name="colorPrimaryDark">@color/colorBuy</item>
+        <item name="colorAccent">@color/colorBuy</item>
+    </style>
+
+
+    <style name="ThemeSell" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorSell</item>
+        <item name="colorPrimaryDark">@color/colorSell</item>
+        <item name="colorAccent">@color/colorSell</item>
+    </style>
+
+
+    <style name="ThemeRent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorRent</item>
+        <item name="colorPrimaryDark">@color/colorRent</item>
+        <item name="colorAccent">@color/colorRent</item>
+    </style>
+
+    <style name="TextViewTab" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TextViewTabDes" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TextViewTabAction" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TextViewDashboardTabTop" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/colorBottomBar</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TextViewItemDashboard" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TextViewItemDashboard1" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TextViewItemDashboard2" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TextViewItemDashboard3" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="AppTabLayout" parent="Widget.Design.TabLayout">
+
+        <item name="tabIndicatorColor">@color/colorMenuConsumer</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabBackground">@drawable/bg_tab_layout</item>
+        <item name="tabTextAppearance">@style/AppTabTextAppearance</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabGravity">center</item>
+        <item name="tabSelectedTextColor">@color/colorMenuConsumer</item>
+    </style>
+
+    <style name="AppTabLayout1" parent="Widget.Design.TabLayout">
+
+        <item name="tabIndicatorColor">@color/colorMenuConsumer</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabBackground">@drawable/bg_tab_layout</item>
+        <item name="tabTextAppearance">@style/AppTabTextAppearance</item>
+        <item name="tabMode">fixed</item>
+        <item name="tabGravity">fill</item>
+        <item name="tabSelectedTextColor">@color/colorMenuConsumer</item>
+    </style>
+
+    <style name="AppTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorDashboardText</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextViewListingDetail" parent="android:Widget.TextView">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorTextMain</item>
+    </style>
+
+    <style name="TextViewMain" parent="android:Widget.TextView">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorTextMain</item>
+    </style>
+
+    <style name="TeamTabSearchDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/TeamTabSearchDialogAnimation</item>
+    </style>
+
+    <style name="TeamTabSearchDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+
+    </style>
+
+    <style name="ThemeDialogSortShowing" parent="android:Theme.Holo.Dialog">
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+        <item name="android:listPreferredItemPaddingLeft">0dip</item>
+        <item name="android:listPreferredItemPaddingRight">0dip</item>
+        <item name="android:listPreferredItemPaddingStart">0dip</item>
+        <item name="android:listPreferredItemPaddingEnd">0dip</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="TextCalendarSchedule" parent="android:Widget.TextView">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorMenuConsumer</item>
+    </style>
+
+
+    <style name="TextCalendarShowing" parent="android:Widget.TextView">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorTextMain</item>
+    </style>
+
+    <style name="AnimationPopup" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/view_show</item>
+        <item name="android:windowExitAnimation">@anim/view_hide</item>
+    </style>
+
+</resources>

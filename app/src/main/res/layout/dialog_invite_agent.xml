@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorWhite"
+              android:orientation="vertical">
+    <TextView
+        android:textSize="@dimen/text_size_custom_big"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:text="No Realtor Found"/>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorOrange"/>
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Do you want to invite he/she to be your Home Caravan agent? Please enter full agent's information."/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp">
+
+        <com.homecaravan.android.ui.MaterialEditText
+            android:id="@+id/etFirstName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_edit_text"
+            android:hint="@string/first_name"
+            android:inputType="textVisiblePassword|text"
+            android:paddingLeft="10dp"
+            android:paddingRight="40dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_baseColor="@color/colorEditText"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelPadding="15dp"
+            app:met_hideUnderline="true"
+            app:met_primaryColor="@color/colorMain"/>
+
+        <ImageView
+            android:id="@+id/ivClearEtFirstName"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <com.homecaravan.android.ui.MaterialEditText
+            android:id="@+id/etLastName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_edit_text"
+            android:hint="Last name"
+            android:inputType="textVisiblePassword"
+            android:paddingLeft="10dp"
+            android:paddingRight="40dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_baseColor="@color/colorEditText"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelPadding="15dp"
+            app:met_hideUnderline="true"
+            app:met_primaryColor="@color/colorMain"/>
+
+        <ImageView
+            android:id="@+id/ivClearEtLastName"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <com.homecaravan.android.ui.MaterialEditText
+            android:id="@+id/etMobilePhone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/bg_edit_text"
+            android:hint="@string/mobile_phone"
+            android:inputType="textVisiblePassword|number"
+            android:paddingLeft="50dp"
+            android:paddingRight="40dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_baseColor="@color/colorEditText"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelPadding="15dp"
+            app:met_hideUnderline="true"
+            app:met_primaryColor="@color/colorMain"/>
+
+        <ImageView
+            android:onClick="pickCountry"
+            android:id="@+id/ivCountry"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/us"/>
+
+        <ImageView
+            android:id="@+id/ivClearEtMobilePhone"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <com.homecaravan.android.ui.MaterialEditText
+
+            android:id="@+id/etEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_edit_text"
+            android:hint="@string/email"
+            android:inputType="textWebEmailAddress|textVisiblePassword"
+            android:paddingLeft="10dp"
+            android:paddingRight="40dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_baseColor="@color/colorEditText"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelPadding="15dp"
+            app:met_hideUnderline="true"
+            app:met_primaryColor="@color/colorMain"/>
+
+        <ImageView
+            android:id="@+id/ivClearEtEmail"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/btInvite"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:background="@color/colorGreen"
+            android:text="Invite"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"/>
+
+        <Button
+            android:id="@+id/btCancel"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:background="@color/colorGreen"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"/>
+    </LinearLayout>
+
+</LinearLayout>

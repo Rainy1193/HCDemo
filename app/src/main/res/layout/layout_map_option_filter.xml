@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutMapOptions"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:scrollbarThumbVertical="@null">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_filter1"
+                android:text="@string/discover_map_style"
+                android:textColor="@color/colorBuy"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/margin_filter1"
+                android:layout_marginRight="@dimen/margin_filter1"
+                android:background="#e9edf0" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:baselineAligned="false"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp">
+
+                <RelativeLayout
+                    android:id="@+id/rlMapStyleClassic"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="@dimen/margin_filter3"
+                    android:layout_marginStart="@dimen/margin_filter1"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_filter">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
+
+                        <ImageView
+                            android:id="@+id/imgMapStyleClassic"
+                            android:layout_width="@dimen/icon_filter"
+                            android:layout_height="@dimen/icon_filter"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="@dimen/margin_filter"
+                            android:layout_marginTop="@dimen/margin_filter"
+                            android:padding="@dimen/icon_padding_filter"
+                            android:src="@drawable/ic_consumer_submit_reviews_v" />
+
+                        <TextView
+                            android:id="@+id/tvMapStyleClassic"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="4dp"
+                            android:text="Classic"
+                            android:textColor="@color/colorWhite" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlMapStyleSatellite"
+                    android:layout_width="0dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="@dimen/margin_filter1"
+                    android:layout_marginStart="@dimen/margin_filter3"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_filter1">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true">
+
+                        <ImageView
+                            android:id="@+id/imgMapStyleSatellite"
+                            android:layout_width="@dimen/icon_filter"
+                            android:layout_height="@dimen/icon_filter"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="@dimen/margin_filter"
+                            android:layout_marginTop="@dimen/margin_filter"
+                            android:padding="@dimen/icon_padding_filter"
+                            android:src="@drawable/ic_consumer_discover_filter_plus_gray" />
+
+                        <TextView
+                            android:id="@+id/tvMapStyleSatellite"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="4dp"
+                            android:text="Satellite" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="@dimen/margin_filter1"
+                android:layout_marginRight="@dimen/margin_filter1"
+                android:background="#e9edf0" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_bg_group_button_bottom_filter"
+        android:paddingBottom="@dimen/margin_filter1"
+        android:paddingTop="@dimen/margin_filter1">
+
+        <RelativeLayout
+            android:id="@+id/layoutNoResult"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="@dimen/margin_filter1"
+            android:layout_marginRight="@dimen/margin_filter3"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_filter"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+
+                <TextView
+                    android:id="@+id/tvNoResult"
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/no_result_filter"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutReset"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="@dimen/margin_filter1"
+            android:layout_marginRight="@dimen/margin_filter3"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_filter">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <TextView
+                    android:id="@+id/tvReset"
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/reset_filter"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutSaveSearch"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="@dimen/margin_filter3"
+            android:layout_marginRight="@dimen/margin_filter1"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button_filter">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <TextView
+                    android:id="@+id/tvSaveSearch"
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/save_search_filter"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>

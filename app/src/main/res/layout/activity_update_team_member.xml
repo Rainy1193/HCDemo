@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutUpdateTeam"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvBack"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/bg_back"
+            android:gravity="center"
+            android:onClick="back"
+            android:text="@string/icon_close"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_size_custom_title"/>
+
+
+        <TextView
+            android:id="@+id/tvActionBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Update Team Member"
+            android:textColor="@color/colorText"
+            android:textSize="18sp"/>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp">
+
+        <com.homecaravan.android.ui.MaterialEditText
+            android:id="@+id/etFirstName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_edit_text_disable"
+            android:hint="@string/first_name"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_baseColor="@color/colorEditText"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelPadding="15dp"
+            app:met_hideUnderline="true"
+            app:met_primaryColor="@color/colorMain"/>
+
+        <ImageView
+            android:id="@+id/ivClearEtFirstName"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <com.homecaravan.android.ui.MaterialEditText
+            android:id="@+id/etLastName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_edit_text_disable"
+            android:hint="Last name"
+            android:inputType="text"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_baseColor="@color/colorEditText"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelPadding="15dp"
+            app:met_hideUnderline="true"
+            app:met_primaryColor="@color/colorMain"/>
+
+        <ImageView
+            android:id="@+id/ivClearEtLastName"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <com.homecaravan.android.ui.MaterialEditText
+            android:id="@+id/etMobilePhone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:digits="0123456789"
+            android:background="@drawable/bg_edit_text_disable"
+            android:hint="@string/mobile_phone"
+            android:inputType="number"
+            android:paddingLeft="50dp"
+            android:paddingRight="10dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_baseColor="@color/colorEditText"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelPadding="15dp"
+            app:met_hideUnderline="true"
+            app:met_primaryColor="@color/colorMain"/>
+
+        <ImageView
+            android:id="@+id/ivCountry"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="25dp"
+            android:clickable="false"
+            android:onClick="pickCountry"
+            android:src="@drawable/us"/>
+
+        <ImageView
+            android:id="@+id/ivClearEtMobilePhone"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <com.homecaravan.android.ui.MaterialEditText
+            android:id="@+id/etEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_edit_text_disable"
+            android:hint="@string/email"
+            android:inputType="textWebEmailAddress"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_baseColor="@color/colorEditText"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelPadding="15dp"
+            app:met_hideUnderline="true"
+            app:met_primaryColor="@color/colorMain"/>
+
+        <ImageView
+            android:id="@+id/ivClearEtEmail"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/layoutButtonInvite"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <Button
+            android:id="@+id/resend"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:text="Resend Invitation"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"/>
+
+        <Button
+            android:layout_marginLeft="10dp"
+            android:id="@+id/change"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:background="@drawable/text_view_white"
+            android:text="Make change"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTransparentDark"
+            android:textSize="15sp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutButtonSave"
+        android:visibility="gone"
+        android:orientation="horizontal"
+
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:text="Save Change"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

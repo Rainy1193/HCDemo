@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.homecaravan.android.consumer.activity.MessageActivity">
+
+    <LinearLayout
+        android:id="@+id/layoutBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorBuy"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="@dimen/icon_dashboard_intro"
+                android:layout_height="@dimen/icon_dashboard_intro"
+                android:background="@drawable/ripple"
+                android:src="@drawable/ic_arrow_while"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_action_bar_consumer"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/layoutChangeType"
+                android:layout_width="@dimen/icon_search_bar_size"
+                android:layout_height="@dimen/icon_search_bar_size"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="2dp"
+                android:background="@drawable/bg_buy_pick">
+
+                <TextView
+                    android:id="@+id/tvType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="B"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/etSearch"
+                style="@style/SearchDashboardStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:imeActionId="@+id/searchEvent"
+                android:imeActionLabel="action_search"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:lines="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="4dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivCloseSearch"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="4dp"
+                    android:background="@drawable/ripple"
+                    android:src="@drawable/ic_close_search_main"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/ivSearch"
+                    android:layout_width="@dimen/icon_search_bar_size"
+                    android:layout_height="@dimen/icon_search_bar_size"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="4dp"
+                    android:background="@drawable/ripple"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_search_consumer" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivFilter"
+                android:layout_width="@dimen/icon_dashboard_intro"
+                android:layout_height="@dimen/icon_dashboard_intro"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ripple"
+                android:padding="10dp"
+                android:src="@drawable/ic_filter_white"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:layout_width="@dimen/icon_dashboard_intro"
+                android:layout_height="@dimen/icon_dashboard_intro">
+
+                <ImageView
+                    android:id="@+id/ivNotification"
+                    android:layout_width="@dimen/icon_dashboard_intro"
+                    android:layout_height="@dimen/icon_dashboard_intro"
+                    android:background="@drawable/ripple"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_notification_consumer" />
+
+                <TextView
+                    android:id="@+id/tvNotificationCount"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_red_e1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:elevation="0dp">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            style="@style/AppTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabGravity="fill"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpMessage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

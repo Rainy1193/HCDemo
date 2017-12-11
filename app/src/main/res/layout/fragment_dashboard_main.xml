@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <com.homecaravan.android.consumer.widget.CustomNestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBgFragment"
+        android:scrollbarThumbVertical="@null">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:elevation="2dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutUpcomingShowings"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_white_ripple"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_dashboard_tab_top">
+
+                        <LinearLayout
+
+                            android:id="@+id/layoutIv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#189fec">
+
+                            <ImageView
+                                android:id="@+id/iv"
+                                android:layout_width="@dimen/icon_dashboard_tab_top"
+                                android:layout_height="@dimen/icon_dashboard_tab_top"
+                                android:layout_margin="7dp"
+                                android:src="@drawable/ic_upcoming_dashboard" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="@dimen/margin_dashboard_tab_top"
+                            android:layout_toRightOf="@id/layoutIv"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/TextViewDashboardTabTop"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dashboard_upcoming" />
+
+                            <TextView
+                                style="@style/TextViewDashboardTabTop"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dashboard_showings" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="@dimen/icon_dashboard_tab_top"
+                            android:layout_height="@dimen/icon_dashboard_tab_top"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/margin_dashboard_tab_top"
+                            android:background="@drawable/bg_text_view_number_dashboard"
+                            android:gravity="center"
+                            android:text="10"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="@dimen/margin_dashboard_tab_top"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/newAppt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="Next-Weds. June 15 th"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#e9edf0" />
+
+                <LinearLayout
+                    android:id="@+id/layoutNewMessage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_white_ripple"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/rlMessageOnDashBoard"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_dashboard_tab_top">
+
+                        <LinearLayout
+                            android:id="@+id/layoutIv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#e15352">
+
+                            <ImageView
+                                android:id="@+id/iv1"
+                                android:layout_width="@dimen/icon_dashboard_tab_top"
+                                android:layout_height="@dimen/icon_dashboard_tab_top"
+                                android:layout_margin="7dp"
+                                android:src="@drawable/ic_message_dashboard" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="@dimen/margin_dashboard_tab_top"
+                            android:layout_toRightOf="@+id/layoutIv1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/TextViewDashboardTabTop"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/dashboard_new" />
+
+                            <TextView
+                                style="@style/TextViewDashboardTabTop"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/message" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="@dimen/icon_dashboard_tab_top"
+                            android:layout_height="@dimen/icon_dashboard_tab_top"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/margin_dashboard_tab_top"
+                            android:background="@drawable/bg_text_view_number_dashboard"
+                            android:gravity="center"
+                            android:text="15"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="@dimen/margin_dashboard_tab_top">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvAgentShowing"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true">
+
+                        </android.support.v7.widget.RecyclerView>
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:id="@+id/scrollViewNew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbarThumbHorizontal="@null"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#e9edef">
+
+                    <TextView
+                        android:id="@+id/tvMortgage"
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/bg_button_dashboard"
+                        android:paddingBottom="8dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        android:text="@string/mortgage"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:id="@+id/tvTitle"
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/bg_button_dashboard1"
+                        android:paddingBottom="8dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        android:text="@string/title_insurance"
+                        android:textColor="@color/colorTextMain"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvEscrow"
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/bg_button_dashboard1"
+                        android:paddingBottom="8dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        android:text="@string/escrow"
+                        android:textColor="@color/colorTextMain"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvAgent"
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/bg_button_dashboard1"
+                        android:paddingBottom="8dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        android:text="@string/agent"
+                        android:textColor="@color/colorTextMain"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvHcHelp"
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/bg_button_dashboard1"
+                        android:paddingBottom="8dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        android:text="@string/hc_help"
+                        android:textColor="@color/colorTextMain"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvHomeInspector"
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:background="@drawable/bg_button_dashboard1"
+                        android:paddingBottom="8dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="8dp"
+                        android:text="@string/home_inspector"
+                        android:textColor="@color/colorTextMain"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/layoutAgent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp">
+
+                    <com.homecaravan.android.ui.CircleImageView
+                        android:id="@+id/ivAgent"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvAgentName"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tvCompany"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/ivMessage"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="?android:selectableItemBackground"
+                            android:src="@drawable/ic_send_message" />
+
+                        <ImageView
+                            android:id="@+id/ivCall"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="8dp"
+                            android:background="?android:selectableItemBackground"
+                            android:src="@drawable/ic_call" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginTop="@dimen/margin_dashboard_tab_top">
+
+                <com.homecaravan.android.consumer.widget.CustomViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="10dp">
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_marginStart="3dp"
+                        android:background="@drawable/view_dashboard_selected" />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_marginStart="3dp"
+                        android:background="@drawable/view_dashboard" />
+
+                    <View
+
+                        android:id="@+id/view3"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_marginStart="3dp"
+                        android:background="@drawable/view_dashboard" />
+
+                    <View
+                        android:id="@+id/view4"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_marginStart="3dp"
+                        android:background="@drawable/view_dashboard" />
+
+                    <View
+                        android:id="@+id/view5"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_marginStart="3dp"
+                        android:background="@drawable/view_dashboard" />
+
+                    <View
+                        android:id="@+id/view6"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:layout_marginStart="3dp"
+                        android:background="@drawable/view_dashboard" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <FrameLayout
+                android:id="@+id/layoutSavedSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_dashboard_tab_top"
+                android:background="@android:color/white"
+                android:elevation="2dp"
+                android:visibility="visible">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:scrollbarThumbHorizontal="@null">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp"
+                        android:background="@color/colorWhite">
+
+                        <RelativeLayout
+                            android:id="@+id/layoutHeaderSavedSearch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="150dp"
+                            android:background="@color/colorViewImageDashboardItem"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="match_parent"
+                                android:alpha="0.5"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/savedsearch_background_dashboard" />
+
+                            <com.homecaravan.android.consumer.widget.VerticalTextView
+                                style="@style/TextViewItemDashboard"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:rotation="180"
+                                android:text="@string/dashboard_saved_search" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutSavedSearchFavorites"
+                            android:layout_width="120dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_marginStart="6dp"
+                            android:layout_marginTop="6dp"
+                            android:background="@color/colorMenuConsumer">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_gravity="center_horizontal"
+                                    android:src="@drawable/ic_favorites_dashboard" />
+
+                                <TextView
+                                    style="@style/TextViewMain"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginTop="8dp"
+                                    android:text="@string/favorite"
+                                    android:textColor="@color/colorWhite" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:id="@+id/layoutAddNewSearch"
+                                android:layout_width="120dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginTop="8dp"
+                                android:background="@color/colorBgFragment"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:orientation="vertical">
+
+                                    <ImageView
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:layout_gravity="center_horizontal"
+                                        android:src="@drawable/ic_new_search_dashboard" />
+
+                                    <TextView
+                                        style="@style/TextViewMain"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginTop="8dp"
+                                        android:text="Add new search" />
+                                </LinearLayout>
+                            </RelativeLayout>
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/rvSaveSearch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="150dp">
+
+                            </android.support.v7.widget.RecyclerView>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutViewAll"
+                            android:layout_width="100dp"
+                            android:layout_height="150dp"
+                            android:background="?android:selectableItemBackground"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/layoutViewAllSearch"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:layout_margin="6dp"
+                                android:background="@color/colorViewAll"
+                                android:visibility="gone">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        style="@style/TextViewItemDashboard3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:text="View all"
+                                        android:textColor="@color/colorMenuConsumer"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvNumSavedSearch"
+                                        style="@style/TextViewItemDashboard3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_horizontal"
+                                        android:textColor="@color/colorMenuConsumer"
+                                        android:textSize="16sp" />
+                                </LinearLayout>
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_dashboard_tab_top"
+                android:background="@android:color/white"
+                android:elevation="2dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvJustListed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_dashboard_tab_top"
+                android:background="@android:color/white"
+                android:elevation="2dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvSaveTrending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_dashboard_tab_top"
+                android:background="@android:color/white"
+                android:elevation="2dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvShowingHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_dashboard_tab_top"
+                android:layout_marginTop="@dimen/margin_dashboard_tab_top"
+                android:background="@android:color/white"
+                android:elevation="2dp">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvAgent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </com.homecaravan.android.consumer.widget.CustomNestedScrollView>
+</LinearLayout>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorTransparent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvCancel"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/bg_back"
+            android:gravity="center"
+            android:onClick="back"
+            android:text="@string/icon_close"
+            android:textColor="@color/colorText"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/tvActionBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Update Phone or Email"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_size_custom_title" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/change_method_title"
+        android:textColor="@color/colorMain"
+        android:textSize="@dimen/text_size_custom_big" />
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp">
+
+        <RadioGroup
+            android:id="@+id/rbMethod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:id="@+id/rbSms"
+                android:text="@string/sms"
+                android:theme="@style/MyRadioButton" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:id="@+id/rbEmail"
+                android:text="@string/email_setting"
+                android:theme="@style/MyRadioButton" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:id="@+id/rbEmailAndSms"
+                android:text="@string/email_and_sms"
+                android:theme="@style/MyRadioButton" />
+        </RadioGroup>
+    </TableLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutCountry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textSize="@dimen/text_size_custom_lang"
+            android:id="@+id/etMobilePhone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/bg_edit_text"
+            android:hint="@string/mobile_phone"
+            android:inputType="textVisiblePassword|number"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_floatingLabel="highlight"
+            app:met_baseColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_underlineColor="@color/colorTransparentImage"
+            app:met_floatingLabelTextColor="@color/colorEditText"/>
+
+        <ImageView
+            android:id="@+id/ivCountry"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/us"/>
+
+        <ImageView
+            android:id="@+id/ivClearEtMobilePhone"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="14dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="30dp"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textSize="@dimen/text_size_custom_lang"
+            android:id="@+id/etEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_edit_text"
+            android:hint="@string/email"
+            android:inputType="textWebEmailAddress|textVisiblePassword"
+            android:paddingLeft="0dp"
+            android:paddingRight="40dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_floatingLabel="highlight"
+            app:met_baseColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_underlineColor="@color/colorTransparentImage"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            />
+
+        <ImageView
+            android:id="@+id/ivClearEtEmail"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="14dp"
+            android:layout_alignParentTop="true"
+            android:onClick="clear"
+            android:src="@drawable/bg_remove_text"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btUpdate"
+                android:onClick="updateMethod"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/button_green_large"
+                android:gravity="center"
+                android:paddingLeft="25dp"
+                android:text="Request another code"
+                android:textAllCaps="false"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:src="@drawable/ic_apply_change"/>
+
+    </FrameLayout>
+</LinearLayout>

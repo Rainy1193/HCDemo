@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/back"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/bg_back"
+            android:gravity="center"
+            android:onClick="back"
+            android:text="@string/icon_back"
+            android:textColor="@color/colorText"
+            android:textSize="40sp"/>
+
+
+        <TextView
+            android:id="@+id/tvActionBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/text_size_custom_title"/>
+
+        <ImageView
+            android:id="@+id/tvChange"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_change_password"
+            android:adjustViewBounds="false"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/svEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <LinearLayout
+            android:id="@+id/layoutEditProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp">
+
+                <FrameLayout
+                    android:id="@+id/borderImage"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/ic_border">
+
+                    <com.homecaravan.android.ui.CircleImageView
+                        android:id="@+id/ivAvatarEditProfile"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:src="@drawable/image_default"/>
+                </FrameLayout>
+
+                <Button
+                    android:id="@+id/btChange"
+                    android:layout_width="80dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_marginLeft="65dp"
+                    android:background="@drawable/ic_change"
+                    android:textSize="@dimen/text_size_custom_normal"/>
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/tvFirstName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/first_name"
+                    android:inputType="text"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="40dp"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="14sp"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="highlight"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage"/>
+
+                <ImageView
+                    android:id="@+id/ivClearEtFirstName"
+                    android:layout_width="25dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:onClick="clear"
+                    android:src="@drawable/bg_remove_text"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/tvLastName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/last_name"
+                    android:inputType="text"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="40dp"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="14sp"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="highlight"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage"/>
+
+                <ImageView
+                    android:id="@+id/ivClearEtLastName"
+                    android:layout_width="25dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:onClick="clear"
+                    android:src="@drawable/bg_remove_text"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/tvMobilePhone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:digits="0123456789"
+                    android:hint="@string/mobile_phone"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:textColorHint="@color/colorEditTextHint"
+
+                    android:textSize="14sp"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="highlight"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage"/>
+
+                <ImageView
+                    android:id="@+id/ivCountry"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="15dp"
+                    android:onClick="showPassword"
+                    android:src="@drawable/us"/>
+
+
+                <ImageView
+                    android:id="@+id/ivClearEtMobilePhone"
+                    android:layout_width="25dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp"
+                    android:onClick="clear"
+                    android:src="@drawable/bg_remove_text"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/tvEmail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/email"
+                    android:inputType="textWebEmailAddress"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="40dp"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="14sp"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="highlight"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage"/>
+
+                <ImageView
+                    android:id="@+id/ivClearEtEmail"
+                    android:layout_width="25dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp"
+                    android:onClick="clear"
+                    android:src="@drawable/bg_remove_text"
+                    android:visibility="invisible"
+                />
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:textColor="@color/colorWhite"
+                        android:id="@+id/btApply"
+                        style="?android:borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button_green_large"
+                        android:onClick="applyChange"
+                        android:text="@string/apply_changes"
+                        android:textAllCaps="false"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/ic_apply_change"/>
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

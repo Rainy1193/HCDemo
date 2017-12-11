@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="64dp"
+    android:layout_height="64dp"
+    android:id="@+id/layoutItem">
+
+    <com.homecaravan.android.ui.CircleImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sana" />
+
+    <View
+        android:id="@+id/vStatus"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/dot_green_online" />
+
+    <View
+        android:id="@+id/viewBg"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/consumer_message_bg_list_agent"
+        android:visibility="visible" />
+
+
+</RelativeLayout>

@@ -1,0 +1,1296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <LinearLayout
+        android:id="@+id/layoutDescription"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <View
+            android:id="@+id/shadowBar"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="@drawable/bg_below_action_bar" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="Property Address"
+            android:textColor="@color/colorBlueMain"
+            android:textSize="@dimen/text_size_custom_big" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/add1" />
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etAdd1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="textVisiblePassword"
+            android:paddingLeft="0dp"
+            android:paddingRight="20dp"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textSize="@dimen/text_size_custom_lang"
+            app:met_baseColor="@color/colorEditText"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_floatingLabel="none"
+            app:met_floatingLabelPadding="10dp"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_underlineColor="@color/colorTransparentImage" />
+        <TextView
+            android:id="@+id/tvErrorAdd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:text="Please enter your listing address"
+            android:textColor="@color/color_validate_error"
+            android:textSize="@dimen/text_size_custom_normal"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/address2" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etAdd2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="textVisiblePassword"
+            android:paddingLeft="0dp"
+            android:paddingRight="20dp"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textSize="@dimen/text_size_custom_lang"
+            app:met_baseColor="@color/colorEditText"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_floatingLabel="none"
+            app:met_floatingLabelPadding="10dp"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_underlineColor="@color/colorTransparentImage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/city_create" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="textVisiblePassword"
+            android:paddingLeft="0dp"
+            android:paddingRight="20dp"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textSize="@dimen/text_size_custom_lang"
+            app:met_baseColor="@color/colorEditText"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_floatingLabel="none"
+            app:met_floatingLabelPadding="10dp"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_underlineColor="@color/colorTransparentImage" />
+
+        <TextView
+            android:id="@+id/tvErrorCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:text="Please enter your listing city"
+            android:textColor="@color/color_validate_error"
+            android:textSize="@dimen/text_size_custom_normal"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/state_create" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/tvState"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:drawableRight="@drawable/ic_drop_down"
+                        android:focusableInTouchMode="false"
+                        android:inputType="textVisiblePassword"
+                        android:paddingLeft="0dp"
+                        android:textColorHint="@color/colorEditTextHint"
+                        android:textSize="@dimen/text_size_custom_lang"
+                        app:met_baseColor="@color/colorEditText"
+                        app:met_errorColor="@color/color_validate_error"
+                        app:met_floatingLabel="none"
+                        app:met_floatingLabelPadding="10dp"
+                        app:met_floatingLabelTextColor="@color/colorEditText"
+                        app:met_primaryColor="@color/colorMain"
+                        app:met_textColor="@color/colorEditText"
+                        app:met_textColorHint="@color/colorEditTextHint"
+                        app:met_underlineColor="@color/colorTransparentImage" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Zip code*" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/etZip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_gravity="bottom"
+                        android:digits="0123456789"
+                        android:inputType="textVisiblePassword|numberDecimal"
+                        android:maxLength="5"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="20dp"
+                        android:textColorHint="@color/colorEditTextHint"
+                        android:textSize="@dimen/text_size_custom_lang"
+                        app:met_baseColor="@color/colorEditText"
+                        app:met_errorColor="@color/color_validate_error"
+                        app:met_floatingLabel="none"
+                        app:met_floatingLabelPadding="10dp"
+                        app:met_floatingLabelTextColor="@color/colorEditText"
+                        app:met_primaryColor="@color/colorMain"
+                        app:met_textColor="@color/colorEditText"
+                        app:met_textColorHint="@color/colorEditTextHint"
+                        app:met_underlineColor="@color/colorTransparentImage" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvErrorState"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:text="Please enter your listing state"
+                    android:textColor="@color/color_validate_error"
+                    android:textSize="@dimen/text_size_custom_normal"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvErrorZip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:orientation="vertical"
+                    android:text="Please enter your listing zipcode"
+                    android:textColor="@color/color_validate_error"
+                    android:textSize="@dimen/text_size_custom_normal"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Property Images"
+                android:textColor="@color/colorBlueMain"
+                android:textSize="@dimen/text_size_custom_big" />
+
+            <TextView
+                android:id="@+id/tvNumberImage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_number_image"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/text_size_custom_normal" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrayBackground" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvImageUpload"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorGrey2"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"></android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:id="@+id/layoutStatusUpload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGrey2"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGrayBackground" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="Uploading your image..." />
+
+                <ImageView
+                    android:id="@+id/ivCancelUpload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_cancel_upload" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"></LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGrayBackground" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/layoutUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_upload_image"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/ivUpload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_upload" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/ivUpload"
+                android:text="Upload image"
+                android:textColor="@color/colorMain"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="Property Characteristics"
+            android:textColor="@color/colorBlueMain"
+            android:textSize="@dimen/text_size_custom_big" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/property_type" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/etPropertyType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:drawableRight="@drawable/ic_drop_down"
+                    android:focusableInTouchMode="false"
+                    android:inputType="textVisiblePassword"
+                    android:text="House"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="@dimen/text_size_custom_lang"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="none"
+                    app:met_floatingLabelPadding="10dp"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/listing_type" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/etListingType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:drawableRight="@drawable/ic_drop_down"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/listing_type"
+                    android:inputType="textVisiblePassword"
+                    android:text="For Sale"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="@dimen/text_size_custom_lang"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="none"
+                    app:met_floatingLabelPadding="10dp"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/price" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/etPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:digits="0123456789"
+                        android:inputType="numberDecimal"
+                        android:textColorHint="@color/colorEditTextHint"
+                        android:textSize="@dimen/text_size_custom_lang"
+                        app:met_baseColor="@color/colorEditText"
+                        app:met_errorColor="@color/color_validate_error"
+                        app:met_floatingLabel="none"
+                        app:met_floatingLabelPadding="10dp"
+                        app:met_floatingLabelTextColor="@color/colorEditText"
+                        app:met_primaryColor="@color/colorMain"
+                        app:met_textColor="@color/colorEditText"
+                        app:met_textColorHint="@color/colorEditTextHint"
+                        app:met_underlineColor="@color/colorTransparentImage" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sale_type" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/etSaleType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableRight="@drawable/ic_drop_down"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/sale_type"
+                    android:inputType="textVisiblePassword"
+                    android:text="MLS"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="@dimen/text_size_custom_lang"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="none"
+                    app:met_floatingLabelPadding="10dp"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:id="@+id/tvErrorPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:text="Please enter your price"
+                android:textColor="@color/color_validate_error"
+                android:textSize="@dimen/text_size_custom_normal"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvErrorSaleType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:text="Please enter your listing zipcode"
+                android:textColor="@color/color_validate_error"
+                android:textSize="@dimen/text_size_custom_normal"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bedrooms" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/etBed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789."
+                    android:inputType="numberDecimal"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="@dimen/text_size_custom_lang"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="none"
+                    app:met_floatingLabelPadding="10dp"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/baths" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/etBath"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789."
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="20dp"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="@dimen/text_size_custom_lang"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="none"
+                    app:met_floatingLabelPadding="10dp"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvErrorBedRoom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:text="Please enter your bedrooms"
+                    android:textColor="@color/color_validate_error"
+                    android:textSize="@dimen/text_size_custom_normal"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tvErrorBath"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:text="Please enter your baths"
+                    android:textColor="@color/color_validate_error"
+                    android:textSize="@dimen/text_size_custom_normal" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/square_feet" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/etSquareFeel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:digits="0123456789"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="20dp"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="@dimen/text_size_custom_lang"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="none"
+                    app:met_floatingLabelPadding="10dp"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lot_size" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/etLotSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:digits="0123456789"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="20dp"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="@dimen/text_size_custom_lang"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="none"
+                    app:met_floatingLabelPadding="10dp"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1">
+
+                <TextView
+
+                    android:id="@+id/tvErrorSquare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:text="Minimum living square feed is 300"
+                    android:textColor="@color/color_validate_error"
+                    android:textSize="@dimen/text_size_custom_normal"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvErrorLotSzie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:text="Please enter lot size"
+                    android:textColor="@color/color_validate_error"
+                    android:textSize="@dimen/text_size_custom_normal"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/garage" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/etGarage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:digits="0123456789"
+                        android:inputType="numberDecimal"
+                        android:textColorHint="@color/colorEditTextHint"
+                        android:textSize="@dimen/text_size_custom_lang"
+                        app:met_baseColor="@color/colorEditText"
+                        app:met_errorColor="@color/color_validate_error"
+                        app:met_floatingLabel="none"
+                        app:met_floatingLabelPadding="10dp"
+                        app:met_floatingLabelTextColor="@color/colorEditText"
+                        app:met_primaryColor="@color/colorMain"
+                        app:met_textColor="@color/colorEditText"
+                        app:met_textColorHint="@color/colorEditTextHint"
+                        app:met_underlineColor="@color/colorTransparentImage" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pool" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/etPool"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableRight="@drawable/ic_drop_down"
+                    android:focusableInTouchMode="false"
+                    android:inputType="textVisiblePassword"
+                    android:text="Yes"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="@dimen/text_size_custom_lang"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="none"
+                    app:met_floatingLabelPadding="10dp"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tvErrorGarage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:text="Please enter your garage"
+                android:textColor="@color/color_validate_error"
+                android:textSize="@dimen/text_size_custom_normal" />
+
+            <TextView
+                android:id="@+id/tvErrorPool"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:text="Please enter lot size"
+                android:textColor="@color/color_validate_error"
+                android:textSize="@dimen/text_size_custom_normal"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/year_built" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <com.rengwuxian.materialedittext.MaterialEditText
+                        android:id="@+id/etYearBuilt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:digits="0123456789"
+                        android:maxLength="4"
+                        android:inputType="textVisiblePassword|numberDecimal"
+                        android:text="1990"
+                        android:textColorHint="@color/colorEditTextHint"
+                        android:textSize="@dimen/text_size_custom_lang"
+                        app:met_baseColor="@color/colorEditText"
+                        app:met_errorColor="@color/color_validate_error"
+                        app:met_floatingLabel="none"
+                        app:met_floatingLabelPadding="10dp"
+                        app:met_floatingLabelTextColor="@color/colorEditText"
+                        app:met_primaryColor="@color/colorMain"
+                        app:met_textColor="@color/colorEditText"
+                        app:met_textColorHint="@color/colorEditTextHint"
+                        app:met_underlineColor="@color/colorTransparentImage" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/timezone" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/etTimeZone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableRight="@drawable/ic_drop_down"
+                    android:focusableInTouchMode="false"
+                    android:inputType="textVisiblePassword"
+                    android:text="Pacific"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="@dimen/text_size_custom_lang"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="none"
+                    app:met_floatingLabelPadding="10dp"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvErrorYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:text="Please enter your year built format"
+                    android:textColor="@color/color_validate_error"
+                    android:textSize="@dimen/text_size_custom_normal"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvErrorTz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:orientation="vertical"
+                    android:text="Please enter your listing zipcode"
+                    android:textColor="@color/color_validate_error"
+                    android:textSize="@dimen/text_size_custom_normal"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="Designated Contact"
+                android:textColor="@color/colorMain"
+                android:textSize="@dimen/text_size_custom_big" />
+
+            <Button
+                android:id="@+id/btChange"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_button_listing"
+                android:text="Change"
+                android:textColor="@color/colorText" />
+        </RelativeLayout>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/bg_edit_text_listing"
+            android:focusableInTouchMode="false"
+            android:hint="@string/listing_contact_name"
+            android:inputType="textVisiblePassword"
+            android:paddingLeft="0dp"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textSize="@dimen/text_size_custom_lang"
+            android:visibility="gone"
+            app:met_baseColor="@color/colorEditText"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_underlineColor="@color/colorTransparentImage" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etOfficePhone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/bg_edit_text_listing"
+            android:focusableInTouchMode="false"
+            android:hint="@string/listing_office_phone"
+            android:inputType="textVisiblePassword"
+            android:paddingLeft="0dp"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textSize="@dimen/text_size_custom_lang"
+            android:visibility="gone"
+            app:met_baseColor="@color/colorEditText"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_underlineColor="@color/colorTransparentImage" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etMobilePhone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/bg_edit_text_listing"
+            android:focusableInTouchMode="false"
+            android:hint="@string/listing_mobile_phone"
+            android:inputType="textVisiblePassword"
+            android:paddingLeft="0dp"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textSize="@dimen/text_size_custom_lang"
+            android:visibility="gone"
+            app:met_baseColor="@color/colorEditText"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_underlineColor="@color/colorTransparentImage" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/bg_edit_text_listing"
+            android:focusableInTouchMode="false"
+            android:hint="@string/listing_email"
+            android:inputType="textVisiblePassword"
+            android:paddingLeft="0dp"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textSize="@dimen/text_size_custom_lang"
+            android:visibility="gone"
+            app:met_baseColor="@color/colorEditText"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_underlineColor="@color/colorTransparentImage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:text="@string/description"
+            android:textColor="@color/colorBlueMain"
+            android:textSize="@dimen/text_size_custom_big" />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:paddingLeft="0dp"
+            android:paddingRight="10dp"
+            android:textColorHint="@color/colorEditTextHint"
+            android:textSize="@dimen/text_size_custom_big"
+            app:met_baseColor="@color/colorEditText"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_floatingLabel="highlight"
+            app:met_floatingLabelTextColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_underlineColor="@color/colorTransparentImage" />
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/tvErrorDes"
+            android:text="Please enter description"
+            android:textColor="@color/color_validate_error"
+            android:textSize="@dimen/text_size_custom_normal"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/layoutNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btNext"
+                    style="?android:borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_green_large"
+                    android:text="@string/next"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorText"
+                    android:textSize="18dp"
+                    tools:ignore="TooManyViews" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dp"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_next" />
+
+        </FrameLayout>
+    </LinearLayout>
+</ScrollView>

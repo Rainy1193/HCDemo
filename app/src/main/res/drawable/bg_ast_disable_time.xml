@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="-84%"
+            android:pivotY="45%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dip"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="-80%"
+            android:pivotY="45%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dip"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="-75%"
+            android:pivotY="45%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dip"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="-70%"
+            android:pivotY="45%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dip"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+
+
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="-15%"
+            android:pivotY="45%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dip"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="-5%"
+            android:pivotY="65%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dip"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="5%"
+            android:pivotY="75%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dip"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="15%"
+            android:pivotY="85%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dip"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="25%"
+            android:pivotY="95%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dp"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="35%"
+            android:pivotY="95%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dp"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="45%"
+            android:pivotY="95%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dp"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="55%"
+            android:pivotY="95%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dp"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item
+    android:left="1dp"
+    android:right="1dp">
+    <rotate
+        android:fromDegrees="-45"
+        android:pivotX="50%"
+        android:pivotY="5%"
+        android:toDegrees="-45">
+        <shape
+            android:shape="line"
+            android:top="1dip">
+            <stroke
+                android:width="0.5dp"
+                android:color="@color/colorGrey" />
+        </shape>
+    </rotate>
+</item>
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="60%"
+            android:pivotY="5%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dp"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+
+
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="70%"
+            android:pivotY="5%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dp"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="80%"
+            android:pivotY="5%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dp"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+    <item
+    android:left="1dp"
+    android:right="1dp">
+    <rotate
+        android:fromDegrees="-45"
+        android:pivotX="90%"
+        android:pivotY="5%"
+        android:toDegrees="-45">
+        <shape
+            android:shape="line"
+            android:top="1dip">
+            <stroke
+                android:width="0.5dp"
+                android:color="@color/colorGrey" />
+        </shape>
+    </rotate>
+</item>
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="100%"
+            android:pivotY="5%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dp"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+    <item
+        android:left="1dp"
+        android:right="1dp">
+        <rotate
+            android:fromDegrees="-45"
+            android:pivotX="110%"
+            android:pivotY="5%"
+            android:toDegrees="-45">
+            <shape
+                android:shape="line"
+                android:top="1dip">
+                <stroke
+                    android:width="0.5dp"
+                    android:color="@color/colorGrey" />
+            </shape>
+        </rotate>
+    </item>
+    <item>
+        <shape>
+            <stroke
+                android:width="1dp"
+                android:color="@color/color_black_border"/>
+            <padding
+                android:bottom="0dp"
+                android:left="0dp"
+                android:right="0dp"
+                android:top="0dp"/>
+            <size
+                android:width="100dp"
+                android:height="40dp"/>
+        </shape>
+    </item>
+</layer-list>

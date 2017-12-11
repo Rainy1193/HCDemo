@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutItem"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:background="@drawable/bg_history_item"
+    android:orientation="horizontal">
+
+    <com.homecaravan.android.ui.CircleImageView
+        android:id="@+id/imgAvatar"
+        android:visibility="gone"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        app:riv_corner_radius="32dip"
+        app:riv_border_color="@color/colorAroundImage"
+        app:riv_border_width="2dp"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <TextView
+            style="@style/TextViewItemDashboard3"
+            android:id="@+id/tvNotificationName"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:maxLines="2"
+            android:textColor="@color/colorDashboardText"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tvNotificationTime"
+            android:layout_marginTop="6dp"
+            style="@style/TextViewItemDashboard3"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:textColor="@color/color_text_time_notifications"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+</LinearLayout>
+
+

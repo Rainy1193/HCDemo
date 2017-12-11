@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/layoutMessageContact"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <in.myinnos.alphabetsindexfastscrollrecycler.IndexFastScrollRecyclerView
+        android:id="@+id/rvMessageContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/consumer_message_bg_recyclerview"/>
+
+    <ProgressBar
+        android:id="@+id/pbLoadContact"
+        style="?android:attr/progressBarStyle"
+        android:indeterminateTint="@color/consumer_message_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="260dp"
+            android:layout_marginTop="-100dp"
+            android:contentDescription="@string/image"
+            android:src="@drawable/ic_consumer_notifications_bell" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="No contact"
+            android:textColor="@color/color_text_notifications"
+            android:textSize="17sp" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabNewContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="16dp"
+        app:fabSize="normal"
+        app:backgroundTint="#179feb"
+        android:src="@drawable/ic_consumer_message_new_contact"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
+</RelativeLayout>

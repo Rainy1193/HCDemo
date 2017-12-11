@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/svCompany"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+    <LinearLayout
+        android:id="@+id/layoutCompany"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp">
+
+            <FrameLayout
+                android:id="@+id/borderImage"
+                android:layout_width="150dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorAvatar">
+
+                <ImageView
+                    android:id="@+id/ivCompanyLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_logo_company"/>
+
+                <Button
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right|bottom"
+                    android:background="@drawable/ic_add_avatar"/>
+            </FrameLayout>
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/tvCompanyName"
+                android:textSize="@dimen/text_size_custom_lang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:hint="@string/company_name_buyer"
+                android:inputType="text"
+                android:paddingLeft="0dp"
+                android:textColorHint="@color/colorEditTextHint"
+                app:met_floatingLabel="highlight"
+                app:met_baseColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_underlineColor="@color/colorTransparentImage"
+                app:met_floatingLabelTextColor="@color/colorEditText"/>
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:id="@+id/ivClearEtCompany"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:onClick="clear"
+                android:src="@drawable/bg_remove_text"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textSize="@dimen/text_size_custom_lang"
+            android:id="@+id/tvAddress1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:hint="@string/address1"
+            android:inputType="text"
+            android:paddingLeft="0dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_floatingLabel="highlight"
+            app:met_baseColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_underlineColor="@color/colorTransparentImage"
+            app:met_floatingLabelTextColor="@color/colorEditText"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textSize="@dimen/text_size_custom_lang"
+            android:id="@+id/tvAddress2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:hint="@string/address2"
+            android:inputType="text"
+            android:paddingLeft="0dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_floatingLabel="highlight"
+            app:met_baseColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_underlineColor="@color/colorTransparentImage"
+            app:met_floatingLabelTextColor="@color/colorEditText"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textSize="@dimen/text_size_custom_lang"
+            android:id="@+id/tvCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:hint="@string/city"
+            android:inputType="text"
+            android:paddingLeft="0dp"
+            android:textColorHint="@color/colorEditTextHint"
+            app:met_floatingLabel="highlight"
+            app:met_baseColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_underlineColor="@color/colorTransparentImage"
+            app:met_floatingLabelTextColor="@color/colorEditText"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:textSize="@dimen/text_size_custom_lang"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:id="@+id/tvState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:hint="@string/state"
+                android:inputType="text"
+                android:paddingLeft="0dp"
+                android:textColorHint="@color/colorEditTextHint"
+                app:met_floatingLabel="highlight"
+                app:met_baseColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_underlineColor="@color/colorTransparentImage"
+                app:met_floatingLabelTextColor="@color/colorEditText"/>
+
+            <TextView
+                android:id="@+id/tvDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:paddingBottom="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="15dp"
+                android:text="@string/icon_down"/>
+        </RelativeLayout>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:textSize="@dimen/text_size_custom_lang"
+            android:id="@+id/tvZipcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:hint="@string/zip_code"
+            android:inputType="numberDecimal"
+            android:digits="0123456789"
+            android:maxLength="5"
+            android:paddingLeft="0dp"
+            app:met_floatingLabel="highlight"
+            app:met_baseColor="@color/colorEditText"
+            app:met_primaryColor="@color/colorMain"
+            app:met_textColor="@color/colorEditText"
+            app:met_textColorHint="@color/colorEditTextHint"
+            app:met_errorColor="@color/color_validate_error"
+            app:met_underlineColor="@color/colorTransparentImage"
+            app:met_floatingLabelTextColor="@color/colorEditText"/>
+
+        <RelativeLayout
+            android:id="@+id/layoutCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:textSize="@dimen/text_size_custom_lang"
+                android:id="@+id/tvPhone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/phone"
+                android:digits="0123456789"
+                android:inputType="numberDecimal"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:textColorHint="@color/colorEditTextHint"
+                app:met_floatingLabel="highlight"
+                app:met_baseColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_underlineColor="@color/colorTransparentImage"
+                app:met_floatingLabelTextColor="@color/colorEditText"/>
+
+            <ImageView
+                android:id="@+id/ivCountry"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/us"/>
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btNext"
+                    style="?android:borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_green_large"
+                    android:onClick="next"
+                    android:text="@string/next"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorText"
+                    android:textSize="18dp"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginRight="2dp"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_next"/>
+
+        </FrameLayout>
+    </LinearLayout>
+</ScrollView>

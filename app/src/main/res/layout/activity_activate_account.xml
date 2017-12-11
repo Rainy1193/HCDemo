@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/action_bar"
+            layout="@layout/action_bar_temp"/>
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:text="@string/activate_detail"
+            android:textColor="@color/colorMain"
+            android:textSize="16sp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:textSize="@dimen/text_size_custom_lang"
+                android:id="@+id/etEmailMobile"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:hint="@string/mobile_email_activate"
+                android:inputType="text"
+                android:paddingLeft="0dp"
+                android:paddingRight="40dp"
+                android:textColorHint="@color/colorEditTextHint"
+                app:met_floatingLabel="highlight"
+                app:met_baseColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_underlineColor="@color/colorTransparentImage"
+                app:met_floatingLabelTextColor="@color/colorEditText"/>
+
+            <ImageView
+                android:id="@+id/ivClearEmailMobile"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentTop="true"
+                android:onClick="clear"
+                android:src="@drawable/bg_remove_text"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/etCode"
+                android:textSize="@dimen/text_size_custom_lang"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:hint="@string/verification_code"
+                android:inputType="text"
+                android:maxLength="5"
+                android:paddingLeft="0dp"
+                android:paddingRight="40dp"
+                android:textColorHint="@color/colorEditTextHint"
+                app:met_floatingLabel="highlight"
+                app:met_baseColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_underlineColor="@color/colorTransparentImage"
+                app:met_floatingLabelTextColor="@color/colorEditText"
+                />
+
+            <ImageView
+                android:id="@+id/ivClearCode"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentTop="true"
+                android:onClick="clear"
+                android:src="@drawable/bg_remove_text"
+                android:visibility="invisible"/>
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btResendCode"
+                        style="?android:borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button_resend"
+                        android:gravity="center"
+                        android:onClick="resendCode"
+                        android:paddingLeft="25dp"
+                        android:text="@string/resend"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorText"
+                        android:textSize="18sp"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/ic_resend"/>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btActivateAccount"
+                        style="?android:borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button"
+                        android:gravity="center"
+                        android:onClick="activateAccount"
+                        android:paddingLeft="25dp"
+                        android:text="@string/confirm"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorText"
+                        android:textSize="18sp"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/ic_confirm"/>
+
+            </FrameLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

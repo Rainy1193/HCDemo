@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/action_bar_temp"/>
+
+    <ScrollView
+        android:id="@+id/svEditCompany"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <LinearLayout
+            android:id="@+id/layoutEditCompany"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/ivCompanyLogo"
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_logo_company"/>
+                <TextView
+                    android:id="@+id/btChange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/ivCompanyLogo"
+                    android:background="@drawable/bg_button_small"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/change"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text_size_custom_normal"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/tvCompanyName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/company_name_account"
+                    android:inputType="textNoSuggestions|textVisiblePassword"
+                    android:paddingLeft="0dp"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="14sp"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="highlight"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage"/>
+
+                <ImageView
+                    android:id="@+id/ivClearEtCompany"
+                    android:layout_width="25dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:onClick="clear"
+                    android:src="@drawable/bg_remove_text"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/tvAddress1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/address1"
+                android:inputType="textNoSuggestions|textVisiblePassword"
+                android:paddingLeft="0dp"
+                android:textColorHint="@color/colorEditTextHint"
+                android:textSize="14sp"
+                app:met_baseColor="@color/colorEditText"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelTextColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_underlineColor="@color/colorTransparentImage"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/tvAddress2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/address2"
+                android:inputType="textNoSuggestions|textVisiblePassword"
+                android:paddingLeft="0dp"
+                android:textColorHint="@color/colorEditTextHint"
+                android:textSize="14sp"
+                app:met_baseColor="@color/colorEditText"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelTextColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_underlineColor="@color/colorTransparentImage"/>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/tvCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/city"
+                android:inputType="textNoSuggestions|textVisiblePassword"
+                android:paddingLeft="0dp"
+                android:textColorHint="@color/colorEditTextHint"
+                android:textSize="14sp"
+                app:met_baseColor="@color/colorEditText"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelTextColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_underlineColor="@color/colorTransparentImage"/>
+
+            <RelativeLayout
+                android:id="@+id/rlState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/tvState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/state"
+                    android:inputType="textNoSuggestions|textVisiblePassword"
+                    android:paddingLeft="0dp"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="14sp"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="highlight"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage"/>
+
+                <TextView
+                    android:id="@+id/tvDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="15dp"
+                    android:text="@string/icon_down"/>
+            </RelativeLayout>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/tvZipcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="@string/zip_code"
+                android:inputType="number|textVisiblePassword"
+                android:maxLength="5"
+                android:paddingLeft="0dp"
+                android:textColorHint="@color/colorEditTextHint"
+                android:textSize="14sp"
+                app:met_baseColor="@color/colorEditText"
+                app:met_errorColor="@color/color_validate_error"
+                app:met_floatingLabel="highlight"
+                app:met_floatingLabelTextColor="@color/colorEditText"
+                app:met_primaryColor="@color/colorMain"
+                app:met_textColor="@color/colorEditText"
+                app:met_textColorHint="@color/colorEditTextHint"
+                app:met_underlineColor="@color/colorTransparentImage"/>
+
+            <RelativeLayout
+                android:id="@+id/layoutCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/tvPhone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:hint="@string/phone"
+                    android:inputType="textNoSuggestions|textVisiblePassword|number"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="14sp"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="highlight"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage"/>
+
+                <ImageView
+                    android:id="@+id/ivCountry"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="14dp"
+                    android:onClick="showPassword"
+                    android:src="@drawable/us"/>
+
+                <!--<TextView-->
+
+                <!--android:id="@+id/tvCode"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:layout_marginTop="25dp"-->
+                <!--android:layout_toRightOf="@+id/ivCountry"-->
+                <!--android:gravity="center"-->
+                <!--android:text="+1"-->
+                <!--android:textColor="@color/colorBlack"/>-->
+
+                <!--<TextView-->
+                <!--android:layout_width="1dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:layout_marginTop="30dp"-->
+                <!--android:layout_toRightOf="@+id/tvCode"-->
+                <!--android:background="@color/colorBlack"-->
+                <!--android:gravity="center"/>-->
+
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btApply"
+                        style="?android:borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button_green_large"
+                        android:onClick="applyChange"
+                        android:text="@string/apply_changes"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorText"
+                        android:textSize="@dimen/text_size_custom_title"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical|left"
+                    android:layout_marginLeft="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/ic_apply_change"/>
+
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

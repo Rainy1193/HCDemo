@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="2dp"
+    android:layout_marginTop="2dp"
+    android:background="@color/colorWhite"
+    android:elevation="1dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/mActionContainer"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+        <LinearLayout
+            android:id="@+id/layoutLike"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#179feb"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:text="@string/like_description"
+                android:textColor="@color/colorWhite" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/layoutBackLike"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_back_like">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="@dimen/margin_action_discover"
+                        android:layout_marginTop="@dimen/margin_action_discover"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_action_discover"
+                            android:layout_height="@dimen/icon_action_discover"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_like_back" />
+
+                        <TextView
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/like_back"
+                            android:textSize="@dimen/text_size_action_discover" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutFavoriteLike"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?android:selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="@dimen/margin_action_discover"
+                        android:layout_marginTop="@dimen/margin_action_discover"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/ivFavoriteLike"
+                            android:layout_width="@dimen/icon_action_discover"
+                            android:layout_height="@dimen/icon_action_discover"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_like_heart" />
+
+                        <TextView
+                            android:id="@+id/tvFavoriteLike"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/like_favorite"
+                            android:textSize="@dimen/text_size_action_discover" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutSuperVote"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?android:selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="@dimen/margin_action_discover"
+                        android:layout_marginTop="@dimen/margin_action_discover"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/ivSuperVote"
+                            android:layout_width="@dimen/icon_action_discover"
+                            android:layout_height="@dimen/icon_action_discover"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_super_vote" />
+
+                        <TextView
+                            android:id="@+id/tvSuperVote"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/like_super_vote"
+                            android:textSize="@dimen/text_size_action_discover" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutShare"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?android:selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/ivShare"
+                            android:layout_width="@dimen/icon_action_discover"
+                            android:layout_height="@dimen/icon_action_discover"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_share_like" />
+
+                        <TextView
+                            android:id="@+id/tvShare"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/like_share"
+                            android:textSize="@dimen/text_size_action_discover" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutSchedule"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?android:selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/ivSchedule"
+                            android:layout_width="@dimen/icon_action_discover"
+                            android:layout_height="@dimen/icon_action_discover"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_schedule_like" />
+
+                        <TextView
+                            android:id="@+id/tvSchedule"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/like_schedule"
+                            android:textSize="@dimen/text_size_action_discover" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutDislike"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@color/colorWhite"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/TextViewMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffbe00"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:text="@string/dislike_description"
+                android:textColor="@color/colorWhite" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/layoutPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?android:selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="@dimen/margin_action_discover"
+                        android:layout_marginTop="@dimen/margin_action_discover"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/ivDislikePrice"
+                            android:layout_width="@dimen/icon_action_discover"
+                            android:layout_height="@dimen/icon_action_discover"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_dislike_price" />
+
+                        <TextView
+                            android:id="@+id/tvDislikePrice"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/price"
+                            android:textSize="@dimen/text_size_action_discover" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?android:selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="@dimen/margin_action_discover"
+                        android:layout_marginTop="@dimen/margin_action_discover"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/ivLocation"
+                            android:layout_width="@dimen/icon_action_discover"
+                            android:layout_height="@dimen/icon_action_discover"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_dislike_location" />
+
+                        <TextView
+                            android:id="@+id/tvLocation"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/dislike_location"
+                            android:textSize="@dimen/text_size_action_discover" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutCondition"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?android:selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/ivCondition"
+                            android:layout_width="@dimen/icon_action_discover"
+                            android:layout_height="@dimen/icon_action_discover"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_dislike_condition" />
+
+                        <TextView
+                            android:id="@+id/tvCondition"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/dislike_condition"
+                            android:textSize="@dimen/text_size_action_discover" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutSize"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?android:selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/ivSize"
+                            android:layout_width="@dimen/icon_action_discover"
+                            android:layout_height="@dimen/icon_action_discover"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_dislike_size" />
+
+                        <TextView
+                            android:id="@+id/tvSize"
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/dislike_size"
+                            android:textSize="@dimen/text_size_action_discover" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutBackDislike"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_back_like">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="@dimen/margin_action_discover"
+                        android:layout_marginTop="@dimen/margin_action_discover"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_action_discover"
+                            android:layout_height="@dimen/icon_action_discover"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/ic_dislike_back" />
+
+                        <TextView
+                            style="@style/TextViewMain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="@string/like_back"
+                            android:textSize="@dimen/text_size_action_discover" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutContent"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/colorWhite">
+
+
+        <RelativeLayout
+            android:layout_width="140dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivListing"
+                android:layout_width="132dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="100dp"
+                android:layout_alignParentEnd="true"
+                android:background="#E2E6EE" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/discover_margin4"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+
+                        android:id="@+id/tvAddress1"
+                        style="@style/TextViewItemDashboard3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="@color/colorTextMain"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvAddress2"
+                        style="@style/TextViewItemDashboard3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="@color/colorTextMain"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    style="@style/TextViewItemDashboard3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="@dimen/discover_margin4"
+                    android:textColor="@color/colorBuy"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/top">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_discover"
+                        android:layout_height="@dimen/icon_discover"
+                        android:layout_gravity="center_vertical"
+                        android:padding="1dp"
+                        android:src="@drawable/ic_bed_discover" />
+
+                    <TextView
+                        android:id="@+id/tvBed"
+                        style="@style/TextViewItemDashboard3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/discover_margin3"
+                        android:textColor="@color/colorTextMain"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/discover_margin"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_discover"
+                        android:layout_height="@dimen/icon_discover"
+                        android:layout_gravity="center_vertical"
+                        android:padding="1dp"
+                        android:src="@drawable/ic_bath_listing_consumer" />
+
+                    <TextView
+                        android:id="@+id/tvBath"
+                        style="@style/TextViewItemDashboard3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/discover_margin3"
+                        android:textColor="@color/colorTextMain"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/discover_margin1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_discover"
+                        android:layout_height="@dimen/icon_discover"
+                        android:layout_gravity="center_vertical"
+                        android:padding="2dp"
+                        android:src="@drawable/ic_living_discover" />
+
+                    <TextView
+                        android:id="@+id/tvLiving"
+                        style="@style/TextViewItemDashboard3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/discover_margin3"
+                        android:textColor="@color/colorTextMain"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/center"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginTop="4dp"
+                android:background="#E2E6EE" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view"
+                android:layout_marginEnd="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/layoutStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/discover_margin1"
+                        android:layout_weight="1"
+                        android:background="?android:selectableItemBackgroundBorderless"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/ivStatus"
+                                android:layout_width="@dimen/icon_discover"
+                                android:layout_height="@dimen/icon_discover"
+                                android:layout_gravity="center_horizontal" />
+
+                            <TextView
+                                android:id="@+id/tvStatus"
+                                style="@style/TextViewItemDashboard3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:textColor="@color/colorTextMain"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutFavorite"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="?android:selectableItemBackgroundBorderless"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/ivFavorite"
+                                android:layout_width="@dimen/icon_discover"
+                                android:layout_height="@dimen/icon_discover"
+                                android:layout_gravity="center_horizontal" />
+
+                            <TextView
+                                android:id="@+id/tvFavorite"
+                                style="@style/TextViewItemDashboard3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:textColor="@color/colorTextMain"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutQueue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="?android:selectableItemBackgroundBorderless"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/ivQueue"
+                                android:layout_width="@dimen/icon_discover"
+                                android:layout_height="@dimen/icon_discover"
+                                android:layout_gravity="center_horizontal" />
+
+                            <TextView
+                                android:id="@+id/tvQueue"
+                                style="@style/TextViewItemDashboard3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:textColor="@color/colorTextMain"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <RelativeLayout
+
+                    android:id="@+id/layoutShow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:padding="1dp"
+                                    android:src="@drawable/ic_built_discover" />
+
+                                <TextView
+                                    android:id="@+id/tvBuilt"
+                                    style="@style/TextViewMain"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="4dp"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp">
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:padding="2dp"
+                                    android:src="@drawable/ic_size_discover" />
+
+                                <TextView
+                                    android:id="@+id/tvSquare"
+                                    style="@style/TextViewMain"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="4dp"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="2dp"
+                                android:src="@drawable/ic_pool_discover" />
+
+                            <TextView
+                                android:id="@+id/tvPool"
+                                style="@style/TextViewMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="4dp"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutBook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="?android:selectableItemBackgroundBorderless"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/ivBook"
+                            android:layout_width="@dimen/icon_discover"
+                            android:layout_height="@dimen/icon_discover"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:id="@+id/tvBook"
+                            style="@style/TextViewItemDashboard3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="@dimen/discover_margin3"
+                            android:textColor="@color/colorTextMain"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,64 @@
+{
+  "datas": [
+    {
+      "image": "consumer_demo_property1.jpg",
+      "address1": "2333 Forward Rd",
+      "address2": "Camillus , NY 13031",
+      "bed": "3bds",
+      "bath": "2ba",
+      "square": "250ft2",
+      "price": "$4.220.000",
+      "avatar": "avatar_cons_dashboard_1.png"
+    },
+    {
+      "image": "consumer_demo_property2.jpg",
+      "address1": "KY-2123",
+      "address2": "Camillus , NY 13031",
+      "bed": "3bds",
+      "bath": "2ba",
+      "square": "250ft2",
+      "price": "$2.390.000",
+      "avatar": "avatar_cons_dashboard_2.png"
+    },
+    {
+      "image": "consumer_demo_property3.jpg",
+      "address1": "13 Garden St",
+      "address2": "Livingston, NJ 07039",
+      "bed": "2  bds",
+      "bath": "4ba",
+      "square": "250ft2",
+      "price": "$80.000",
+      "avatar": "avatar_cons_dashboard_3.png"
+    },
+    {
+      "image": "consumer_demo_property4.jpg",
+      "address1": "7920 Glenlake Avenue",
+      "address2": "Ankeny, IA 50023",
+      "bed": "4bds",
+      "bath": "2ba",
+      "square": "250ft2",
+      "price": "$780.000",
+      "avatar": "avatar_cons_dashboard_4.png"
+    },
+    {
+      "image": "consumer_demo_property5.jpg",
+      "address1": "8547C Fairview Street",
+      "address2": "Fairhope, AL 36532",
+      "bed": "2bds",
+      "bath": "2ba",
+      "square": "250ft2",
+      "price": "$210.000",
+      "avatar": "avatar_cons_dashboard_5.png"
+    },
+    {
+      "image": "consumer_demo_property6.jpg",
+      "address1": "42 West Arch Drive",
+      "address2": "Windermere, FL 34786",
+      "bed": "1bds",
+      "bath": "1ba",
+      "square": "250ft2",
+      "price": "$550.000",
+      "avatar": "avatar_cons_dashboard_6.png"
+    }
+  ]
+}

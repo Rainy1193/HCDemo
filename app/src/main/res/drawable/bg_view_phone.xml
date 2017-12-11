@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:top="10dp">
+        <selector>
+            <item>
+                <shape>
+                    <solid android:color="@color/colorBlack"/>
+                </shape>
+            </item>
+        </selector>
+    </item>
+</layer-list>

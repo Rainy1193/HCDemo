@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorTransparent">
+
+    <LinearLayout
+        android:id="@+id/layoutSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvBack"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/bg_back"
+                android:gravity="center"
+                android:onClick="back"
+                android:text="@string/icon_close"
+                android:textColor="@color/colorText"
+                android:textSize="20sp"/>
+
+
+            <TextView
+                android:id="@+id/tvActionBarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/advance_search"
+                android:textColor="@color/colorText"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/tvDone"
+                style="?android:borderlessButtonStyle"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_back"
+                android:gravity="center"
+                android:onClick="done"
+                android:text="@string/icon_check"
+                android:textColor="@color/colorText"
+                android:textSize="20sp"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <Button
+                android:id="@+id/btForSale"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_search_left"
+                android:onClick="searchForSale"
+                android:text="SALE"
+                android:textAllCaps="false"
+                android:textColor="@color/colorMain"
+                android:textSize="10sp"/>
+
+            <Button
+                android:id="@+id/btForLease"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_search_center"
+                android:onClick="searchForLease"
+                android:text="LEASE"
+                android:textAllCaps="false"
+                android:textColor="@color/colorMain"
+                android:textSize="10sp"/>
+
+            <Button
+                android:id="@+id/btForFsbo"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_search_center"
+                android:onClick="searchForFsbo"
+                android:text="FSBO"
+                android:textAllCaps="false"
+                android:textColor="@color/colorMain"
+                android:textSize="10sp"/>
+
+            <Button
+                android:id="@+id/btForMls"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_search_center"
+                android:onClick="searchForMls"
+                android:text="MLS"
+                android:textAllCaps="false"
+                android:textColor="@color/colorMain"
+                android:textSize="10sp"/>
+
+            <Button
+                android:id="@+id/btForPocket"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_search_center"
+                android:onClick="searchForPocket"
+                android:text="POCKET"
+                android:textAllCaps="false"
+                android:textColor="@color/colorMain"
+                android:textSize="10sp"/>
+
+            <Button
+                android:id="@+id/btAll"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_search_right_click"
+                android:onClick="searchAll"
+                android:text="All"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="10sp"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Open House"
+                android:textSize="@dimen/text_size_custom_normal"/>
+
+            <Switch
+                android:id="@+id/openHouse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textSize="12sp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Search by your locations"
+                android:textSize="@dimen/text_size_custom_normal"/>
+
+            <ImageView
+                android:id="@+id/ivLocation"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_find_location"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Keyword"
+                android:textSize="@dimen/text_size_custom_normal"/>
+
+            <EditText
+                android:id="@+id/etKeyword"
+                android:layout_width="230dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/edit_text"
+                android:hint="City, State,Zip Code..."
+                android:inputType="text"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:textSize="@dimen/text_size_custom_normal"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Price"
+                android:textSize="@dimen/text_size_custom_normal"/>
+
+            <RelativeLayout
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+
+                <EditText
+                    android:id="@+id/etMinPrice"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/edit_text"
+                    android:digits="0123456789"
+                    android:hint="Min Price"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/text_size_custom_normal"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="1dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="100dp"
+                    android:background="@color/colorBlack"
+                    android:gravity="center"/>
+
+                <EditText
+                    android:id="@+id/etMaxPrice"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="120dp"
+                    android:background="@drawable/edit_text"
+                    android:digits="0123456789"
+                    android:hint="Max price"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/text_size_custom_normal"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Bed Rooms"
+                android:textSize="@dimen/text_size_custom_normal"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true">
+
+                <Button
+                    android:id="@+id/btMinusBed"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_button_search_left"
+                    android:onClick="minusBed"
+                    android:text="-"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorMain"
+                    android:textSize="@dimen/text_size_custom_normal"/>
+
+                <Button
+                    android:id="@+id/btBed"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_button_search_center"
+                    android:text="1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorMain"
+                    android:textSize="@dimen/text_size_custom_normal"/>
+
+                <Button
+                    android:id="@+id/btPlusBed"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_button_search_right"
+                    android:onClick="plusBed"
+                    android:text="+"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorMain"
+                    android:textSize="@dimen/text_size_custom_normal"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Bath Rooms"
+                android:textSize="@dimen/text_size_custom_normal"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true">
+
+                <Button
+                    android:id="@+id/btMinusBath"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_button_search_left"
+                    android:onClick="minusBath"
+                    android:text="-"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorMain"
+                    android:textSize="@dimen/text_size_custom_normal"/>
+
+                <Button
+                    android:id="@+id/btBath"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_button_search_center"
+                    android:text="1"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorMain"
+                    android:textSize="@dimen/text_size_custom_normal"/>
+
+                <Button
+                    android:id="@+id/btPlusBath"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_button_search_right"
+                    android:onClick="plusBath"
+                    android:text="+"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorMain"
+                    android:textSize="@dimen/text_size_custom_normal"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Min Square Feet"
+                android:textSize="@dimen/text_size_custom_normal"/>
+
+            <TextView
+                android:id="@+id/tvMinSquare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="0"
+                android:textSize="@dimen/text_size_custom_normal"/>
+        </RelativeLayout>
+
+        <SeekBar
+            android:id="@+id/sbSquare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:max="20000"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Min Lot Size"
+                android:textSize="@dimen/text_size_custom_normal"/>
+
+            <TextView
+                android:id="@+id/tvMinSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="0"
+                android:textSize="@dimen/text_size_custom_normal"/>
+        </RelativeLayout>
+
+        <SeekBar
+            android:id="@+id/sbSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:max="20000"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btresetDefault"
+                    style="?android:borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/button_green_large"
+                    android:gravity="center"
+                    android:onClick="resetDefault"
+                    android:paddingLeft="25dp"
+                    android:text="Reset Default"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorText"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dp"
+                android:paddingBottom="2dp"
+                android:paddingTop="2dp"
+                android:src="@drawable/ic_update"/>
+
+        </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>

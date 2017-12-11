@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="50dp"/>
+
+    <gradient
+        android:endColor="@color/teamtab_search_featured_button_click"
+        android:startColor="@color/teamtab_search_featured_button_click"
+        />
+</shape>

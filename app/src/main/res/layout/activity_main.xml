@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main"
+    android:orientation="vertical">
+
+    <LinearLayout
+
+        android:id="@+id/layoutToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorMain">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorMain">
+
+            <TextView
+                android:id="@+id/tvOpenMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:onClick="openMenu"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="@string/icon_bar"
+                android:textColor="@color/colorWhite"
+                android:textSize="30sp" />
+
+            <LinearLayout
+                android:id="@+id/layoutInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="60dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/ivAvatarUseActionBar"
+                    android:layout_gravity="right">
+
+                    <TextView
+                        android:id="@+id/tvUseNameActionBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:gravity="right"
+                        android:textColor="@color/colorText"
+                        android:textSize="@dimen/text_size_custom_lang" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginRight="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true">
+
+                        <TextView
+                            android:id="@+id/tvBell"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:text="@string/icon_bell"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/text_size_custom_lang" />
+
+                        <TextView
+                            android:layout_gravity="bottom"
+                            android:includeFontPadding="false"
+                            android:id="@+id/tvNumberNotification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/text_size_custom_lang"
+                            android:visibility="visible" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_logo_login" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp">
+
+                <com.homecaravan.android.ui.CircleImageView
+                    android:id="@+id/ivAvatarUseActionBar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:onClick="showAccountActionBar"
+                    android:src="@drawable/image_default" />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutToolbar">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_main_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:text="Request a Showing"
+                        android:textColor="@color/colorText"
+                        android:textSize="@dimen/text_size_custom_big" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etSearch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/bg_edit_text_search"
+                            android:hint="Property ID or Street address"
+                            android:imeActionId="@+id/search"
+                            android:imeActionLabel="action_search"
+                            android:imeOptions="actionSearch"
+                            android:inputType="text"
+                            android:paddingBottom="10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="80dp"
+                            android:paddingTop="10dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/text_size_custom_lang" />
+
+                        <ImageView
+                            android:id="@+id/ivClearEt"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="60dp"
+                            android:onClick="clear"
+                            android:src="@drawable/ic_remove"
+                            android:visibility="invisible" />
+
+                        <TextView
+                            android:id="@+id/tvSearch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="15dp"
+                            android:onClick="searchMain"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/icon_search"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="30sp" />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+
+                                android:id="@+id/ivAllListings"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:onClick="openAllListings"
+                                android:text="@string/icon_list"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="35sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ivAllListings"
+                                android:layout_gravity="center"
+                                android:text="All Listings"
+                                android:textColor="@color/colorText"
+                                android:textSize="@dimen/text_size_custom_normal" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/ivAdvancedSearch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:onClick="advancedSearch"
+                                android:text="@string/icon_search_plus"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="35sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ivAdvancedSearch"
+                                android:layout_gravity="center"
+                                android:text="Advanced Search"
+                                android:textColor="@color/colorText"
+                                android:textSize="@dimen/text_size_custom_normal" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/ivFavorite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:text="@string/icon_thank"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="35sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ivFavorite"
+                                android:layout_gravity="center"
+                                android:text="Favorites"
+                                android:textColor="@color/colorText"
+                                android:textSize="@dimen/text_size_custom_normal" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/llShowings"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="25dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="50dp"
+                        android:onClick="openMyShowing">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_main_item"
+                            android:orientation="vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <TextView
+
+                                android:id="@+id/ivMyShowings"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:text="@string/icon_showing"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="35sp" />
+
+                            <TextView
+                                android:id="@+id/tvApprovedMyShowing"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="15dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/circle"
+                                android:gravity="center"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/text_size_custom_normal"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/tvMyShowings"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ivMyShowings"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:text="My Showings"
+                                android:textColor="@color/colorText"
+                                android:textSize="@dimen/text_size_custom_normal" />
+
+                            <TextView
+                                android:id="@+id/tvUpCompingMyShowing"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tvMyShowings"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="10dp"
+                                android:text="0/0"
+                                android:textColor="@color/colorText"
+                                android:textSize="@dimen/text_size_custom_small"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/llListings"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginBottom="25dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginTop="50dp"
+                        android:onClick="openMyListing">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_main_item"
+                            android:orientation="vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <TextView
+                                android:id="@+id/ivMyListings"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:text="@string/icon_list"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="35sp" />
+
+                            <TextView
+                                android:id="@+id/tvApprovalMyListing"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="15dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/circle"
+                                android:gravity="center"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/text_size_custom_normal"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/tvMyListings"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ivMyListings"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:text="My Listings"
+                                android:textColor="@color/colorText"
+                                android:textSize="@dimen/text_size_custom_normal" />
+
+                            <TextView
+                                android:id="@+id/tvTotalApptMyListing"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tvMyListings"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="10dp"
+                                android:text="0/0 "
+                                android:textColor="@color/colorText"
+                                android:textSize="@dimen/text_size_custom_small"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/llMessages"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/llShowings"
+                        android:layout_alignRight="@+id/llShowings"
+                        android:layout_below="@+id/llShowings"
+                        android:layout_marginTop="20dp"
+                        android:onClick="openMessages">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_main_item"
+                            android:orientation="vertical"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <TextView
+                                android:id="@+id/ivMyMessages"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:text="@string/icon_message"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="35sp" />
+
+                            <TextView
+                                android:id="@+id/tvNewMessages"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="15dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/circle"
+                                android:gravity="center"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/text_size_custom_normal"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/tvMyMessages"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ivMyMessages"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:text="Messages"
+                                android:textColor="@color/colorText"
+                                android:textSize="@dimen/text_size_custom_normal" />
+
+                            <TextView
+                                android:id="@+id/tvTotalMessages"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tvMyMessages"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="10dp"
+                                android:text="0"
+                                android:textColor="@color/colorText"
+                                android:textSize="@dimen/text_size_custom_small"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/llAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/llMessages"
+                        android:layout_alignLeft="@+id/llListings"
+                        android:layout_alignRight="@+id/llListings"
+                        android:layout_below="@+id/llListings"
+                        android:layout_marginTop="20dp"
+                        android:onClick="openMyAccount">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_main_item"
+                            android:orientation="vertical">
+
+                            <com.homecaravan.android.ui.CircleImageView
+                                android:id="@+id/ivAvatarUse"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="10dp"
+                                android:src="@drawable/image_default"
+                                tool:civ_border_color="@color/colorWhite"
+                                tool:civ_border_width="1dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginTop="5dp"
+                                android:text="My Account"
+                                android:textColor="@color/colorText"
+                                android:textSize="@dimen/text_size_custom_normal" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutAgent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/colorTransparentFavorite"
+                        android:orientation="vertical">
+
+                        <com.homecaravan.android.ui.CircleImageView
+                            android:id="@+id/ivAgent"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginTop="5dp"
+                            android:src="@drawable/image_default"
+                            tool:civ_border_color="@color/colorWhite"
+                            tool:civ_border_width="1dp" />
+
+                        <TextView
+                            android:id="@+id/tvNameAgentOnly"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/ivAgent"
+                            android:textColor="@color/colorBlueMain"
+                            android:textSize="17sp"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:id="@+id/layoutAgentInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/ivAgent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvNameAgent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/colorBlueMain"
+                                android:textSize="@dimen/text_size_custom_normal"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:id="@+id/layoutPhone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/tvIconPhone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/icon_phone_main"
+                                    android:textColor="@color/colorBlueMain"
+                                    android:textSize="@dimen/text_size_custom_normal" />
+
+                                <TextView
+                                    android:id="@+id/tvPhoneAgent"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:textColor="@color/colorBlueMain"
+                                    android:textSize="@dimen/text_size_custom_normal" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

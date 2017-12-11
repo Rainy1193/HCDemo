@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:emojicon="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:gravity="end"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:id="@+id/layoutItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:id="@+id/layoutAvatar">
+
+        <com.homecaravan.android.ui.CircleImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop" />
+
+        <View
+            android:id="@+id/vStatus"
+            android:visibility="gone"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/dot_green_online" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="start"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/layoutChatName"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_alignParentStart="true"
+                android:id="@+id/tvName"
+                android:textSize="17sp"
+                android:layout_marginBottom="4dp"
+                android:textColor="@color/consumer_message_text_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/consumer_message_rounded_mess"
+            android:orientation="vertical">
+
+            <io.github.rockerhieu.emojicon.EmojiconTextView
+                android:id="@+id/tvMessage"
+                emojicon:emojiconSize="16sp"
+                emojicon:emojiconAlignment="baseline"
+                android:textColor="@color/consumer_message_text_color"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/tvChatTime"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"
+                android:maxLines="1"
+                android:textColor="@color/consumer_message_chat_time_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgMessage"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"/>
+
+        <View
+            android:id="@+id/vSpace"
+            android:layout_width="match_parent"
+            android:layout_height="12dp" />
+    </LinearLayout>
+</LinearLayout>

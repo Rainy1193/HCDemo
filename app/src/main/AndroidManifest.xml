@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.homecaravan.android">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Google Maps API Key -->
+    <application
+        android:name=".HomeCaravanApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="e0f5782f2382ab7cfe208a0f9e481a7891464d01" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:theme="@style/com_facebook_activity_theme"
+            tools:replace="android:theme" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider337389436693834"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        //AIzaSyAZmrEKSncjvnd0Aj9MG9k8p8YTc_oaQXE
+        //AIzaSyCjdJUaA4oESLMowzojkgjZ2wKpuSvtKrk - default key
+        //AIzaSyBmz4a_L6JX5baY8BWhzkll5CIKXsZGkb8 - LeAnhDao key
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBmz4a_L6JX5baY8BWhzkll5CIKXsZGkb8" />
+
+        <activity
+            android:name=".consumer.activity.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.ConsumerLoginActivity"
+            android:label="@string/title_activity_login_le_anh_dao"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginThemeConsumer">
+            <intent-filter>
+                <action android:name="android.intent.action.LoginActivityConsumer" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".consumer.activity.ConsumerRegisterLoginActivity"
+            android:label="@string/title_activity_register_le_anh_dao"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginThemeConsumer">
+            <intent-filter>
+                <action android:name="android.intent.action.RegisterActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".consumer.activity.MainActivityConsumer"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.consumer.MainActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".consumer.activity.InviteAgentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.consumer.InviteAgentActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".consumer.consumerdiscover.SaveSearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.consumer.OpenSavedSearchActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".consumer.activity.ActivitySelectAgent"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.consumer.ActivitySelectAgent" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".consumer.activity.UserProfileConsumerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.consumer.AccountSettingsConsumerActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".consumer.activity.AgentProfileInfomationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.consumer.AgentProfileInfomationActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".consumer.activity.TeamTabSearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.consumer.TeamTabSearchActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".consumer.activity.SubmitReviewsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.consumer.SubmitReviewsActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".consumer.activity.ConsumerSplashActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.ConsumerSplashActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".consumer.activity.AgentReviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.AgentReviewActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".consumer.activity.MessageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.MessageActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".consumer.activity.ConversationActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.ConversationActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.ContactsManagerActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="stateHidden|adjustNothing">
+
+            <intent-filter>
+
+                <action android:name="com.homecaravan.android.ContactsManagerActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.CaravanInActionActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CaravanInActionTheme">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.CaravanInActionActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.AddContactManagerActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="stateHidden">
+
+            <intent-filter>
+                <action android:name="com.homecaravan.android.AddContactManagerActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.ScanCodeActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="stateHidden">
+
+            <intent-filter>
+                <action android:name="com.homecaravan.android.ScanCodeActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.AppSettingsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.AppSettingsActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.ViewUserProfileConsumerActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.ViewUserProfileConsumerActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.FriendListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.FriendListActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.PickCountryPhoneActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.PickCountryPhoneActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.StreetViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.StreetViewActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".consumer.activity.FindContactActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.FindContactActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.SendEmailContactActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.SendEmailContactActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.BookSingleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="stateHidden|adjustNothing">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.BookSingleActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.SellerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.SellerActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".consumer.activity.MyContactsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.MyContactActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+        <receiver android:name=".consumer.broadcast.CIANotificationsReceiver">
+
+            <intent-filter>
+                <action android:name="android.media.action.CARAVAN_DISPLAY_NOTIFICATION" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".consumer.broadcast.SMSReceiver"
+            android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter android:priority="999">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

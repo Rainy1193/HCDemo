@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0B459F</color>
+    <color name="colorPrimaryDark">#0B459F</color>
+    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorText">#FFFFFF</color>
+    <color name="colorEditTextHint">#969595</color>
+    <color name="colorEditText">#111111</color>
+    <color name="colorButtonGray">#777777</color>
+    <color name="colorMain">#0B459F</color>
+    <color name="colorButtonPressed">#09387f</color>
+    <color name="colorPressed">#09387F</color>
+    <color name="colorBgText">#EEEEEE</color>
+    <color name="colorBorderEditText">#BDBDBD</color>
+    <color name="colorPending">#FF9600</color>
+    <color name="colorPendingPressed">#DF8300</color>
+    <color name="colorAvatar">#EAEAEA</color>
+    <color name="colorRed">#F44336</color>
+    <color name="colorBlue">#5C6BC0</color>
+    <color name="colorBLUE">#2C6BC0</color>
+    <color name="colorYellow">#FFF9C4</color>
+    <color name="colorLightBlue">#29b6f6</color>
+    <color name="colorGrey">#BDBDBD</color>
+    <color name="colorGrey1">#E0E0E0</color>
+    <color name="colorGrey2">#EEEEEE</color>
+
+    <!-- new color-->
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorLinkedIn">#0077B5</color>
+    <color name="colorFacebook">#48649F</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorTransparentDark">#AA00010F</color>
+    <color name="colorTransparentGray">#B3FFFFFF</color>
+    <color name="colorTransparentCalendar">#CCFFFFFF</color>
+    <color name="colorTransparentWhite">#F2FFFFFF</color>
+    <color name="colorTransparentFavorite">#4DFFFFFF</color>
+    <color name="colorTransparentImage">#4D000000</color>
+    <color name="colorTransparentMain">#D90B459F</color>
+    <color name="colorTransparentMainDark">#D90B459F</color>
+    <color name="colorTransparent">#00000000</color>
+    <color name="colorGreen">#378A00</color>
+    <color name="colorLightGreen">#32CD32</color>
+    <color name="colorDarkGreen">#006400</color>
+    <color name="colorOrange">#FF961A</color>
+    <color name="colorOrangeDark">#DF8300</color>
+    <color name="colorBlueMain">#169FEC</color>
+    <color name="colorBluePressed">#0077b5</color>
+    <color name="colorPink">#F47677</color>
+    <color name="colorAstPick">#3A87AD</color>
+    <color name="colorBar">#159ceb</color>
+    <color name="colorBlueStatus">#16A0EC</color>
+    <color name="coloYellowStatus">#FFAE00</color>
+    <color name="colorGrayStatus">#4C5764</color>
+    <color name="colorRedStatus">#E80000</color>
+    <color name="colorGrayTitleBar">#5D5D5D</color>
+    <color name="colorGrayTitleAddress">#636363</color>
+    <color name="colorGrayBackground">#E3E3E3</color>
+    <color name="colorGrayLine">#CACACA</color>
+    <color name="colorMessage">#585858</color>
+    <color name="colorOpenHouse">#EAFEE5</color>
+    <color name="colorAvailable">#BDE5FF</color>
+    <color name="colorPossiblyAvailable">#FFFDDE</color>
+    <color name="colorOpenHouseBorder">#6AC058</color>
+    <color name="colorAvailableBorder">#1A93DF</color>
+    <color name="colorPossiblyAvailableBorder">#FED631</color>
+    <color name="colorYellowLight">#FED631</color>
+
+    <color name="colorEdit">#E8F4FF</color>
+    <color name="colorBgClient">#d8ebff</color>
+
+
+    <color name="navigation_button_step_tran">#00ffffff</color>
+    <color name="navigation_button_step_gray_pass">#a6a6a6</color>
+    <color name="navigation_button_step_gray">#bfbfbf</color>
+    <color name="navigation_button_step_white">#ffffff</color>
+    <color name="navigation_button_step_active_text">#ffffff</color>
+    <color name="navigation_button_step_inactive_text">#bfbfbf</color>
+    <color name="navigation_button_step_bg_active">#378b00</color>
+    <color name="navigation_button_step_bg_pass">#c3c3c3</color>
+    <color name="navigation_button_step_bg_inactive">#f9f9f9</color>
+
+    <color name="color_border_action">#dfdfdf</color>
+    <color name="user_info_color_text_button">#0258ad</color>
+    <color name="user_info_color_name">#55b600</color>
+    <color name="user_info_color_button">#159CEB</color>
+    <color name="user_info_color_text_company">#000000</color>
+    <color name="user_info_color_text_normal">#595959</color>
+
+    <color name="color_black_border">#484848</color>
+    <color name="color_update_team">#169fec</color>
+
+    <color name="bg_team_info">#e8f4ff</color>
+
+
+    <color name="bg_status_editor">#f1f1f1</color>
+
+
+    <color name="timeline_bullet">#5db75d</color>
+    <color name="timeline_content_bg">#5db75d</color>
+    <color name="timeline_content_text">#ffffff</color>
+
+    <color name="timeline_content_text_inactive">#ffffff</color>
+    <color name="timeline_bullet_inactive">#5db75d</color>
+    <color name="timeline_content_bg_inactive">#95a5a5</color>
+    <color name="timeline_time">#22a3e7</color>
+    <color name="timeline_send_buton">#3297e7</color>
+
+    <color name="status_cancel_all_buton">#3297e7</color>
+    <color name="status_cancel_all_text">#ffffff</color>
+
+    <color name="listing_status_heading_text">#3297e7</color>
+
+    <color name="status_new">#3297e7</color>
+    <color name="status_active">#55920B</color>
+    <color name="status_suspend">#FF961A</color>
+    <color name="status_close">#E80000</color>
+    <color name="status_disable">#bdbdbd</color>
+
+    <color name="color_validate_error">#FF1414</color>
+
+    <color name="color_resuggest">#169CEB</color>
+    <color name="color_decline">#FE0D0D</color>
+    <color name="color_green">#56ac0b</color>
+
+    <color name="color_appt_tool">#2B93D2</color>
+
+    // color caravan
+    <color name="ca_approved_appt">#94D497</color>
+    <color name="ca_approved_appt_border">#48B648</color>
+    <color name="ca_approved_pending">#F4C28D</color>
+    <color name="ca_approved_pending_border">#F08310</color>
+    <color name="ca_approved_cancel">#F47677</color>
+    <color name="ca_approved_cancel_border">#ED3536</color>
+    <color name="ca_approved_undefined">#DCDCDC</color>
+    <color name="ca_approved_undefined_border">#9F9F9F</color>
+    <color name="ca_status_not_yet">#5b5b5b</color>
+
+    <color name="color_time_start_caravan">#0C9AEB</color>
+    <color name="color_time_end_caravan">#0C8CD5</color>
+    <color name="color_appt_caravan_pending">#FFBE00</color>
+    <color name="color_appt_caravan_pending1">#EFB200</color>
+    <color name="color_appt_caravan_canceled">#79828C</color>
+    <color name="color_appt_caravan_canceled1">#697179</color>
+    <color name="color_appt_caravan_approved">#8AC43D</color>
+    <color name="color_appt_caravan_approved1">#79AF31</color>
+    <color name="color_arrow_caravan">#179FEB</color>
+    <color name="color_arrow_caravan1">#79828C</color>
+
+
+    <color name="ca_status_green">#70a840</color>
+    <color name="ca_status_gray">#5f5e5e</color>
+    <color name="ca_status_orange">#ff9600</color>
+    <color name="ca_status_blue">#2b93d2</color>
+    <color name="ca_status_red">#ED3536</color>
+
+
+    <color name="ca_time">#18A9F2</color>
+    <color name="ca_status">#136DBB</color>
+    <color name="ca_map_router">#3fa4ec</color>
+    <color name="view_bg">#b20e0f</color>
+    <color name="white">#ffffff</color>
+    <color name="btn_bg">#3e4a56</color>
+
+    <color name="bg_stop_home">#1cc1ab</color>
+    <color name="bg_stop_stop">#3b6b99</color>
+
+
+    <color name="bg_time_drive">#7cbcfb</color>
+    <color name="bg_navigation_caravan">#98000000</color>
+    <color name="bg_navigation_address_caravan">#e5f5ff</color>
+
+
+    <item name="blue" type="color">#FF33B5E5</item>
+    <item name="purple" type="color">#FFAA66CC</item>
+    <item name="green" type="color">#FF99CC00</item>
+    <item name="orange" type="color">#FFFFBB33</item>
+    <item name="red" type="color">#FFFF4444</item>
+    <item name="darkblue" type="color">#FF0099CC</item>
+    <item name="darkpurple" type="color">#FF9933CC</item>
+    <item name="darkgreen" type="color">#FF669900</item>
+    <item name="darkorange" type="color">#FFFF8800</item>
+    <item name="darkred" type="color">#FFCC0000</item>
+
+    <color name="color_bt_login">#218ed0</color>
+
+    <integer-array name="androidcolors">
+        <item>@color/blue</item>
+        <item>@color/purple</item>
+        <item>@color/green</item>
+        <item>@color/orange</item>
+        <item>@color/red</item>
+        <item>@color/darkblue</item>
+        <item>@color/darkpurple</item>
+        <item>@color/darkgreen</item>
+        <item>@color/darkorange</item>
+        <item>@color/darkred</item>
+    </integer-array>
+
+
+    <item name="mylisting_icon" type="color">#b7b7b7</item>
+
+
+    // consumer module
+
+    //splash, login, register consumer
+    <color name="colorTransparentWhite75">#BFFFFFFF</color>
+    <color name="colorTransparentBlack40">#66000000</color>
+    <color name="colorTextViewLocationSplash">#5e5e5e</color>
+    <color name="colorTextViewNoteOfLocationSplash">#969494</color>
+    <color name="colorViewSplash">#949191</color>
+    <color name="colorStatusBarLogin">#2591E9</color>
+    <color name="colorTextTransparentWhiteLogin55">#FFFFFF</color>
+    <color name="colorTextTransparentWhiteLogin65">#FFFFFF</color>
+    <color name="colorTextTransparentWhiteLogin80">#FFFFFF</color>
+    <color name="colorLineVerticalLogin">#80FFFFFF</color>
+    <color name="colorFacebookLogin">#3B5999</color>
+    <color name="colorLinkedInLogin">#00A0DC</color>
+    <color name="colorBlueLogin">#014B94</color>
+    <color name="colorGrayLogin">#585856</color>
+    <color name="colorLogin1">#A2CCFF</color>
+    //
+    <color name="colorDashboardStatusBar">#2C65D5</color>
+    <color name="colorDashboardText">#79828C</color>
+    <color name="colorDashboardTextFocus">#A3AEBB</color>
+    <color name="colorDashboardTextFocus1">#7A80F5</color>
+    <color name="colorDashboardTextFocus2">#91B0AF</color>
+    <color name="colorDashboardTextFocus3">#E4BE4C</color>
+    <color name="colorChoose">#E9EFF0</color>
+    <color name="colorRipple">#CCBEBCBC</color>
+    <color name="colorBuy">#2C65D5</color>
+    <color name="colorRent">#11B4B3</color>
+    <color name="colorSell">#DEA702</color>
+    <color name="colorBottomBar">#189FEC</color>
+    <color name="colorBottomBarBg">#F5F7F8</color>
+    <color name="colorHintSearch">#9D9D9D</color>
+    <color name="colorActionTab">#F0C32C</color>
+    <color name="colorRentButton">#8011B4B3</color>
+    <color name="colorSellButton">#80DEA702</color>
+    <color name="colorBuyButton">#802C65D5</color>
+    <color name="colorLogOut">#FE574F</color>
+    <color name="colorMenuConsumer">#179FEB</color>
+    <color name="colorBgBuy">#4D123781</color>
+    <color name="colorBgRent">#4D042020</color>
+    <color name="colorBgSell">#4D281303</color>
+    <color name="colorViewHeaderDashboardItem">#80FFBE00</color>
+    <color name="colorViewImageDashboardItem">#252525</color>
+    <color name="colorBgFragment">#E9EDEF</color>
+    <color name="colorRedE1">#E15352</color>
+    <color name="colorViewAll">#4D179FEB</color>
+    <color name="colorFabClick">#8AC43C</color>
+    <color name="colorFillArea">#809FD8F9</color>
+    <color name="colorLine">#E9EDEF</color>
+    <color name="color_like_bg">#80179FEB</color>
+    <color name="color_dislike_bg">#80E15352</color>
+    <color name="color_like">#179FEB</color>
+    <color name="color_dislike">#E15352</color>
+    <color name="color_vote_down">#FFBE00</color>
+    //user profile
+    <color name="colorButtonChange">#1e9de4</color>
+    <color name="colorBlueUserProfile">#2C65D5</color>
+    <color name="colorTransparentSilver40">#66cfcfcf</color>
+    <color name="colorBackSwitch">#eaeaea</color>
+    <color name="colorThumbNotIsChecked">#716e6e</color>
+    <color name="consumer_user_profile_color_text">#79828C</color>
+    <color name="colorTextMain">#79828C</color>
+    <color name="colorDiscoverMenu">#99343434</color>
+    <color name="user_profile_name">#FFC000</color>
+
+
+    //my team screen - my team tab
+    <color name="colorRedE2">#fd605f</color>
+    <color name="colorGray40">#ededed</color>
+    <color name="colorGreen40">#8BC53B</color>
+    <color name="colorTextTransparentWhite40">#66FFFFFF</color>
+
+    //my team creen - history tab
+    <color name="colorNotificationText">#79828C</color>
+    <color name="colorAroundImage">#EAEEF0</color>
+    <color name="colorTimeText">#2C65D5</color>
+    <color name="colorBLueE2">#10A0ED</color>
+    <color name="colorBackgroundContact">#F5F7F9</color>
+    <color name="colorNameAgent">#FFBF00</color>
+    <color name="colorNameCompany">#0FA0EC</color>
+    <color name="colorTextViewAgentProfile">#7A838D</color>
+
+
+    //team tab - search featured
+    <color name="teamtab_search_featured_text_button">#7A838D</color>
+    <color name="teamtab_search_featured_button">#EAEEF0</color>
+    <color name="teamtab_search_featured_button_click">#1e9de4</color>
+    <color name="text_color_dialog">#0FA0EC</color>
+    <color name="color_text_popup_menu_team">#0058AD</color>
+
+    //showing tab
+    <color name="text_color_icon_showing">#79828C</color>
+    <color name="dot_orange_color_caravan_showing">#FFBF00</color>
+    <color name="dot_iron_color_caravan_showing">#7A838D</color>
+    <color name="dot_green_color_caravan_showing">#8BC53B</color>
+    <color name="text_blue_color_caravan_showing">#2865D6</color>
+    <color name="background_recycleview_expand_appointment">#F5F7F9</color>
+    <color name="button_green_showing">#8BC53B</color>
+    <color name="button_orange_showing">#FFBF00</color>
+    <color name="color_white_address_showing">#f5f5f5</color>
+    <color name="color_line_view_showing">#c1c1c1</color>
+    <color name="color_black_transparent_showing_30">#4D000000</color>
+    <color name="backgroup_dialog_sort_showing">#E9EDEF</color>
+    <color name="color_text_popup_menu_showing">#0058AD</color>
+    <color name="color_text_empty_showing">#0FA0EC</color>
+
+    //Submit reivews screen
+    <color name="color_iron_dot_interior">#EAEEF1</color>
+    <color name="color_dot_interior_1">#FE9A00</color>
+    <color name="color_dot_interior_2">#FFBF00</color>
+    <color name="color_dot_interior_3">#0FA0EC</color>
+    <color name="color_dot_interior_4">#15C2AC</color>
+    <color name="color_dot_interior_5">#8BC53B</color>
+    <color name="color_second_track_submit_reviews">#FE9A00</color>
+    <color name="color_primary_track_submit_reviews">#8BC53B</color>
+    <color name="color_thumb_submit_reviews">#0FA0EC</color>
+    <color name="color_text_submit_reviews">#7A838D</color>
+    <color name="color_textarea_submit_reviews">#a3aeb7</color>
+    <color name="color_bubble_submit_reviews">#D5ECF9</color>
+    <color name="color_border_textarea_submit_reviews">#d2d2d2</color>
+    <color name="color_bubble_text_submit_reviews">#2865D6</color>
+    <color name="color_blue_review_showing">#0FA0EC</color>
+
+    // schedule
+    <color name="color_time_select">#2C65D5</color>
+    <color name="color_item_review_1">#8AC43D</color>
+    <color name="color_item_review_2">#FE9901</color>
+    <color name="color_item_review_3">#1CC2AA</color>
+
+
+    //Reviews result
+    <color name="color_text_price_reviews_result">#0058AD</color>
+    <color name="color_text_price_avarage_reviews_result">#8DC53A</color>
+
+    //Notifications
+    <color name="color_text_notifications">#7A838D</color>
+    <color name="color_text_popup_menu_notifications">#0058AD</color>
+    <color name="color_text_time_notifications">#2C65D5</color>
+
+    //Agent review
+    <color name="color_around_image_agent_review">#e5e9ea</color>
+    <color name="color_background_button_agent_review">#EAEEF0</color>
+    <color name="color_text_on_button_agent_review">#7A838D</color>
+
+    //Popup
+    <color name="color_bg_popup_confirm">#2865D6</color>
+    <color name="color_bg_popup_cyan">#0FA0EC</color>
+    <color name="color_bg_popup_gray">#F5F7F9</color>
+    <color name="color_bg_popup_success">#89C63A</color>
+    <color name="color_bg_popup_error">#FF564E</color>
+    <color name="color_bg_popup_warning">#FE9A00</color>
+    <color name="color_bg_popup_remind">#FFC000</color>
+    <color name="color_intro">#6BBEED</color>
+    <color name="color_intro_step">#A6D8F4</color>
+
+    <color name="color_dialog_messages">#2C65D5</color>
+    <color name="color_dialog_success">#88C53C</color>
+    <color name="color_dialog_confirm">#2C65D5</color>
+    <color name="color_dialog_error">#FF564F</color>
+    <color name="color_dialog_warning">#FE9901</color>
+
+
+    //filter
+    <color name="color_text_light_blue_filter">#179feb</color>
+    <color name="color_bg_group_button_bottom_filter">#e9eef1</color>
+
+    //Message consumer
+    <color name="consumer_message_bg_recyclerview">#F2F7FA</color>
+    <color name="consumer_message_blue">#179feb</color>
+    <color name="consumer_message_conversation_blue">#0FA0EC</color>
+    <color name="consumer_message_line">#c6dfed</color>
+    <color name="consumer_message_bg_layout_message">#F2F7FA</color>
+    <color name="colorTransparentWhite50">#80FFFFFF</color>
+    <color name="consumer_message_text_color">#79828C</color>
+    <color name="consumer_message_chat_time_color">#a2a9b2</color>
+    <color name="consumer_message_time_line">#DDE1E3</color>
+    <color name="consumer_message_favorite">#FF7F74</color>
+    <color name="consumer_message_trash">#0FA0EC</color>
+
+    <color name="color_marker_selected">#8ac43d</color>
+    <color name="color_marker_not_view">#189fec</color>
+    <color name="color_marker_view">#9fd8f9</color>
+
+
+    <color name="color_tutorial">#88C53C</color>
+    <color name="color_tutorial_bg">#D9000000</color>
+    <color name="color_send_invite">#FFBE00</color>
+
+    <color name="color_line">#cccccc</color>
+    <color name="colorSnackBar">#323232</color>
+    <color name="color_past_single_caravan">#e9edef</color>
+    <color name="color_possibly_single_caravan">#f9f1cf</color>
+    <color name="color_open_single_caravan">#b9f2b6</color>
+    <color name="color_available_single_caravan">#b6eeef</color>
+</resources>

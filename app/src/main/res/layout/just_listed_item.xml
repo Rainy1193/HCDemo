@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutHeader"
+    android:layout_width="40dp"
+    android:layout_height="150dp"
+    android:background="@drawable/bg_header_rv_item"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.5"
+        android:scaleType="centerCrop"
+        android:src="@drawable/justlisted_background_dashboard" />
+
+
+    <com.homecaravan.android.consumer.widget.VerticalTextView
+        style="@style/TextViewItemDashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:rotation="180"
+        android:text="@string/dashboard_just_listed" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/margin_header_dashboard_item"
+            android:layout_marginRight="@dimen/margin_header_dashboard_item">
+
+            <TextView
+                android:id="@+id/tvNumberListing"
+                style="@style/TextViewItemDashboard2"
+                android:layout_width="@dimen/icon_item_dashboard"
+                android:layout_height="@dimen/icon_item_dashboard"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_view_header_dashboard_item"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

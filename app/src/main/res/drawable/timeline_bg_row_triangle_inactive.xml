@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:left="10dp" android:bottom="0dp"  android:top="3dp" android:width="15dp" android:height="15dp">
+        <rotate
+            android:fromDegrees="45"
+            android:toDegrees="45">
+            <shape android:shape="rectangle" >
+                <solid android:color="@color/timeline_content_bg_inactive" />
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

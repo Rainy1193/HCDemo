@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutMessage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/shadowBar"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="@drawable/bg_below_action_bar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/introductions"
+                android:textColor="@color/colorBlueMain"
+                android:textSize="@dimen/text_size_custom_big" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="@string/intro_content" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/etApptConfirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginTop="10dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:paddingRight="10dp"
+                android:textColorHint="@color/colorEditTextHint"
+                android:textSize="@dimen/text_size_custom_lang" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/auto_send" />
+
+                <Switch
+                    android:id="@+id/sbSendReminder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true" />
+
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/remind" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/etRemind"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:drawableRight="@drawable/ic_drop_down"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/auto_send"
+                    android:inputType="textVisiblePassword"
+                    android:text="1 day before"
+                    android:textColorHint="@color/colorEditTextHint"
+                    android:textSize="@dimen/text_size_custom_lang"
+                    app:met_baseColor="@color/colorEditText"
+                    app:met_errorColor="@color/color_validate_error"
+                    app:met_floatingLabel="none"
+                    app:met_floatingLabelPadding="10dp"
+                    app:met_floatingLabelTextColor="@color/colorEditText"
+                    app:met_primaryColor="@color/colorMain"
+                    app:met_textColor="@color/colorEditText"
+                    app:met_textColorHint="@color/colorEditTextHint"
+                    app:met_underlineColor="@color/colorTransparentImage" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/for_agents"
+                android:textColor="@color/colorBlueMain"
+                android:textSize="@dimen/text_size_custom_big" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Appointment Reminder Note" />
+
+                <Switch
+                    android:id="@+id/sbAgentReminderNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true" />
+            </RelativeLayout>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/etReminderAgentPrior"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:enabled="false"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:paddingRight="10dp"
+                android:textColorHint="@color/colorEditTextHint"
+                android:textSize="@dimen/text_size_custom_lang" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Follow up/Feedback Note" />
+
+                <Switch
+                    android:id="@+id/sbAgentFeedbackNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true" />
+            </RelativeLayout>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/etReminderAgentImmediately"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:enabled="false"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:paddingRight="10dp"
+                android:textColorHint="@color/colorEditTextHint"
+                android:textSize="@dimen/text_size_custom_lang" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:text="For Buyers"
+                android:textColor="@color/colorBlueMain"
+                android:textSize="@dimen/text_size_custom_big" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Appointment Reminder Note" />
+
+                <Switch
+                    android:id="@+id/sbBuyerReminderNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true" />
+            </RelativeLayout>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/etReminderBuyerPrior"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:enabled="false"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:paddingRight="10dp"
+                android:textColorHint="@color/colorEditTextHint"
+                android:textSize="@dimen/text_size_custom_lang" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Follow up/Feedback Note" />
+
+                <Switch
+                    android:id="@+id/sbBuyerFeedbackNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true" />
+            </RelativeLayout>
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/etReminderBuyerImmediately"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:enabled="false"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:paddingRight="10dp"
+                android:textColorHint="@color/colorEditTextHint"
+                android:textSize="@dimen/text_size_custom_lang" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="30dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btNext"
+                        style="?android:borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button_green_large"
+                        android:text="@string/next"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorText"
+                        android:textSize="18dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="2dp"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/ic_next" />
+
+            </FrameLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

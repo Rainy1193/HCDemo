@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:orientation="horizontal">
+
+    <com.vipul.hp_hp.timelineview.TimelineView
+        android:id="@+id/time_marker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:line="@color/timeline_bullet"
+        app:line_size="2dp"
+        app:marker="@drawable/timeline_bullet"
+        app:marker_size="15dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/timeline_bg_row"
+            android:clickable="false"
+            android:gravity="center_vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp">
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:background="@drawable/timeline_bg_row_triangle" />
+
+            <TextView
+                android:id="@+id/tx_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper quis lacus nec placerat. Pellentesque et tristique elit, vitae rhoncus orci"
+                android:textColor="@color/timeline_content_text" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tx_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:paddingTop="5dp"
+
+            android:text="Tue 5/17 10:06 pm"
+            android:textColor="@color/timeline_time"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:background="@drawable/touchable_background_white"
+        android:id="@+id/rlListing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:transitionName="@string/transition_name">
+
+        <ImageView
+            android:id="@+id/ivListingItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:transitionName="@string/transition_name"/>
+
+        <TextView
+            android:id="@+id/tvSaleType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="2dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="2dp"
+            android:text="POCKET"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_custom_normal"
+            android:visibility="gone"/>
+
+        <RelativeLayout
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_favorite">
+
+            <TextView
+                android:id="@+id/tvFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:onClick="favorite"
+                android:text="@string/icon_heart_full"
+                android:textColor="@color/colorGrayBackground"
+                android:textSize="20sp"/>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layoutInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bottom_gradient"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/layout_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <TextView android:id="@+id/text_name"
+                              android:layout_width="match_parent"
+                              android:layout_height="match_parent"
+                              android:foreground="?selectableItemBackgroundBorderless"
+                              android:background="@drawable/touchable_background_white"
+                              android:padding="16dp"/>
+
+                    <TextView
+                        android:id="@+id/tvType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:shadowColor="#000000"
+                        android:shadowDx="2"
+                        android:shadowDy="-2"
+                        android:shadowRadius="2"
+                        android:textColor="@color/colorText"
+                        android:textSize="@dimen/text_size_custom_title"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvAdd1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:shadowColor="#000000"
+                            android:shadowDx="2"
+                            android:shadowDy="-2"
+                            android:shadowRadius="2"
+                            android:textColor="@color/colorText"
+                            android:textSize="@dimen/text_size_custom_normal"/>
+
+                        <TextView
+                            android:id="@+id/tvCity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:shadowColor="#000000"
+                            android:shadowDx="2"
+                            android:shadowDy="-2"
+                            android:shadowRadius="2"
+                            android:textColor="@color/colorText"
+                            android:textSize="@dimen/text_size_custom_normal"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvBed"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="2"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/text_size_custom_normal"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="2"
+                                android:text="Beds"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/text_size_custom_normal"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvBath"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="2"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/text_size_custom_normal"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="2"
+                                android:text="Baths"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/text_size_custom_normal"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvSq"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="2"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/text_size_custom_normal"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:shadowColor="#000000"
+                                android:shadowDx="2"
+                                android:shadowDy="-2"
+                                android:shadowRadius="2"
+                                android:text="Sq.ft"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="@dimen/text_size_custom_normal"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</FrameLayout>
