@@ -24,12 +24,15 @@ import com.homecaravan.android.consumer.base.BaseActivity;
 import com.homecaravan.android.consumer.consumerbase.ConsumerUser;
 import com.homecaravan.android.consumer.consumermvp.contactmvp.CreateContactPresenter;
 import com.homecaravan.android.consumer.consumermvp.contactmvp.CreateContactView;
+import com.homecaravan.android.consumer.consumermvp.contactmvp.InviteContactPresenter;
+import com.homecaravan.android.consumer.consumermvp.contactmvp.InviteContactView;
 import com.homecaravan.android.consumer.model.ContactManagerData;
 import com.homecaravan.android.consumer.model.ContactSingleton;
 import com.homecaravan.android.consumer.model.EventContact;
 import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.listitem.FriendListItem;
 import com.homecaravan.android.consumer.model.responseapi.ContactData;
+import com.homecaravan.android.handling.ValidateData;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -40,15 +43,17 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-public class FriendListActivity extends BaseActivity implements FriendListAdapter.IPickFriend, CreateContactView {
+public class FriendListActivity extends BaseActivity implements FriendListAdapter.IPickFriend, CreateContactView, InviteContactView {
     private FriendListAdapter mFriendListAdapter;
     private FriendListPickAdapter mFriendListPickAdapter;
     private ArrayList<FriendListItem> mArrFriend = new ArrayList<>();
     private ArrayList<FriendListItem> mArrFriendPick = new ArrayList<>();
     private CreateContactPresenter mCreateContactPresenter;
+    private InviteContactPresenter mInviteContactPresenter;
     private int arr[] = {R.drawable.bg_avatar1, R.drawable.bg_avatar2, R.drawable.bg_avatar3,
             R.drawable.bg_avatar4, R.drawable.bg_avatar5, R.drawable.bg_avatar6};
     private int mCountRequest;
+    private String mCountryCode;
     @Bind(R.id.rvFriendList)
     RecyclerView mFriendList;
     @Bind(R.id.rvFriendListPicked)
@@ -86,16 +91,21 @@ public class FriendListActivity extends BaseActivity implements FriendListAdapte
     public void sendInvite() {
         showLoading();
         mCountRequest = mArrFriendPick.size();
+        String emails = "";
         for (int i = 0; i < mArrFriendPick.size(); i++) {
-            //mCreateContactPresenter.createContact(mArrFriendPick.get(i).getName(), mArrFriendPick.get(i).getPhone(), "", "", ConsumerUser.getInstance().getData().getId());
+            emails = emails + handlerPhone(mArrFriendPick.get(i).getPhone()) + ",";
         }
+        emails = emails.substring(0, emails.length() - 1);
+        mInviteContactPresenter.inviteContact(emails, false, "Welcome to HomeCaravan");
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mCountryCode = getIntent().getExtras().getString("countryCode");
         setUpListContact();
         mCreateContactPresenter = new CreateContactPresenter(this);
+        mInviteContactPresenter = new InviteContactPresenter(this);
     }
 
     @Override
@@ -274,5 +284,33 @@ public class FriendListActivity extends BaseActivity implements FriendListAdapte
     public void createContactFail(String message) {
         hideLoading();
         showSnackBar(findViewById(R.id.layoutMain), TypeDialog.SUCCESS, message, "createContact");
+    }
+
+    @Override
+    public void inviteSuccess() {
+        hideLoading();
+        showSnackBar(findViewById(R.id.layoutMain), TypeDialog.SUCCESS, "Send invite success", "createContact");
+    }
+
+    @Override
+    public void inviteFail(String message) {
+        hideLoading();
+        showSnackBar(findViewById(R.id.layoutMain), TypeDialog.WARNING, message, "createContact");
+    }
+
+    @Override
+    public void inviteFail(@StringRes int message) {
+        hideLoading();
+        showSnackBar(findViewById(R.id.layoutMain), TypeDialog.ERROR, message, "createContact");
+    }
+
+    public String handlerPhone(String data) {
+        if (ValidateData.isPhone(data)) {
+            if (data.startsWith("0")) {
+                return "+" + mCountryCode + data.substring(1);
+            }
+            return "+" + mCountryCode + data;
+        }
+        return data;
     }
 }

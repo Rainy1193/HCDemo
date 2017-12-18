@@ -236,12 +236,12 @@
                 android:padding="@dimen/padding_menu">
 
                 <ImageView
-                    android:padding="4dp"
                     android:id="@+id/imageView5"
                     android:layout_width="@dimen/icon_menu_consumer"
                     android:layout_height="@dimen/icon_menu_consumer"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/margin_menu"
+                    android:padding="4dp"
                     android:src="@drawable/ic_seller_property" />
 
                 <TextView
@@ -278,6 +278,32 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/menuContactManager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:selectableItemBackground"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_menu">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_menu_consumer"
+                    android:layout_height="@dimen/icon_menu_consumer"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/margin_menu"
+                    android:padding="3dp"
+                    android:src="@drawable/ic_contact_manager_menu" />
+
+                <TextView
+                    style="@style/TextViewMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/margin_menu1"
+                    android:text="Contact Manager" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/menuMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -295,10 +321,10 @@
                 <TextView
                     style="@style/TextViewMenu"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/margin_menu1"
+                    android:layout_weight="1"
                     android:text="@string/menu_message" />
 
                 <TextView
@@ -309,8 +335,8 @@
                     android:background="@drawable/bg_red_e1"
                     android:gravity="center"
                     android:textColor="@color/colorWhite"
-                    android:visibility="gone"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout

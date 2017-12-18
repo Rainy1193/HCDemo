@@ -367,5 +367,8 @@
         <item name="android:windowEnterAnimation">@anim/view_show</item>
         <item name="android:windowExitAnimation">@anim/view_hide</item>
     </style>
+    <style name="ProgressBarStyle">
+        <item name="colorAccent">#2C65D5</item>
+    </style>
 
 </resources>

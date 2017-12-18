@@ -40,6 +40,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -62,6 +63,7 @@ import com.homecaravan.android.consumer.listener.ISwipedHelper;
 import com.homecaravan.android.consumer.listener.IVoteListing;
 import com.homecaravan.android.consumer.model.CaravanQueue;
 import com.homecaravan.android.consumer.model.ClusterListingRender;
+import com.homecaravan.android.consumer.model.ClusterMarker;
 import com.homecaravan.android.consumer.model.CurrentCreateSavedSearch;
 import com.homecaravan.android.consumer.model.DiscoverMarker;
 import com.homecaravan.android.consumer.model.DiscoverMarkerFull;
@@ -71,8 +73,10 @@ import com.homecaravan.android.consumer.model.EventRequestShowing;
 import com.homecaravan.android.consumer.model.StatusMarker;
 import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.listitem.ListingItem;
+import com.homecaravan.android.consumer.model.responseapi.ClustersSearchMap;
 import com.homecaravan.android.consumer.model.responseapi.ConditionFull;
 import com.homecaravan.android.consumer.model.responseapi.ListingFull;
+import com.homecaravan.android.consumer.model.responseapi.ListingListSearchMap;
 import com.homecaravan.android.consumer.model.responseapi.ListingSearchMap;
 import com.homecaravan.android.consumer.model.responseapi.ResponseSearchMap;
 import com.homecaravan.android.consumer.model.responseapi.SearchDetail;
@@ -132,6 +136,9 @@ public class FragmentListSavedSearch extends BaseFragment implements
     private ClusterManager<DiscoverMarker> mClusterManager;
     private ArrayList<ListingItem> mArrListingSearch = new ArrayList<>();
     private ArrayList<ListingItem> mArrListingSearchBase = new ArrayList<>();
+    private ArrayList<ClusterMarker> mArrClusterMarker = new ArrayList<>();
+    private ArrayList<ListingListSearchMap> mArrListingList = new ArrayList<>();
+    private LatLngBounds mLatLngBounds;
     private Point mPointSw;
     private Point mPointNe;
     private boolean mMapReady;
@@ -143,7 +150,7 @@ public class FragmentListSavedSearch extends BaseFragment implements
     private Marker mOldMarker;
     private int mCurrentPosition = -1;
     private int mOldPosition = -1;
-
+    private boolean mFirstLoad;
     private int mPosition;
     private String mFt = "sale";
     private String mMaxPrice = "";
@@ -429,91 +436,6 @@ public class FragmentListSavedSearch extends BaseFragment implements
     }
 
 
-    /**
-     * Move map to marker when scroll mini list bottom
-     *
-     * @param id id of listing
-     */
-    public void moveToMarkerWhenScrollList(String id) {
-        for (int i = 0; i < mArrMarker.size(); i++) {
-            ListingItem consumerMapSearch = mArrMarker.get(i).getData();
-            if (consumerMapSearch.getListing().getId().equalsIgnoreCase(id)) {
-                LatLng latLng = new LatLng(Double.parseDouble(consumerMapSearch.getListing().getLat()),
-                        Double.parseDouble(consumerMapSearch.getListing().getLng()));
-                mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-                if (mOldPosition == -1) {
-                    updateMarker(null, mArrMarker.get(i).getMarker());
-                } else {
-                    updateMarker(mArrMarker.get(mOldPosition).getMarker(), mArrMarker.get(i).getMarker());
-                }
-            }
-        }
-    }
-
-
-    /**
-     * Update background marker apter view listing on map.
-     *
-     * @param oldMarker     marker visited
-     * @param currentMarker current marker click
-     */
-
-    public void updateMarker(Marker oldMarker, Marker currentMarker) {
-        IconGenerator iconFactory = new IconGenerator(getActivity());
-        ArrayList<DiscoverMarker> discoverMarkers = new ArrayList<>();
-        for (int i = 0; i < mArrMarker.size(); i++) {
-            if (mArrMarker.get(i).getMarker().isVisible()) {
-                discoverMarkers.add(mArrMarker.get(i));
-
-            }
-        }
-
-        for (int i = 0; i < discoverMarkers.size(); i++) {
-            Marker marker1 = discoverMarkers.get(i).getMarker();
-            if (currentMarker.getId().equalsIgnoreCase(marker1.getId())) {
-                marker1.setIcon(BitmapDescriptorFactory.fromBitmap(Utils.getIconGenerator(iconFactory, StatusMarker.SELECTED,
-                        getActivity(), discoverMarkers.get(i).getData().getListing().getPrice())
-                        .makeIcon()));
-                discoverMarkers.get(i).setStatus(StatusMarker.SELECTED);
-                openListWithMarkerSelected(i);
-            }
-            if (oldMarker != null) {
-                if (oldMarker.getId().equalsIgnoreCase(marker1.getId()) && !oldMarker.getId().equalsIgnoreCase(currentMarker.getId())) {
-                    marker1.setIcon(BitmapDescriptorFactory.fromBitmap(Utils.getIconGenerator(iconFactory, StatusMarker.HAVE_BEEN_VIEWED, getActivity(), discoverMarkers.get(i).getData().getListing().getPrice())
-                            .makeIcon()));
-                    discoverMarkers.get(i).setStatus(StatusMarker.HAVE_BEEN_VIEWED);
-                }
-            }
-        }
-        for (int i = 0; i < mArrMarker.size(); i++) {
-            Marker marker1 = mArrMarker.get(i).getMarker();
-            if (oldMarker != null) {
-                if (oldMarker.getId().equalsIgnoreCase(marker1.getId()) && !oldMarker.getId().equalsIgnoreCase(currentMarker.getId())) {
-                    marker1.setIcon(BitmapDescriptorFactory.fromBitmap(Utils.getIconGenerator(iconFactory, StatusMarker.HAVE_BEEN_VIEWED, getActivity(), mArrMarker.get(i).getData().getListing().getPrice())
-                            .makeIcon()));
-                    mArrMarker.get(i).setStatus(StatusMarker.HAVE_BEEN_VIEWED);
-                }
-            }
-        }
-    }
-
-    /**
-     * Show mini list bottom apter click marker map.
-     *
-     * @param position position show list.
-     */
-
-    public void openListWithMarkerSelected(final int position) {
-        AnimUtils.showViewFromBottom(mLayoutRvListing);
-        mRvListingMap.post(new Runnable() {
-            @Override
-            public void run() {
-                mRvListingMap.smoothScrollToPosition(position);
-            }
-        });
-    }
-
-
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         float x = motionEvent.getX();
@@ -550,63 +472,6 @@ public class FragmentListSavedSearch extends BaseFragment implements
     }
 
 
-    private void drawMap() {
-        mIsAttack = false;
-        CurrentCreateSavedSearch.getInstance().getListingId().clear();
-        mArrListingSearch.clear();
-        mRectOptions = new PolygonOptions();
-        mRectOptions.addAll(mArrLatLng);
-        mRectOptions.strokeWidth(mStroke);
-        mRectOptions.strokeColor(ContextCompat.getColor(getActivity(), R.color.colorMenuConsumer));
-        mPolyGon = mGoogleMap.addPolygon(mRectOptions);
-        mPolyGon.setFillColor(ContextCompat.getColor(getActivity(), R.color.colorFillArea));
-        for (int i = 0; i < mArrMarker.size(); i++) {
-            DiscoverMarker discoverMarker = mArrMarker.get(i);
-            if (PolyUtil.containsLocation(new LatLng(Double.parseDouble(discoverMarker.getData().getListing().getLat()),
-                    Double.parseDouble(discoverMarker.getData().getListing().getLng())), mArrLatLng, true)) {
-                discoverMarker.getMarker().setVisible(true);
-                mArrListingSearch.add(discoverMarker.getData());
-                CurrentCreateSavedSearch.getInstance().getListingId().add(discoverMarker.getData().getListing().getId());
-            } else {
-                discoverMarker.getMarker().setVisible(false);
-            }
-        }
-        ArrayList<Marker> markers = new ArrayList<>();
-        markers.addAll(mClusterManager.getClusterMarkerCollection().getMarkers());
-        for (int i = 0; i < markers.size(); i++) {
-            if (PolyUtil.containsLocation(markers.get(i).getPosition(), mArrLatLng, true)) {
-                markers.get(i).setVisible(true);
-            } else {
-                markers.get(i).setVisible(false);
-            }
-        }
-        mListAdapterSearch.clear();
-        mMapAdapterSearch.clear();
-        for (int i = 0; i < mArrListingSearch.size(); i++) {
-            ListingItem listingItem = new ListingItem();
-            listingItem.setListing(mArrListingSearch.get(i).getListing());
-
-            SearchMapItem searchMapItem = new SearchMapItem();
-            listingItem.setFavorite(mArrListingSearch.get(i).getListing().getFavorite());
-            searchMapItem.setListing(listingItem);
-            searchMapItem.setContext(getActivity());
-            searchMapItem.setPosition(i);
-            searchMapItem.setListener(this);
-
-            SearchListItem searchListItem = new SearchListItem();
-            searchListItem.setContext(getActivity());
-            listingItem.setFavorite(mArrListingSearch.get(i).getListing().getFavorite());
-            searchListItem.setListing(listingItem);
-            searchListItem.setPosition(i);
-            searchListItem.setListener(this);
-
-            mMapAdapterSearch.add(searchMapItem);
-            mListAdapterSearch.add(searchListItem);
-        }
-        mLayoutDraw.setVisibility(View.GONE);
-    }
-
-
     public void removeArea() {
         if (mPolyGon != null) {
             mPolyGon.remove();
@@ -616,41 +481,6 @@ public class FragmentListSavedSearch extends BaseFragment implements
         }
     }
 
-
-    public void refreshMap() {
-        mArrListingSearch.clear();
-        removeArea();
-        for (int i = 0; i < mArrMarker.size(); i++) {
-            DiscoverMarker discoverMarker = mArrMarker.get(i);
-            discoverMarker.getMarker().setVisible(true);
-            mArrListingSearch.add(mArrMarker.get(i).getData());
-        }
-
-        mListAdapterSearch.clear();
-        mMapAdapterSearch.clear();
-        for (int i = 0; i < mArrListingSearch.size(); i++) {
-            ListingItem listingItem = new ListingItem();
-            listingItem.setListing(mArrListingSearch.get(i).getListing());
-
-            SearchMapItem searchMapItem = new SearchMapItem();
-            searchMapItem.setPosition(i);
-            listingItem.setFavorite(mArrListingSearch.get(i).getListing().getFavorite());
-            searchMapItem.setListing(listingItem);
-            searchMapItem.setContext(getActivity());
-            searchMapItem.setListener(this);
-
-            SearchListItem searchListItem = new SearchListItem();
-            searchListItem.setContext(getActivity());
-            searchListItem.setPosition(i);
-            listingItem.setFavorite(mArrListingSearch.get(i).getListing().getFavorite());
-            searchListItem.setListing(listingItem);
-            searchListItem.setListener(this);
-
-            mMapAdapterSearch.add(searchMapItem);
-            mListAdapterSearch.add(searchListItem);
-        }
-        AnimUtils.hideViewFromBottom(mLayoutRvListing);
-    }
 
     public void clearMap() {
         removeArea();
@@ -713,11 +543,11 @@ public class FragmentListSavedSearch extends BaseFragment implements
             mDc = conditionFull.getDc() == null ? "" : conditionFull.getDc();
 
             if (CurrentSaveSearch.getInstance().getSearchDetail().getConditions().get(0).getSw() != null) {
-                LatLngBounds latLngBounds = new LatLngBounds(
+                mLatLngBounds = new LatLngBounds(
                         Utils.getPositionFromLocation(CurrentSaveSearch.getInstance().getSearchDetail().getConditions().get(0).getSw()),
                         Utils.getPositionFromLocation(CurrentSaveSearch.getInstance().getSearchDetail().getConditions().get(0).getNe()));
-                mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 0));
-                Log.e("latLngBounds", latLngBounds.toString());
+                mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(mLatLngBounds, 0));
+                Log.e("latLngBounds", mLatLngBounds.toString());
                 Log.e("cc", CurrentSaveSearch.getInstance().getSearchDetail().getConditions().get(0).getSw());
                 Log.e("cc", CurrentSaveSearch.getInstance().getSearchDetail().getConditions().get(0).getNe());
                 Log.e("sana", Utils.getPositionFromLocation(CurrentSaveSearch.getInstance().getSearchDetail().getConditions().get(0).getSw()).toString());
@@ -869,6 +699,20 @@ public class FragmentListSavedSearch extends BaseFragment implements
         mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+                for (int i = 0; i < mArrClusterMarker.size(); i++) {
+                    if (mArrClusterMarker.get(i).getMarker().getId().equalsIgnoreCase(marker.getId())) {
+                        mCallApiDev = true;
+                        if (mArrClusterMarker.get(i).getCluster().getDocCount() < 10) {
+                            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mArrClusterMarker.get(i).getMarker().getPosition(), 13f));
+                        } else if (mArrClusterMarker.get(i).getCluster().getDocCount() > 10 && mArrClusterMarker.get(i).getCluster().getDocCount() < 100) {
+                            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mArrClusterMarker.get(i).getMarker().getPosition(), 12f));
+                        } else {
+                            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mArrClusterMarker.get(i).getMarker().getPosition(), 11f));
+                        }
+                        return true;
+                    }
+                }
+
                 if (mSearchMapPresenter.getCall() != null) {
                     mSearchMapPresenter.cancelSearch();
                 }
@@ -895,6 +739,11 @@ public class FragmentListSavedSearch extends BaseFragment implements
         Log.e("mPointSw", mPointSw.toString());
         mNe = Utils.pointToLocationString(mPointNe, mGoogleMap);
         mSw = Utils.pointToLocationString(mPointSw, mGoogleMap);
+        if (!mFirstLoad && mLatLngBounds != null) {
+            mNe = Utils.locationString(mLatLngBounds.northeast);
+            mSw = Utils.locationString(mLatLngBounds.southwest);
+            mFirstLoad = true;
+        }
         Log.e("mNe", mNe);
         Log.e("mSw", mSw);
         if (!mMoreNotCallApi) {
@@ -951,6 +800,7 @@ public class FragmentListSavedSearch extends BaseFragment implements
 
     @Override
     public void searchMapSuccess(ResponseSearchMap responseSearchMap) {
+
         if (responseSearchMap.getData().getTotal() == 0) {
             mLayoutEmpty.setVisibility(View.VISIBLE);
             mRvListing.setVisibility(View.GONE);
@@ -960,7 +810,7 @@ public class FragmentListSavedSearch extends BaseFragment implements
         }
         mLayoutEmpty.setVisibility(View.GONE);
         mRvListing.setVisibility(View.VISIBLE);
-        handlerDataSearch(responseSearchMap.getData().getArrListing());
+        handlerDataSearch(responseSearchMap);
         mLayoutLoading.setVisibility(View.GONE);
     }
 
@@ -993,252 +843,6 @@ public class FragmentListSavedSearch extends BaseFragment implements
         mItemTouchHelper.closeOpenedPreItem();
     }
 
-    @Override
-    public void addMarkerList(DiscoverMarker discoverMarker) {
-        for (int i = 0; i < mArrMarker.size(); i++) {
-            if (discoverMarker.getData().getListing().getId().equalsIgnoreCase(mArrMarker.get(i).getData().getListing().getId())) {
-                return;
-            }
-        }
-        for (int j = 0; j < CaravanQueue.getInstance().getIds().size(); j++) {
-            if (discoverMarker.getData().getListing().getId().equalsIgnoreCase(CaravanQueue.getInstance().getIds().get(j))) {
-                discoverMarker.getData().setQueue(true);
-            }
-        }
-
-        mArrMarker.add(discoverMarker);
-        SearchMapItem searchMapItem = new SearchMapItem();
-        searchMapItem.setListing(discoverMarker.getData());
-        searchMapItem.setPosition(mArrMarker.size() - 1);
-        searchMapItem.setContext(getActivity());
-        searchMapItem.setListener(this);
-
-        SearchListItem searchListItem = new SearchListItem();
-        searchListItem.setContext(getActivity());
-        searchListItem.setPosition(mArrMarker.size() - 1);
-        searchListItem.setListing(discoverMarker.getData());
-        searchListItem.setListener(this);
-
-        mMapAdapterSearch.add(searchMapItem);
-        mListAdapterSearch.add(searchListItem);
-    }
-
-    @Override
-    public void addMarkerFullList(DiscoverMarkerFull discoverMarkerFull) {
-
-    }
-
-    @Override
-    public void onClusterItemRendered() {
-        createList();
-    }
-
-    @Override
-    public void beforeClusterRendered() {
-
-    }
-
-    @Override
-    public void onClustersChanged() {
-
-    }
-
-    @Override
-    public void voteListing(int position, String lid, String type, String reason) {
-        mPosition = position;
-        if (mSaveBeforeVote) {
-            if (type.equalsIgnoreCase("map")) {
-                if (reason.equalsIgnoreCase("scheduleMap")) {
-                    if (mMapAdapterSearch.getAdapterItem(position).getListing().isQueue()) {
-                        mMapAdapterSearch.getAdapterItem(position).getListing().setQueue(false);
-                        EventBus.getDefault().post(new EventQueue(false, mMapAdapterSearch.getAdapterItem(position).getListing().getListing().getId(),
-                                null, null, mMapAdapterSearch.getAdapterItem(position).getListing().getListing()));
-                    } else {
-                        mMapAdapterSearch.getAdapterItem(position).getListing().setQueue(true);
-                        EventBus.getDefault().post(new EventQueue(true, mMapAdapterSearch.getAdapterItem(position).getListing().getListing().getId(),
-                                null, null, mMapAdapterSearch.getAdapterItem(position).getListing().getListing()));
-                    }
-                }
-                if (reason.equalsIgnoreCase("favoriteMap")) {
-                    if (mMapAdapterSearch.getAdapterItem(position).getListing().isFavorite()) {
-                        mMapAdapterSearch.getAdapterItem(position).getListing().setFavorite(false);
-                        EventBus.getDefault().post(new EventFavorite(mMapAdapterSearch.getAdapterItem(position).getListing().getListing().getId(), false));
-                    } else {
-                        mMapAdapterSearch.getAdapterItem(position).getListing().setFavorite(true);
-                        EventBus.getDefault().post(new EventFavorite(mMapAdapterSearch.getAdapterItem(position).getListing().getListing().getId(), true));
-                    }
-                }
-                return;
-            }
-
-            if (type.equalsIgnoreCase("up")) {
-                if (reason.equalsIgnoreCase("schedule")) {
-                    if (mListAdapterSearch.getAdapterItem(position).getListing().isQueue()) {
-                        mListAdapterSearch.getAdapterItem(position).getListing().setQueue(false);
-                        EventBus.getDefault().post(new EventQueue(false, mListAdapterSearch.getAdapterItem(position).getListing().getListing().getId(), null, null, mListAdapterSearch.getAdapterItem(position).getListing().getListing()));
-                    } else {
-                        mListAdapterSearch.getAdapterItem(position).getListing().setQueue(true);
-                        EventBus.getDefault().post(new EventQueue(true, mListAdapterSearch.getAdapterItem(position).getListing().getListing().getId(), null, null, mListAdapterSearch.getAdapterItem(position).getListing().getListing()));
-                    }
-                }
-                if (reason.equalsIgnoreCase("favorite")) {
-
-                    if (mListAdapterSearch.getAdapterItem(position).getListing().isFavorite()) {
-                        mListAdapterSearch.getAdapterItem(position).getListing().setFavorite(false);
-                        EventBus.getDefault().post(new EventFavorite(mMapAdapterSearch.getAdapterItem(position).getListing().getListing().getId(), false));
-                    } else {
-                        mListAdapterSearch.getAdapterItem(position).getListing().setFavorite(true);
-                        EventBus.getDefault().post(new EventFavorite(mMapAdapterSearch.getAdapterItem(position).getListing().getListing().getId(), true));
-                    }
-                }
-                return;
-            }
-            showSnackBar(mLayoutMain, TypeDialog.MESSAGES, R.string.error_vote, "vote");
-        } else {
-            if (type.equalsIgnoreCase("map")) {
-                if (reason.equalsIgnoreCase("scheduleMap")) {
-                    if (mMapAdapterSearch.getAdapterItem(position).getListing().isQueue()) {
-                        mMapAdapterSearch.getAdapterItem(position).getListing().setQueue(false);
-                        EventBus.getDefault().post(new EventQueue(false, mMapAdapterSearch.getAdapterItem(position).getListing().getListing().getId(),
-                                null, null, mMapAdapterSearch.getAdapterItem(position).getListing().getListing()));
-                    } else {
-                        mMapAdapterSearch.getAdapterItem(position).getListing().setQueue(true);
-                        EventBus.getDefault().post(new EventQueue(true, mMapAdapterSearch.getAdapterItem(position).getListing().getListing().getId(),
-                                null, null, mMapAdapterSearch.getAdapterItem(position).getListing().getListing()));
-                    }
-                }
-                if (reason.equalsIgnoreCase("favoriteMap")) {
-                    if (mMapAdapterSearch.getAdapterItem(position).getListing().isFavorite()) {
-                        mMapAdapterSearch.getAdapterItem(position).getListing().setFavorite(false);
-                        EventBus.getDefault().post(new EventFavorite(mMapAdapterSearch.getAdapterItem(position).getListing().getListing().getId(), false));
-                    } else {
-                        mMapAdapterSearch.getAdapterItem(position).getListing().setFavorite(true);
-                        EventBus.getDefault().post(new EventFavorite(mMapAdapterSearch.getAdapterItem(position).getListing().getListing().getId(), true));
-                    }
-                }
-
-            } else {
-                if (type.equalsIgnoreCase("up")) {
-                    if (reason.equalsIgnoreCase("schedule")) {
-                        if (mListAdapterSearch.getAdapterItem(position).getListing().isQueue()) {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setQueue(false);
-                            EventBus.getDefault().post(new EventQueue(false, mListAdapterSearch.getAdapterItem(position).getListing().getListing().getId(), null, null, mListAdapterSearch.getAdapterItem(position).getListing().getListing()));
-                        } else {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setQueue(true);
-                            EventBus.getDefault().post(new EventQueue(true, mListAdapterSearch.getAdapterItem(position).getListing().getListing().getId(), null, null, mListAdapterSearch.getAdapterItem(position).getListing().getListing()));
-                        }
-                    }
-                    if (reason.equalsIgnoreCase("favorite")) {
-
-                        if (mListAdapterSearch.getAdapterItem(position).getListing().isFavorite()) {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setFavorite(false);
-                            EventBus.getDefault().post(new EventFavorite(mMapAdapterSearch.getAdapterItem(position).getListing().getListing().getId(), false));
-                        } else {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setFavorite(true);
-                            EventBus.getDefault().post(new EventFavorite(mMapAdapterSearch.getAdapterItem(position).getListing().getListing().getId(), true));
-                        }
-                    }
-                    if (reason.equalsIgnoreCase("super_vote")) {
-                        if (mListAdapterSearch.getAdapterItem(position).getListing().isSuperVote()) {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setSuperVote(false);
-                        } else {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setSuperVote(true);
-                        }
-                    }
-                    if (reason.equalsIgnoreCase("share")) {
-                        if (mListAdapterSearch.getAdapterItem(position).getListing().isShare()) {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setShare(false);
-                        } else {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setShare(true);
-                        }
-                    }
-
-                } else {
-                    if (reason.equalsIgnoreCase("size")) {
-                        if (mListAdapterSearch.getAdapterItem(position).getListing().isSize()) {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setSize(false);
-                        } else {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setSize(true);
-                        }
-                    }
-                    if (reason.equalsIgnoreCase("condition")) {
-                        if (mListAdapterSearch.getAdapterItem(position).getListing().isCondition()) {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setCondition(false);
-                        } else {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setCondition(true);
-                        }
-                    }
-                    if (reason.equalsIgnoreCase("location")) {
-                        if (mListAdapterSearch.getAdapterItem(position).getListing().isLocation()) {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setLocation(false);
-                        } else {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setLocation(true);
-                        }
-                    }
-                    if (reason.equalsIgnoreCase("price")) {
-                        if (mListAdapterSearch.getAdapterItem(position).getListing().isPrice()) {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setPrice(false);
-                        } else {
-                            mListAdapterSearch.getAdapterItem(position).getListing().setPrice(true);
-                        }
-                    }
-                }
-
-            }
-            mVotePresenter.voteListing(CurrentSaveSearch.getInstance().getId(), lid, type, reason, "note");
-            mMapAdapterSearch.notifyItemChanged(mPosition);
-            mListAdapterSearch.notifyItemChanged(mPosition);
-        }
-
-    }
-
-    public void handlerDataSearch(ArrayList<ListingSearchMap> listingsSearch) {
-        mRvListingMap.swapAdapter(mMapAdapterSearch, true);
-        mRvListing.swapAdapter(mListAdapterSearch, true);
-        mListAdapterSearch.clear();
-        mMapAdapterSearch.clear();
-        mArrListingSearch.clear();
-        mArrListingSearchBase.clear();
-        mArrMarker.clear();
-        mGoogleMap.clear();
-        mCurrentMarker = null;
-        mOldMarker = null;
-        mCurrentPosition = -1;
-        mOldPosition = -1;
-        mIsAttack = false;
-        createMarker(listingsSearch);
-    }
-
-    public void createList() {
-        mArrListingSearch.clear();
-        mArrListingSearchBase.clear();
-        if (mArrMarker.size() == 0) {
-            mLayoutEmpty.setVisibility(View.VISIBLE);
-            mRvListing.setVisibility(View.GONE);
-        } else {
-            mLayoutEmpty.setVisibility(View.GONE);
-            mRvListing.setVisibility(View.VISIBLE);
-            for (int i = 0; i < mArrMarker.size(); i++) {
-                mArrListingSearch.add(mArrMarker.get(i).getData());
-                mArrListingSearchBase.add(mArrMarker.get(i).getData());
-            }
-        }
-    }
-
-
-    public void createMarker(ArrayList<ListingSearchMap> listingsSearch) {
-        mClusterManager.clearItems();
-        for (int i = 0; i < listingsSearch.size(); i++) {
-            ListingItem listingItem = new ListingItem();
-            listingItem.setListing(listingsSearch.get(i));
-            listingItem.setFavorite(listingsSearch.get(i).getFavorite());
-            DiscoverMarker discoverMarker = new DiscoverMarker(null, StatusMarker.HAVE_NOT_BEEN_VIEWED, listingItem);
-            CurrentCreateSavedSearch.getInstance().getListingId().add(listingsSearch.get(i).getId());
-            mClusterManager.addItem(discoverMarker);
-        }
-        mClusterManager.cluster();
-
-    }
 
     @Override
     public void saveSearchSuccess(SearchDetail searchDetail) {
@@ -1308,7 +912,7 @@ public class FragmentListSavedSearch extends BaseFragment implements
         map.put("max_yb", Utils.creteRbSearchMap(maxYear));
         map.put("dc", Utils.creteRbSearchMap(dayCaravan));
         map.put("pt", Utils.creteRbSearchMap(properType));
-
+        map.put("zm", Utils.creteRbSearchMap(String.valueOf((int) mGoogleMap.getCameraPosition().zoom)));
         return map;
     }
 
@@ -1378,5 +982,600 @@ public class FragmentListSavedSearch extends BaseFragment implements
 
     public boolean isViewMap() {
         return mShowMap;
+    }
+
+    public void handlerDataSearch(ResponseSearchMap responseSearchMap) {
+        mRvListingMap.swapAdapter(mMapAdapterSearch, true);
+        mRvListing.swapAdapter(mListAdapterSearch, true);
+        mArrListingList.clear();
+        mArrListingList.addAll(responseSearchMap.getData().getArrListingList());
+        mListAdapterSearch.clear();
+        mMapAdapterSearch.clear();
+        mArrListingSearch.clear();
+        mArrListingSearchBase.clear();
+        mArrMarker.clear();
+        mGoogleMap.clear();
+        mArrClusterMarker.clear();
+
+        Log.e("mCurrentPosition", String.valueOf(mCurrentPosition));
+        Log.e("mOldPosition", String.valueOf(mOldPosition));
+
+        mCurrentMarker = null;
+        mOldMarker = null;
+        mCurrentPosition = -1;
+        mOldPosition = -1;
+        mIsAttack = false;
+
+//        ArrayList<ListingSearchMap> listingSearchMap = new ArrayList<>();
+//        listingSearchMap.addAll(responseSearchMap.getData().getArrListing());
+//        ArrayList<ListingSearchMap> listingSearchMap1 = new ArrayList<>();
+//        listingSearchMap1.addAll(responseSearchMap.getData().getArrListing());
+//        Log.e("listingSearchMap", String.valueOf(listingSearchMap.size()));
+//        Log.e("mArrListingSearch", String.valueOf(mArrListingSearch.size()));
+//        Log.e("mArrListingSearchBase", String.valueOf(mArrListingSearchBase.size()));
+//        for (int i = 0; i < listingSearchMap.size(); i++) {
+//            for (int j = 0; j < mArrListingSearch.size(); j++) {
+//                if (listingSearchMap.get(i).getId().equalsIgnoreCase(mArrListingSearch.get(j).getListing().getId())) {
+//                    Log.e("Cc", "Cc");
+//                    listingSearchMap.remove(i);
+//                    i--;
+//                }
+//            }
+//        }
+//
+//        ArrayList<ListingItem> listingItem = new ArrayList<>();
+//        int count = 0;
+//        for (int i = 0; i < mArrListingSearch.size(); i++) {
+//            for (int j = 0; j < listingSearchMap1.size(); j++) {
+//                if (!mArrListingSearch.get(i).getListing().getId().equalsIgnoreCase(listingSearchMap1.get(j).getId())) {
+//                    count++;
+//                }
+//            }
+//            if (count == listingSearchMap1.size()) {
+//                listingItem.add(mArrListingSearch.get(i));
+//                mArrListingSearch.remove(i);
+//                i--;
+//            }
+//            count = 0;
+//        }
+//
+//        for (int i = 0; i < listingItem.size(); i++) {
+//            for (int j = 0; j < mArrMarker.size(); j++) {
+//                if (listingItem.get(i).getListing().getId().equalsIgnoreCase(mArrMarker.get(j).getData().getListing().getId())) {
+//                    mArrMarker.get(j).getMarker().remove();
+//                    mArrMarker.remove(j);
+//                    j--;
+//                }
+//            }
+//        }
+//
+//        for (int i = 0; i < listingItem.size(); i++) {
+//            for (int j = 0; j < mMapAdapterSearch.getItemCount(); j++) {
+//                if (listingItem.get(i).getListing().getId().equalsIgnoreCase(mMapAdapterSearch.getAdapterItem(j).getListing().getListing().getId())) {
+//                    mMapAdapterSearch.remove(j);
+//                    j--;
+//                }
+//            }
+//        }
+
+        createCluster(responseSearchMap.getData().getArrCluster());
+        createMarker(responseSearchMap.getData().getArrListing());
+        createList();
+    }
+
+    public void createList() {
+        if (mArrListingList.size() == 0) {
+            mLayoutEmpty.setVisibility(View.VISIBLE);
+            mRvListing.setVisibility(View.GONE);
+        } else {
+            mLayoutEmpty.setVisibility(View.GONE);
+            mRvListing.setVisibility(View.VISIBLE);
+        }
+        for (int i = 0; i < mArrListingList.size(); i++) {
+            ListingItem listingItem = new ListingItem();
+            ListingSearchMap listingSearchMap = new ListingSearchMap();
+            ListingListSearchMap listingListSearchMap = mArrListingList.get(i);
+            listingSearchMap.setAddress1(listingListSearchMap.getAddress1());
+            listingSearchMap.setAddress2(listingListSearchMap.getAddress2());
+            listingSearchMap.setBaths(listingListSearchMap.getBaths());
+            listingSearchMap.setBeds(listingListSearchMap.getBeds());
+            listingSearchMap.setFavorite(listingListSearchMap.getFavorite());
+            listingSearchMap.setId(listingListSearchMap.getId());
+            listingSearchMap.setLat(listingListSearchMap.getLat());
+            listingSearchMap.setLng(listingListSearchMap.getLng());
+            listingSearchMap.setPool(listingListSearchMap.getPool());
+            listingSearchMap.setThumbnail(listingListSearchMap.getThumbnail());
+            listingSearchMap.setPrice(listingListSearchMap.getPrice());
+            listingSearchMap.setLivingSquare(listingListSearchMap.getLivingSquare());
+            listingItem.setListing(listingSearchMap);
+            for (int j = 0; j < CaravanQueue.getInstance().getIds().size(); j++) {
+                if (listingItem.getListing().getId().equalsIgnoreCase(CaravanQueue.getInstance().getIds().get(j))) {
+                    listingItem.setQueue(true);
+                }
+            }
+            listingItem.setFavorite(listingListSearchMap.getFavorite());
+            SearchListItem searchListItem = new SearchListItem();
+            searchListItem.setContext(getActivity());
+            searchListItem.setPosition(mArrMarker.size() - 1);
+            searchListItem.setListing(listingItem);
+            searchListItem.setListener(this);
+            mListAdapterSearch.add(searchListItem);
+        }
+
+    }
+
+    public void createMarker(ArrayList<ListingSearchMap> listingsSearch) {
+        mClusterManager.clearItems();
+        for (int i = 0; i < listingsSearch.size(); i++) {
+            ListingItem listingItem = new ListingItem();
+            listingItem.setListing(listingsSearch.get(i));
+            listingItem.setFavorite(listingsSearch.get(i).getFavorite());
+            DiscoverMarker discoverMarker = new DiscoverMarker(null, StatusMarker.HAVE_NOT_BEEN_VIEWED, listingItem);
+            CurrentCreateSavedSearch.getInstance().getListingId().add(listingsSearch.get(i).getId());
+            mClusterManager.addItem(discoverMarker);
+        }
+        mClusterManager.cluster();
+    }
+
+    public void createCluster(ArrayList<ClustersSearchMap> clusterSearch) {
+
+        IconGenerator iconGenerator = new IconGenerator(getContext());
+        for (int i = 0; i < clusterSearch.size(); i++) {
+            ClustersSearchMap clusters = clusterSearch.get(i);
+            if (clusters.getBounds().getBottomRight().getLat() == clusters.getBounds().getTopLeft().getLat() &&
+                    clusters.getBounds().getBottomRight().getLon() == clusters.getBounds().getTopLeft().getLon()) {
+                clusters.setTwoListing(true);
+            }
+            MarkerOptions markerOptions = new MarkerOptions();
+            if (clusters.isTwoListing()) {
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(Utils.getIconGeneratorClusterTwoListing(iconGenerator, getContext()).makeIcon()));
+            } else {
+                markerOptions.icon(BitmapDescriptorFactory.fromBitmap(Utils.getIconGeneratorCluster(iconGenerator, clusters, getContext()).makeIcon()));
+            }
+            markerOptions.position(new LatLng(clusters.getLocation().getLat(), clusters.getLocation().getLon()));
+            Marker marker = mGoogleMap.addMarker(markerOptions);
+            ClusterMarker clusterMarker = new ClusterMarker(marker, clusters);
+            mArrClusterMarker.add(clusterMarker);
+        }
+    }
+
+    public void moveToMarkerWhenScrollList(String id) {
+        for (int i = 0; i < mArrMarker.size(); i++) {
+            ListingItem consumerMapSearch = mArrMarker.get(i).getData();
+            if (consumerMapSearch.getListing().getId().equalsIgnoreCase(id)) {
+                LatLng latLng = new LatLng(Double.parseDouble(consumerMapSearch.getListing().getLat()),
+                        Double.parseDouble(consumerMapSearch.getListing().getLng()));
+                mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                if (mOldPosition == -1) {
+                    updateMarker(null, mArrMarker.get(i).getMarker());
+                } else {
+                    updateMarker(mArrMarker.get(mOldPosition).getMarker(), mArrMarker.get(i).getMarker());
+                }
+            }
+        }
+    }
+
+    public void updateMarker(Marker oldMarker, Marker currentMarker) {
+        IconGenerator iconFactory = new IconGenerator(getActivity());
+        ArrayList<DiscoverMarker> discoverMarkers = new ArrayList<>();
+        for (int i = 0; i < mArrMarker.size(); i++) {
+            if (mArrMarker.get(i).getMarker().isVisible()) {
+                discoverMarkers.add(mArrMarker.get(i));
+
+            }
+        }
+
+        for (int i = 0; i < discoverMarkers.size(); i++) {
+            Marker marker1 = discoverMarkers.get(i).getMarker();
+            if (currentMarker.getId().equalsIgnoreCase(marker1.getId())) {
+                marker1.setIcon(BitmapDescriptorFactory.fromBitmap(Utils.getIconGeneratorRound(iconFactory, StatusMarker.SELECTED,
+                        getActivity(), discoverMarkers.get(i).getData().getListing().getPrice())
+                        .makeIcon()));
+                discoverMarkers.get(i).setStatus(StatusMarker.SELECTED);
+                openListWithMarkerSelected(i);
+            }
+            if (oldMarker != null) {
+                if (oldMarker.getId().equalsIgnoreCase(marker1.getId()) && !oldMarker.getId().equalsIgnoreCase(currentMarker.getId())) {
+                    marker1.setIcon(BitmapDescriptorFactory.fromBitmap(Utils.getIconGeneratorRound(iconFactory, StatusMarker.HAVE_BEEN_VIEWED, getActivity(), discoverMarkers.get(i).getData().getListing().getPrice())
+                            .makeIcon()));
+                    discoverMarkers.get(i).setStatus(StatusMarker.HAVE_BEEN_VIEWED);
+                }
+            }
+        }
+        for (int i = 0; i < mArrMarker.size(); i++) {
+            Marker marker1 = mArrMarker.get(i).getMarker();
+            if (oldMarker != null) {
+                if (oldMarker.getId().equalsIgnoreCase(marker1.getId()) && !oldMarker.getId().equalsIgnoreCase(currentMarker.getId())) {
+                    marker1.setIcon(BitmapDescriptorFactory.fromBitmap(Utils.getIconGeneratorRound(iconFactory, StatusMarker.HAVE_BEEN_VIEWED, getActivity(), mArrMarker.get(i).getData().getListing().getPrice())
+                            .makeIcon()));
+                    mArrMarker.get(i).setStatus(StatusMarker.HAVE_BEEN_VIEWED);
+                }
+            }
+        }
+    }
+
+    public void openListWithMarkerSelected(final int position) {
+        AnimUtils.showViewFromBottom(mLayoutRvListing);
+        mRvListingMap.post(new Runnable() {
+            @Override
+            public void run() {
+                mRvListingMap.smoothScrollToPosition(position);
+            }
+        });
+    }
+
+    private void drawMap() {
+        mIsAttack = false;
+        CurrentCreateSavedSearch.getInstance().getListingId().clear();
+        mArrListingSearch.clear();
+        mRectOptions = new PolygonOptions();
+        mRectOptions.addAll(mArrLatLng);
+        mRectOptions.strokeWidth(mStroke);
+        mRectOptions.strokeColor(ContextCompat.getColor(getActivity(), R.color.colorMenuConsumer));
+        mPolyGon = mGoogleMap.addPolygon(mRectOptions);
+        mPolyGon.setFillColor(ContextCompat.getColor(getActivity(), R.color.colorFillArea));
+        for (int i = 0; i < mArrMarker.size(); i++) {
+            DiscoverMarker discoverMarker = mArrMarker.get(i);
+            if (PolyUtil.containsLocation(new LatLng(Double.parseDouble(discoverMarker.getData().getListing().getLat()),
+                    Double.parseDouble(discoverMarker.getData().getListing().getLng())), mArrLatLng, true)) {
+                discoverMarker.getMarker().setVisible(true);
+                mArrListingSearch.add(discoverMarker.getData());
+                CurrentCreateSavedSearch.getInstance().getListingId().add(discoverMarker.getData().getListing().getId());
+            } else {
+                discoverMarker.getMarker().setVisible(false);
+            }
+        }
+        ArrayList<Marker> markers = new ArrayList<>();
+        markers.addAll(mClusterManager.getClusterMarkerCollection().getMarkers());
+        for (int i = 0; i < markers.size(); i++) {
+            if (PolyUtil.containsLocation(markers.get(i).getPosition(), mArrLatLng, true)) {
+                markers.get(i).setVisible(true);
+            } else {
+                markers.get(i).setVisible(false);
+            }
+        }
+        for (int i = 0; i < mArrClusterMarker.size(); i++) {
+            if (PolyUtil.containsLocation(mArrClusterMarker.get(i).getMarker().getPosition(), mArrLatLng, true)) {
+                mArrClusterMarker.get(i).getMarker().setVisible(true);
+            } else {
+                mArrClusterMarker.get(i).getMarker().setVisible(false);
+            }
+        }
+        mListAdapterSearch.clear();
+        mMapAdapterSearch.clear();
+        for (int i = 0; i < mArrListingSearch.size(); i++) {
+            ListingItem listingItem = new ListingItem();
+            listingItem.setListing(mArrListingSearch.get(i).getListing());
+
+            SearchMapItem searchMapItem = new SearchMapItem();
+            listingItem.setFavorite(mArrListingSearch.get(i).getListing().getFavorite());
+            searchMapItem.setListing(listingItem);
+            searchMapItem.setContext(getActivity());
+            searchMapItem.setPosition(i);
+            searchMapItem.setListener(this);
+
+            SearchListItem searchListItem = new SearchListItem();
+            searchListItem.setContext(getActivity());
+            listingItem.setFavorite(mArrListingSearch.get(i).getListing().getFavorite());
+            searchListItem.setListing(listingItem);
+            searchListItem.setPosition(i);
+            searchListItem.setListener(this);
+            mMapAdapterSearch.add(searchMapItem);
+            mListAdapterSearch.add(searchListItem);
+        }
+        mRvListing.getAdapter().notifyDataSetChanged();
+        mLayoutDraw.setVisibility(View.GONE);
+    }
+
+    public void refreshMap() {
+        mArrListingSearch.clear();
+        removeArea();
+        for (int i = 0; i < mArrMarker.size(); i++) {
+            DiscoverMarker discoverMarker = mArrMarker.get(i);
+            discoverMarker.getMarker().setVisible(true);
+            mArrListingSearch.add(mArrMarker.get(i).getData());
+        }
+        for (int i = 0; i < mArrClusterMarker.size(); i++) {
+            mArrClusterMarker.get(i).getMarker().setVisible(true);
+        }
+        mListAdapterSearch.clear();
+        mMapAdapterSearch.clear();
+        for (int i = 0; i < mArrListingSearch.size(); i++) {
+            ListingItem listingItem = new ListingItem();
+            listingItem.setListing(mArrListingSearch.get(i).getListing());
+
+            SearchMapItem searchMapItem = new SearchMapItem();
+            searchMapItem.setPosition(i);
+            listingItem.setFavorite(mArrListingSearch.get(i).getListing().getFavorite());
+            searchMapItem.setListing(listingItem);
+            searchMapItem.setContext(getActivity());
+            searchMapItem.setListener(this);
+            mMapAdapterSearch.add(searchMapItem);
+        }
+        for (int i = 0; i < mArrListingList.size(); i++) {
+            ListingItem listingItem = new ListingItem();
+            ListingSearchMap listingSearchMap = new ListingSearchMap();
+            ListingListSearchMap listingListSearchMap = mArrListingList.get(i);
+            listingSearchMap.setAddress1(listingListSearchMap.getAddress1());
+            listingSearchMap.setAddress2(listingListSearchMap.getAddress2());
+            listingSearchMap.setBaths(listingListSearchMap.getBaths());
+            listingSearchMap.setBeds(listingListSearchMap.getBeds());
+            listingSearchMap.setFavorite(listingListSearchMap.getFavorite());
+            listingSearchMap.setId(listingListSearchMap.getId());
+            listingSearchMap.setLat(listingListSearchMap.getLat());
+            listingSearchMap.setLng(listingListSearchMap.getLng());
+            listingSearchMap.setPool(listingListSearchMap.getPool());
+            listingSearchMap.setThumbnail(listingListSearchMap.getThumbnail());
+            listingSearchMap.setPrice(listingListSearchMap.getPrice());
+            listingSearchMap.setLivingSquare(listingListSearchMap.getLivingSquare());
+            listingItem.setListing(listingSearchMap);
+            for (int j = 0; j < CaravanQueue.getInstance().getIds().size(); j++) {
+                if (listingItem.getListing().getId().equalsIgnoreCase(CaravanQueue.getInstance().getIds().get(j))) {
+                    listingItem.setQueue(true);
+                }
+            }
+            listingItem.setFavorite(listingListSearchMap.getFavorite());
+            SearchListItem searchListItem = new SearchListItem();
+            searchListItem.setContext(getActivity());
+            searchListItem.setPosition(mArrMarker.size() - 1);
+            searchListItem.setListing(listingItem);
+            searchListItem.setListener(this);
+            mListAdapterSearch.add(searchListItem);
+        }
+        AnimUtils.hideViewFromBottom(mLayoutRvListing);
+    }
+
+    public void clearSearch() {
+        mArrListingSearch.clear();
+        mCurrentMarker = null;
+        mOldMarker = null;
+        mCurrentPosition = -1;
+        mOldPosition = -1;
+        mIsAttack = false;
+        removeArea();
+        IconGenerator iconFactory = new IconGenerator(getActivity());
+        for (int i = 0; i < mArrMarker.size(); i++) {
+            Marker marker1 = mArrMarker.get(i).getMarker();
+            marker1.setVisible(true);
+            marker1.setIcon(BitmapDescriptorFactory.fromBitmap(Utils.getIconGeneratorRound(iconFactory, StatusMarker.HAVE_NOT_BEEN_VIEWED,
+                    getActivity(), mArrMarker.get(i).getData().getListing().getPrice()).makeIcon()));
+            mArrMarker.get(i).setStatus(StatusMarker.HAVE_NOT_BEEN_VIEWED);
+            mArrListingSearch.add(mArrMarker.get(i).getData());
+        }
+        AnimUtils.hideViewFromBottom(mLayoutRvListing);
+    }
+
+
+    @Override
+    public void addMarkerList(DiscoverMarker discoverMarker) {
+
+        for (int i = 0; i < mArrMarker.size(); i++) {
+            if (discoverMarker.getData().getListing().getId().equalsIgnoreCase(mArrMarker.get(i).getData().getListing().getId())) {
+                return;
+            }
+        }
+        for (int j = 0; j < CaravanQueue.getInstance().getIds().size(); j++) {
+            if (discoverMarker.getData().getListing().getId().equalsIgnoreCase(CaravanQueue.getInstance().getIds().get(j))) {
+                discoverMarker.getData().setQueue(true);
+            }
+        }
+
+        mArrMarker.add(discoverMarker);
+        SearchMapItem searchMapItem = new SearchMapItem();
+        searchMapItem.setListing(discoverMarker.getData());
+        searchMapItem.setPosition(mArrMarker.size() - 1);
+        searchMapItem.setContext(getActivity());
+        searchMapItem.setListener(this);
+        mMapAdapterSearch.add(searchMapItem);
+    }
+
+    @Override
+    public void onClusterItemRendered() {
+
+        mArrListingSearch.clear();
+        mArrListingSearchBase.clear();
+        for (int i = 0; i < mArrMarker.size(); i++) {
+            mArrListingSearch.add(mArrMarker.get(i).getData());
+            mArrListingSearchBase.add(mArrMarker.get(i).getData());
+        }
+    }
+
+
+    @Override
+    public void beforeClusterRendered() {
+
+    }
+
+    @Override
+    public void onClustersChanged() {
+
+    }
+
+    @Override
+    public void addMarkerFullList(DiscoverMarkerFull discoverMarkerFull) {
+
+    }
+
+    @Override
+    public void voteListing(int position, String lid, String type, String reason) {
+
+        if (mSaveBeforeVote) {
+            if (type.equalsIgnoreCase("map")) {
+                SearchMapItem searchMapItem = null;
+                int mPosition = 0;
+                for (int i = 0; i < mMapAdapterSearch.getItemCount(); i++) {
+                    if (mMapAdapterSearch.getAdapterItem(i).getListing().getListing().getId().equalsIgnoreCase(lid)) {
+                        searchMapItem = mMapAdapterSearch.getAdapterItem(i);
+                        mPosition = i;
+                    }
+                }
+                if (reason.equalsIgnoreCase("scheduleMap")) {
+                    if (searchMapItem.getListing().isQueue()) {
+                        searchMapItem.getListing().setQueue(false);
+                        EventBus.getDefault().post(new EventQueue(false, searchMapItem.getListing().getListing().getId(),
+                                null, null, searchMapItem.getListing().getListing()));
+                    } else {
+                        searchMapItem.getListing().setQueue(true);
+                        EventBus.getDefault().post(new EventQueue(true, searchMapItem.getListing().getListing().getId(),
+                                null, null, searchMapItem.getListing().getListing()));
+                    }
+                }
+                if (reason.equalsIgnoreCase("favoriteMap")) {
+                    if (searchMapItem.getListing().isFavorite()) {
+                        searchMapItem.getListing().setFavorite(false);
+                        EventBus.getDefault().post(new EventFavorite(searchMapItem.getListing().getListing().getId(), false));
+                    } else {
+                        searchMapItem.getListing().setFavorite(true);
+                        EventBus.getDefault().post(new EventFavorite(searchMapItem.getListing().getListing().getId(), true));
+                    }
+                }
+                mMapAdapterSearch.notifyItemChanged(mPosition);
+                return;
+            }
+
+            if (type.equalsIgnoreCase("up")) {
+                int mPosition = 0;
+                SearchListItem searchListItem = null;
+                for (int i = 0; i < mListAdapterSearch.getItemCount(); i++) {
+                    if (mListAdapterSearch.getAdapterItem(i).getListing().getListing().getId().equalsIgnoreCase(lid)) {
+                        searchListItem = mListAdapterSearch.getAdapterItem(i);
+                        mPosition = i;
+                    }
+                }
+                if (reason.equalsIgnoreCase("schedule")) {
+                    if (searchListItem.getListing().isQueue()) {
+                        searchListItem.getListing().setQueue(false);
+                        EventBus.getDefault().post(new EventQueue(false, searchListItem.getListing().getListing().getId(), null, null, searchListItem.getListing().getListing()));
+                    } else {
+                        searchListItem.getListing().setQueue(true);
+                        EventBus.getDefault().post(new EventQueue(true, searchListItem.getListing().getListing().getId(), null, null, searchListItem.getListing().getListing()));
+                    }
+                }
+                if (reason.equalsIgnoreCase("favorite")) {
+
+                    if (searchListItem.getListing().isFavorite()) {
+                        searchListItem.getListing().setFavorite(false);
+                        EventBus.getDefault().post(new EventFavorite(searchListItem.getListing().getListing().getId(), false));
+                    } else {
+                        searchListItem.getListing().setFavorite(true);
+                        EventBus.getDefault().post(new EventFavorite(searchListItem.getListing().getListing().getId(), true));
+                    }
+                }
+                mListAdapterSearch.notifyItemChanged(mPosition);
+                return;
+            }
+            showSnackBar(mLayoutMain, TypeDialog.MESSAGES, R.string.error_vote, "vote");
+        } else {
+            if (type.equalsIgnoreCase("map")) {
+                SearchMapItem searchMapItem = null;
+                int mPosition = 0;
+                for (int i = 0; i < mMapAdapterSearch.getItemCount(); i++) {
+                    if (mMapAdapterSearch.getAdapterItem(i).getListing().getListing().getId().equalsIgnoreCase(lid)) {
+                        searchMapItem = mMapAdapterSearch.getAdapterItem(i);
+                        mPosition = i;
+                    }
+                }
+                if (reason.equalsIgnoreCase("scheduleMap")) {
+                    if (searchMapItem.getListing().isQueue()) {
+                        searchMapItem.getListing().setQueue(false);
+                        EventBus.getDefault().post(new EventQueue(false, searchMapItem.getListing().getListing().getId(),
+                                null, null, searchMapItem.getListing().getListing()));
+                    } else {
+                        searchMapItem.getListing().setQueue(true);
+                        EventBus.getDefault().post(new EventQueue(true, searchMapItem.getListing().getListing().getId(),
+                                null, null, searchMapItem.getListing().getListing()));
+                    }
+                }
+                if (reason.equalsIgnoreCase("favoriteMap")) {
+                    if (searchMapItem.getListing().isFavorite()) {
+                        searchMapItem.getListing().setFavorite(false);
+                        EventBus.getDefault().post(new EventFavorite(searchMapItem.getListing().getListing().getId(), false));
+                    } else {
+                        searchMapItem.getListing().setFavorite(true);
+                        EventBus.getDefault().post(new EventFavorite(searchMapItem.getListing().getListing().getId(), true));
+                    }
+                }
+                mMapAdapterSearch.notifyItemChanged(mPosition);
+            } else {
+                int mPosition = 0;
+                SearchListItem searchListItem = null;
+                for (int i = 0; i < mListAdapterSearch.getItemCount(); i++) {
+                    if (mListAdapterSearch.getAdapterItem(i).getListing().getListing().getId().equalsIgnoreCase(lid)) {
+                        searchListItem = mListAdapterSearch.getAdapterItem(i);
+                        mPosition = i;
+                    }
+                }
+                if (type.equalsIgnoreCase("up")) {
+
+                    if (reason.equalsIgnoreCase("schedule")) {
+                        if (searchListItem.getListing().isQueue()) {
+                            searchListItem.getListing().setQueue(false);
+                            EventBus.getDefault().post(new EventQueue(false, searchListItem.getListing().getListing().getId(), null, null, searchListItem.getListing().getListing()));
+                        } else {
+                            searchListItem.getListing().setQueue(true);
+                            EventBus.getDefault().post(new EventQueue(true, searchListItem.getListing().getListing().getId(), null, null, searchListItem.getListing().getListing()));
+                        }
+                    }
+                    if (reason.equalsIgnoreCase("favorite")) {
+
+                        if (searchListItem.getListing().isFavorite()) {
+                            searchListItem.getListing().setFavorite(false);
+                            EventBus.getDefault().post(new EventFavorite(searchListItem.getListing().getListing().getId(), false));
+                        } else {
+                            searchListItem.getListing().setFavorite(true);
+                            EventBus.getDefault().post(new EventFavorite(searchListItem.getListing().getListing().getId(), true));
+                        }
+                    }
+                    if (reason.equalsIgnoreCase("super_vote")) {
+                        if (searchListItem.getListing().isSuperVote()) {
+                            searchListItem.getListing().setSuperVote(false);
+                        } else {
+                            searchListItem.getListing().setSuperVote(true);
+                        }
+                    }
+                    if (reason.equalsIgnoreCase("share")) {
+                        if (searchListItem.getListing().isShare()) {
+                            searchListItem.getListing().setShare(false);
+                        } else {
+                            searchListItem.getListing().setShare(true);
+                        }
+                    }
+
+                } else {
+                    if (reason.equalsIgnoreCase("size")) {
+                        if (searchListItem.getListing().isSize()) {
+                            searchListItem.getListing().setSize(false);
+                        } else {
+                            searchListItem.getListing().setSize(true);
+                        }
+                    }
+                    if (reason.equalsIgnoreCase("condition")) {
+                        if (searchListItem.getListing().isCondition()) {
+                            searchListItem.getListing().setCondition(false);
+                        } else {
+                            searchListItem.getListing().setCondition(true);
+                        }
+                    }
+                    if (reason.equalsIgnoreCase("location")) {
+                        if (searchListItem.getListing().isLocation()) {
+                            searchListItem.getListing().setLocation(false);
+                        } else {
+                            searchListItem.getListing().setLocation(true);
+                        }
+                    }
+                    if (reason.equalsIgnoreCase("price")) {
+                        if (searchListItem.getListing().isPrice()) {
+                            searchListItem.getListing().setPrice(false);
+                        } else {
+                            searchListItem.getListing().setPrice(true);
+                        }
+                    }
+                }
+                mListAdapterSearch.notifyItemChanged(mPosition);
+            }
+            mVotePresenter.voteListing(CurrentSaveSearch.getInstance().getId(), lid, type, reason, "note");
+
+        }
+
     }
 }

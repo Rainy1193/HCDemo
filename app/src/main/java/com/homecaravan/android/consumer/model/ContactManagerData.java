@@ -10,6 +10,7 @@ public class ContactManagerData {
     private String role;
     private String weight;
     private String uid;
+    private String status;
     private boolean isPick;
     public String getId() {
         return id;
@@ -89,6 +90,14 @@ public class ContactManagerData {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

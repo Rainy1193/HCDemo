@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,10 +15,11 @@ import android.widget.TextView;
 import com.homecaravan.android.R;
 import com.homecaravan.android.consumer.base.BaseFragment;
 import com.homecaravan.android.consumer.listener.IFilterListener;
+import com.homecaravan.android.consumer.model.SingletonFilter;
 import com.homecaravan.android.consumer.model.responseapi.ConditionFull;
 import com.homecaravan.android.consumer.utils.AnimUtils;
 import com.homecaravan.android.consumer.utils.Utils;
-import com.homecaravan.android.consumer.widget.android.rangeseekbar.RangeSeekBar;
+import com.homecaravan.android.consumer.widget.RangeSeekBar;
 import com.homecaravan.android.models.CurrentSaveSearch;
 
 import butterknife.Bind;
@@ -136,9 +138,8 @@ public class FragmentFilter extends BaseFragment {
     RelativeLayout mLayoutBath4;
     @Bind(R.id.layoutBath5)
     RelativeLayout mLayoutBath5;
-    @Bind(R.id.seekBar)
+    @Bind(R.id.rangeSeekbar)
     RangeSeekBar mRangeSeekBar;
-
     @Bind(R.id.tvMinPrice)
     TextView mMinPrice;
     @Bind(R.id.tvMaxPrice)
@@ -303,10 +304,43 @@ public class FragmentFilter extends BaseFragment {
         if (mPf.length() > 0) {
             mPf = mPf.substring(0, mPf.length() - 1);
         }
+
+        Log.e("mMaxPrice", mRangeSeekBar.getSelectedMinValue().toString());
+        Log.e("mMinPrice", mRangeSeekBar.getSelectedMaxValue().toString());
+        Log.e("mBed", String.valueOf(mBedRoomApter));
+        Log.e("mBath", String.valueOf(mBathRoomApter));
+        Log.e("mMinLs", mLotSizeMin.getText().toString());
+        Log.e("mMaxLs", mLotSizeMax.getText().toString());
+        Log.e("mMinLsf", mSfMin.getText().toString());
+        Log.e("mMaxLsf", mSfMax.getText().toString());
+        Log.e("mMinYb", mYearBuildMin.getText().toString());
+        Log.e("mMaxYb", mYearBuildMax.getText().toString());
+        Log.e("mPt", mPf);
+        Log.e("mKeyword", mKeyword.getText().toString());
+        Log.e("mDc", mDayMax.getText().toString());
+
+        SingletonFilter.getInstance().setMaxPrice(mRangeSeekBar.getSelectedMaxValue().toString());
+        SingletonFilter.getInstance().setMinPrice(mRangeSeekBar.getSelectedMinValue().toString());
+        SingletonFilter.getInstance().setBed(String.valueOf(mBedRoomApter));
+        SingletonFilter.getInstance().setBath(String.valueOf(mBathRoomApter));
+        SingletonFilter.getInstance().setMinLs(mLotSizeMin.getText().toString());
+        SingletonFilter.getInstance().setMaxLs(mLotSizeMax.getText().toString());
+        SingletonFilter.getInstance().setMinLsf(mSfMin.getText().toString());
+        SingletonFilter.getInstance().setMaxLsf(mSfMax.getText().toString());
+        SingletonFilter.getInstance().setMaxYb(mYearBuildMax.getText().toString());
+        SingletonFilter.getInstance().setMinYb(mYearBuildMin.getText().toString());
+        SingletonFilter.getInstance().setPt(mPf);
+        SingletonFilter.getInstance().setKeyword(mKeyword.getText().toString());
+        SingletonFilter.getInstance().setDc(mDayMax.getText().toString());
+        Log.e("SingletonFilter", SingletonFilter.getInstance().toString());
         mListener.applyFilter("sale", mRangeSeekBar.getSelectedMinValue().toString(), mRangeSeekBar.getSelectedMaxValue().toString(),
                 String.valueOf(mBedRoomApter), String.valueOf(mBathRoomApter), mLotSizeMin.getText().toString(), mLotSizeMax.getText().toString(),
                 mSfMin.getText().toString(), mSfMax.getText().toString(), mYearBuildMin.getText().toString(),
                 mYearBuildMax.getText().toString(), mPf, mDayMax.getText().toString(), mKeyword.getText().toString());
+    }
+
+    public void cancelFilter() {
+
     }
 
     @OnClick(R.id.layoutReset)
@@ -338,90 +372,115 @@ public class FragmentFilter extends BaseFragment {
         mBedRoom = 0;
         mPf = "";
         mListener.resetFilter();
+        SingletonFilter.getInstance().clearFilter();
     }
 
     @OnClick(R.id.layoutBedAny)
     public void onLayoutBedAnyClicked() {
-        mBedRoom = mBedRoomApter;
-        mBedRoomApter = 0;
-        changeTextWithAnimation(mBedAny, mBedRoomApter, true);
+        if (mBedRoomApter != 0) {
+            mBedRoom = mBedRoomApter;
+            mBedRoomApter = 0;
+            changeTextWithAnimation(mBedAny, mBedRoomApter, true);
+        }
     }
 
     @OnClick(R.id.layoutBed1)
     public void onLayoutBed1Clicked() {
-        mBedRoom = mBedRoomApter;
-        mBedRoomApter = 1;
-        changeTextWithAnimation(mBed1, mBedRoomApter, true);
+        if (mBedRoomApter != 1) {
+            mBedRoom = mBedRoomApter;
+            mBedRoomApter = 1;
+            changeTextWithAnimation(mBed1, mBedRoomApter, true);
+        }
     }
 
     @OnClick(R.id.layoutBed2)
     public void onLayoutBed2Clicked() {
-        mBedRoom = mBedRoomApter;
-        mBedRoomApter = 2;
-        changeTextWithAnimation(mBed2, mBedRoomApter, true);
+        if (mBedRoomApter != 2) {
+            mBedRoom = mBedRoomApter;
+            mBedRoomApter = 2;
+            changeTextWithAnimation(mBed2, mBedRoomApter, true);
+        }
     }
 
     @OnClick(R.id.layoutBed3)
     public void onLayoutBed3Clicked() {
-        mBedRoom = mBedRoomApter;
-        mBedRoomApter = 3;
-        changeTextWithAnimation(mBed3, mBedRoomApter, true);
+        if (mBedRoomApter != 3) {
+            mBedRoom = mBedRoomApter;
+            mBedRoomApter = 3;
+            changeTextWithAnimation(mBed3, mBedRoomApter, true);
+        }
     }
 
     @OnClick(R.id.layoutBed4)
     public void onLayoutBed4Clicked() {
-        mBedRoom = mBedRoomApter;
-        mBedRoomApter = 4;
-        changeTextWithAnimation(mBed4, mBedRoomApter, true);
+        if (mBedRoomApter != 4) {
+            mBedRoom = mBedRoomApter;
+            mBedRoomApter = 4;
+            changeTextWithAnimation(mBed4, mBedRoomApter, true);
+        }
     }
 
     @OnClick(R.id.layoutBed5)
     public void onLayoutBed5Clicked() {
-        mBedRoom = mBedRoomApter;
-        mBedRoomApter = 5;
-        changeTextWithAnimation(mBed5, mBedRoomApter, true);
+        if (mBedRoomApter != 5) {
+            mBedRoom = mBedRoomApter;
+            mBedRoomApter = 5;
+            changeTextWithAnimation(mBed5, mBedRoomApter, true);
+        }
     }
 
     @OnClick(R.id.layoutBathAny)
     public void onLayoutBathAnyClicked() {
-        mBathRoom = mBathRoomApter;
-        mBathRoomApter = 0;
-        changeTextWithAnimation(mBathAny, mBathRoomApter, false);
+        if (mBathRoomApter != 0) {
+            mBathRoom = mBathRoomApter;
+            mBathRoomApter = 0;
+            changeTextWithAnimation(mBathAny, mBathRoomApter, false);
+        }
     }
 
     @OnClick(R.id.layoutBath1)
     public void onLayoutBath1Clicked() {
-        mBathRoom = mBathRoomApter;
-        mBathRoomApter = 1;
-        changeTextWithAnimation(mBath1, mBathRoomApter, false);
+        if (mBathRoomApter != 1) {
+            mBathRoom = mBathRoomApter;
+            mBathRoomApter = 1;
+            changeTextWithAnimation(mBath1, mBathRoomApter, false);
+        }
     }
 
     @OnClick(R.id.layoutBath2)
     public void onLayoutBath2Clicked() {
-        mBathRoom = mBathRoomApter;
-        mBathRoomApter = 2;
-        changeTextWithAnimation(mBath2, mBathRoomApter, false);
+        if (mBathRoomApter != 2) {
+            mBathRoom = mBathRoomApter;
+            mBathRoomApter = 2;
+            changeTextWithAnimation(mBath2, mBathRoomApter, false);
+        }
     }
 
     @OnClick(R.id.layoutBath3)
     public void onLayoutBath3Clicked() {
-        mBathRoom = mBathRoomApter;
-        mBathRoomApter = 3;
-        changeTextWithAnimation(mBath3, mBathRoomApter, false);
+        if (mBathRoomApter != 3) {
+            mBathRoom = mBathRoomApter;
+            mBathRoomApter = 3;
+            changeTextWithAnimation(mBath3, mBathRoomApter, false);
+        }
     }
 
     @OnClick(R.id.layoutBath4)
     public void onLayoutBath4Clicked() {
-        mBathRoom = mBathRoomApter;
-        mBathRoomApter = 4;
-        changeTextWithAnimation(mBath4, mBathRoomApter, false);
+        if (mBathRoomApter != 4) {
+            mBathRoom = mBathRoomApter;
+            mBathRoomApter = 4;
+            changeTextWithAnimation(mBath4, mBathRoomApter, false);
+        }
     }
 
     @OnClick(R.id.layoutBath5)
     public void onLayoutBath5Clicked() {
-        mBathRoom = mBathRoomApter;
-        mBathRoomApter = 5;
-        changeTextWithAnimation(mBath5, mBathRoomApter, false);
+        if (mBathRoomApter != 5) {
+            mBathRoom = mBathRoomApter;
+            mBathRoomApter = 5;
+            changeTextWithAnimation(mBath5, mBathRoomApter, false);
+        }
     }
 
 
@@ -429,19 +488,23 @@ public class FragmentFilter extends BaseFragment {
     public void onLayoutTypeAllClicked() {
         if (!mTypeAll) {
             changeButtonWithAnimation(mVTypeAll, mTvTypeAll, mTypeAll);
-            mTypeAll = !mTypeAll;
+            mTypeAll = true;
+            resetProperType();
         }
-        resetProperType();
     }
 
     @OnClick(R.id.layoutTypeHouse)
     public void onLayoutTypeHouseClicked() {
+        Log.e("mTypeHouse", String.valueOf(mTypeHouse));
+        Log.e("mTypeAll", String.valueOf(mTypeAll));
         changeButtonWithAnimation(mVTypeHouse, mTvTypeHouse, mTypeHouse);
         mTypeHouse = !mTypeHouse;
-
         if (mTypeAll) {
             changeButtonWithAnimation(mVTypeAll, mTvTypeAll, mTypeAll);
-            mTypeAll = !mTypeAll;
+            mTypeAll = false;
+        }
+        if (!mTypeHouse && !mTypeCondo && !mTypeTownhouse) {
+            resetProperType();
         }
     }
 
@@ -449,10 +512,12 @@ public class FragmentFilter extends BaseFragment {
     public void onLayoutTypeTownhouseClicked() {
         changeButtonWithAnimation(mVTypeTownhouse, mTvTypeTownhouse, mTypeTownhouse);
         mTypeTownhouse = !mTypeTownhouse;
-
         if (mTypeAll) {
             changeButtonWithAnimation(mVTypeAll, mTvTypeAll, mTypeAll);
-            mTypeAll = !mTypeAll;
+            mTypeAll = false;
+        }
+        if (!mTypeHouse && !mTypeCondo && !mTypeTownhouse) {
+            resetProperType();
         }
     }
 
@@ -460,10 +525,12 @@ public class FragmentFilter extends BaseFragment {
     public void onLayoutTypeCondoClicked() {
         changeButtonWithAnimation(mVTypeCondo, mTvTypeCondo, mTypeCondo);
         mTypeCondo = !mTypeCondo;
-
         if (mTypeAll) {
             changeButtonWithAnimation(mVTypeAll, mTvTypeAll, mTypeAll);
-            mTypeAll = !mTypeAll;
+            mTypeAll = false;
+        }
+        if (!mTypeHouse && !mTypeCondo && !mTypeTownhouse) {
+            resetProperType();
         }
     }
 
@@ -515,7 +582,6 @@ public class FragmentFilter extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupLayoutDefault();
-        mRangeSeekBar.setRangeValues(0, 5000000);
         mRangeSeekBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener() {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object minValue, Object maxValue) {
@@ -523,7 +589,7 @@ public class FragmentFilter extends BaseFragment {
                 mMinPrice.setText(Utils.getPriceFilter(Integer.parseInt(minValue.toString())));
             }
         });
-
+        mRangeSeekBar.setNotifyWhileDragging(true);
     }
 
 
@@ -688,9 +754,12 @@ public class FragmentFilter extends BaseFragment {
     }
 
     public void changeTextColor(TextView tv, boolean b) {
+        Log.e("Cc", "Cc");
         if (b) {
+            Log.e("Cccc", "Aa");
             AnimUtils.changeTextColor(getActivity(), R.color.colorTextMain, R.color.colorWhite, tv);
         } else {
+            Log.e("Aeae", "AEae");
             AnimUtils.changeTextColor(getActivity(), R.color.colorWhite, R.color.colorTextMain, tv);
         }
     }
@@ -718,6 +787,7 @@ public class FragmentFilter extends BaseFragment {
     }
 
     public void changeButtonWithAnimation(View layout, TextView tv, final boolean isClick) {
+
         int fromColor;
         int toColor;
         int fromBg;
@@ -762,13 +832,15 @@ public class FragmentFilter extends BaseFragment {
     }
 
     public void closeLayout() {
-        resetFilter();
+        //resetFilter();
+        loadFilterData();
         mScrollView.post(new Runnable() {
             @Override
             public void run() {
                 mScrollView.scrollTo(0, 0);
             }
         });
+        hideKeyboard();
     }
 
     public void showLayout(final boolean hasData) {
@@ -783,28 +855,162 @@ public class FragmentFilter extends BaseFragment {
     }
 
     public void setPt(String rawPt) {
-        if (rawPt.contains("house")) {
-            onLayoutTypeHouseClicked();
-        }
-        if (rawPt.contains("townhouse")) {
-            onLayoutTypeTownhouseClicked();
-        }
-        if (rawPt.contains("condo")) {
-            onLayoutTypeCondoClicked();
-        }
-        if (rawPt.contains("manufactured")) {
-            onLayoutTypeManufacturedHomeClicked();
-        }
-        if (rawPt.contains("resident")) {
-            onLayoutTypeResidentClicked();
-        }
-        if (rawPt.contains("residentialIncome")) {
-            onLayoutTypeResidentialIncomeClicked();
-        }
-        if (rawPt.contains("residentialLease")) {
-            onLayoutTypeResidentialLeaseClicked();
+        onLayoutTypeAllClicked();
+        String[] arr = rawPt.split(",");
+        for (String s : arr) {
+            if (s.contains("house")) {
+                onLayoutTypeHouseClicked();
+                Log.e("house", "house");
+            } else if (s.contains("townhouse")) {
+                onLayoutTypeTownhouseClicked();
+                Log.e("townhouse", "townhouse");
+            } else if (s.contains("condo")) {
+                onLayoutTypeCondoClicked();
+                Log.e("condo", "condo");
+            } else if (s.contains("manufactured")) {
+                onLayoutTypeManufacturedHomeClicked();
+                Log.e("manufactured", "manufactured");
+            } else if (s.contains("resident")) {
+                onLayoutTypeResidentClicked();
+                Log.e("resident", "resident");
+            } else if (s.contains("residentialIncome")) {
+                onLayoutTypeResidentialIncomeClicked();
+                Log.e("residentialIncome", "residentialIncome");
+            } else if (s.contains("residentialLease")) {
+                onLayoutTypeResidentialLeaseClicked();
+                Log.e("residentialLease", "residentialLease");
+            } else {
+                Log.e("cc", "onLayoutTypeAllClicked");
+                onLayoutTypeAllClicked();
+            }
         }
 
+    }
+
+    public void loadFilterData() {
+
+        if (SingletonFilter.getInstance().getPt() != null) {
+            if (!SingletonFilter.getInstance().getPt().isEmpty()) {
+                setPt(SingletonFilter.getInstance().getPt());
+            }
+        } else {
+            Log.e("Cc", "Ccasas");
+            onLayoutTypeAllClicked();
+        }
+        if (SingletonFilter.getInstance().getMaxPrice() != null) {
+            if (!SingletonFilter.getInstance().getMaxPrice().isEmpty()) {
+                mRangeSeekBar.setSelectedMaxValue((int) (Double.parseDouble(SingletonFilter.getInstance().getMaxPrice())));
+                mMaxPrice.setText(Utils.getPriceFilter((int) (Double.parseDouble(SingletonFilter.getInstance().getMaxPrice()))));
+            }
+        }
+        if (SingletonFilter.getInstance().getMinPrice() != null) {
+            if (!SingletonFilter.getInstance().getMinPrice().isEmpty()) {
+                mRangeSeekBar.setSelectedMinValue((int) (Double.parseDouble(SingletonFilter.getInstance().getMinPrice())));
+                mMinPrice.setText(Utils.getPriceFilter((int) (Double.parseDouble(SingletonFilter.getInstance().getMinPrice()))));
+            }
+        }
+
+        if (SingletonFilter.getInstance().getBed() != null) {
+            if (!SingletonFilter.getInstance().getBed().isEmpty()) {
+                switch (Integer.parseInt(SingletonFilter.getInstance().getBed())) {
+                    case 1:
+                        onLayoutBed1Clicked();
+                        Log.e("onLayoutBed1Clicked", "onLayoutBed1Clicked");
+                        break;
+                    case 2:
+                        onLayoutBed2Clicked();
+                        Log.e("onLayoutBed2Clicked", "onLayoutBed2Clicked");
+                        break;
+                    case 3:
+                        onLayoutBed3Clicked();
+                        Log.e("onLayoutBed3Clicked", "onLayoutBed3Clicked");
+                        break;
+                    case 4:
+                        onLayoutBed4Clicked();
+                        Log.e("onLayoutBed4Clicked", "onLayoutBed4Clicked");
+                        break;
+                    case 5:
+                        onLayoutBed5Clicked();
+                        Log.e("onLayoutBed5Clicked", "onLayoutBed5Clicked");
+                        break;
+
+                }
+            }
+        }
+        if (SingletonFilter.getInstance().getBath() != null) {
+            if (!SingletonFilter.getInstance().getBath().isEmpty()) {
+                switch (Integer.parseInt(SingletonFilter.getInstance().getBath())) {
+
+                    case 1:
+                        onLayoutBath1Clicked();
+                        break;
+                    case 2:
+                        onLayoutBath2Clicked();
+                        break;
+                    case 3:
+                        onLayoutBath3Clicked();
+                        break;
+                    case 4:
+                        onLayoutBath4Clicked();
+                        break;
+                    case 5:
+                        onLayoutBath5Clicked();
+                        break;
+
+                }
+            }
+        }
+
+        if (SingletonFilter.getInstance().getMaxLs() != null) {
+            if (!SingletonFilter.getInstance().getMaxLs().isEmpty()) {
+                mLotSizeMax.setText(SingletonFilter.getInstance().getMaxLs());
+            }
+        }
+        if (SingletonFilter.getInstance().getMinLs() != null) {
+            if (!SingletonFilter.getInstance().getMinLs().isEmpty()) {
+                mLotSizeMin.setText(SingletonFilter.getInstance().getMinLs());
+            }
+        }
+        if (SingletonFilter.getInstance().getMaxYb() != null) {
+            if (!SingletonFilter.getInstance().getMaxYb().isEmpty()) {
+                mYearBuildMax.setText(SingletonFilter.getInstance().getMaxYb());
+            }
+        }
+        if (SingletonFilter.getInstance().getMinYb() != null) {
+            if (!SingletonFilter.getInstance().getMinYb().isEmpty()) {
+                mYearBuildMin.setText(SingletonFilter.getInstance().getMinYb());
+            }
+        }
+        if (SingletonFilter.getInstance().getMaxLsf() != null) {
+            if (!SingletonFilter.getInstance().getMaxLsf().isEmpty()) {
+                mSfMax.setText(SingletonFilter.getInstance().getMaxLsf());
+            }
+        }
+        if (SingletonFilter.getInstance().getMinLsf() != null) {
+            if (!SingletonFilter.getInstance().getMinLsf().isEmpty()) {
+                mSfMin.setText(SingletonFilter.getInstance().getMinLsf());
+            }
+        }
+        if (SingletonFilter.getInstance().getKeyword() != null) {
+            if (!SingletonFilter.getInstance().getKeyword().isEmpty()) {
+                mKeyword.setText(SingletonFilter.getInstance().getKeyword());
+            }
+        }
+        if (SingletonFilter.getInstance().getDc() != null) {
+            if (!SingletonFilter.getInstance().getDc().isEmpty()) {
+                mDayMax.setText(SingletonFilter.getInstance().getDc());
+            }
+        }
+
+
+        mLotSizeMax.clearFocus();
+        mLotSizeMin.clearFocus();
+        mKeyword.clearFocus();
+        mYearBuildMax.clearFocus();
+        mYearBuildMin.clearFocus();
+        mDayMax.clearFocus();
+        mSfMin.clearFocus();
+        mSfMax.clearFocus();
     }
 
     public void handlerConditionSaveSearchDetail() {
@@ -815,6 +1021,7 @@ public class FragmentFilter extends BaseFragment {
                 setPt(conditionFull.getPt());
             }
         } else {
+            Log.e("aaaa", "Qqq");
             onLayoutTypeAllClicked();
         }
         if (conditionFull.getMaxPrice() != null) {
@@ -935,7 +1142,7 @@ public class FragmentFilter extends BaseFragment {
                 if (!b) {
                     AnimUtils.scrolling(mScrollView, (int) mTvScroll.getY());
                 } else {
-                    mScrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    AnimUtils.scrolling(mScrollView, (int) mScrollView.getHeight());
                 }
             }
         });

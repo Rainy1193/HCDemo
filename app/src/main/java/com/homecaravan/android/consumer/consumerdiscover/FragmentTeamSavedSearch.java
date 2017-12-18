@@ -19,6 +19,7 @@ import com.homecaravan.android.R;
 import com.homecaravan.android.consumer.activity.ContactsManagerActivity;
 import com.homecaravan.android.consumer.adapter.ContactManagerAdapter;
 import com.homecaravan.android.consumer.base.BaseFragment;
+import com.homecaravan.android.consumer.consumerbase.ConsumerUser;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.AddParticipantSearchPresenter;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.AddParticipantSearchView;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.RemoveParticipantSearchPresenter;
@@ -59,7 +60,7 @@ public class FragmentTeamSavedSearch extends BaseFragment implements IContactMan
     private String mRole = "readonly";
     private String mWeight = "1";
     private int mPositionEdit;
-
+    private boolean mIsAdmin;
     @Bind(R.id.rvCollaborator)
     RecyclerView mRvCollaborator;
     @Bind(R.id.layoutEditContact)
@@ -95,6 +96,8 @@ public class FragmentTeamSavedSearch extends BaseFragment implements IContactMan
     RelativeLayout mLayoutReadOnly;
     @Bind(R.id.tvReadonly)
     TextView mTvReadOnly;
+    @Bind(R.id.layoutAddTeam)
+    LinearLayout mLayoutAddTeam;
 
     @OnClick(R.id.layoutRemove)
     public void onLayoutRemove() {
@@ -161,6 +164,7 @@ public class FragmentTeamSavedSearch extends BaseFragment implements IContactMan
 
     @OnClick(R.id.layoutAddTeam)
     public void addTeam() {
+
         ContactSingleton.getInstance().getArrContact().clear();
         ContactSingleton.getInstance().getArrContact().addAll(mArrContact);
         Intent intent = new Intent(getContext(), ContactsManagerActivity.class);
@@ -189,13 +193,13 @@ public class FragmentTeamSavedSearch extends BaseFragment implements IContactMan
         if (contactManager.status.equalsIgnoreCase("update")) {
             Log.e("cc", contactManager.contactManagerData.toString());
             for (int i = 0; i < mArrContact.size(); i++) {
-                //mUpdateParticipantPresenter.updateParticipant(CurrentSaveSearch.getInstance().getId(), contactManager.contactManagerData.getId(),
-                //      contactManager.contactManagerData.getWeight(), contactManager.contactManagerData.getRole());
+                mUpdateParticipantPresenter.updateParticipant(CurrentSaveSearch.getInstance().getId(), contactManager.contactManagerData.getId(),
+                        contactManager.contactManagerData.getWeight(), contactManager.contactManagerData.getRole());
             }
         } else {
             Log.e("cc", contactManager.contactManagerData.toString());
             for (int i = 0; i < mArrContact.size(); i++) {
-                //mRemoveParticipantSearchPresenter.removeParticipant(CurrentSaveSearch.getInstance().getId(), contactManager.contactManagerData.getId());
+                mRemoveParticipantSearchPresenter.removeParticipant(CurrentSaveSearch.getInstance().getId(), contactManager.contactManagerData.getId());
             }
         }
     }
@@ -282,9 +286,20 @@ public class FragmentTeamSavedSearch extends BaseFragment implements IContactMan
             mArrContact.add(contactManagerData);
         }
         mAdapter.notifyDataSetChanged();
+        for (int i = 0; i < mArrContact.size(); i++) {
+            if (mArrContact.get(i).getId().equalsIgnoreCase(ConsumerUser.getInstance().getData().getId())) {
+                if (mArrContact.get(i).getRole().equalsIgnoreCase("admin")) {
+                    mIsAdmin = true;
+                }
+            }
+        }
+        if (!mIsAdmin) {
+            mLayoutAddTeam.setVisibility(View.GONE);
+        }
     }
 
     public void clearPager() {
+        mIsAdmin = false;
         mParticipants.clear();
         mArrContact.clear();
         mAdapter.notifyDataSetChanged();
@@ -293,43 +308,47 @@ public class FragmentTeamSavedSearch extends BaseFragment implements IContactMan
 
     @Override
     public void editContact(ContactManagerData managerData, int position) {
-        mPositionEdit = position;
-        Glide.with(this).load(managerData.getAvatar())
-                .asBitmap().fitCenter().placeholder(R.drawable.avatar_default)
-                .dontAnimate().into(mIvContact);
-        if (!managerData.getName().isEmpty()) {
-            mNameContact.setText(managerData.getName());
-        } else {
-            if (managerData.getPhone() != null) {
-                mNameContact.setText(managerData.getPhone());
+        if (mIsAdmin) {
+            mPositionEdit = position;
+            Glide.with(this).load(managerData.getAvatar())
+                    .asBitmap().fitCenter().placeholder(R.drawable.avatar_default)
+                    .dontAnimate().into(mIvContact);
+            if (!managerData.getName().isEmpty()) {
+                mNameContact.setText(managerData.getName());
             } else {
-                mNameContact.setText(managerData.getEmail());
+                if (managerData.getPhone() != null) {
+                    mNameContact.setText(managerData.getPhone());
+                } else {
+                    mNameContact.setText(managerData.getEmail());
+                }
             }
+            if (managerData.getRole() != null) {
+                if (managerData.getRole().equalsIgnoreCase("admin")) {
+                    pickAdmin();
+                }
+                if (managerData.getRole().equalsIgnoreCase("readonly")) {
+                    pickReadOnly();
+                }
+                if (managerData.getRole().equalsIgnoreCase("vote")) {
+                    pickMember();
+                }
+            }
+            if (managerData.getWeight() != null) {
+                if (managerData.getWeight().equalsIgnoreCase("1")) {
+                    pickVeryImportant();
+                }
+                if (managerData.getWeight().equalsIgnoreCase("2")) {
+                    pickImportant();
+                }
+                if (managerData.getWeight().equalsIgnoreCase("3")) {
+                    pickNormal();
+                }
+            }
+            mLayoutEditContact.setVisibility(View.VISIBLE);
+            AnimUtils.showViewFromBottom(mLayoutEditContactContent);
+        } else {
+            showSnackBar(getView(), TypeDialog.WARNING, "You not have permission to use this action!", "action contact");
         }
-        if (managerData.getRole() != null) {
-            if (managerData.getRole().equalsIgnoreCase("admin")) {
-                pickAdmin();
-            }
-            if (managerData.getRole().equalsIgnoreCase("readonly")) {
-                pickReadOnly();
-            }
-            if (managerData.getRole().equalsIgnoreCase("vote")) {
-                pickMember();
-            }
-        }
-        if (managerData.getWeight() != null) {
-            if (managerData.getWeight().equalsIgnoreCase("1")) {
-                pickVeryImportant();
-            }
-            if (managerData.getWeight().equalsIgnoreCase("2")) {
-                pickImportant();
-            }
-            if (managerData.getWeight().equalsIgnoreCase("3")) {
-                pickNormal();
-            }
-        }
-        mLayoutEditContact.setVisibility(View.VISIBLE);
-        AnimUtils.showViewFromBottom(mLayoutEditContactContent);
     }
 
     @Override

@@ -581,18 +581,29 @@ public class FragmentDiscover extends BaseFragment implements
         mCustomLayoutManager = new CustomLayoutManager(CustomLayoutManager.HORIZONTAL);
         mCustomLayoutManager.setNoAnimationScroll(true);
         mCustomLayoutManager.attach(mRvListingMap);
+        mCustomLayoutManager.setCallbackInFling(true);
         mCustomLayoutManager.setItemTransformer(new ScaleTransformerRecyclerView());
         mCustomLayoutManager.setOnItemSelectedListener(new CustomLayoutManager.OnItemSelectedListener() {
             @Override
             public void onItemSelected(RecyclerView recyclerView, View item, int position) {
+                if (position != mPositionScroll) {
+                    return;
+                }
+                Log.e("onItemSelected", String.valueOf(position));
                 String id = mArrListingSearch.get(position).getListing().getId();
                 if (mIsAttack) {
+                    Log.e("mIsAttack", "mIsAttack");
                     mOldPosition = mCurrentPosition;
                     mCurrentPosition = position;
                     moveToMarkerWhenScrollList(id);
                 } else {
+//                    mOldPosition = -1;
+                    mCurrentPosition = position;
+                    Log.e("mIsAttackNO", "mIsAttackNO");
                     mIsAttack = true;
                 }
+                Log.e("mCurrentPosition", String.valueOf(mCurrentPosition));
+                Log.e("mOldPosition", String.valueOf(mOldPosition));
             }
         });
 //        mLayoutDiscoverContent.post(new Runnable() {
@@ -728,6 +739,20 @@ public class FragmentDiscover extends BaseFragment implements
         if (id != null) {
             map.put("id", Utils.creteRbSearchMap(CurrentSaveSearch.getInstance().getId()));
         }
+
+        Log.e("??", "??");
+        Log.e("mMaxPrice", maxPrice);
+        Log.e("mMinPrice", minPrice);
+        Log.e("mBed", minBedRoom);
+        Log.e("mBath", minBathRoom);
+        Log.e("mMinLs", mMinLs);
+        Log.e("mMaxLs", mMaxLs);
+        Log.e("mMinLsf", mMinLsf);
+        Log.e("mMinYb", mMinYb);
+        Log.e("mPt", mPt);
+        Log.e("mKeyword", mKeyword);
+        Log.e("mDc", mDc);
+        Log.e("??", "??");
         map.put("ne", Utils.creteRbSearchMap(ne));
         map.put("sw", Utils.creteRbSearchMap(sw));
         map.put("min_pr", Utils.creteRbSearchMap(minPrice));
@@ -751,6 +776,7 @@ public class FragmentDiscover extends BaseFragment implements
         map.put("dc", Utils.creteRbSearchMap(dayCaravan));
         map.put("pt", Utils.creteRbSearchMap(properType));
         map.put("zm", Utils.creteRbSearchMap(String.valueOf((int) mGoogleMap.getCameraPosition().zoom)));
+
         return map;
     }
 
@@ -925,7 +951,7 @@ public class FragmentDiscover extends BaseFragment implements
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(mLayoutFragment.getId(), fragmentFilter, "filter");
-        fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
     public void createFragmentOpenSavedSearch() {
@@ -934,7 +960,7 @@ public class FragmentDiscover extends BaseFragment implements
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(mLayoutFragmentSavedSearch.getId(), openSavedSearch, "openSavedSearch");
-        fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
 //    public void createFragmentSavedSearchDetail() {
@@ -992,7 +1018,21 @@ public class FragmentDiscover extends BaseFragment implements
         mPt = pt;
         mKeyword = k;
         mDc = dayHc;
+        Log.e("mFt", mFt);
+        Log.e("mMaxPrice", mMaxPrice);
+        Log.e("mMinPrice", mMinPrice);
+        Log.e("mBed", mBed);
+        Log.e("mBath", mBath);
+        Log.e("mMinLs", mMinLs);
+        Log.e("mMaxLs", mMaxLs);
+        Log.e("mMinLsf", mMinLsf);
+        Log.e("mMinYb", mMinYb);
+        Log.e("mPt", mPt);
+        Log.e("mKeyword", mKeyword);
+        Log.e("mDc", mDc);
         cancelFilter();
+
+
         mLayoutLoading.setVisibility(View.VISIBLE);
         mSearchMapPresenter.searchMap(setRequestParams(null, null, mNe, mSw, mMinPrice, mMaxPrice, mBed, mBath, "", "", mKeyword, mFt,
                 "", "", "", "", mMinLs, mMaxLs, mMinLsf,
@@ -1002,6 +1042,7 @@ public class FragmentDiscover extends BaseFragment implements
 
     @Override
     public void resetFilter() {
+        Log.e("resetFilter", "resetFilter");
         mFt = "sale";
         mMaxPrice = "";
         mMinPrice = "";
@@ -1272,9 +1313,8 @@ public class FragmentDiscover extends BaseFragment implements
                 }
                 mOldMarker = mCurrentMarker;
                 mCurrentMarker = marker;
+                Log.e("updateMarker", "updateMarker");
                 updateMarker(mOldMarker, mCurrentMarker);
-
-
                 return false;
             }
         });
@@ -1569,8 +1609,10 @@ public class FragmentDiscover extends BaseFragment implements
                         Double.parseDouble(consumerMapSearch.getListing().getLng()));
                 mGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
                 if (mOldPosition == -1) {
+                    Log.e("tuday", "tuday");
                     updateMarker(null, mArrMarker.get(i).getMarker());
                 } else {
+                    Log.e("tuday1", "tuday1");
                     updateMarker(mArrMarker.get(mOldPosition).getMarker(), mArrMarker.get(i).getMarker());
                 }
             }
@@ -1578,25 +1620,38 @@ public class FragmentDiscover extends BaseFragment implements
     }
 
     public void updateMarker(Marker oldMarker, Marker currentMarker) {
+        if (oldMarker != null) {
+            Log.e("oldMarker", "!oldMarker");
+        } else {
+            Log.e("oldMarker", "oldMarker");
+        }
+        if (currentMarker != null) {
+            Log.e("currentMarker", "!currentMarker");
+        } else {
+            Log.e("currentMarker", "currentMarker");
+        }
         IconGenerator iconFactory = new IconGenerator(getActivity());
         ArrayList<DiscoverMarker> discoverMarkers = new ArrayList<>();
         for (int i = 0; i < mArrMarker.size(); i++) {
             if (mArrMarker.get(i).getMarker().isVisible()) {
                 discoverMarkers.add(mArrMarker.get(i));
-
             }
         }
 
         for (int i = 0; i < discoverMarkers.size(); i++) {
+            Log.e("discoverMarkers", discoverMarkers.get(i).getData().getListing().toString());
             Marker marker1 = discoverMarkers.get(i).getMarker();
             if (currentMarker.getId().equalsIgnoreCase(marker1.getId())) {
                 marker1.setIcon(BitmapDescriptorFactory.fromBitmap(Utils.getIconGeneratorRound(iconFactory, StatusMarker.SELECTED,
                         getActivity(), discoverMarkers.get(i).getData().getListing().getPrice())
                         .makeIcon()));
                 discoverMarkers.get(i).setStatus(StatusMarker.SELECTED);
+                Log.e("vaoday", "vaoday");
+                Log.e("i", String.valueOf(i));
                 openListWithMarkerSelected(i);
             }
             if (oldMarker != null) {
+                Log.e("null", "null");
                 if (oldMarker.getId().equalsIgnoreCase(marker1.getId()) && !oldMarker.getId().equalsIgnoreCase(currentMarker.getId())) {
                     marker1.setIcon(BitmapDescriptorFactory.fromBitmap(Utils.getIconGeneratorRound(iconFactory, StatusMarker.HAVE_BEEN_VIEWED, getActivity(), discoverMarkers.get(i).getData().getListing().getPrice())
                             .makeIcon()));
@@ -1611,12 +1666,16 @@ public class FragmentDiscover extends BaseFragment implements
                     marker1.setIcon(BitmapDescriptorFactory.fromBitmap(Utils.getIconGeneratorRound(iconFactory, StatusMarker.HAVE_BEEN_VIEWED, getActivity(), mArrMarker.get(i).getData().getListing().getPrice())
                             .makeIcon()));
                     mArrMarker.get(i).setStatus(StatusMarker.HAVE_BEEN_VIEWED);
+                    Log.e("Sana", "sana");
                 }
             }
         }
     }
 
+    private int mPositionScroll = -1;
+
     public void openListWithMarkerSelected(final int position) {
+        mPositionScroll = position;
         AnimUtils.showViewFromBottom(mLayoutRvListing);
         mRvListingMap.post(new Runnable() {
             @Override

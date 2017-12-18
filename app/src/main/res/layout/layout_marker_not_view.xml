@@ -20,10 +20,26 @@
             android:textSize="12sp" />
     </RelativeLayout>
 
-    <com.homecaravan.android.consumer.widget.ViewArrow
-        android:layout_width="12dp"
-        android:layout_height="6dp"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="-2dp"
-        app:color_view_arrow="@color/color_marker_not_view" />
+        android:layout_marginTop="-2dp">
+
+        <com.homecaravan.android.consumer.widget.ViewArrow
+            android:layout_width="12dp"
+            android:layout_height="6dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="-1dp"
+            app:color_view_arrow="@color/colorWhite" />
+
+        <com.homecaravan.android.consumer.widget.ViewArrow
+            android:layout_width="12dp"
+            android:layout_height="6dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="-2dp"
+            app:color_view_arrow="@color/color_marker_not_view" />
+
+    </RelativeLayout>
+
 </LinearLayout>

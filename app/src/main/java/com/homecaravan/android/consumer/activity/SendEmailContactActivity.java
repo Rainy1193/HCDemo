@@ -15,22 +15,7 @@ import butterknife.OnClick;
 
 public class SendEmailContactActivity extends BaseActivity {
     private ArrayList<String> mArrEmail = new ArrayList<>();
-    @Bind(R.id.etEmails)
-    EditText mEmails;
-    @Bind(R.id.etMessage)
-    EditText mMessage;
-    @Bind(R.id.layoutMain)
-    RelativeLayout mLayoutMain;
 
-    @OnClick(R.id.ivBack)
-    public void back() {
-        onBackPressed();
-    }
-
-    @OnClick(R.id.ivSendEmail)
-    public void sendEmail() {
-
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

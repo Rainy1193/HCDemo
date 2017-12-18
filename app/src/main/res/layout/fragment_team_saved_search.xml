@@ -7,9 +7,9 @@
     android:orientation="vertical">
 
     <ScrollView
-        android:scrollbarThumbVertical="@null"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbarThumbVertical="@null">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,29 +20,36 @@
                 android:id="@+id/layoutAddTeam"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:selectableItemBackground"
-                android:padding="16dp">
+                android:orientation="vertical">
 
-                <com.homecaravan.android.ui.CircleImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_add_team" />
+                <LinearLayout
 
-                <TextView
-                    style="@style/TextViewMain"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="16dp"
-                    android:text="Add collaborator" />
-            </LinearLayout>
+                    android:background="?android:selectableItemBackground"
+                    android:padding="16dp">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginStart="4dp"
-                android:background="@color/colorLine" />
+                    <com.homecaravan.android.ui.CircleImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_add_team" />
+
+                    <TextView
+                        style="@style/TextViewMain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:text="Add collaborator" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@color/colorLine" />
+            </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvCollaborator"

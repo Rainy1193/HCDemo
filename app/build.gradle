@@ -47,6 +47,9 @@ android {
     repositories {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://jitpack.io" }
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
     }
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES.txt'
@@ -133,6 +136,7 @@ dependencies {
     compile 'com.github.myinnos:AlphabetIndex-Fast-Scroll-RecyclerView:1.0.8'
     compile 'io.github.rockerhieu:emojicon:1.4.1'
     compile 'com.androidadvance:topsnackbar:1.1.1'
+    compile 'org.florescu.android.rangeseekbar:rangeseekbar-library:0.3.0'
     testCompile 'junit:junit:4.12'
     compile 'me.dm7.barcodescanner:zxing:1.9.8'
 }

@@ -133,7 +133,7 @@ public class Utils {
 
     public static IconGenerator getIconGeneratorRound(IconGenerator iconGenerator, StatusMarker statusMarker, Context context, String price) {
 
-        if (FragmentDiscover.sZoom >= 12) {
+        if (FragmentDiscover.sZoom >= 10) {
             switch (statusMarker) {
                 case SELECTED:
                     View view = LayoutInflater.from(context).inflate(R.layout.layout_marker_selected, null, false);
@@ -216,14 +216,18 @@ public class Utils {
         if (price < 1000) {
             return String.valueOf(price);
         } else if (price > 1000 && price < 1000000) {
-            return String.valueOf(price / 1000) + "K";
+            return String.valueOf(price / 1000) + "," + String.valueOf((float) price / 1000).substring(2) + "K";
         } else {
             int p = price / 1000000;
             int d = price - p * 1000000;
             if (d == 0) {
                 return String.valueOf(price / 1000000) + "M";
             }
-            return String.valueOf(price / 1000000) + "," + String.valueOf(d / 1000) + "M";
+            String m = String.valueOf((float) d / 1000000).substring(2);
+            if (m.length() > 3) {
+                m = m.substring(0, 3);
+            }
+            return String.valueOf(price / 1000000) + "," + m + "M";
         }
     }
 
@@ -302,6 +306,7 @@ public class Utils {
     }
 
     public static RequestBody creteRbSearchMap(String content) {
+        Log.e("content", content);
         return RequestBody.create(MediaType.parse("text/plain"), content);
     }
 
@@ -326,6 +331,10 @@ public class Utils {
 
     public static String pointToLocationString(Point point, GoogleMap googleMap) {
         LatLng latLng = Utils.fromScreenToLocation(googleMap, point);
+        return String.valueOf(latLng.latitude) + "," + String.valueOf(latLng.longitude);
+    }
+
+    public static String locationString(LatLng latLng) {
         return String.valueOf(latLng.latitude) + "," + String.valueOf(latLng.longitude);
     }
 

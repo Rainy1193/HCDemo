@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -60,6 +61,8 @@ public class FragmentSavedSearchDetail extends BaseFragment implements IUpdateSa
     RelativeLayout mLayoutMain;
     @Bind(R.id.ivChangeView)
     ImageView mIvChangeView;
+    @Bind(R.id.progressBar)
+    ProgressBar mProgressBar;
 
     @OnClick(R.id.ivChangeView)
     public void changeView() {
@@ -177,11 +180,13 @@ public class FragmentSavedSearchDetail extends BaseFragment implements IUpdateSa
     }
 
     public void clearViewPager() {
+        onLayoutMenuClicked();
         mViewPager.setCurrentItem(0);
         mTeamSavedSearch.clearPager();
 //        mSettingsSavedSearch.clearPager();
         mListSavedSearch.clearPager();
         mListSavedSearch.changeView(false);
+
         if (mShowFilter) {
             cancelFilter();
         }
@@ -312,16 +317,19 @@ public class FragmentSavedSearchDetail extends BaseFragment implements IUpdateSa
         mSettingsSavedSearch.updatePager();
         mListSavedSearch.updatePager();
         mGetDetailSuccess = true;
+        mProgressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void getSearchDetailFail(String message) {
+        mProgressBar.setVisibility(View.GONE);
         showSnackBar(mLayoutMain, TypeDialog.WARNING, message, "getSearchDetailFail");
         mGetDetailSuccess = false;
     }
 
     @Override
     public void getSearchDetailFail(@StringRes int message) {
+        mProgressBar.setVisibility(View.GONE);
         showSnackBar(mLayoutMain, TypeDialog.ERROR, message, "getSearchDetailFail");
         mGetDetailSuccess = false;
     }
@@ -332,7 +340,7 @@ public class FragmentSavedSearchDetail extends BaseFragment implements IUpdateSa
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(mLayoutFilter.getId(), fragmentFilter, "filter");
-        fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
 

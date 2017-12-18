@@ -27,4 +27,5 @@ public interface MenuListener {
 
     void goProperty();
 
+    void goContactManager();
 }

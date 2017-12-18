@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:rsb="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBgFragment">
 
     <ScrollView
-
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -269,21 +269,27 @@
                 style="@style/TextViewMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_filter1"
+                android:layout_marginEnd="@dimen/margin_filter1"
+                android:layout_marginStart="@dimen/margin_filter1"
+                android:layout_marginTop="@dimen/margin_filter1"
                 android:text="@string/price_filter"
                 android:textColor="@color/colorTextMain" />
 
-            <com.homecaravan.android.consumer.widget.android.rangeseekbar.RangeSeekBar
-                android:id="@+id/seekBar"
+            <com.homecaravan.android.consumer.widget.RangeSeekBar
+                android:layout_marginTop="-12dp"
+                android:id="@+id/rangeSeekbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                rsb:absoluteMaxValue="5000000"
-                rsb:absoluteMinValue="0" />
-
+                app:absoluteMaxValue="5000000"
+                app:absoluteMinValue="0"
+                app:activeColor="#179feb"
+                app:alwaysActive="true"
+                app:barHeight="5dp"
+                app:defaultColor="#f5f7f8"
+                app:showLabels="false"
+                app:textAboveThumbsColor="#00000000" />
 
             <RelativeLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_filter1"
@@ -994,6 +1000,7 @@
                 android:id="@+id/layoutKeyword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="@dimen/margin_filter3"
                 android:layout_marginRight="@dimen/margin_filter1"
                 android:layout_weight="1"
@@ -1007,10 +1014,7 @@
                     android:background="@drawable/et_keywords"
                     android:gravity="top"
                     android:lines="4"
-                    android:paddingBottom="@dimen/margin_filter1"
-                    android:paddingLeft="@dimen/margin_filter2"
-                    android:paddingRight="@dimen/margin_filter2"
-                    android:paddingTop="@dimen/margin_filter1"
+                    android:padding="8dp"
                     android:textColorHint="#79828c"
                     android:textStyle="italic" />
             </RelativeLayout>
@@ -1107,4 +1111,5 @@
         </LinearLayout>
 
     </ScrollView>
+
 </FrameLayout>

@@ -28,15 +28,16 @@ public class MenuFragmentConsumer extends Fragment {
     LinearLayout mLayoutMenu;
     @Bind(R.id.tvNewMessageCount)
     TextView mTvNewMessageCount;
+
     public void setListener(MenuListener mListener) {
         this.mListener = mListener;
     }
 
-    public void setNewMessageCount(int count){
+    public void setNewMessageCount(int count) {
         mTvNewMessageCount.setText(String.valueOf(count));
-        if(count == 0){
+        if (count == 0) {
             mTvNewMessageCount.setVisibility(View.GONE);
-        }else{
+        } else {
             mTvNewMessageCount.setVisibility(View.VISIBLE);
         }
     }
@@ -57,7 +58,7 @@ public class MenuFragmentConsumer extends Fragment {
 
 
     @OnClick({R.id.menuDiscover, R.id.menuSchedule, R.id.menuShowing, R.id.menuSaveSearch, R.id.menuFavorite,
-            R.id.menuTeam, R.id.menuMessage, R.id.menuSetting, R.id.menuMyAccount, R.id.menuLogout, R.id.menuProperty})
+            R.id.menuTeam, R.id.menuMessage, R.id.menuSetting, R.id.menuMyAccount, R.id.menuLogout, R.id.menuProperty, R.id.menuContactManager})
     public void onViewClicked(final View view) {
         view.setEnabled(false);
         new Handler().postDelayed(new Runnable() {
@@ -81,7 +82,7 @@ public class MenuFragmentConsumer extends Fragment {
                 mListener.goSaveSearch();
                 break;
             case R.id.menuFavorite:
-                mListener.goContact();
+                //mListener.goContact();
                 break;
             case R.id.menuTeam:
                 mListener.goMyTeam();
@@ -102,6 +103,8 @@ public class MenuFragmentConsumer extends Fragment {
                 break;
             case R.id.menuLogout:
                 mListener.logOut();
+            case R.id.menuContactManager:
+                mListener.goContactManager();
                 break;
         }
     }

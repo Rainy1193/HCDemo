@@ -3,10 +3,12 @@ package com.homecaravan.android.consumer.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,12 +20,17 @@ import com.bumptech.glide.Glide;
 import com.homecaravan.android.R;
 import com.homecaravan.android.consumer.adapter.ViewPagerAdapter;
 import com.homecaravan.android.consumer.base.BaseActivity;
+import com.homecaravan.android.consumer.consumermvp.contactmvp.CreateContactPresenter;
+import com.homecaravan.android.consumer.consumermvp.contactmvp.CreateContactView;
+import com.homecaravan.android.consumer.consumermvp.contactmvp.DeleteContactPresenter;
+import com.homecaravan.android.consumer.consumermvp.contactmvp.DeleteContactView;
 import com.homecaravan.android.consumer.fragment.FragmentMyContactActive;
 import com.homecaravan.android.consumer.fragment.FragmentPendingContact;
 import com.homecaravan.android.consumer.listener.IContactManager;
 import com.homecaravan.android.consumer.model.ContactManagerData;
 import com.homecaravan.android.consumer.model.ContactSingleton;
 import com.homecaravan.android.consumer.model.EventContact;
+import com.homecaravan.android.consumer.model.responseapi.ContactData;
 import com.homecaravan.android.consumer.utils.AnimUtils;
 import com.homecaravan.android.ui.CircleImageView;
 
@@ -36,9 +43,11 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-public class MyContactsActivity extends BaseActivity implements IContactManager {
+public class MyContactsActivity extends BaseActivity implements IContactManager, CreateContactView, DeleteContactView {
     private FragmentMyContactActive mFragmentActiveContact;
     private FragmentPendingContact mFragmentPendingContact;
+    private CreateContactPresenter mCreateContactPresenter;
+    private DeleteContactPresenter mDeleteContactPresenter;
     private ViewPagerAdapter mViewPagerAdapter;
     private ArrayList<ContactManagerData> mArrContactInvited = new ArrayList<>();
     private String mType = "";
@@ -212,32 +221,41 @@ public class MyContactsActivity extends BaseActivity implements IContactManager 
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setAdapter(mViewPagerAdapter);
         mViewPager.setOffscreenPageLimit(mViewPagerAdapter.getCount());
-
+        mCreateContactPresenter = new CreateContactPresenter(this);
+        mDeleteContactPresenter = new DeleteContactPresenter(this);
         EventBus.getDefault().register(this);
         ContactSingleton.getInstance().getArrContact().clear();
+        mLayoutDone.setVisibility(View.GONE);
     }
 
     @org.greenrobot.eventbus.Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEventContact(EventContact eventContact) {
+
         if (eventContact.getType().equalsIgnoreCase("add")) {
             eventContact.getData().setPick(true);
-            mArrContactInvited.add(eventContact.getData());
-            mFragmentActiveContact.updateList(eventContact.getData(), true);
-            mFragmentPendingContact.updateList(eventContact.getData(), true);
+
+            mCreateContactPresenter.createContact(eventContact.getData().getName(), eventContact.getData().getEmail(),
+                    eventContact.getData().getPhone(), eventContact.getData().getAvatar(), eventContact.getData().getUid());
+            //mFragmentPendingContact.updateList(eventContact.getData(), true);
         }
         if (eventContact.getType().equalsIgnoreCase("remove")) {
             eventContact.getData().setPick(false);
-            mArrContactInvited.remove(eventContact.getData());
+            mDeleteContactPresenter.deleteContact(eventContact.getData().getId());
             mFragmentActiveContact.updateList(eventContact.getData(), false);
-            mFragmentPendingContact.updateList(eventContact.getData(), false);
+            for (int i = 0; i < ContactSingleton.getInstance().getArrContact().size(); i++) {
+                if (ContactSingleton.getInstance().getArrContact().get(i).getId().equalsIgnoreCase(eventContact.getData().getId())) {
+                    ContactSingleton.getInstance().getArrContact().remove(i);
+                }
+            }
+            //mFragmentPendingContact.updateList(eventContact.getData(), false);
         }
-        if (eventContact.getType().equalsIgnoreCase("new")) {
-            eventContact.getData().setPick(true);
-            mArrContactInvited.add(eventContact.getData());
-            mFragmentActiveContact.newContact(eventContact.getData());
-            mFragmentPendingContact.newContact(eventContact.getData());
-        }
-        mLayoutDone.setVisibility(View.VISIBLE);
+//        if (eventContact.getType().equalsIgnoreCase("new")) {
+//            eventContact.getData().setPick(true);
+//            mArrContactInvited.add(eventContact.getData());
+//            mFragmentActiveContact.newContact(eventContact.getData());
+//            //mFragmentPendingContact.newContact(eventContact.getData());
+//        }
+
     }
 
     @Override
@@ -370,4 +388,41 @@ public class MyContactsActivity extends BaseActivity implements IContactManager 
         mLayoutNormal.setBackground(ContextCompat.getDrawable(this, R.drawable.bg_button_filter));
     }
 
+    @Override
+    public void createContactSuccess(ContactData data) {
+        ContactManagerData contactManagerData = new ContactManagerData();
+        contactManagerData.setId(data.getId1());
+        contactManagerData.setAvatar(data.getAvatar());
+        contactManagerData.setEmail(data.getEmail());
+        contactManagerData.setPhone(data.getPhone());
+        contactManagerData.setUid(data.getUser());
+        contactManagerData.setName(data.getName());
+        ContactSingleton.getInstance().getArrContact().add(contactManagerData);
+        mFragmentActiveContact.updateList(contactManagerData, true);
+    }
+
+    @Override
+    public void createContactFail(@StringRes int message) {
+
+    }
+
+    @Override
+    public void createContactFail(String message) {
+
+    }
+
+    @Override
+    public void deleteContactSuccess(@StringRes int message) {
+
+    }
+
+    @Override
+    public void deleteContactFail(@StringRes int message) {
+
+    }
+
+    @Override
+    public void deleteContactFail(String message) {
+
+    }
 }

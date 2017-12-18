@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -15,6 +16,7 @@ import com.homecaravan.android.consumer.consumermvp.contactmvp.GetListContactPre
 import com.homecaravan.android.consumer.consumermvp.contactmvp.GetListContactView;
 import com.homecaravan.android.consumer.listener.IContactManager;
 import com.homecaravan.android.consumer.model.ContactManagerData;
+import com.homecaravan.android.consumer.model.ContactSingleton;
 import com.homecaravan.android.consumer.model.responseapi.ContactData;
 import com.homecaravan.android.consumer.utils.Utils;
 
@@ -101,27 +103,22 @@ public class FragmentMyContactActive extends BaseFragment implements GetListCont
                 contactManagerData.setUid(mArrContact.get(i).getUser());
                 contactManagerData.setName(mArrContact.get(i).getName());
                 mArrBaseContact.add(contactManagerData);
+                ContactSingleton.getInstance().getArrContact().add(contactManagerData);
             }
             mContactManagerAdapter.notifyDataSetChanged();
         }
     }
 
     public void updateList(ContactManagerData managerData, boolean b) {
-        int count = 0;
-        for (int i = 0; i < mArrBaseContact.size(); i++) {
-            if (managerData.getId().equalsIgnoreCase(mArrBaseContact.get(i).getId())) {
-                if (b) {
-                    mArrBaseContact.get(i).setPick(true);
-                } else {
-                    mArrBaseContact.get(i).setPick(false);
-                }
-                mContactManagerAdapter.notifyDataSetChanged();
-            } else {
-                count++;
-            }
-        }
-        if (count == mArrBaseContact.size()) {
+        if (b) {
             newContact(managerData);
+        } else {
+            for (int i = 0; i < mArrBaseContact.size(); i++) {
+                if (managerData.getId().equalsIgnoreCase(mArrBaseContact.get(i).getId())) {
+                    mArrBaseContact.remove(i);
+                    mContactManagerAdapter.notifyDataSetChanged();
+                }
+            }
         }
     }
 

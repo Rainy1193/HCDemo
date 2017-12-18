@@ -765,7 +765,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     public void addFragmentAgentInformation() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(mLayoutAgentInformation.getId(), mAgentInformation, "agentInformation");
-        fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
     public void showAgentInformation(final String agentId) {
@@ -797,7 +797,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     public void addFragmentReviewSubmit() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(mLayoutReviewSubmit.getId(), mSubmitReviews, "reviewSubmit");
-        fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
     public void showReviewSubmit() {
@@ -829,7 +829,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     public void addFragmentListingDetail() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(mLayoutListingDetail.getId(), mFragmentListingDetail, "listingDetail");
-        fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
     public void showListingDetail(final String listingId) {
@@ -861,7 +861,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     public void addFragmentSaveSearchDetail() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(mLayoutSaveSearchDetail.getId(), mFragmentSavedSearchDetail, "savedSearchDetail");
-        fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
     public void showSaveSearchDetail(final String id, boolean b) {
@@ -1190,7 +1190,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(viewResource, fragment);
-        ft.commit();
+        ft.commitAllowingStateLoss();
         toggle();
     }
 
@@ -1576,7 +1576,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
 
     @Override
     public void goContact() {
-        startActivity(new Intent(this, ContactsManagerActivity.class));
+
     }
 
     @Override
@@ -1613,6 +1613,13 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     @Override
     public void goProperty() {
         Intent intent = new Intent(this, SellerActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
+    }
+
+    @Override
+    public void goContactManager() {
+        Intent intent = new Intent(this, MyContactsActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
     }

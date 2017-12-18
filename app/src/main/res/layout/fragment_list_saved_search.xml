@@ -14,12 +14,12 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:visibility="gone"
             android:id="@+id/layoutAction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#E9EDEF"
-            android:padding="6dp">
+            android:padding="6dp"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/totalListing"
@@ -27,7 +27,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:textColor="@color/colorMenuConsumer" />
-
 
             <com.kyleduo.switchbutton.SwitchButton
                 android:id="@+id/switchSavedSearch"

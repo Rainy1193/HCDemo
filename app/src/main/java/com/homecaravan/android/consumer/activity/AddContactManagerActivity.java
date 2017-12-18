@@ -24,6 +24,8 @@ import com.homecaravan.android.consumer.base.BaseActivity;
 import com.homecaravan.android.consumer.consumerbase.ConsumerUser;
 import com.homecaravan.android.consumer.consumermvp.contactmvp.CreateContactPresenter;
 import com.homecaravan.android.consumer.consumermvp.contactmvp.CreateContactView;
+import com.homecaravan.android.consumer.consumermvp.contactmvp.InviteContactPresenter;
+import com.homecaravan.android.consumer.consumermvp.contactmvp.InviteContactView;
 import com.homecaravan.android.consumer.model.ContactManagerData;
 import com.homecaravan.android.consumer.model.ContactSingleton;
 import com.homecaravan.android.consumer.model.EventContact;
@@ -46,8 +48,9 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-public class AddContactManagerActivity extends BaseActivity implements CreateContactView {
+public class AddContactManagerActivity extends BaseActivity implements CreateContactView, InviteContactView {
     private CreateContactPresenter mCreateContactPresenter;
+    private InviteContactPresenter mInviteContactPresenter;
     private String mCountryCode = "";
     private ArrayList<Country> mArrCountry = new ArrayList<>();
     private ArrayList<String> mEnsignCountry = new ArrayList<>();
@@ -96,9 +99,10 @@ public class AddContactManagerActivity extends BaseActivity implements CreateCon
         if (ValidateData.isPhone(mPhone.getText().toString())) {
             showLoading();
             hideKeyboard();
+            mInviteContactPresenter.inviteContact(handlerPhone(mPhone.getText().toString()), false, "Welcome to HomeCaravan");
             //mCreateContactPresenter.createContact("", mCountryCode + mPhone.getText().toString(), "", "", ConsumerUser.getInstance().getData().getId());
         } else {
-            showSnackBar(findViewById(R.id.layoutMain), TypeDialog.WARNING, R.string.error_email, "phone");
+            showSnackBar(findViewById(R.id.layoutMain), TypeDialog.WARNING, R.string.error_phone, "phone");
         }
     }
 
@@ -128,7 +132,9 @@ public class AddContactManagerActivity extends BaseActivity implements CreateCon
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, 1);
             }
         } else {
-            startActivity(new Intent(this, FriendListActivity.class));
+            Intent intent = new Intent(this, FriendListActivity.class);
+            intent.putExtra("countryCode", mCountryCode);
+            startActivity(intent);
             overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
         }
     }
@@ -146,6 +152,7 @@ public class AddContactManagerActivity extends BaseActivity implements CreateCon
         mEnsignCountry = getEnsignCountry(mArrCountry);
         getCountryZipCode();
         mCreateContactPresenter = new CreateContactPresenter(this);
+        mInviteContactPresenter = new InviteContactPresenter(this);
         EventBus.getDefault().register(this);
     }
 
@@ -166,7 +173,9 @@ public class AddContactManagerActivity extends BaseActivity implements CreateCon
         if (requestCode == 1) {
             if (grantResults.length == 1
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startActivity(new Intent(this, FriendListActivity.class));
+                Intent intent = new Intent(this, FriendListActivity.class);
+                intent.putExtra("countryCode", mCountryCode);
+                startActivity(intent);
                 overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
             } else {
                 Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_LONG).show();
@@ -316,6 +325,31 @@ public class AddContactManagerActivity extends BaseActivity implements CreateCon
             }
         }
 
+    }
+
+    @Override
+    public void inviteSuccess() {
+
+    }
+
+    @Override
+    public void inviteFail(String message) {
+
+    }
+
+    @Override
+    public void inviteFail(@StringRes int message) {
+
+    }
+
+    public String handlerPhone(String data) {
+        if (ValidateData.isPhone(data)) {
+            if (data.startsWith("0")) {
+                return "+" + mCountryCode + data.substring(1);
+            }
+            return "+" + mCountryCode + data;
+        }
+        return data;
     }
 
 }

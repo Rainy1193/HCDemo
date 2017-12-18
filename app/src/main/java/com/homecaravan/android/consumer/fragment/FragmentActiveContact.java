@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -111,6 +112,7 @@ public class FragmentActiveContact extends BaseFragment implements GetListContac
                         contactManagerData.setPick(true);
                     }
                 }
+                ContactSingleton.getInstance().getArrContact().add(contactManagerData);
                 mArrBaseContact.add(contactManagerData);
             }
             mContactManagerAdapter.notifyDataSetChanged();
@@ -118,21 +120,15 @@ public class FragmentActiveContact extends BaseFragment implements GetListContac
     }
 
     public void updateList(ContactManagerData managerData, boolean b) {
-        int count = 0;
-        for (int i = 0; i < mArrBaseContact.size(); i++) {
-            if (managerData.getId().equalsIgnoreCase(mArrBaseContact.get(i).getId())) {
-                if (b) {
-                    mArrBaseContact.get(i).setPick(true);
-                } else {
-                    mArrBaseContact.get(i).setPick(false);
-                }
-                mContactManagerAdapter.notifyDataSetChanged();
-            } else {
-                count++;
-            }
-        }
-        if (count == mArrBaseContact.size()) {
+        if (b) {
             newContact(managerData);
+        } else {
+            for (int i = 0; i < mArrBaseContact.size(); i++) {
+                if (managerData.getId().equalsIgnoreCase(mArrBaseContact.get(i).getId())) {
+                    mArrBaseContact.remove(i);
+                    mContactManagerAdapter.notifyDataSetChanged();
+                }
+            }
         }
     }
 
@@ -143,6 +139,7 @@ public class FragmentActiveContact extends BaseFragment implements GetListContac
                 position = i;
             }
         }
+        managerData.setPick(true);
         mArrBaseContact.add(position, managerData);
         mContactManagerAdapter.notifyDataSetChanged();
     }

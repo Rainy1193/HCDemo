@@ -45,6 +45,13 @@
 
         </android.support.v4.view.ViewPager>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/ProgressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="66dp" />
+
         <LinearLayout
             android:id="@+id/layoutMenu"
             android:layout_width="match_parent"

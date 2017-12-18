@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -156,6 +157,7 @@ public class FindContactActivity extends BaseActivity implements SearchContactVi
             }
             Utils.softContact(mArrContact);
             for (int i = 0; i < mArrContact.size(); i++) {
+                Log.e("mArrContact.getId()", mArrContact.get(i).getId());
                 ContactManagerData contactManagerData = new ContactManagerData();
                 contactManagerData.setId(mArrContact.get(i).getId());
                 contactManagerData.setAvatar(mArrContact.get(i).getAvatar());
@@ -165,6 +167,7 @@ public class FindContactActivity extends BaseActivity implements SearchContactVi
                 contactManagerData.setName(mArrContact.get(i).getName());
                 ArrayList<ContactManagerData> datas = ContactSingleton.getInstance().getArrContact();
                 for (int j = 0; j < datas.size(); j++) {
+                    Log.e("datas.get(j).getId()", datas.get(j).getId());
                     if (mArrContact.get(i).getId().equalsIgnoreCase(datas.get(j).getId())) {
                         contactManagerData.setPick(true);
                     }
@@ -247,10 +250,8 @@ public class FindContactActivity extends BaseActivity implements SearchContactVi
     @Override
     public void pickContact(ContactManagerData managerData, String id, int position, boolean b) {
         if (b) {
-            ContactSingleton.getInstance().getArrContact().add(managerData);
             EventBus.getDefault().post(new EventContact("add", managerData));
         } else {
-            ContactSingleton.getInstance().getArrContact().remove(managerData);
             EventBus.getDefault().post(new EventContact("remove", managerData));
         }
     }
