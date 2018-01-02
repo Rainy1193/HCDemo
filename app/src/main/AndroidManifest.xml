@@ -379,6 +379,17 @@
         </activity>
 
         <activity
+            android:name=".consumer.activity.FavoriteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ThemeDashboard"
+            android:windowSoftInputMode="adjustNothing">
+            <intent-filter>
+                <action android:name="com.homecaravan.android.FavoriteActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".consumer.activity.SendEmailContactActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ThemeDashboard"

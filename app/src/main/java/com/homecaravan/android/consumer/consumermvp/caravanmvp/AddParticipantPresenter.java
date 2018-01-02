@@ -16,10 +16,10 @@ public class AddParticipantPresenter {
         this.mView = mView;
     }
 
-    public void addParticipant(String idCaravan, String idParticipant,String email, String phone, String role, String firstName,
+    public void addParticipant(String idCaravan, String idParticipant, String email, String phone, String role, String firstName,
                                String lastName, String communication) {
         CaravanApi caravanApi = ServiceGeneratorConsumer.createService(CaravanApi.class);
-        caravanApi.addParticipant(idCaravan, idParticipant,email, phone, role, firstName, lastName, communication).enqueue(new Callback<ResponseParticipants>() {
+        caravanApi.addParticipant(idCaravan, idParticipant, email, phone, role, firstName, lastName, communication).enqueue(new Callback<ResponseParticipants>() {
             @Override
             public void onResponse(Call<ResponseParticipants> call, Response<ResponseParticipants> response) {
                 if (response.isSuccessful()) {

@@ -14,43 +14,58 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="150dp"
-            android:layout_height="100dp">
+
+            android:layout_width="match_parent"
+            android:layout_height="120dp">
 
             <ImageView
+
                 android:id="@+id/ivListing"
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/ivRemoveListing"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_remove_listing_schedule" />
+
+            <LinearLayout
+                android:id="@+id/layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true">
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_price_listing_item"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-                <ImageView
+                <TextView
+                    android:id="@+id/tvAddress1"
+                    style="@style/TextViewItemDashboard3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold" />
 
-                    android:id="@+id/ivRemoveListing"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginRight="-8dp"
-                    android:layout_marginTop="-8dp"
-                    android:background="@drawable/bg_remove_listing_schedule"
-                    android:padding="6dp"
-                    android:src="@drawable/ic_remove_listing_schedule" />
-            </RelativeLayout>
+                <TextView
+                    android:id="@+id/tvAddress2"
+                    style="@style/TextViewItemDashboard3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tvCity"
-            style="@style/TextViewMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="4dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textSize="12sp" />
     </LinearLayout>
 
 </LinearLayout>

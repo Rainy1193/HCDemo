@@ -1,6 +1,5 @@
 package com.homecaravan.android.consumer.model.responseapi;
 
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -197,7 +196,7 @@ public class ConditionFull {
     public String toString() {
         return "ConditionFull{" +
                 "minPrice='" + minPrice + '\'' +
-                ", title='" + maxPrice + '\'' +
+                ", maxPrice='" + maxPrice + '\'' +
                 ", br='" + br + '\'' +
                 ", ar='" + ar + '\'' +
                 ", lsf='" + lsf + '\'' +

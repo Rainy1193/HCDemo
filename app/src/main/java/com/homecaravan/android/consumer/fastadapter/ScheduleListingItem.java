@@ -59,7 +59,7 @@ public class ScheduleListingItem extends AbstractItem<ScheduleListingItem, Sched
             }
         });
         if (mListing.isInQueue()) {
-            holder.mAddSchedule.setVisibility(View.GONE);
+            holder.mAddSchedule.setVisibility(View.INVISIBLE);
         } else {
             holder.mAddSchedule.setVisibility(View.VISIBLE);
         }

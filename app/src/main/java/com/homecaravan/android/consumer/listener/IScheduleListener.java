@@ -7,7 +7,7 @@ public interface IScheduleListener {
 
     void showNext();
 
-    void showNextWhenSelectAgent();
+    void showNextWhenSelectAgent(boolean b);
 
     void backSelectAgent();
 

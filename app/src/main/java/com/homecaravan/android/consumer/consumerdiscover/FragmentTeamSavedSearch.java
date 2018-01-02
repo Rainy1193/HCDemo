@@ -48,7 +48,8 @@ import butterknife.Bind;
 import butterknife.OnClick;
 
 
-public class FragmentTeamSavedSearch extends BaseFragment implements IContactManager, UpdateParticipantView, AddParticipantSearchView, RemoveParticipantSearchView {
+public class FragmentTeamSavedSearch extends BaseFragment implements IContactManager, UpdateParticipantView, AddParticipantSearchView,
+        RemoveParticipantSearchView {
     private IUpdateSavedSearchListener mListener;
     private ArrayList<Participant> mParticipants = new ArrayList<>();
     private ArrayList<ContactManagerData> mArrContact = new ArrayList<>();
@@ -191,13 +192,11 @@ public class FragmentTeamSavedSearch extends BaseFragment implements IContactMan
     @org.greenrobot.eventbus.Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEventContact(EventContactManager contactManager) {
         if (contactManager.status.equalsIgnoreCase("update")) {
-            Log.e("cc", contactManager.contactManagerData.toString());
             for (int i = 0; i < mArrContact.size(); i++) {
                 mUpdateParticipantPresenter.updateParticipant(CurrentSaveSearch.getInstance().getId(), contactManager.contactManagerData.getId(),
                         contactManager.contactManagerData.getWeight(), contactManager.contactManagerData.getRole());
             }
         } else {
-            Log.e("cc", contactManager.contactManagerData.toString());
             for (int i = 0; i < mArrContact.size(); i++) {
                 mRemoveParticipantSearchPresenter.removeParticipant(CurrentSaveSearch.getInstance().getId(), contactManager.contactManagerData.getId());
             }
@@ -230,7 +229,7 @@ public class FragmentTeamSavedSearch extends BaseFragment implements IContactMan
                     }
                     if (count == mArrContact.size()) {
                         Log.e("arr", arr.get(i).toString());
-                        //addCreateCollaborator(arr.get(i));
+                        addCreateCollaborator(arr.get(i));
                     }
                 }
                 mArrContact.clear();

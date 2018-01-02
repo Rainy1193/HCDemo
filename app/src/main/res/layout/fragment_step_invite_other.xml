@@ -1,193 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBgFragment"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <ScrollView
-        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite">
+        android:scrollbarThumbVertical="@null">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/TextViewMain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_schedule1"
-                android:text="@string/step_schedule_three"
-                android:textColor="@color/colorMenuConsumer" />
-
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:background="@color/colorBgFragment" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/margin_invite_others">
-
-                <TextView
-                    style="@style/TextViewMain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/recently_invited"
-                    android:textColor="@color/colorMenuConsumer" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rvAgent"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="@dimen/margin_invite_others">
-
-                </android.support.v7.widget.RecyclerView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:background="@color/colorBgFragment" />
-
-            <LinearLayout
+                android:id="@+id/layoutAddTeam"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_invite_others">
+                    android:background="?android:selectableItemBackground"
+                    android:padding="16dp">
+
+                    <com.homecaravan.android.ui.CircleImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_add_team" />
 
                     <TextView
                         style="@style/TextViewMain"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="@string/invite_agent_consumer"
-                        android:textColor="@color/colorMenuConsumer" />
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/margin_invite_others"
-                    android:layout_marginStart="@dimen/margin_invite_others"
-                    android:orientation="horizontal">
-
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/etFirstName"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/margin_invite_agent"
-                        android:layout_weight="1"
-                        android:hint="@string/fn_invite_agent"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:textSize="14sp"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelAnimating="true"
-                        app:met_floatingLabelTextColor="@color/colorMenuConsumer" />
-
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/etLastName"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/margin_invite_agent"
-                        android:layout_weight="1"
-                        android:hint="@string/ln_invite_agent"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:textSize="14sp"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelAnimating="true"
-                        app:met_floatingLabelTextColor="@color/colorMenuConsumer" />
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:text="Add participants" />
                 </LinearLayout>
 
-                <LinearLayout
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/margin_invite_others"
-                    android:layout_marginStart="@dimen/margin_invite_others"
-                    android:orientation="horizontal">
-
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:id="@+id/etEmail"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/margin_invite_agent"
-                        android:layout_weight="1"
-                        android:hint="@string/email_invite_agent"
-                        android:inputType="textEmailAddress"
-                        android:lines="1"
-                        android:textSize="14sp"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelAnimating="true"
-                        app:met_floatingLabelTextColor="@color/colorMenuConsumer" />
-
-                    <com.rengwuxian.materialedittext.MaterialEditText
-                        android:lines="1"
-                        android:id="@+id/etPhone"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/margin_invite_agent"
-                        android:layout_weight="1"
-                        android:digits="0123456789"
-                        android:hint="@string/phone_invite_agent"
-                        android:inputType="numberDecimal"
-                        android:textSize="14sp"
-                        app:met_floatingLabel="highlight"
-                        app:met_floatingLabelAnimating="true"
-                        app:met_floatingLabelTextColor="@color/colorMenuConsumer" />
-                </LinearLayout>
+                    android:layout_height="0.5dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginStart="4dp"
+                    android:background="@color/colorLine" />
             </LinearLayout>
 
-            <FrameLayout
-                android:id="@+id/layoutSendInvite"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvParticipants"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
-                android:background="@drawable/bg_send_invite">
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="12dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_consumer_message_send" />
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="4dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
-                        android:background="@color/colorWhite" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/TextViewMain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/send_invite_agent_consumer"
-                    android:textColor="@color/colorWhite" />
-            </FrameLayout>
-
+            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutEditContact"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99343434"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/layoutEditContactContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorWhite"
+            android:visibility="gone">
+
+            <include layout="@layout/layout_edit_contact" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

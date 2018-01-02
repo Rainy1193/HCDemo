@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,10 +22,13 @@ import com.homecaravan.android.R;
 import com.homecaravan.android.consumer.activity.ContactsManagerActivity;
 import com.homecaravan.android.consumer.adapter.ContactManagerAdapter;
 import com.homecaravan.android.consumer.base.BaseActivity;
+import com.homecaravan.android.consumer.consumermvp.searchmvp.AddParticipantSearchPresenter;
+import com.homecaravan.android.consumer.consumermvp.searchmvp.AddParticipantSearchView;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.SaveSearchPresenter;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.SaveSearchView;
 import com.homecaravan.android.consumer.listener.IContactManager;
 import com.homecaravan.android.consumer.model.ContactManagerData;
+import com.homecaravan.android.consumer.model.ContactSingleton;
 import com.homecaravan.android.consumer.model.CurrentCreateSavedSearch;
 import com.homecaravan.android.consumer.model.EventNewSaveSearch;
 import com.homecaravan.android.consumer.model.EventReloadSaveSearch;
@@ -46,12 +50,13 @@ import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import okhttp3.RequestBody;
 
-public class SaveSearchActivity extends BaseActivity implements SaveSearchView, IContactManager {
+public class SaveSearchActivity extends BaseActivity implements SaveSearchView, IContactManager, AddParticipantSearchView {
     private int mStep = 1;
     private int mWidthPage;
 
     private ArrayList<ContactManagerData> mArrContact = new ArrayList<>();
     private ContactManagerAdapter mAdapter;
+    private AddParticipantSearchPresenter mAddParticipantSearchPresenter;
     private int REQUEST_ADD_AGENT = 2;
     private String mFt = "sale";
     private String mMaxPrice = "";
@@ -267,9 +272,9 @@ public class SaveSearchActivity extends BaseActivity implements SaveSearchView, 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ContactSingleton.getInstance().getArrContact().clear();
+        mAddParticipantSearchPresenter=new AddParticipantSearchPresenter(this);
         if (getIntent().getExtras() != null) {
-
             mNamSavedSearch = getIntent().getExtras().getString("name");
             mLocationNe = getIntent().getExtras().getString("ne");
             mLocationSw = getIntent().getExtras().getString("sw");
@@ -315,11 +320,51 @@ public class SaveSearchActivity extends BaseActivity implements SaveSearchView, 
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_ADD_AGENT) {
             if (resultCode == Activity.RESULT_OK) {
-//                updateListAgent();
+                ArrayList<ContactManagerData> arr = ContactSingleton.getInstance().getArrContact();
+                int count = 0;
+                for (int i = 0; i < arr.size(); i++) {
+                    for (int j = 0; j < mArrContact.size(); j++) {
+                        if (!arr.get(i).getId().equalsIgnoreCase(mArrContact.get(j).getId())) {
+                            count++;
+                        }
+                    }
+                    if (count == mArrContact.size()) {
+                        Log.e("arr", arr.get(i).toString());
+                        addCreateCollaborator(arr.get(i));
+                    }
+                }
+                mArrContact.clear();
+                mArrContact.addAll(ContactSingleton.getInstance().getArrContact());
+                mAdapter.notifyDataSetChanged();
             }
         }
     }
 
+    public void addCreateCollaborator(ContactManagerData managerData) {
+
+        String fName, lName = "", role = "admin", weight = "1", email = "", phone = "";
+        String fullName = managerData.getName();
+        if (fullName.contains(" ")) {
+            fName = fullName.substring(0, fullName.indexOf(" "));
+            lName = fullName.substring(fullName.indexOf(" ") + 1, fullName.length());
+        } else {
+            fName = fullName;
+        }
+        if (managerData.getRole() != null) {
+            role = managerData.getRole();
+        }
+        if (managerData.getWeight() != null) {
+            weight = managerData.getWeight();
+        }
+        if (managerData.getEmail() != null) {
+            email = managerData.getEmail();
+        }
+        if (managerData.getPhone() != null) {
+            phone = managerData.getPhone();
+        }
+        mAddParticipantSearchPresenter.addParticipant(fName, lName, email,
+                phone, role, weight, CurrentSaveSearch.getInstance().getId(), "");
+    }
     public void savedSearch() {
         showLoading();
         if (mSavedSearch) {
@@ -513,4 +558,18 @@ public class SaveSearchActivity extends BaseActivity implements SaveSearchView, 
     }
 
 
+    @Override
+    public void addParticipantSuccess(SearchDetail searchDetail) {
+
+    }
+
+    @Override
+    public void addParticipantFail(String message) {
+
+    }
+
+    @Override
+    public void addParticipantFail(@StringRes int message) {
+
+    }
 }

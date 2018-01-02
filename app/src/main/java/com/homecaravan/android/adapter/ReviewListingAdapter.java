@@ -48,13 +48,7 @@ public class ReviewListingAdapter extends RecyclerView.Adapter<ReviewListingAdap
                 Utils.getTimeRoute(listing.getEndHour(), listing.getEndMin(), listing.getEndHaft()));
         holder.mDuration.setText(String.valueOf(listing.getDuration()) + " mins");
         holder.mStep.setText(String.valueOf(listing.getPosition() + 1));
-        if (position == 0) {
-            holder.mLayoutStep.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_item_review_1));
-        } else if (position == 1) {
-            holder.mLayoutStep.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_item_review_2));
-        } else {
-            holder.mLayoutStep.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_item_review_3));
-        }
+        holder.mLayoutStep.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_item_review_3));
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.homecaravan.android.consumer.consumershedule;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.homecaravan.android.R;
+import com.homecaravan.android.consumer.activity.BookSingleActivity;
 import com.homecaravan.android.consumer.activity.MainActivityConsumer;
 import com.homecaravan.android.consumer.adapter.ScheduleAdapter;
 import com.homecaravan.android.consumer.adapter.ScheduleConsumerAdapter;
@@ -41,6 +43,7 @@ import com.homecaravan.android.consumer.model.CaravanQueue;
 import com.homecaravan.android.consumer.model.ConsumerListingSchedule;
 import com.homecaravan.android.consumer.model.CurrentCaravan;
 import com.homecaravan.android.consumer.model.CurrentListingSchedule;
+import com.homecaravan.android.consumer.model.EventDeleteSearch;
 import com.homecaravan.android.consumer.model.EventFavored;
 import com.homecaravan.android.consumer.model.EventNewSaveSearch;
 import com.homecaravan.android.consumer.model.EventQueue;
@@ -195,24 +198,32 @@ public class FragmentSchedule extends BaseFragment implements ISchedulePropertyL
             } else {
                 closeStepSchedule(true);
             }
+            return;
         }
         if (mCurrentStep == 0) {
             mViewPagerSchedule.setCurrentItem(0);
+            return;
         }
         if (mCurrentStep == 1) {
             mViewPagerSchedule.setCurrentItem(1);
+            return;
         }
         if (mCurrentStep == 2) {
-            mNeedSelectDay.setVisibility(View.GONE);
-            mNeedSelectAgent.setVisibility(View.GONE);
-            mNextStep.setVisibility(View.VISIBLE);
-            mViewPagerSchedule.setCurrentItem(2);
+            if (mFragmentSelectAgent.isShowExclusive()) {
+                mFragmentSelectAgent.hideExclusiveAgent();
+                mCurrentStep++;
+            } else {
+                mNeedSelectDay.setVisibility(View.GONE);
+                mNeedSelectAgent.setVisibility(View.GONE);
+                mNextStep.setVisibility(View.VISIBLE);
+                mViewPagerSchedule.setCurrentItem(2);
+            }
+            return;
         }
         if (mCurrentStep == 3) {
             mViewPagerSchedule.setCurrentItem(3);
             mNextStep.setVisibility(View.VISIBLE);
             mSubmit.setVisibility(View.GONE);
-
         }
     }
 
@@ -220,9 +231,10 @@ public class FragmentSchedule extends BaseFragment implements ISchedulePropertyL
     public void nextStep() {
         mCurrentStep++;
         if (mCurrentStep == 1) {
-            mFragmentScheduleShowing.createCaravanFromQueue();
-//            mViewPagerSchedule.setCurrentItem(1);
+            //mFragmentScheduleShowing.createCaravanFromQueue();
+            mViewPagerSchedule.setCurrentItem(1);
 //            mFragmentRoute.setUpMapAndListRoute(mStartHour, mStartMin, mStartHalf);
+            return;
         }
         if (mCurrentStep == 2) {
 //            try {
@@ -231,18 +243,24 @@ public class FragmentSchedule extends BaseFragment implements ISchedulePropertyL
 //                e.printStackTrace();
 //            }
             mViewPagerSchedule.setCurrentItem(2);
+            return;
         }
         if (mCurrentStep == 3) {
             mNeedSelectDay.setVisibility(View.GONE);
             mNeedSelectAgent.setVisibility(View.VISIBLE);
             mNextStep.setVisibility(View.GONE);
-            mFragmentSelectAgent.resetSelect();
+            mFragmentSelectAgent.hideExclusiveAgent();
             mViewPagerSchedule.setCurrentItem(3);
+            return;
         }
         if (mCurrentStep == 4) {
-            mFragmentReviewAndSubmit.setUpListAndMap();
+            //mFragmentReviewAndSubmit.setUpListAndMap();
             mViewPagerSchedule.setCurrentItem(4);
-            mFragmentReviewAndSubmit.initAgent(mFragmentSelectAgent.getCurrentSelect());
+            if (mFragmentSelectAgent.getAgent() != null) {
+                mFragmentReviewAndSubmit.initAgent(mFragmentSelectAgent.getAgent().getName(), mFragmentSelectAgent.getAgent().getAvatar(), true);
+            } else {
+                mFragmentReviewAndSubmit.initAgent("", 0, false);
+            }
             mSubmit.setVisibility(View.VISIBLE);
             mNextStep.setVisibility(View.INVISIBLE);
         }
@@ -278,8 +296,15 @@ public class FragmentSchedule extends BaseFragment implements ISchedulePropertyL
 
     @OnClick(R.id.layoutOpenSchedule)
     public void onLayoutOpenSchedule() {
-        mUpdate = false;
-        openLayoutCreateCaravan();
+        if (mArrListing.size() == 1) {
+            Intent intent = new Intent(getContext(), BookSingleActivity.class);
+            intent.putExtra("id", mArrListing.get(0).getId());
+            startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
+        } else {
+            mUpdate = false;
+            openLayoutCreateCaravan();
+        }
     }
 
     @Override
@@ -441,7 +466,6 @@ public class FragmentSchedule extends BaseFragment implements ISchedulePropertyL
         updateSchedule(listing.getId(), false);
         EventBus.getDefault().post(new EventQueue(false, listing.getId(), listing, null, null));
     }
-
 
     public void setUpDataSelect() {
         for (int i = 1; i <= 12; i++) {
@@ -773,9 +797,14 @@ public class FragmentSchedule extends BaseFragment implements ISchedulePropertyL
     }
 
     @Override
-    public void showNextWhenSelectAgent() {
-        mNeedSelectAgent.setVisibility(View.GONE);
-        mNextStep.setVisibility(View.VISIBLE);
+    public void showNextWhenSelectAgent(boolean b) {
+        if (b) {
+            mNeedSelectAgent.setVisibility(View.GONE);
+            mNextStep.setVisibility(View.VISIBLE);
+        } else {
+            mNeedSelectAgent.setVisibility(View.VISIBLE);
+            mNextStep.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -877,6 +906,18 @@ public class FragmentSchedule extends BaseFragment implements ISchedulePropertyL
     public void onEventListingDetail(EventNewSaveSearch newSearch) {
         if (mIsEnd) {
             mGetListSearchPresenter.getListSearch(String.valueOf(mPage), "", "", "");
+        }
+    }
+
+    @org.greenrobot.eventbus.Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEventDeleteSearch(EventDeleteSearch search) {
+        if (mIsEnd) {
+            for (int i = 0; i < mPageSchedule.size(); i++) {
+                if (!mPageSchedule.get(i).isFavorite() && mPageSchedule.get(i).getSearchId().equalsIgnoreCase(search.id)) {
+                    mPageSchedule.remove(i);
+                    break;
+                }
+            }
         }
     }
 

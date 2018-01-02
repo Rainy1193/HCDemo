@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -677,7 +678,6 @@ public class FragmentListSavedSearch extends BaseFragment implements
         mGoogleMap.getUiSettings().setMapToolbarEnabled(false);
         mGoogleMap.getUiSettings().setIndoorLevelPickerEnabled(false);
         mGoogleMap.getUiSettings().setTiltGesturesEnabled(false);
-
         mGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -687,10 +687,8 @@ public class FragmentListSavedSearch extends BaseFragment implements
         mGoogleMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
             public void onMapLoaded() {
-                Log.e("cc", "Cc");
                 mMapReady = true;
                 if (mDataReady) {
-                    Log.e("Ccc", "Ccc");
                     updatePager();
                 }
             }

@@ -11,8 +11,6 @@ public interface MenuListener {
 
     void closeMenu();
 
-    void goContact();
-
     void goSaveSearch();
 
     void goMyTeam();

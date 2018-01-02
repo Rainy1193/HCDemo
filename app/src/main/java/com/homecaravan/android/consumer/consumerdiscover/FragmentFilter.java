@@ -824,6 +824,8 @@ public class FragmentFilter extends BaseFragment {
                 mXBath3 = mLayoutBath3.getX();
                 mXBath4 = mLayoutBath4.getX();
                 mXBath5 = mLayoutBath5.getX();
+                Log.e("hasData", String.valueOf(hasData));
+                Log.e("mHasDataSearch", String.valueOf(mHasDataSearch));
                 if (hasData && !mHasDataSearch) {
                     handlerConditionSaveSearchDetail();
                 }
@@ -894,7 +896,7 @@ public class FragmentFilter extends BaseFragment {
                 setPt(SingletonFilter.getInstance().getPt());
             }
         } else {
-            Log.e("Cc", "Ccasas");
+            Log.e("loadFilterData", "loadFilterData");
             onLayoutTypeAllClicked();
         }
         if (SingletonFilter.getInstance().getMaxPrice() != null) {
@@ -1016,111 +1018,75 @@ public class FragmentFilter extends BaseFragment {
     public void handlerConditionSaveSearchDetail() {
         mHasDataSearch = true;
         ConditionFull conditionFull = CurrentSaveSearch.getInstance().getSearchDetail().getConditions().get(0);
+
+        Log.e("ConditionFull", conditionFull.toString());
         if (conditionFull.getPt() != null) {
             if (!conditionFull.getPt().isEmpty()) {
-                setPt(conditionFull.getPt());
+                SingletonFilter.getInstance().setPt(mPf);
             }
         } else {
-            Log.e("aaaa", "Qqq");
             onLayoutTypeAllClicked();
         }
         if (conditionFull.getMaxPrice() != null) {
             if (!conditionFull.getMaxPrice().isEmpty()) {
-                mRangeSeekBar.setSelectedMaxValue((int) (Double.parseDouble(conditionFull.getMaxPrice())));
-                mMaxPrice.setText(Utils.getPriceFilter((int) (Double.parseDouble(conditionFull.getMaxPrice()))));
+                SingletonFilter.getInstance().setMaxPrice(conditionFull.getMaxPrice());
             }
         }
         if (conditionFull.getMinPrice() != null) {
             if (!conditionFull.getMinPrice().isEmpty()) {
-                mRangeSeekBar.setSelectedMinValue((int) (Double.parseDouble(conditionFull.getMinPrice())));
-                mMinPrice.setText(Utils.getPriceFilter((int) (Double.parseDouble(conditionFull.getMinPrice()))));
+                SingletonFilter.getInstance().setMinPrice(conditionFull.getMinPrice());
             }
         }
 
         if (conditionFull.getBr() != null) {
             if (!conditionFull.getBr().isEmpty()) {
-                switch (Integer.parseInt(conditionFull.getBr())) {
-                    case 1:
-                        onLayoutBed1Clicked();
-                        break;
-                    case 2:
-                        onLayoutBed2Clicked();
-                        break;
-                    case 3:
-                        onLayoutBed3Clicked();
-                        break;
-                    case 4:
-                        onLayoutBed4Clicked();
-                        break;
-                    case 5:
-                        onLayoutBed5Clicked();
-                        break;
-
-                }
+                SingletonFilter.getInstance().setBed(conditionFull.getBr());
             }
         }
         if (conditionFull.getAr() != null) {
             if (!conditionFull.getAr().isEmpty()) {
-                switch (Integer.parseInt(conditionFull.getAr())) {
-
-                    case 1:
-                        onLayoutBath1Clicked();
-                        break;
-                    case 2:
-                        onLayoutBath2Clicked();
-                        break;
-                    case 3:
-                        onLayoutBath3Clicked();
-                        break;
-                    case 4:
-                        onLayoutBath4Clicked();
-                        break;
-                    case 5:
-                        onLayoutBath5Clicked();
-                        break;
-
-                }
+                SingletonFilter.getInstance().setBath(conditionFull.getAr());
             }
         }
 
         if (conditionFull.getMaxLs() != null) {
             if (!conditionFull.getMaxLs().isEmpty()) {
-                mLotSizeMax.setText(conditionFull.getMaxLs());
+                SingletonFilter.getInstance().setMinLs(conditionFull.getMinLs());
             }
         }
         if (conditionFull.getMinLs() != null) {
             if (!conditionFull.getMinLs().isEmpty()) {
-                mLotSizeMin.setText(conditionFull.getMinLs());
+                SingletonFilter.getInstance().setMaxLs(conditionFull.getMaxLs());
             }
         }
         if (conditionFull.getMaxYb() != null) {
             if (!conditionFull.getMaxYb().isEmpty()) {
-                mYearBuildMax.setText(conditionFull.getMaxYb());
+                SingletonFilter.getInstance().setMaxYb(conditionFull.getMaxYb());
             }
         }
         if (conditionFull.getMinYb() != null) {
             if (!conditionFull.getMinYb().isEmpty()) {
-                mYearBuildMin.setText(conditionFull.getMinYb());
+                SingletonFilter.getInstance().setMinYb(conditionFull.getMinYb());
             }
         }
         if (conditionFull.getMaxLsf() != null) {
             if (!conditionFull.getMaxLsf().isEmpty()) {
-                mSfMax.setText(conditionFull.getMaxLsf());
+                SingletonFilter.getInstance().setMaxLsf(conditionFull.getMaxLsf());
             }
         }
         if (conditionFull.getMinLsf() != null) {
             if (!conditionFull.getMinLsf().isEmpty()) {
-                mSfMin.setText(conditionFull.getMinLsf());
+                SingletonFilter.getInstance().setMinLsf(conditionFull.getMinLsf());
             }
         }
         if (conditionFull.getKeyword() != null) {
             if (!conditionFull.getKeyword().isEmpty()) {
-                mKeyword.setText(conditionFull.getKeyword());
+                SingletonFilter.getInstance().setKeyword(conditionFull.getKeyword());
             }
         }
         if (conditionFull.getDc() != null) {
             if (!conditionFull.getDc().isEmpty()) {
-                mDayMax.setText(conditionFull.getDc());
+                SingletonFilter.getInstance().setDc(conditionFull.getDc());
             }
         }
 
@@ -1133,6 +1099,7 @@ public class FragmentFilter extends BaseFragment {
         mDayMax.clearFocus();
         mSfMin.clearFocus();
         mSfMax.clearFocus();
+        loadFilterData();
     }
 
     public void scrollDown(final boolean b) {

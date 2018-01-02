@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBgFragment"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <ScrollView
+        android:scrollbarThumbVertical="@null"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite">
@@ -94,11 +95,11 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorBgFragment"
+                        android:background="@color/colorWhite"
                         android:orientation="vertical">
 
                         <LinearLayout
-                            android:id="@+id/layoutMeetSeveralAgents"
+                            android:id="@+id/layoutIntroducedAgent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_select_agents1"
@@ -112,21 +113,40 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center_vertical"
-                                android:src="@drawable/ic_meet_several_agents" />
+                                android:layout_marginBottom="8dp"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/ic_introduced" />
 
-                            <TextView
-                                android:id="@+id/tvMeetSeveralAgent"
-                                style="@style/TextViewMain"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/margin_select_agents1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextViewMain"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/margin_select_agents1"
+                                    android:text="I would like"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    style="@style/TextViewMain"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/margin_select_agents1"
+                                    android:text="to be introduced to an agent"
+                                    android:textColor="#ffd16b"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/layoutOneLocalExpert"
+                            android:id="@+id/layoutExclusiveAgent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/margin_select_agents1"
@@ -140,17 +160,36 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_gravity="center_vertical"
-                                android:src="@drawable/ic_one_local_expert" />
+                                android:layout_marginBottom="8dp"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/ic_exclusive" />
 
-                            <TextView
-                                android:id="@+id/tvOneLocalExpert"
-                                style="@style/TextViewMain"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginStart="@dimen/margin_select_agents1"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextViewMain"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/margin_select_agents1"
+                                    android:text="I would like"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    style="@style/TextViewMain"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/margin_select_agents1"
+                                    android:text="to select an exclusive agent"
+                                    android:textColor="#ffd16b"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
                         </LinearLayout>
 
                         <LinearLayout
@@ -162,7 +201,8 @@
                             android:layout_marginTop="@dimen/margin_select_agents1"
                             android:background="@drawable/bg_option_select_agent"
                             android:orientation="horizontal"
-                            android:padding="@dimen/margin_select_agents1">
+                            android:padding="@dimen/margin_select_agents1"
+                            android:visibility="gone">
 
                             <ImageView
                                 android:layout_width="40dp"
@@ -190,7 +230,8 @@
                             android:layout_marginTop="@dimen/margin_select_agents1"
                             android:background="@drawable/bg_option_select_agent"
                             android:orientation="horizontal"
-                            android:padding="@dimen/margin_select_agents1">
+                            android:padding="@dimen/margin_select_agents1"
+                            android:visibility="gone">
 
                             <ImageView
                                 android:layout_width="40dp"
@@ -208,9 +249,16 @@
                                 android:textSize="15sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
+
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvAgent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone" />
 
                 <com.homecaravan.android.consumer.widget.CustomNestedScrollView
                     android:id="@+id/scrollView"
@@ -218,7 +266,7 @@
                     android:layout_height="match_parent"
                     android:background="@color/colorBgFragment"
                     android:scrollbarThumbVertical="@null"
-                    android:visibility="invisible">
+                    android:visibility="gone">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -582,6 +630,7 @@
 
                     </RelativeLayout>
                 </com.homecaravan.android.consumer.widget.CustomNestedScrollView>
+
             </RelativeLayout>
 
         </LinearLayout>

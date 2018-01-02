@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="@color/colorWhite"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
     </RelativeLayout>
 
     <RelativeLayout

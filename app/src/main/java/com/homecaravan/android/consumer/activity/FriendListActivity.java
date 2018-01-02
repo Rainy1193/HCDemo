@@ -91,12 +91,12 @@ public class FriendListActivity extends BaseActivity implements FriendListAdapte
     public void sendInvite() {
         showLoading();
         mCountRequest = mArrFriendPick.size();
-        String emails = "";
+        String phone = "";
         for (int i = 0; i < mArrFriendPick.size(); i++) {
-            emails = emails + handlerPhone(mArrFriendPick.get(i).getPhone()) + ",";
+            phone = phone + handlerPhone(mArrFriendPick.get(i).getPhone()) + ",";
         }
-        emails = emails.substring(0, emails.length() - 1);
-        mInviteContactPresenter.inviteContact(emails, false, "Welcome to HomeCaravan");
+        phone = phone.substring(0, phone.length() - 1);
+        mInviteContactPresenter.inviteContact(phone, false, "Welcome to HomeCaravan");
     }
 
     @Override

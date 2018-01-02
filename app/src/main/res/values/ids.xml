@@ -42,4 +42,5 @@
     <item name="appt_caravan_showing_item" type="id" />
     <item name="calendar_showing_item" type="id" />
     <item name="weekly_ast_item" type="id"/>
+    <item name="favorite_item" type="id"/>
 </resources>

@@ -59,6 +59,7 @@ import com.homecaravan.android.consumer.listener.IPageChange;
 import com.homecaravan.android.consumer.model.BaseDataRecyclerView;
 import com.homecaravan.android.consumer.model.ConsumerTeam;
 import com.homecaravan.android.consumer.model.EventAgentDetail;
+import com.homecaravan.android.consumer.model.EventDeleteSearch;
 import com.homecaravan.android.consumer.model.HeaderRvData;
 import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.ViewAllRvData;
@@ -79,6 +80,7 @@ import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -300,6 +302,10 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
         mArrView.add(mView6);
     }
 
+    @org.greenrobot.eventbus.Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEventDeleteSearch(EventDeleteSearch search) {
+        reloadSaveSearch();
+    }
     public void initData() {
         if (!mInitData) {
             setupMvp();

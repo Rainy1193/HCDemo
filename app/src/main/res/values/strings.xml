@@ -710,7 +710,7 @@
     <string name="empty_team_action">Add Collaborator</string>
     <string name="empty_discover">You don\'t yet have any search result list mode</string>
     <string name="create_search_now">Create a search now</string>
-    <string name="empty_favorite">You don\'t yet any Favorite listing list</string>
+    <string name="empty_favorite">You don\'t yet any favorite listing list</string>
     <string name="empty_resource">You don\'t yet have any your resource agent</string>
     <string name="empty_upcoming">You don\'t yet have any saved search list</string>
     <string name="empty_past">You don\'t yet have any saved search list</string>

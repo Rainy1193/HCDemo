@@ -41,7 +41,8 @@ public class ScheduleConsumerAdapter extends RecyclerView.Adapter<ScheduleConsum
 
     @Override
     public void onBindViewHolder(ScheduleHolder holder, final int position) {
-        holder.mCity.setText(mArrListing.get(position).getAddress().getAddress1());
+        holder.mAddress1.setText(mArrListing.get(position).getAddress().getAddress1());
+        holder.mAddress2.setText(mArrListing.get(position).getAddress().getCity());
         holder.mIvRemoveListing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,8 +73,10 @@ public class ScheduleConsumerAdapter extends RecyclerView.Adapter<ScheduleConsum
         ImageView mIvListing;
         @Bind(R.id.ivRemoveListing)
         ImageView mIvRemoveListing;
-        @Bind(R.id.tvCity)
-        TextView mCity;
+        @Bind(R.id.tvAddress2)
+        TextView mAddress2;
+        @Bind(R.id.tvAddress1)
+        TextView mAddress1;
 
         public ScheduleHolder(View itemView) {
             super(itemView);

@@ -56,7 +56,7 @@ public class ScheduleTabAdapter extends RecyclerView.Adapter<ScheduleTabAdapter.
             }
         });
         if (mListing.get(position).isInQueue()) {
-            holder.mAddQueue.setVisibility(View.GONE);
+            holder.mAddQueue.setVisibility(View.INVISIBLE);
         } else {
             holder.mAddQueue.setVisibility(View.VISIBLE);
         }

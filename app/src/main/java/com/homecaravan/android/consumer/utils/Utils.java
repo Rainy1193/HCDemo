@@ -216,14 +216,19 @@ public class Utils {
         if (price < 1000) {
             return String.valueOf(price);
         } else if (price > 1000 && price < 1000000) {
-            return String.valueOf(price / 1000) + "," + String.valueOf((float) price / 1000).substring(2) + "K";
+            String sf = String.valueOf((float) price / 1000);
+            if (price % 1000 == 0) {
+                return String.valueOf(price / 1000) + "K";
+            }
+            return String.valueOf(price / 1000) + "," + sf.substring(sf.indexOf(".") + 1) + "K";
         } else {
             int p = price / 1000000;
             int d = price - p * 1000000;
             if (d == 0) {
                 return String.valueOf(price / 1000000) + "M";
             }
-            String m = String.valueOf((float) d / 1000000).substring(2);
+            String sf = String.valueOf((float) price / 1000000);
+            String m = sf.substring(sf.indexOf(".") + 1);
             if (m.length() > 3) {
                 m = m.substring(0, 3);
             }

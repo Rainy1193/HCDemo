@@ -85,6 +85,7 @@ import com.homecaravan.android.consumer.model.CurrentFragment;
 import com.homecaravan.android.consumer.model.CurrentListingSchedule;
 import com.homecaravan.android.consumer.model.EventAgentDetail;
 import com.homecaravan.android.consumer.model.EventCIA;
+import com.homecaravan.android.consumer.model.EventDeleteSearch;
 import com.homecaravan.android.consumer.model.EventDialog;
 import com.homecaravan.android.consumer.model.EventFavorite;
 import com.homecaravan.android.consumer.model.EventFavored;
@@ -129,7 +130,6 @@ import butterknife.OnTextChanged;
 import butterknife.OnTouch;
 import io.realm.Realm;
 import io.socket.emitter.Emitter;
-
 
 public class MainActivityConsumer extends SlidingFragmentActivity implements
         IMenuListener,
@@ -1267,6 +1267,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
         mFragmentShowing.setPageChange(this);
         mArrFragmentMain.add(mFragmentTeam);
 
+        CaravanQueue.getInstance().clearQueue();
         mAdapterMain = new ViewPagerAdapterMain(getSupportFragmentManager(), mArrFragmentMain);
         mViewPagerMain.setAdapter(mAdapterMain);
         mViewPagerMain.setOffscreenPageLimit(5);
@@ -1474,6 +1475,14 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     }
 
     @org.greenrobot.eventbus.Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEventDeleteSearch(EventDeleteSearch search) {
+        mIvFilter.setVisibility(View.GONE);
+        mLayoutNotifications.setVisibility(View.VISIBLE);
+        hideSaveSearchDetail();
+        mFragmentDiscover.onLayoutClearSearchClicked();
+    }
+
+    @org.greenrobot.eventbus.Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onEventListingDetail(EventListingDetail event) {
         showListingDetail(event.listingId);
     }
@@ -1575,11 +1584,6 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     }
 
     @Override
-    public void goContact() {
-
-    }
-
-    @Override
     public void goMyTeam() {
         openMyTeam();
     }
@@ -1607,7 +1611,9 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
 
     @Override
     public void goFavorite() {
-
+        Intent intent = new Intent(this, FavoriteActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
     }
 
     @Override

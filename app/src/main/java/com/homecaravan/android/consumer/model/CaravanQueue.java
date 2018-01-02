@@ -46,7 +46,7 @@ public class CaravanQueue {
     }
 
     public void removeQueueInSingleton() {
-        Log.e("idRemove",idRemove);
+        Log.e("idRemove", idRemove);
         for (int i = 0; i < listings.size(); i++) {
             if (listings.get(i).getId().equalsIgnoreCase(idRemove)) {
                 listings.remove(i);
@@ -70,4 +70,11 @@ public class CaravanQueue {
     }
 
 
+    public void clearQueue() {
+
+        listings.clear();
+        ids.clear();
+        idRemove = "0";
+        listingQueue.clear();
+    }
 }

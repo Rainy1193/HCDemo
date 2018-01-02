@@ -9,10 +9,14 @@ import android.widget.EditText;
 
 import com.homecaravan.android.R;
 import com.homecaravan.android.consumer.base.BaseFragment;
+import com.homecaravan.android.consumer.consumermvp.searchmvp.ArchiveSearchPresenter;
+import com.homecaravan.android.consumer.consumermvp.searchmvp.ArchiveSearchView;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.SaveSearchPresenter;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.SaveSearchView;
 import com.homecaravan.android.consumer.listener.IUpdateSavedSearchListener;
+import com.homecaravan.android.consumer.model.EventDeleteSearch;
 import com.homecaravan.android.consumer.model.EventUpdateSearch;
+import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.responseapi.ConditionFull;
 import com.homecaravan.android.consumer.model.responseapi.SearchDetail;
 import com.homecaravan.android.consumer.utils.Utils;
@@ -24,18 +28,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import okhttp3.RequestBody;
 
-public class FragmentSettingsSavedSearch extends BaseFragment implements SaveSearchView {
+public class FragmentSettingsSavedSearch extends BaseFragment implements SaveSearchView, ArchiveSearchView {
     private IUpdateSavedSearchListener mListener;
-    private String mCurrentNameSearch="";
+    private ArchiveSearchPresenter mArchiveSearchPresenter;
+    private String mCurrentNameSearch = "";
     private SaveSearchPresenter mSaveSearchPresenter;
     @Bind(R.id.etEditName)
     EditText mEditNameSearch;
 
     public void setListener(IUpdateSavedSearchListener mListener) {
         this.mListener = mListener;
+    }
+
+    @OnClick(R.id.layoutDeleteSearch)
+    public void deleteSearch() {
+        mArchiveSearchPresenter.archiveSearch(CurrentSaveSearch.getInstance().getId());
     }
 
     @OnTextChanged(value = R.id.etEditName, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
@@ -52,6 +63,7 @@ public class FragmentSettingsSavedSearch extends BaseFragment implements SaveSea
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mSaveSearchPresenter = new SaveSearchPresenter(this);
+        mArchiveSearchPresenter = new ArchiveSearchPresenter(this);
     }
 
     @Override
@@ -126,5 +138,20 @@ public class FragmentSettingsSavedSearch extends BaseFragment implements SaveSea
     @Override
     public void saveSearchFail(@StringRes int message) {
 
+    }
+
+    @Override
+    public void archiveSearchSuccess(String message) {
+        EventBus.getDefault().post(new EventDeleteSearch(CurrentSaveSearch.getInstance().getId()));
+    }
+
+    @Override
+    public void archiveSearchFail(@StringRes int message) {
+        showSnackBar(getView(), TypeDialog.ERROR, message, "archiveSearch");
+    }
+
+    @Override
+    public void archiveSearchFail(String message) {
+        showSnackBar(getView(), TypeDialog.ERROR, message, "archiveSearch");
     }
 }

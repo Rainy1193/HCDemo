@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:id="@+id/layoutMain"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:orientation="vertical">
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Create Email"
+            android:text="Send by email"
             android:textColor="@color/colorWhite"
             android:textSize="16sp" />
 
@@ -45,55 +45,63 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="12dp"
         android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etToEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="To:"
+            android:maxLines="1"
+            android:textSize="13.5sp" />
+
+        <TextView
+            style="@style/TextViewMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Invitation"
+            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:background="@color/colorWhite"
-            android:orientation="vertical">
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email Address(es)"
-                android:textColor="@color/colorBlueMain" />
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_link_invite" />
 
-            <EditText
-                android:id="@+id/etEmails"
-                style="@style/TextViewMain"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edit_text_message"
-                android:inputType="text"
-                android:maxLines="1"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textSize="@dimen/text_size_custom_big" />
+                android:layout_height="36dp"
+                android:layout_marginStart="12dp"
+                android:background="@color/colorBgFragment">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="You message(optional)"
-                android:textColor="@color/colorBlueMain" />
-
-            <EditText
-                android:id="@+id/etMessage"
-                style="@style/TextViewMain"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edit_text_message"
-                android:gravity="top"
-                android:inputType="textMultiLine"
-                android:lines="10"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textSize="@dimen/text_size_custom_big" />
+                <TextView
+                    android:id="@+id/tvLink"
+                    style="@style/TextViewMain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="12dp"
+                    android:text="http://consumerapp.com/invite?abc"
+                    android:textColor="@color/colorMenuConsumer" />
+            </LinearLayout>
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:hint="Message:"
+            android:maxLines="10"
+            android:textSize="13.5sp" />
     </LinearLayout>
 
 </LinearLayout>

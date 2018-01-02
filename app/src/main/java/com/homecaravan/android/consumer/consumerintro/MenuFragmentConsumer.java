@@ -82,7 +82,7 @@ public class MenuFragmentConsumer extends Fragment {
                 mListener.goSaveSearch();
                 break;
             case R.id.menuFavorite:
-                //mListener.goContact();
+                mListener.goFavorite();
                 break;
             case R.id.menuTeam:
                 mListener.goMyTeam();
@@ -103,6 +103,7 @@ public class MenuFragmentConsumer extends Fragment {
                 break;
             case R.id.menuLogout:
                 mListener.logOut();
+                break;
             case R.id.menuContactManager:
                 mListener.goContactManager();
                 break;

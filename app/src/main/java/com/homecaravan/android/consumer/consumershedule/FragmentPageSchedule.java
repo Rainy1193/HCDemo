@@ -1,6 +1,5 @@
 package com.homecaravan.android.consumer.consumershedule;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -11,7 +10,6 @@ import android.widget.RelativeLayout;
 
 import com.homecaravan.android.R;
 import com.homecaravan.android.caravan.ProgressItem;
-import com.homecaravan.android.consumer.activity.BookSingleActivity;
 import com.homecaravan.android.consumer.adapter.GridSpacingItemDecoration;
 import com.homecaravan.android.consumer.base.BaseFragment;
 import com.homecaravan.android.consumer.consumermvp.listingmvp.GetListingPrePagePresenter;
@@ -29,7 +27,6 @@ import com.homecaravan.android.consumer.model.responseapi.ListingFull;
 import com.mikepenz.fastadapter.adapters.FooterAdapter;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter_extensions.scroll.EndlessRecyclerOnScrollListener;
-
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -65,6 +62,14 @@ public class FragmentPageSchedule extends BaseFragment implements IPickSchedule,
         this.mSearchId = mSearchId;
     }
 
+    public String getSearchId() {
+        return mSearchId;
+    }
+
+    public boolean isFavorite() {
+        return mFavorite;
+    }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -92,6 +97,7 @@ public class FragmentPageSchedule extends BaseFragment implements IPickSchedule,
             }
         });
     }
+
 
     public void setAdapter() {
         if (!mSetAdapter) {
@@ -136,10 +142,10 @@ public class FragmentPageSchedule extends BaseFragment implements IPickSchedule,
 
     @Override
     public void bookSingle(String id) {
-        Intent intent = new Intent(getContext(), BookSingleActivity.class);
-        intent.putExtra("id", id);
-        startActivity(intent);
-        getActivity().overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
+//        Intent intent = new Intent(getContext(), BookSingleActivity.class);
+//        intent.putExtra("id", id);
+//        startActivity(intent);
+//        getActivity().overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
     }
 
     @Override

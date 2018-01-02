@@ -145,6 +145,7 @@ public class FragmentDiscover extends BaseFragment implements
         GoogleMap.OnCameraMoveListener,
         GoogleMap.OnCameraMoveStartedListener,
         GoogleMap.OnCameraIdleListener,
+
         View.OnTouchListener,
         TouchableWrapper.EventOnMap,
         FloatingActionMenu.OnMenuToggleListener,

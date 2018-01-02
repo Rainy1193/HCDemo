@@ -18,12 +18,15 @@
             android:text="@string/step_schedule_five"
             android:textColor="@color/colorMenuConsumer" />
 
-        <Switch
-            android:id="@+id/switchView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/ivChangeView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/margin_review1" />
+            android:layout_gravity="center_vertical"
+            android:background="?android:selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:src="@drawable/ic_view_map" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -41,62 +44,45 @@
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/margin_review1" />
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/layoutAgent"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/tvStatusAgent"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="@dimen/margin_review1"
             android:layout_marginRight="@dimen/margin_review1"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:visibility="gone">
 
             <com.homecaravan.android.ui.CircleImageView
                 android:id="@+id/ivAgent"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerVertical="true" />
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:layout_toRightOf="@id/ivAgent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvNameAgent"
                     style="@style/TextViewMain"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="14sp" />
 
                 <TextView
                     style="@style/TextViewMain"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="will accompany you with this booking" />
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_consumer_agent_profile_message" />
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="12dp"
-                    android:padding="4dp"
-                    android:src="@drawable/ic_consumer_myteam_call" />
-            </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
