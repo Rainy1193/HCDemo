@@ -231,8 +231,8 @@ public class FragmentSchedule extends BaseFragment implements ISchedulePropertyL
     public void nextStep() {
         mCurrentStep++;
         if (mCurrentStep == 1) {
-            //mFragmentScheduleShowing.createCaravanFromQueue();
-            mViewPagerSchedule.setCurrentItem(1);
+            mFragmentScheduleShowing.createCaravanFromQueue();
+            //mViewPagerSchedule.setCurrentItem(1);
 //            mFragmentRoute.setUpMapAndListRoute(mStartHour, mStartMin, mStartHalf);
             return;
         }
@@ -254,7 +254,7 @@ public class FragmentSchedule extends BaseFragment implements ISchedulePropertyL
             return;
         }
         if (mCurrentStep == 4) {
-            //mFragmentReviewAndSubmit.setUpListAndMap();
+            mFragmentReviewAndSubmit.setUpListAndMap();
             mViewPagerSchedule.setCurrentItem(4);
             if (mFragmentSelectAgent.getAgent() != null) {
                 mFragmentReviewAndSubmit.initAgent(mFragmentSelectAgent.getAgent().getName(), mFragmentSelectAgent.getAgent().getAvatar(), true);
@@ -264,7 +264,6 @@ public class FragmentSchedule extends BaseFragment implements ISchedulePropertyL
             mSubmit.setVisibility(View.VISIBLE);
             mNextStep.setVisibility(View.INVISIBLE);
         }
-
     }
 
     @OnClick(R.id.layoutSubmit)
