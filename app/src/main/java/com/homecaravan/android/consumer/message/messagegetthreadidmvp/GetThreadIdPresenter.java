@@ -11,20 +11,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.homecaravan.android.HomeCaravanApplication.TAG;
+
 /**
  * Created by Anh Dao on 10/24/2017.
  * Get threadId by caravanId, listingId, appoitmentId, ArrayList<String> userId
  */
 
 public class GetThreadIdPresenter {
-    private GetThreadIdView mView;
+    private IGetThreadIdView mView;
 
-    public GetThreadIdPresenter(GetThreadIdView mView) {
+    public GetThreadIdPresenter(IGetThreadIdView mView) {
         this.mView = mView;
     }
 
     public void getThreadIdAtCaravan(String caravanId, String listingId, String apptId, final String title, String teamIds, final int position) {
-        Log.e("DaoDiDem", "getThreadId: caravanId:"+caravanId+" listingId: "+listingId +" apptId: "+apptId + " title: "+title +" teamIds: "+teamIds +" position: "+position );
+        Log.e(TAG, "getThreadId: caravanId:"+caravanId+" listingId: "+listingId +" apptId: "+apptId + " title: "+title +" teamIds: "+teamIds +" position: "+position );
         MessageApi messageApi = ServiceGeneratorConsumer.createService(MessageApi.class);
         messageApi.messageGetThreadId(apptId, listingId, caravanId, title, teamIds)
                 .enqueue(new Callback<ResponseMessageGetThreadId>() {
@@ -33,27 +35,27 @@ public class GetThreadIdPresenter {
                         if (response.isSuccessful()) {
                             if (response.body().isSuccess()) {
                                 mView.getThreadIdAtCaravanSuccess(response.body(), position, title);
-                                Log.e("DaoDiDem", "GetThreadIdPresenter: "+response.body().getThreadId());
+                                Log.e(TAG, "GetThreadIdPresenter: "+response.body().getThreadId());
                             } else {
-                                Log.e("DaoDiDem", "GetThreadIdPresenter: FAIL threadId null");
+                                Log.e(TAG, "GetThreadIdPresenter: FAIL threadId null");
                                 mView.getThreadIdFail();
                             }
                         } else {
-                            Log.e("DaoDiDem", "GetThreadIdPresenter: FAIL with message");
+                            Log.e(TAG, "GetThreadIdPresenter: FAIL with message");
                             mView.getThreadIdFail(R.string.error_server);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseMessageGetThreadId> call, Throwable t) {
-                        Log.e("DaoDiDem", "GetThreadIdPresenter: FAIL with message");
+                        Log.e(TAG, "GetThreadIdPresenter: FAIL with message");
                         mView.getThreadIdFail(R.string.error_server);
                     }
                 });
     }
 
     public void getThreadId(String caravanId, String listingId, String apptId, final String title, String teamIds) {
-        Log.e("DaoDiDem", "getThreadId: caravanId:"+caravanId+" listingId: "+listingId +" apptId: "+apptId + " title: "+title +" teamIds: "+teamIds );
+        Log.e(TAG, "getThreadId: caravanId:"+caravanId+" listingId: "+listingId +" apptId: "+apptId + " title: "+title +" teamIds: "+teamIds );
         MessageApi messageApi = ServiceGeneratorConsumer.createService(MessageApi.class);
         messageApi.messageGetThreadId(apptId, listingId, caravanId, title, teamIds)
                 .enqueue(new Callback<ResponseMessageGetThreadId>() {
@@ -62,20 +64,20 @@ public class GetThreadIdPresenter {
                         if (response.isSuccessful()) {
                             if (response.body().isSuccess()) {
                                 mView.getThreadIdSuccess(response.body(), title);
-                                Log.e("DaoDiDem", "GetThreadIdPresenter: "+response.body().getThreadId());
+                                Log.e(TAG, "GetThreadIdPresenter: "+response.body().getThreadId());
                             } else {
-                                Log.e("DaoDiDem", "GetThreadIdPresenter: FAIL threadId null");
+                                Log.e(TAG, "GetThreadIdPresenter: FAIL threadId null");
                                 mView.getThreadIdFail();
                             }
                         } else {
-                            Log.e("DaoDiDem", "GetThreadIdPresenter: FAIL with message");
+                            Log.e(TAG, "GetThreadIdPresenter: FAIL with message");
                             mView.getThreadIdFail(R.string.error_server);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseMessageGetThreadId> call, Throwable t) {
-                        Log.e("DaoDiDem", "GetThreadIdPresenter: FAIL with message");
+                        Log.e(TAG, "GetThreadIdPresenter: FAIL with message");
                         mView.getThreadIdFail(R.string.error_server);
                     }
                 });

@@ -23,13 +23,11 @@ import com.homecaravan.android.consumer.consumermvp.caravanmvp.AddParticipantPre
 import com.homecaravan.android.consumer.consumermvp.caravanmvp.AddParticipantView;
 import com.homecaravan.android.consumer.consumermvp.caravanmvp.RemoveParticipantPresenter;
 import com.homecaravan.android.consumer.consumermvp.caravanmvp.RemoveParticipantView;
-import com.homecaravan.android.consumer.consumermvp.searchmvp.AddParticipantSearchPresenter;
 import com.homecaravan.android.consumer.listener.IContactManager;
 import com.homecaravan.android.consumer.model.ContactManagerData;
 import com.homecaravan.android.consumer.model.ContactSingleton;
 import com.homecaravan.android.consumer.model.EventContactManager;
 import com.homecaravan.android.consumer.model.responseapi.CaravanParticipants;
-import com.homecaravan.android.consumer.utils.AnimUtils;
 import com.homecaravan.android.ui.CircleImageView;
 
 import org.greenrobot.eventbus.EventBus;

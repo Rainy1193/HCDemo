@@ -1,7 +1,6 @@
 package com.homecaravan.android.consumer.model.message;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Anh Dao on 11/27/2017.
@@ -10,7 +9,7 @@ import java.util.List;
 public class SkeletonNewMessage {
 
     public static SkeletonNewMessage object;
-    public List<String> data = new ArrayList<>();
+    public ArrayList<String> data = new ArrayList<>();
 
     public static SkeletonNewMessage getInstance() {
         if (object == null) {
@@ -19,11 +18,15 @@ public class SkeletonNewMessage {
         return object;
     }
 
-    public List<String> getData() {
+    public ArrayList<String> getData() {
         return data;
     }
 
-    public void setData(List<String> data) {
+    public void reset(){
+        object = new SkeletonNewMessage();
+    }
+
+    public void setData(ArrayList<String> data) {
         this.data = data;
     }
 }

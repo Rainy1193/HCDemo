@@ -14,9 +14,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -42,13 +43,10 @@ import com.facebook.login.widget.LoginButton;
 import com.homecaravan.android.HomeCaravanApplication;
 import com.homecaravan.android.R;
 import com.homecaravan.android.api.Constants;
-import com.homecaravan.android.consumer.adapter.SearchAgentAdapter;
 import com.homecaravan.android.consumer.adapter.ViewPagerAdapter;
 import com.homecaravan.android.consumer.base.BaseActivity;
 import com.homecaravan.android.consumer.broadcast.SMSReceiver;
 import com.homecaravan.android.consumer.consumerbase.ConsumerUser;
-import com.homecaravan.android.consumer.consumermvp.contactmvp.SearchContactPresenter;
-import com.homecaravan.android.consumer.consumermvp.contactmvp.SearchContactView;
 import com.homecaravan.android.consumer.consumermvp.loginmvp.ForgotPasswordPresenter;
 import com.homecaravan.android.consumer.consumermvp.loginmvp.ForgotPasswordView;
 import com.homecaravan.android.consumer.consumermvp.loginmvp.LoginPresenter;
@@ -68,7 +66,6 @@ import com.homecaravan.android.consumer.listener.SMSListener;
 import com.homecaravan.android.consumer.model.FacebookData;
 import com.homecaravan.android.consumer.model.LinkedInData;
 import com.homecaravan.android.consumer.model.TypeDialog;
-import com.homecaravan.android.consumer.model.responseapi.ContactData;
 import com.homecaravan.android.consumer.model.responseapi.ResponseRegister;
 import com.homecaravan.android.consumer.model.responseapi.ResponseUser;
 import com.homecaravan.android.consumer.model.responseapi.User;
@@ -89,11 +86,8 @@ import com.linkedin.platform.utils.Scope;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -105,10 +99,8 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
         RegisterLinkedinView,
         IScanOrCode,
         VerifyAccountView,
-        ForgotPasswordView,
-        SearchContactView,
-        SearchAgentAdapter.SetAgentView {
-    private boolean mShowLogin = true;
+        ForgotPasswordView {
+    private boolean mShowLogin = true, mForgotPassword;
     private LoginPresenter mLoginPresenter;
     private RegisterPresenter mRegisterPresenter;
     private RegisterFacebookPresenter mRegisterFbPresenter;
@@ -217,14 +209,24 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
     RelativeLayout mLayoutMain;
     @Bind(R.id.layoutUnlockStepOne)
     LinearLayout mLayoutUnlockStepOne;
-    @Bind(R.id.layoutUnlockStepTwo)
-    LinearLayout mLayoutUnlockStepTwo;
     @Bind(R.id.layoutUnlockStepThree)
     LinearLayout mLayoutUnlockStepThree;
     @Bind(R.id.layoutScanOrCode)
     LinearLayout mLayoutScanOrCode;
-    @Bind(R.id.layoutUnlockStepSearch)
-    LinearLayout mLayoutUnlockStepSearch;
+    @Bind(R.id.imgRemoveEmail)
+    ImageView mImgRemoveEmail;
+    @Bind(R.id.imgRemovePassword)
+    ImageView mImgRemovePassword;
+    @Bind(R.id.imgRemoveFirstName)
+    ImageView mImgRemoveFirstName;
+    @Bind(R.id.imgRemoveLastName)
+    ImageView mImgRemoveLastName;
+    @Bind(R.id.imgRemoveRegisterEmail)
+    ImageView mImgRemoveRegisterEmail;
+    @Bind(R.id.imgRemoveRegisterPassword)
+    ImageView mImgRemoveRegisterPassword;
+    @Bind(R.id.imgRemoveRegisterConfirmPassword)
+    ImageView mImgRemoveRegisterConfirmPassword;
 
     @Bind(R.id.ivBgAgent)
     ImageView mIvBgAgent;
@@ -273,35 +275,10 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
     private final int RECEIVER_SMS_PERMISSION = 91;
     private VerifyAccountPresenter mVerifyAccountPresenter;
 
-    @Bind(R.id.layoutForgotPassword)
-    LinearLayout mLayoutForgotPassword;
-    @Bind(R.id.edtForgotPasswordEmailOrPhone)
-    EditText mEdtForgotPasswordEmailOrPhone;
-    @Bind(R.id.rlForgotPassword)
-    RelativeLayout mRlForgotPassword;
-
-    //Search agent
-    @Bind(R.id.rvSearchAgent)
-    RecyclerView mRvSearchAgent;
-    @Bind(R.id.layoutSearchEmpty)
-    LinearLayout mLayoutSearchEmpty;
-    @Bind(R.id.edtSearch)
-    EditText mEdtSearch;
-    @Bind(R.id.imgCloseSearch)
-    ImageView mImgCloseSearch;
-    @Bind(R.id.imgSearch)
-    ImageView mImgSearch;
-
-    private boolean mFirstOpenSearchAgent = true;
-    private Timer mTimer;
-    private SearchAgentAdapter mSearchAgentAdapter;
-    private SearchContactPresenter mSearchContactPresenter;
-    private ArrayList<ContactData> mArrContactData;
-
     @OnClick(R.id.ivBack)
     void onBackClicked() {
         mLayoutUnlockAgent.setVisibility(View.VISIBLE);
-        mLayoutUnlockStepTwo.setVisibility(View.VISIBLE);
+        mLayoutUnlockStepOne.setVisibility(View.VISIBLE);
         AnimUtils.slideRightToLeft(mLayoutScanOrCode, 0, mWidthPage, true);
     }
 
@@ -378,49 +355,14 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 
     @OnClick(R.id.layoutAlreadyAgent)
     void onLayoutAlreadyAgent() {
-        mLayoutUnlockStepOne.setVisibility(View.GONE);
-        AnimUtils.slideRightToLeft(mLayoutUnlockStepTwo, mWidthPage, 0, true);
+        mLayoutUnlockAgent.setVisibility(View.GONE);
+        AnimUtils.slideRightToLeft(mLayoutScanOrCode, mWidthPage, 0, true);
     }
 
     @OnClick(R.id.layoutNotReady)
     void onLayoutNotReady() {
         mLayoutUnlockAgent.setVisibility(View.GONE);
         AnimUtils.slideRightToLeft(mLayoutLoginRegister, mWidthPage, 0, true);
-    }
-
-    @OnClick(R.id.layoutScanQRCode)
-    void onLayoutScanQRCode() {
-        mLayoutUnlockAgent.setVisibility(View.GONE);
-        AnimUtils.slideRightToLeft(mLayoutScanOrCode, mWidthPage, 0, true);
-    }
-
-    @OnClick(R.id.imgClose)
-    void onSearchBackClicked() {
-        mLayoutUnlockAgent.setVisibility(View.VISIBLE);
-        mLayoutUnlockStepTwo.setVisibility(View.VISIBLE);
-        AnimUtils.slideRightToLeft(mLayoutUnlockStepSearch, 0, mWidthPage, true);
-    }
-
-    @OnClick(R.id.imgCloseSearch)
-    void onCloseSearchClicked() {
-        mEdtSearch.setText(null);
-        mImgCloseSearch.setVisibility(View.GONE);
-        mRvSearchAgent.setVisibility(View.GONE);
-        mImgSearch.setVisibility(View.VISIBLE);
-        mLayoutSearchEmpty.setVisibility(View.VISIBLE);
-    }
-
-    @OnClick(R.id.layoutSearchForAgentName)
-    void onLayoutSearchForAgentName() {
-        if (mFirstOpenSearchAgent) {
-            mSearchContactPresenter = new SearchContactPresenter(this);
-            mArrContactData = new ArrayList<>();
-            mSearchAgentAdapter = new SearchAgentAdapter(this, mArrContactData, this);
-            mRvSearchAgent.setAdapter(mSearchAgentAdapter);
-            mFirstOpenSearchAgent = false;
-        }
-        mLayoutUnlockStepTwo.setVisibility(View.GONE);
-        AnimUtils.slideRightToLeft(mLayoutUnlockStepSearch, mWidthPage, 0, true);
     }
 
     @OnClick(R.id.btnStart)
@@ -602,11 +544,6 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
         mMailOrPhone = emailOrPhone;
     }
 
-    @OnClick(R.id.tvForgotPassword)
-    void onForgotPassword() {
-        hideKeyboard();
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mCallbackManager = CallbackManager.Factory.create();
@@ -679,8 +616,12 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
             }
         });
 
+        addTextChangedListener();
+    }
 
-        mEdtSearch.addTextChangedListener(new TextWatcher() {
+    private void addTextChangedListener(){
+
+        mEtEmailPhoneLogin.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -688,28 +629,142 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (mTimer != null) {
-                    mTimer.cancel();
-                }
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                mTimer = new Timer();
-                if (s.length() != 0) {
-                    mImgSearch.setVisibility(View.GONE);
-                    mImgCloseSearch.setVisibility(View.VISIBLE);
-                } else {
-                    mImgSearch.setVisibility(View.VISIBLE);
-                    mImgCloseSearch.setVisibility(View.GONE);
+                if(mEtEmailPhoneLogin.getText().length() > 0 && mImgRemoveEmail.getVisibility() == View.INVISIBLE){
+                    mImgRemoveEmail.setVisibility(View.VISIBLE);
+                }else if(mEtEmailPhoneLogin.getText().length() == 0){
+                    mImgRemoveEmail.setVisibility(View.INVISIBLE);
                 }
-                mTimer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        String value = mEdtSearch.getText().toString();
-                        mSearchContactPresenter.searchContact(value);
-                    }
-                }, 800); // 800ms delay before the timer executes the „run“ method from TimerTask
+            }
+        });
+
+        mEtPasswordLogin.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(mEtPasswordLogin.getText().length() > 0 && mImgRemovePassword.getVisibility() == View.INVISIBLE){
+                    mImgRemovePassword.setVisibility(View.VISIBLE);
+                }else if(mEtPasswordLogin.getText().length() == 0){
+                    mImgRemovePassword.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        mFirstName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(mFirstName.getText().length() > 0 && mImgRemoveFirstName.getVisibility() == View.INVISIBLE){
+                    mImgRemoveFirstName.setVisibility(View.VISIBLE);
+                }else if(mFirstName.getText().length() == 0){
+                    mImgRemoveFirstName.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        mLastName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(mLastName.getText().length() > 0 && mImgRemoveLastName.getVisibility() == View.INVISIBLE){
+                    mImgRemoveLastName.setVisibility(View.VISIBLE);
+                }else if(mLastName.getText().length() == 0){
+                    mImgRemoveLastName.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        mEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(mEmail.getText().length() > 0 && mImgRemoveRegisterEmail.getVisibility() == View.INVISIBLE){
+                    mImgRemoveRegisterEmail.setVisibility(View.VISIBLE);
+                }else if(mEmail.getText().length() == 0){
+                    mImgRemoveRegisterEmail.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        mPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(mPassword.getText().length() > 0 && mImgRemoveRegisterPassword.getVisibility() == View.INVISIBLE){
+                    mImgRemoveRegisterPassword.setVisibility(View.VISIBLE);
+                }else if(mPassword.getText().length() == 0){
+                    mImgRemoveRegisterPassword.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        mConfirmPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(mConfirmPassword.getText().length() > 0 && mImgRemoveRegisterConfirmPassword.getVisibility() == View.INVISIBLE){
+                    mImgRemoveRegisterConfirmPassword.setVisibility(View.VISIBLE);
+                }else if(mConfirmPassword.getText().length() == 0){
+                    mImgRemoveRegisterConfirmPassword.setVisibility(View.INVISIBLE);
+                }
             }
         });
     }
@@ -722,7 +777,6 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 
     @Override
     public void loginSuccess(ResponseUser responseUser) {
-        hideLoading();
         setDataUser(responseUser.getUserData(), "Normal", false);
         if ("no".equals(ConsumerUser.getInstance().getData().getHasAgent()) && agentInfo != null) {
             //set agent
@@ -731,8 +785,9 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
         Intent intent = new Intent(this, MainActivityConsumer.class);
         startActivity(intent);
         mBtLogin.setClickable(true);
+        hideLoading();
+        HomeCaravanApplication.mLoginHCSuccessful = true;
         finish();
-        mEtPasswordLogin.setText(null);
     }
 
     @Override
@@ -788,9 +843,8 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
             AnimUtils.slideRightToLeft(mLayoutVerify, 0, mWidthPage, true);
             return;
         }
-        if (mLayoutForgotPassword.getVisibility() == View.VISIBLE) {
-            mLayoutLoginRegister.setVisibility(View.VISIBLE);
-            AnimUtils.slideRightToLeft(mLayoutForgotPassword, 0, mWidthPage, true);
+        if (mForgotPassword) {
+            mForgotPassword = false;
             return;
         }
         if (mLayoutScanOrCode.getVisibility() == View.VISIBLE) {
@@ -799,18 +853,8 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
             AnimUtils.slideRightToLeft(mLayoutScanOrCode, 0, mWidthPage, true);
             return;
         }
-        if (mLayoutUnlockStepTwo.getVisibility() == View.VISIBLE) {
-            mLayoutUnlockStepOne.setVisibility(View.VISIBLE);
-            AnimUtils.slideRightToLeft(mLayoutUnlockStepTwo, 0, mWidthPage, true);
-            return;
-        }
-        if (mLayoutUnlockStepSearch.getVisibility() == View.VISIBLE) {
-            mLayoutUnlockStepTwo.setVisibility(View.VISIBLE);
-            AnimUtils.slideRightToLeft(mLayoutUnlockStepSearch, 0, mWidthPage, true);
-            return;
-        }
         if (mLayoutUnlockStepThree.getVisibility() == View.VISIBLE) {
-            mLayoutUnlockStepTwo.setVisibility(View.VISIBLE);
+            mLayoutUnlockStepOne.setVisibility(View.VISIBLE);
             AnimUtils.slideRightToLeft(mLayoutUnlockStepThree, 0, mWidthPage, true);
             return;
         }
@@ -882,15 +926,7 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
             ConsumerUser.getInstance().getData().setEmailSmsNotifications(dataUser.getEmailSmsNotifications());
 
             if (dataUser.getCompany().size() != 0) {
-                ConsumerUser.getInstance().getData().setCompanyId(dataUser.getCompany().get(0).getId());
-                ConsumerUser.getInstance().getData().setCompanyTitle("");
-                ConsumerUser.getInstance().getData().setCompanyAdd1(dataUser.getCompany().get(0).getAddress().getAddress1());
-                ConsumerUser.getInstance().getData().setCompanyAdd2(dataUser.getCompany().get(0).getAddress().getAddress2());
-                ConsumerUser.getInstance().getData().setCompanyCity(dataUser.getCompany().get(0).getAddress().getCity());
-                ConsumerUser.getInstance().getData().setCompanyState(dataUser.getCompany().get(0).getAddress().getState());
-                ConsumerUser.getInstance().getData().setCompanyZip(dataUser.getCompany().get(0).getAddress().getZip());
-                ConsumerUser.getInstance().getData().setCompanyPhone(dataUser.getCompany().get(0).getPhone());
-                ConsumerUser.getInstance().getData().setCompanyLogo(dataUser.getCompany().get(0).getLogo());
+                ConsumerUser.getInstance().getData().setCompany(dataUser.getCompany().get(0));
             }
 
             if (dataUser.getAgent() != null) {
@@ -902,9 +938,9 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
                 ConsumerUser.getInstance().getData().setAgentFullName(dataUser.getAgent().getFullName());
                 ConsumerUser.getInstance().getData().setAgentMobilePhone(dataUser.getAgent().getPhone());
                 ConsumerUser.getInstance().getData().setAgentPhoto(dataUser.getAgent().getAvatar());
+                ConsumerUser.getInstance().getData().setAgentPnUid(dataUser.getAgent().getPnUid());
                 if (dataUser.getAgent().getCompany().size() != 0)
                     ConsumerUser.getInstance().getData().setAgentCompany(dataUser.getAgent().getCompany().get(0));
-                ConsumerUser.getInstance().getData().setAgentPnUid(dataUser.getAgent().getPnUid());
             } else {
                 ConsumerUser.getInstance().getData().setHasAgent("no");
             }
@@ -1048,7 +1084,6 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 
     @Override
     public void verifySuccess(User data) {
-        hideLoading();
         hideKeyboard();
         showSnackBar(mLayoutMain, TypeDialog.SUCCESS, "Verify successfully", "register-login");
 //        mLayoutVerify.setVisibility(View.GONE);
@@ -1065,8 +1100,9 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
         Intent intent = new Intent(this, MainActivityConsumer.class);
         startActivity(intent);
         mBtLogin.setClickable(true);
+        hideLoading();
+        HomeCaravanApplication.mLoginHCSuccessful = true;
         finish();
-        mEtPasswordLogin.setText(null);
     }
 
     @Override
@@ -1082,7 +1118,6 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
         hideLoading();
         mRlVerify.setClickable(true);
         mRlResendCode.setClickable(true);
-        mRlForgotPassword.setClickable(true);
         mEtPasswordLogin.setText(null);
         mBtLogin.setClickable(true);
         mLayoutRegister.setClickable(true);
@@ -1174,6 +1209,62 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
         alertDialog.show();
     }
 
+    private void showPopupRequestPassword() {
+        LayoutInflater layoutInflater1 = LayoutInflater.from(this);
+        View view1 = layoutInflater1.inflate(R.layout.dialog_consumer_popup_request_password, null);
+        FrameLayout frmButtonOk = (FrameLayout) view1.findViewById(R.id.frmButtonOk);
+        FrameLayout frmButtonCancel = (FrameLayout) view1.findViewById(R.id.frmButtonCancel);
+        final EditText edtForgotEmailOrPhone = (EditText) view1.findViewById(R.id.edtForgotEmailOrPhone);
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(this).setView(view1).create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.TeamTabSearchDialog;
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.setCanceledOnTouchOutside(false);
+        WindowManager.LayoutParams wmlp = alertDialog.getWindow().getAttributes();
+        wmlp.gravity = Gravity.CENTER;
+        wmlp.y = -200;   //y position
+
+        frmButtonOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String emailOrPhone = edtForgotEmailOrPhone.getText().toString().trim();
+                if (emailOrPhone.isEmpty()) {
+                    showSnackBar(mLayoutMain, TypeDialog.WARNING, R.string.error_empty, "forgotPassword");
+                    edtForgotEmailOrPhone.requestFocus();
+                    return;
+                }
+                if (!ValidateData.isPhone(emailOrPhone) && !ValidateData.isEmailValid(emailOrPhone)) {
+                    showSnackBar(mLayoutMain, TypeDialog.WARNING, R.string.error_email_phone_not_correct, "forgotPassword");
+                    edtForgotEmailOrPhone.requestFocus();
+                    return;
+                }
+
+                hideKeyboard();
+
+                if (!isNetworkConnected()) {
+                    showSnackBar(mLayoutMain, TypeDialog.WARNING, R.string.no_network, "forgotPassword");
+                    return;
+                }
+
+                showLoading();
+                ForgotPasswordPresenter forgotPasswordPresenter = new ForgotPasswordPresenter(ConsumerRegisterLoginActivity.this);
+                forgotPasswordPresenter.forgotPassword(emailOrPhone);
+                alertDialog.dismiss();
+                mForgotPassword = false;
+            }
+        });
+
+        frmButtonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mForgotPassword = false;
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+    }
+
     private void messageListener() {
         SMSReceiver.setListener(new SMSListener() {
             @Override
@@ -1195,15 +1286,15 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 
     @Override
     public void registerFacebookSuccess(ResponseUser responseUser) {
-        hideLoading();
         setDataUser(responseUser.getUserData(), "Facebook", false);
         if ("no".equals(ConsumerUser.getInstance().getData().getHasAgent()) && agentInfo != null) {
             scanOrCodePresenter.setAgent(ConsumerUser.getInstance().getData().getId(), agentInfo);
         }
         Intent intent = new Intent(this, MainActivityConsumer.class);
         startActivity(intent);
+        hideLoading();
+        HomeCaravanApplication.mLoginHCSuccessful = true;
         finish();
-        mEtPasswordLogin.setText(null);
     }
 
     @Override
@@ -1214,15 +1305,15 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 
     @Override
     public void registerLinkedinSuccess(ResponseUser responseUser) {
-        hideLoading();
         setDataUser(responseUser.getUserData(), "Linkedin", false);
         if ("no".equals(ConsumerUser.getInstance().getData().getHasAgent()) && agentInfo != null) {
             scanOrCodePresenter.setAgent(ConsumerUser.getInstance().getData().getId(), agentInfo);
         }
         Intent intent = new Intent(this, MainActivityConsumer.class);
         startActivity(intent);
+        hideLoading();
+        HomeCaravanApplication.mLoginHCSuccessful = true;
         finish();
-        mEtPasswordLogin.setText(null);
     }
 
     @Override
@@ -1235,7 +1326,6 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
     public void openUnlockStepThree(User data) {
         agentInfo = data;
         mLayoutUnlockStepOne.setVisibility(View.GONE);
-        mLayoutUnlockStepTwo.setVisibility(View.GONE);
         mLayoutUnlockStepThree.setVisibility(View.VISIBLE);
         mLayoutUnlockAgent.setVisibility(View.VISIBLE);
         mLayoutScanOrCode.setVisibility(View.GONE);
@@ -1259,95 +1349,97 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
     }
 
     @OnClick(R.id.tvForgotPassword)
-    public void openForgotPassword() {
-        hideKeyboard();
-        mLayoutLoginRegister.setVisibility(View.GONE);
-        AnimUtils.slideRightToLeft(mLayoutForgotPassword, mWidthPage, 0, true);
+    void openForgotPassword() {
+        mForgotPassword = true;
+        showPopupRequestPassword();
     }
 
-    @OnClick(R.id.rlForgotPassword)
-    void onForgotPasswordClicked() {
-        String emailOrPhone = mEdtForgotPasswordEmailOrPhone.getText().toString().trim();
-        hideKeyboard();
-        if (emailOrPhone.isEmpty()) {
-            showSnackBar(mLayoutMain, TypeDialog.WARNING, R.string.error_empty, "register-login");
-            mEdtForgotPasswordEmailOrPhone.requestFocus();
-            return;
-        }
-        if (!ValidateData.isPhone(emailOrPhone) && !ValidateData.isEmailValid(emailOrPhone)) {
-            showSnackBar(mLayoutMain, TypeDialog.WARNING, R.string.error_email_phone_not_correct, "register-login");
-            mEdtForgotPasswordEmailOrPhone.requestFocus();
-            return;
-        }
-        if (!isNetworkConnected()) {
-            showSnackBar(mLayoutMain, TypeDialog.WARNING, R.string.no_network, "register-login");
-            return;
-        }
-
-        mRlForgotPassword.setClickable(false);
-        showLoading();
-        ForgotPasswordPresenter forgotPasswordPresenter = new ForgotPasswordPresenter(this);
-        forgotPasswordPresenter.forgotPassword(emailOrPhone);
+    @OnClick(R.id.tvOpenActivateAccount)
+    void openActivateAccount() {
+        mLayoutLoginRegister.setVisibility(View.GONE);
+        AnimUtils.slideRightToLeft(mLayoutVerify, mWidthPage, 0, true);
+        mEdtVerifyEmailOrPhone.setText(null);
     }
 
     @Override
     public void forgotPasswordSuccess(String message, String emailOrPhone) {
-        showSnackBar(mLayoutMain, TypeDialog.SUCCESS, message, "register-login");
+        showSnackBar(mLayoutMain, TypeDialog.SUCCESS, message, "forgotPassword");
         hideLoading();
-        mRlForgotPassword.setClickable(true);
-        mLayoutForgotPassword.setVisibility(View.GONE);
-        AnimUtils.slideRightToLeft(mLayoutLoginRegister, mWidthPage, 0, true);
         mEtEmailPhoneLogin.setText(emailOrPhone);
     }
 
     @Override
     public void forgotPasswordFail(String message) {
-        showSnackBar(mLayoutMain, TypeDialog.WARNING, message, "register-login");
+        showSnackBar(mLayoutMain, TypeDialog.WARNING, message, "forgotPassword");
         hideLoading();
-        mRlForgotPassword.setClickable(true);
     }
 
-    @Override
-    public void searchContactSuccess(ArrayList<ContactData> data) {
-        if(data.size() != 0){
-            mArrContactData.clear();
-            mArrContactData.addAll(data);
-            mSearchAgentAdapter.notifyDataSetChanged();
-            mLayoutSearchEmpty.setVisibility(View.GONE);
-            mRvSearchAgent.setVisibility(View.VISIBLE);
-        }else{
-            mLayoutSearchEmpty.setVisibility(View.VISIBLE);
-            mRvSearchAgent.setVisibility(View.GONE);
+//    @Override
+//    public void onSetAgent(ContactData data) {
+//        agentInfo = new User();
+//        agentInfo.getAgent().setId(data.getUser());
+//        agentInfo.getAgent().setFullName(data.getName());
+//        agentInfo.getAgent().setAvatar(data.getAvatar());
+//
+//        mLayoutUnlockStepSearch.setVisibility(View.GONE);
+//        AnimUtils.slideRightToLeft(mLayoutUnlockStepThree, mWidthPage, 0, true);
+//        Glide.with(this).load(data.getAvatar()).asBitmap().fitCenter().dontAnimate().into(mIvAgent);
+//        mTvName.setText(data.getName());
+//        mTvAddress.setText(data.getEmail());
+//        mTvZip.setText(data.getPhone());
+//        AnimUtils.animUnlockAgent(mIvAgent, mIvBgAgent, mTvName, mTvAddress, mTvZip);
+//    }
+
+    @OnClick(R.id.imgRemoveEmail)
+    void onRemoveEmail(){
+        mEtEmailPhoneLogin.setText(null);
+    }
+
+    @OnClick(R.id.imgRemovePassword)
+    void onRemovePassword(){
+        if (mEtPasswordLogin.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+            mEtPasswordLogin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            Glide.with(this).load(R.drawable.ic_consumer_eye_hide_password).asBitmap().into(mImgRemovePassword);
+        } else {
+            mEtPasswordLogin.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            Glide.with(this).load(R.drawable.ic_consumer_eye_show_password).asBitmap().into(mImgRemovePassword);
         }
     }
 
-    @Override
-    public void searchContactFail(@StringRes int message) {
-        showSnackBar(mLayoutMain, TypeDialog.ERROR, message, "searchContactFail");
-        mLayoutSearchEmpty.setVisibility(View.VISIBLE);
-        mRvSearchAgent.setVisibility(View.GONE);
+    @OnClick(R.id.imgRemoveFirstName)
+    void onRemoveFirstName(){
+        mFirstName.setText(null);
     }
 
-    @Override
-    public void searchContactFail(String message) {
-//        showSnackBar(mLayoutMain, TypeDialog.ERROR, message, "searchContactFail");
-        mLayoutSearchEmpty.setVisibility(View.VISIBLE);
-        mRvSearchAgent.setVisibility(View.GONE);
+    @OnClick(R.id.imgRemoveLastName)
+    void onRemoveLastName(){
+        mLastName.setText(null);
     }
 
-    @Override
-    public void onSetAgent(ContactData data) {
-        agentInfo = new User();
-        agentInfo.getAgent().setId(data.getUser());
-        agentInfo.getAgent().setFullName(data.getName());
-        agentInfo.getAgent().setAvatar(data.getAvatar());
+    @OnClick(R.id.imgRemoveRegisterEmail)
+    void onRemoveRegisterEmail(){
+        mEmail.setText(null);
+    }
 
-        mLayoutUnlockStepSearch.setVisibility(View.GONE);
-        AnimUtils.slideRightToLeft(mLayoutUnlockStepThree, mWidthPage, 0, true);
-        Glide.with(this).load(data.getAvatar()).asBitmap().fitCenter().dontAnimate().into(mIvAgent);
-        mTvName.setText(data.getName());
-        mTvAddress.setText(data.getEmail());
-        mTvZip.setText(data.getPhone());
-        AnimUtils.animUnlockAgent(mIvAgent, mIvBgAgent, mTvName, mTvAddress, mTvZip);
+    @OnClick(R.id.imgRemoveRegisterPassword)
+    void onRemoveRegisterPassword(){
+        if (mPassword.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+            mPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            Glide.with(this).load(R.drawable.ic_consumer_eye_hide_password).asBitmap().into(mImgRemoveRegisterPassword);
+        } else {
+            mPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            Glide.with(this).load(R.drawable.ic_consumer_eye_show_password).asBitmap().into(mImgRemoveRegisterPassword);
+        }
+    }
+
+    @OnClick(R.id.imgRemoveRegisterConfirmPassword)
+    void onRemoveRegisterConfirmPassword(){
+        if (mConfirmPassword.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+            mConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            Glide.with(this).load(R.drawable.ic_consumer_eye_hide_password).asBitmap().into(mImgRemoveRegisterConfirmPassword);
+        } else {
+            mConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            Glide.with(this).load(R.drawable.ic_consumer_eye_show_password).asBitmap().into(mImgRemoveRegisterConfirmPassword);
+        }
     }
 }

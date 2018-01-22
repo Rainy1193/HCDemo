@@ -30,6 +30,20 @@ public class MessageItem extends RealmObject {
 //        "type":"TEXT","status":"NORMAL","thread":{"id":"59fbef8b0a975a08f8c97e80","createdDatetime":1512370258570,
 //            "modifiedDatetime":1512370258570,"participants":[],"mappings":[]}}]
 
+    public static final String TYPE_TEXT = "TEXT";
+    public static final String TYPE_INLINE = "INLINE";
+    public static final String TYPE_IMAGE = "IMAGE";
+    public static final String TYPE_FILE = "FILE";
+    public static final String TYPE_DELETE = "DELETE";
+
+    public static final String STATUS_NORMAL = "NORMAL";
+    public static final String STATUS_DELETED = "DELETED";
+
+
+    public static final String TYPE_FROM_ITEM = "from_item";
+    public static final String TYPE_ITEM = "item";
+    public static final String TYPE_TIME_LINE = "timeline";
+
     @Expose
     @SerializedName("id")
     private String id;
@@ -59,10 +73,10 @@ public class MessageItem extends RealmObject {
     private MessageThreadView messageThreadView;
     @Expose
     @SerializedName("type")
-    private String type;
+    private String type; //TEXT - IMAGE
     @Expose
     @SerializedName("status")
-    private String status;
+    private String status; // NORMAL - DELETED
     @Expose
     @SerializedName("thread")
     private MessageThread messageThread;
@@ -77,36 +91,31 @@ public class MessageItem extends RealmObject {
     private boolean hasAppearedOnce;
     private String dateFormat;
 
+    private String date; //timeLine
+    private String typeMessage; //item - from item - timeLine
+
     public MessageItem() {
-
     }
 
-    public MessageItem(String id, String createdDatetime, String modifiedDatetime, String content,
-                       MessageThreadView messageThreadView, String type, String status,
-                       MessageThread messageThread, String command, String key) {
-        this.id = id;
-        this.createdDatetime = createdDatetime;
-        this.modifiedDatetime = modifiedDatetime;
-        this.content = content;
-        this.messageThreadView = messageThreadView;
-        this.type = type;
-        this.status = status;
-        this.messageThread = messageThread;
-        this.command = command;
-        this.key = key;
-    }
-
-    public MessageItem(String id, String createdDatetime, String modifiedDatetime, String content,
-                       MessageThreadView messageThreadView, String type, String status, MessageThread messageThread, String dateFormat) {
-        this.id = id;
-        this.createdDatetime = createdDatetime;
-        this.modifiedDatetime = modifiedDatetime;
-        this.content = content;
-        this.messageThreadView = messageThreadView;
-        this.type = type;
-        this.status = status;
-        this.messageThread = messageThread;
-        this.dateFormat = dateFormat;
+    public MessageItem(MessageItem item) {
+        this.id = item.getId();
+        this.createdDatetime = item.getCreatedDatetime();
+        this.modifiedDatetime = item.getModifiedDatetime();
+        this.createdBy = item.getCreatedBy();
+        this.modifiedBy = item.getModifiedBy();
+        this.user = item.getUser();
+        this.data = item.getData();
+        this.content = item.getContent();
+        this.messageThreadView = item.getMessageThreadView();
+        this.type = item.getType();
+        this.status = item.getStatus();
+        this.messageThread = item.getMessageThread();
+        this.command = item.getCommand();
+        this.key = item.getKey();
+        this.image = item.getImage();
+        this.dateFormat = item.getDateFormat();
+        this.date = item.getDate();
+        this.typeMessage = item.getTypeMessage();
     }
 
     public String getId() {
@@ -251,5 +260,21 @@ public class MessageItem extends RealmObject {
 
     public void setDateFormat(String dateFormat) {
         this.dateFormat = dateFormat;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTypeMessage() {
+        return typeMessage;
+    }
+
+    public void setTypeMessage(String typeMessage) {
+        this.typeMessage = typeMessage;
     }
 }

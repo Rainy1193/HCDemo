@@ -20,6 +20,8 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.Gravity;
@@ -50,17 +52,21 @@ import com.homecaravan.android.consumer.consumermvp.updateuser.UpdateUserView;
 import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.responseapi.Companies;
 import com.homecaravan.android.handling.ValidateData;
+import com.homecaravan.android.models.Country;
+import com.homecaravan.android.signup.PickCountry;
 import com.homecaravan.android.ui.CircleImageView;
 import com.kyleduo.switchbutton.SwitchButton;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 import com.yalantis.ucrop.UCrop;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -81,7 +87,6 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
     private final String TAG = "DaoDiDem";
     private boolean mIsEditing;
     private boolean mIsChangePassword;
-    private boolean mIsChangeSettings;
     private String notifications, newHomes, emailSmsNotifications;
     private AlertDialog alertDialog;
     private static final int REQUEST_GALLERY = 1;
@@ -96,6 +101,7 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
     private String mRegionCode;
     private String mRegionName;
     private String mCountryCode;
+    private ArrayList<Country> mArrCountry;
     private ArrayList<Companies> mArrCompany = new ArrayList<>();
     private ArrayAdapter<Companies> mCompaniesAdapter;
     private Companies mCurrentCompanies;
@@ -181,6 +187,18 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
     EditText mEdtNewPassword;
     @Bind(R.id.edtConfirmPassword)
     EditText mEdtConfirmPassword;
+    @Bind(R.id.imgRemoveOldPassword)
+    ImageView mImgRemoveOldPassword;
+    @Bind(R.id.imgRemoveNewPassword)
+    ImageView mImgRemoveNewPassword;
+    @Bind(R.id.imgRemoveConfirmPassword)
+    ImageView mImgRemoveConfirmPassword;
+    @Bind(R.id.imgShowOldPassword)
+    ImageView mImgShowOldPassword;
+    @Bind(R.id.imgShowNewPassword)
+    ImageView mImgShowNewPassword;
+    @Bind(R.id.imgShowConfirmPassword)
+    ImageView mImgShowConfirmPassword;
     @Bind(R.id.frmChangePasswordUpdate)
     FrameLayout mFrmChangePasswordUpdate;
     @Bind(R.id.layoutAddress)
@@ -211,6 +229,9 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
 
     @OnClick(R.id.lnExtraProfile)
     void onExtraProfileClicked() {
+        if (ConsumerUser.getInstance().getData().getProfileUrl() == null) {
+            return;
+        }
         if (Patterns.WEB_URL.matcher(ConsumerUser.getInstance().getData().getProfileUrl()).matches()) {
             Intent terms = new Intent(Intent.ACTION_VIEW);
             terms.setData(Uri.parse(ConsumerUser.getInstance().getData().getProfileUrl()));
@@ -220,6 +241,9 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
 
     @OnClick(R.id.lnExtraVideo)
     void onExtraVideoClicked() {
+        if (ConsumerUser.getInstance().getData().getVideoUrl() == null) {
+            return;
+        }
         if (Patterns.WEB_URL.matcher(ConsumerUser.getInstance().getData().getVideoUrl()).matches()) {
             Intent terms = new Intent(Intent.ACTION_VIEW);
             terms.setData(Uri.parse(ConsumerUser.getInstance().getData().getVideoUrl()));
@@ -229,6 +253,9 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
 
     @OnClick(R.id.lnExtraFacebook)
     void onExtraFacebookClicked() {
+        if (ConsumerUser.getInstance().getData().getFacebookUrl() == null) {
+            return;
+        }
         if (Patterns.WEB_URL.matcher(ConsumerUser.getInstance().getData().getFacebookUrl()).matches()) {
             Intent terms = new Intent(Intent.ACTION_VIEW);
             terms.setData(Uri.parse(ConsumerUser.getInstance().getData().getFacebookUrl()));
@@ -238,105 +265,146 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
 
     @OnClick(R.id.frmEditDone)
     void onEditDoneClicked() {
-        showPopupConfirm();
+        if (checkChangedSettings()) {
+            showPopupConfirm();
+        } else {
+            onBackPressed();
+        }
+    }
+
+    private boolean checkChangedSettings() {
+        if(ConsumerUser.getInstance().getData().getCompany() == null){
+            Companies companies = new Companies();
+            ConsumerUser.getInstance().getData().setCompany(companies);
+        }
+        return !mEdtEditFirstName.getText().toString().equals(getUserDetailString(ConsumerUser.getInstance().getData().getFirstName()))
+                || !mEdtEditLastName.getText().toString().equals(getUserDetailString(ConsumerUser.getInstance().getData().getLastName()))
+                || !mEdtEditPhone.getText().toString().equals(getUserDetailString(ConsumerUser.getInstance().getData().getMobilePhone()))
+                || !mEdtEditEmail.getText().toString().equals(getUserDetailString(ConsumerUser.getInstance().getData().getEmail()))
+                || !mImageNameHasUpload.equals("")
+                || !mEdtEditCompany.getText().toString().equals(getUserDetailString(ConsumerUser.getInstance().getData().getCompany().getName()))
+                || !mEdtEditTitle.getText().toString().equals(getUserDetailString(ConsumerUser.getInstance().getData().getCompany().getJobTitle()))
+                || !mEdtEditAddress.getText().toString().equals(getUserDetailString(ConsumerUser.getInstance().getData().getAddress()))
+                || !mEdtEditProfileUrl.getText().toString().equals(getUserDetailString(ConsumerUser.getInstance().getData().getProfileUrl()))
+                || !mEdtEditVideoUrl.getText().toString().equals(getUserDetailString(ConsumerUser.getInstance().getData().getVideoUrl()))
+                || !mEdtEditFacebookUrl.getText().toString().equals(getUserDetailString(ConsumerUser.getInstance().getData().getFacebookUrl()))
+                || !mEdtEditAboutMe.getText().toString().equals(getUserDetailString(ConsumerUser.getInstance().getData().getAboutMe()))
+                || !mEdtEditIntro.getText().toString().equals(getUserDetailString(ConsumerUser.getInstance().getData().getIntro()));
+    }
+
+    private String getUserDetailString(String str) {
+        if (str == null)
+            return "";
+        return str;
     }
 
     @OnClick(R.id.ivSetting)
     void settingAccount() {
-        if (mIsEditing) {
-            showPopupConfirm();
-        } else {
-            mEdtEditFirstName.setText(ConsumerUser.getInstance().getData().getFirstName());
-            mEdtEditLastName.setText(ConsumerUser.getInstance().getData().getLastName());
-            mEdtEditPhone.setText(ConsumerUser.getInstance().getData().getMobilePhone());
-            mEdtEditEmail.setText(ConsumerUser.getInstance().getData().getEmail());
-            if (ConsumerUser.getInstance().getData().getAddress() != null) {
-                mEdtEditAddress.setText(ConsumerUser.getInstance().getData().getAddress());
+        mIvSetting.setVisibility(View.INVISIBLE);
+        mEdtEditFirstName.setText(ConsumerUser.getInstance().getData().getFirstName());
+        mEdtEditLastName.setText(ConsumerUser.getInstance().getData().getLastName());
+        mEdtEditPhone.setText(ConsumerUser.getInstance().getData().getMobilePhone());
+        checkCountry(mCountryCode);
+        mEdtEditEmail.setText(ConsumerUser.getInstance().getData().getEmail());
+        if (ConsumerUser.getInstance().getData().getAddress() != null) {
+            mEdtEditAddress.setText(ConsumerUser.getInstance().getData().getAddress());
+        }
+        if (mCurrentCompanies != null) {
+            mEdtEditCompany.setText(mCurrentCompanies.getName());
+            mEdtEditTitle.setText(mCurrentCompanies.getJobTitle());
+        }
+
+        mEdtEditProfileUrl.setText(ConsumerUser.getInstance().getData().getProfileUrl());
+        mEdtEditVideoUrl.setText(ConsumerUser.getInstance().getData().getVideoUrl());
+        mEdtEditFacebookUrl.setText(ConsumerUser.getInstance().getData().getFacebookUrl());
+        mEdtEditAboutMe.setText(ConsumerUser.getInstance().getData().getAboutMe());
+        mEdtEditIntro.setText(ConsumerUser.getInstance().getData().getIntro());
+        mCompaniesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, mArrCompany);
+        mCompaniesAdapter.setNotifyOnChange(true);
+        mEdtEditCompany.setAdapter(mCompaniesAdapter);
+        mEdtEditCompany.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int position, long arg3) {
+                Object item = parent.getItemAtPosition(position);
+                if (item instanceof Companies) {
+                    Companies companies = (Companies) item;
+                    mCurrentCompanies = companies;
+                    mEdtEditCompany.setText(companies.getName());
+                    mEdtEditTitle.setText(companies.getJobTitle());
+                }
             }
-            if (mCurrentCompanies != null) {
-                mEdtEditCompany.setText(mCurrentCompanies.getName());
-                mEdtEditTitle.setText(mCurrentCompanies.getJobTitle());
+        });
+
+        mEdtEditCompany.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
-            mEdtEditProfileUrl.setText(ConsumerUser.getInstance().getData().getProfileUrl());
-            mEdtEditVideoUrl.setText(ConsumerUser.getInstance().getData().getVideoUrl());
-            mEdtEditFacebookUrl.setText(ConsumerUser.getInstance().getData().getFacebookUrl());
-            mEdtEditAboutMe.setText(ConsumerUser.getInstance().getData().getAboutMe());
-            mEdtEditIntro.setText(ConsumerUser.getInstance().getData().getIntro());
-            mCompaniesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, mArrCompany);
-            mCompaniesAdapter.setNotifyOnChange(true);
-//            mEdtEditCompany.setAdapter(mCompaniesAdapter);
-            mEdtEditCompany.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View arg1, int position, long arg3) {
-                    Object item = parent.getItemAtPosition(position);
-                    if (item instanceof Companies) {
-                        Companies companies = (Companies) item;
-                        mCurrentCompanies = companies;
-                        mEdtEditCompany.setText(companies.getName());
-                        mEdtEditTitle.setText(companies.getJobTitle());
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (mTimer != null) {
+                    mTimer.cancel();
+                }
+
+                mCompaniesAdapter = new ArrayAdapter<>(UserProfileConsumerActivity.this, android.R.layout.simple_dropdown_item_1line, mArrCompany);
+                mEdtEditCompany.setAdapter(mCompaniesAdapter);
+                mCompaniesAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mTimer = new Timer();
+                mTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        String value = mEdtEditCompany.getText().toString();
+                        mUpdateUserPresenter.getCompanies(value);
                     }
+                }, 600); // 600ms delay before the timer executes the „run“ method from TimerTask
+            }
+        });
+
+
+        final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mLayoutEdit, "translationX", mWidthPage, 0).setDuration(200);
+        objectAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+                mLayoutEdit.setVisibility(View.VISIBLE);
+                mLayoutProfile.setVisibility(View.GONE);
+                mTvTitle.setText("Edit Profile");
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                mIsEditing = true;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
+        objectAnimator.start();
+    }
+
+    private void checkCountry(String code) {
+        for (Country c : mArrCountry) {
+            String mCountryCode = c.getDialCode().substring(1);
+            if (code.equals(mCountryCode)) {
+                InputStream inputStream = null;
+                try {
+                    inputStream = getAssets().open("country/" + c.getCode() + ".png");
+                    mImgCountry.setImageBitmap(BitmapFactory.decodeStream(inputStream));
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            });
-
-            mEdtEditCompany.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if (mTimer != null) {
-                        mTimer.cancel();
-                    }
-
-                    mCompaniesAdapter = new ArrayAdapter<>(UserProfileConsumerActivity.this, android.R.layout.simple_dropdown_item_1line, mArrCompany);
-                    mEdtEditCompany.setAdapter(mCompaniesAdapter);
-                    mCompaniesAdapter.notifyDataSetChanged();
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    mTimer = new Timer();
-                    mTimer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            String value = mEdtEditCompany.getText().toString();
-                            mUpdateUserPresenter.getCompanies(value);
-                        }
-                    }, 600); // 600ms delay before the timer executes the „run“ method from TimerTask
-                }
-            });
-
-
-            Glide.with(getApplicationContext()).load(R.drawable.ic_consumer_submit_reviews_v).asBitmap().into(mIvSetting);
-
-            final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mLayoutEdit, "translationX", mWidthPage, 0).setDuration(200);
-            objectAnimator.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animator) {
-                    mLayoutEdit.setVisibility(View.VISIBLE);
-                    mLayoutProfile.setVisibility(View.GONE);
-                    mTvTitle.setText("Edit Profile");
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    mIsEditing = true;
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animator) {
-
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animator) {
-
-                }
-            });
-            objectAnimator.start();
+            }
         }
     }
 
@@ -352,9 +420,9 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
 
     @OnClick(R.id.imgCountry)
     void onCountryClicked() {
-//        Intent pickCountry = new Intent(this, PickCountry.class);
-//        startActivityForResult(pickCountry, PICK_COUNTRY);
-//        overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
+        Intent pickCountry = new Intent(this, PickCountry.class);
+        startActivityForResult(pickCountry, PICK_COUNTRY);
+        overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
     }
 
     @OnClick(R.id.frmChangePassword)
@@ -413,17 +481,20 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
             return;
         }
 
-//        if (!ValidateData.isPassword2(newPassword)) {
-//            showSnackBar(mLayoutMain, TypeDialog.WARNING, R.string.error_password_length_2, "validate");
-//            mEdtConfirmPassword.setText(null);
-//            mEdtNewPassword.requestFocus();
-//            return;
-//        }
+        if (!ValidateData.isPassword2(newPassword)) {
+            showSnackBar(mLayoutMain, TypeDialog.WARNING, R.string.error_password_length_2, "validate");
+            mEdtNewPassword.requestFocus();
+            return;
+        }
 
         if (!newPassword.equals(confirmPassword)) {
             showSnackBar(mLayoutMain, TypeDialog.WARNING, R.string.error_re_password, "validate");
-            mEdtNewPassword.setText(null);
-            mEdtConfirmPassword.setText(null);
+            mEdtNewPassword.requestFocus();
+            return;
+        }
+
+        if (newPassword.equals(oldPassword)) {
+            showSnackBar(mLayoutMain, TypeDialog.WARNING, R.string.error_same_password, "validate");
             mEdtNewPassword.requestFocus();
             return;
         }
@@ -445,13 +516,60 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
         onBackPressed();
     }
 
+    @OnClick(R.id.imgShowOldPassword)
+    void openShowOldPasswordClicked() {
+        if (mEdtOldPassword.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+            mEdtOldPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            Glide.with(this).load(R.drawable.ic_consumer_eye_hide_password_color).asBitmap().into(mImgShowOldPassword);
+        } else {
+            mEdtOldPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            Glide.with(this).load(R.drawable.ic_consumer_eye_show_password_color).asBitmap().into(mImgShowOldPassword);
+        }
+    }
+
+    @OnClick(R.id.imgShowNewPassword)
+    void openShowNewPasswordClicked() {
+        if (mEdtNewPassword.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+            mEdtNewPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            Glide.with(this).load(R.drawable.ic_consumer_eye_hide_password_color).asBitmap().into(mImgShowNewPassword);
+        } else {
+            mEdtNewPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            Glide.with(this).load(R.drawable.ic_consumer_eye_show_password_color).asBitmap().into(mImgShowNewPassword);
+        }
+    }
+
+    @OnClick(R.id.imgShowConfirmPassword)
+    void openShowConfirmPasswordClicked() {
+        if (mEdtConfirmPassword.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
+            mEdtConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            Glide.with(this).load(R.drawable.ic_consumer_eye_hide_password_color).asBitmap().into(mImgShowConfirmPassword);
+        } else {
+            mEdtConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            Glide.with(this).load(R.drawable.ic_consumer_eye_show_password_color).asBitmap().into(mImgShowConfirmPassword);
+        }
+    }
+
+    @OnClick(R.id.imgRemoveOldPassword)
+    void removeOldPassword() {
+        mEdtOldPassword.setText(null);
+    }
+
+    @OnClick(R.id.imgRemoveNewPassword)
+    void removeNewPassword() {
+        mEdtNewPassword.setText(null);
+    }
+
+    @OnClick(R.id.imgRemoveConfirmPassword)
+    void removeConfirmPassword() {
+        mEdtConfirmPassword.setText(null);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
         Log.e(TAG, ConsumerUser.getInstance().getData().toString());
         mUpdateUserPresenter = new UpdateUserPresenter(this);
-        getCountryZipCode();
         Glide.with(this).load(ConsumerUser.getInstance().getData().getPhoto()).asBitmap().fitCenter().into(mImgAvatar);
         mTvName.setText(ConsumerUser.getInstance().getData().getFullName());
         mTvPhone.setText(ConsumerUser.getInstance().getData().getMobilePhone());
@@ -508,6 +626,11 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
                 mWidthPage = mLayoutMain.getWidth();
             }
         });
+
+        addTextChangedListener();
+
+        getCountryZipCode();
+        mArrCountry = getCountry();
     }
 
     @Override
@@ -519,7 +642,7 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
     public void onBackPressed() {
         hideKeyboard();
         if (mIsEditing) {
-            Glide.with(getApplicationContext()).load(R.drawable.ic_consumer_user_setting).asBitmap().into(mIvSetting);
+            mIvSetting.setVisibility(View.VISIBLE);
             final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mLayoutEdit, "translationX", 0, mWidthPage).setDuration(200);
             objectAnimator.addListener(new Animator.AnimatorListener() {
                 @Override
@@ -531,6 +654,9 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
                     mLayoutEdit.setVisibility(View.GONE);
                     mTvTitle.setText("User Profile");
                     mLayoutProfile.setVisibility(View.VISIBLE);
+                    mImageNameHasUpload = "";
+                    mRegionCode = null;
+                    mRegionName = null;
                     mIsEditing = false;
                 }
 
@@ -548,7 +674,6 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
             return;
         }
         if (mIsChangePassword) {
-            Glide.with(getApplicationContext()).load(R.drawable.ic_consumer_user_setting).asBitmap().into(mIvSetting);
             mIvSetting.setVisibility(View.VISIBLE);
             final ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(mLayoutChangePassword, "translationX", 0, mWidthPage).setDuration(200);
             objectAnimator.addListener(new Animator.AnimatorListener() {
@@ -566,6 +691,10 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
                     mEdtOldPassword.setText(null);
                     mEdtNewPassword.setText(null);
                     mEdtConfirmPassword.setText(null);
+
+                    Glide.with(getApplicationContext()).load(R.drawable.ic_consumer_eye_show_password_color).asBitmap().into(mImgShowConfirmPassword);
+                    Glide.with(getApplicationContext()).load(R.drawable.ic_consumer_eye_show_password_color).asBitmap().into(mImgShowNewPassword);
+                    Glide.with(getApplicationContext()).load(R.drawable.ic_consumer_eye_show_password_color).asBitmap().into(mImgShowOldPassword);
 
                     mIsChangePassword = false;
                 }
@@ -636,6 +765,7 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
         frmButtonNo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                onBackPressed();
                 alertDialog.dismiss();
             }
         });
@@ -732,7 +862,6 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
         alertDialog.show();
     }
 
-
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
         String imageFileName = "JPGE" + timeStamp + "_";
@@ -777,6 +906,7 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
                 mImgCountry.setImageBitmap(BitmapFactory.decodeStream(inputStream));
                 mRegionCode = data.getExtras().getString("code");
                 mRegionName = data.getExtras().getString("region");
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -851,12 +981,44 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
     }
 
     @Override
-    public void updateUserSuccess() {
+    public void updateUserSuccess(String firstName, String lastName,
+                                  String phone, String email, String avatar,
+                                  String companyMappingId, String companyId,
+                                  String companyName, String companyTitle,
+                                  String extraAddress, String extraUrl,
+                                  String extraVideo, String extraFacebook,
+                                  String extraAboutMe, String extraIntro) {
         hideLoading();
         mFrmEditDone.setClickable(true);
         if (changePhoto) {
             Picasso.with(UserProfileConsumerActivity.this).load(saveFile).into(mImgAvatar);
         }
+
+        ConsumerUser.getInstance().getData().setFirstName(firstName);
+        ConsumerUser.getInstance().getData().setLastName(lastName);
+        ConsumerUser.getInstance().getData().setFullName(firstName + " " + lastName);
+        ConsumerUser.getInstance().getData().setPhoto(phone);
+        ConsumerUser.getInstance().getData().setEmail(email);
+        ConsumerUser.getInstance().getData().setPhoto("http://api.consumer.homecaravan.net/uploads/account_avatar/" + avatar);
+        if (ConsumerUser.getInstance().getData().getCompany() != null) {
+            ConsumerUser.getInstance().getData().getCompany().setId(companyId);
+            ConsumerUser.getInstance().getData().getCompany().setName(companyName);
+            ConsumerUser.getInstance().getData().getCompany().setJobTitle(companyTitle);
+            ConsumerUser.getInstance().getData().getCompany().setMappingId(companyMappingId);
+        } else {
+            Companies companies = new Companies();
+            companies.setId(companyId);
+            companies.setName(companyName);
+            companies.setJobTitle(companyTitle);
+            companies.setMappingId(companyMappingId);
+        }
+        ConsumerUser.getInstance().getData().setAddress(extraAddress);
+        ConsumerUser.getInstance().getData().setProfileUrl(extraUrl);
+        ConsumerUser.getInstance().getData().setVideoUrl(extraVideo);
+        ConsumerUser.getInstance().getData().setFacebookUrl(extraFacebook);
+        ConsumerUser.getInstance().getData().setAboutMe(extraAboutMe);
+        ConsumerUser.getInstance().getData().setIntro(extraIntro);
+
         onBackPressed();
     }
 
@@ -929,11 +1091,33 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
     public void changePasswordSuccess(String token) {
         hideLoading();
         ConsumerUser.getInstance().getData().setToken(token);
-//        mFrmChangePasswordUpdate.setClickable(true);
-//        mEdtOldPassword.setText(null);
-//        mEdtNewPassword.setText(null);
-//        mEdtConfirmPassword.setText(null);
-        onBackPressed();
+        showPopupSuccess("Password has been changed");
+    }
+
+    private void showPopupSuccess(String message) {
+        LayoutInflater layoutInflater1 = LayoutInflater.from(this);
+        View view1 = layoutInflater1.inflate(R.layout.dialog_consumer_popup_success, null);
+        FrameLayout frmButtonOk = (FrameLayout) view1.findViewById(R.id.frmButtonOk);
+        TextView tvMessage = (TextView) view1.findViewById(R.id.tvMessage);
+        tvMessage.setText(message);
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(this).setView(view1).create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.TeamTabSearchDialog;
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.setCanceledOnTouchOutside(false);
+        WindowManager.LayoutParams wmlp = alertDialog.getWindow().getAttributes();
+        wmlp.gravity = Gravity.CENTER;
+        wmlp.y = -200;   //y position
+
+        frmButtonOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
     }
 
     @Override
@@ -1078,13 +1262,15 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
                 extraAddress, extraUrl, extraVideo, extraFacebook, extraAboutMe, extraIntro, gotCompanies);
     }
 
-    public String handlerPhone(String data) {
+    private String handlerPhone(String data) {
         if (mRegionCode != null) {
             if (ValidateData.isPhone(data)) {
                 if (data.startsWith("0")) {
                     return mRegionCode + data.substring(1);
                 }
-                return mRegionCode + data;
+                if (data.startsWith("+"))
+                    return data;
+                return "+" + mCountryCode + data;
             }
         } else {
             if (ValidateData.isPhone(data)) {
@@ -1099,7 +1285,7 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
         return data;
     }
 
-    public void getCountryZipCode() {
+    private void getCountryZipCode() {
         String CountryZipCode = "";
         String CountryID = Locale.getDefault().getCountry();
         String[] rl = this.getResources().getStringArray(R.array.CountryCodes);
@@ -1111,5 +1297,127 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
             }
         }
         mCountryCode = CountryZipCode;
+        Log.e(TAG, "getCountryZipCode: " + mCountryCode);
+    }
+
+    private void addTextChangedListener() {
+        mEdtOldPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (mEdtOldPassword.getText().length() > 0 && mImgRemoveOldPassword.getVisibility() == View.INVISIBLE) {
+                    mImgRemoveOldPassword.setVisibility(View.VISIBLE);
+                } else if (mEdtOldPassword.getText().length() == 0) {
+                    mImgRemoveOldPassword.setVisibility(View.INVISIBLE);
+                }
+
+                if (mEdtOldPassword.getText().length() > 0 && mImgShowOldPassword.getVisibility() == View.INVISIBLE) {
+                    mImgShowOldPassword.setVisibility(View.VISIBLE);
+                } else if (mEdtOldPassword.getText().length() == 0) {
+                    mImgShowOldPassword.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        mEdtNewPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (mEdtNewPassword.getText().length() > 0 && mImgRemoveNewPassword.getVisibility() == View.INVISIBLE) {
+                    mImgRemoveNewPassword.setVisibility(View.VISIBLE);
+                } else if (mEdtNewPassword.getText().length() == 0) {
+                    mImgRemoveNewPassword.setVisibility(View.INVISIBLE);
+                }
+
+                if (mEdtNewPassword.getText().length() > 0 && mImgShowNewPassword.getVisibility() == View.INVISIBLE) {
+                    mImgShowNewPassword.setVisibility(View.VISIBLE);
+                } else if (mEdtNewPassword.getText().length() == 0) {
+                    mImgShowNewPassword.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        mEdtConfirmPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (mEdtConfirmPassword.getText().length() > 0 && mImgRemoveConfirmPassword.getVisibility() == View.INVISIBLE) {
+                    mImgRemoveConfirmPassword.setVisibility(View.VISIBLE);
+                } else if (mEdtConfirmPassword.getText().length() == 0) {
+                    mImgRemoveConfirmPassword.setVisibility(View.INVISIBLE);
+                }
+
+                if (mEdtConfirmPassword.getText().length() > 0 && mImgShowConfirmPassword.getVisibility() == View.INVISIBLE) {
+                    mImgShowConfirmPassword.setVisibility(View.VISIBLE);
+                } else if (mEdtConfirmPassword.getText().length() == 0) {
+                    mImgShowConfirmPassword.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+    }
+
+    private ArrayList<Country> getCountry() {
+        Country country;
+        ArrayList<Country> arrCountry = new ArrayList<>();
+        try {
+            InputStream inputStream1 = getAssets().open("file/countries.json");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream1));
+            String line;
+            String name = null;
+            String dialCode = null;
+            String code = null;
+            int count = 0;
+            while ((line = reader.readLine()) != null) {
+
+                if (line.contains("name")) {
+                    name = line.substring(line.indexOf(":") + 3, line.length() - 2);
+                    count++;
+                }
+                if (line.contains("dial_code")) {
+                    dialCode = line.substring(line.indexOf(":") + 3, line.length() - 2);
+                    count++;
+                }
+                if (line.contains("code") && !line.contains(",")) {
+                    code = line.substring(line.indexOf(":") + 3, line.length() - 1);
+                    count++;
+                }
+                if (count == 3) {
+                    country = new Country(name, dialCode, code);
+                    arrCountry.add(country);
+                    count = 0;
+                }
+            }
+            return arrCountry;
+        } catch (Exception e) {
+            return arrCountry;
+        }
     }
 }

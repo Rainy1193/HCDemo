@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import com.homecaravan.android.R;
 import com.homecaravan.android.consumer.base.BaseActivity;
-import com.homecaravan.android.consumer.consumerbase.ConsumerUser;
 import com.homecaravan.android.consumer.consumermvp.contactmvp.CreateContactPresenter;
 import com.homecaravan.android.consumer.consumermvp.contactmvp.CreateContactView;
 import com.homecaravan.android.consumer.consumermvp.contactmvp.InviteContactPresenter;

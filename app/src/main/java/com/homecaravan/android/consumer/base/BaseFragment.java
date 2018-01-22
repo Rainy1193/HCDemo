@@ -158,7 +158,7 @@ public abstract class BaseFragment extends Fragment implements BaseView, IDialog
         View snackBarView = snackbar.getView();
         TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);
-        textView.setMaxLines(3);
+        textView.setMaxLines(4);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         snackbar.show();
     }
@@ -189,7 +189,7 @@ public abstract class BaseFragment extends Fragment implements BaseView, IDialog
         View snackBarView = snackbar.getView();
         TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);
-        textView.setMaxLines(3);
+        textView.setMaxLines(4);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         snackbar.show();
     }

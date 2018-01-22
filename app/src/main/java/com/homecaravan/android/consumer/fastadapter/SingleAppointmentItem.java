@@ -86,7 +86,7 @@ public class SingleAppointmentItem extends AbstractItem<SingleAppointmentItem, S
         holder.mLayoutChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                mListener.onMessageClicked("", "", "", mAppointment.getRefAppointment().getAgent().getFullName(), mAppointment.getRefAppointment().getAgent().getId());
             }
         });
     }

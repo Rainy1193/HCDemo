@@ -3,7 +3,6 @@ package com.homecaravan.android.consumer.model;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 

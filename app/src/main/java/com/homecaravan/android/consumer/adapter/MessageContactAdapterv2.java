@@ -28,6 +28,7 @@ import butterknife.ButterKnife;
 
 /**
  * Created by Anh Dao on 11/24/2017.
+ * Contact list
  */
 
 public class MessageContactAdapterv2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

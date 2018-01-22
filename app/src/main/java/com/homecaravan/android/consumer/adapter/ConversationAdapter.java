@@ -17,20 +17,16 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.homecaravan.android.HomeCaravanApplication;
 import com.homecaravan.android.R;
-import com.homecaravan.android.api.Constants;
 import com.homecaravan.android.consumer.activity.ViewUserProfileConsumerActivity;
-import com.homecaravan.android.consumer.model.message.ConsumerMessages;
+import com.homecaravan.android.consumer.model.message.MessageItem;
 import com.homecaravan.android.consumer.utils.Convert;
+import com.homecaravan.android.consumer.utils.TextUtils;
 import com.homecaravan.android.consumer.widget.ImagePopup;
 import com.homecaravan.android.ui.CircleImageView;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -48,16 +44,16 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private Long timeStampStartOfToday = (timeStampCurrentOfToday / 86400) * 86400;
     private HashMap<Integer, ProgressBar> hashMapPbProgressBar;
     private Context mContext;
-    private ArrayList<ConsumerMessages> mArrConsumerMessages;
+    private ArrayList<MessageItem> mArrConsumerMessages;
     private final OnItemClickListener mListener;
     private int dp8;
     private int dp12;
     private int dp16;
-    private int dp26;
+    private int dp22;
     private Picasso mPicasso;
 
 
-    public ConversationAdapter(Context mContext, ArrayList<ConsumerMessages> mArrConsumerMessages, OnItemClickListener mListener) {
+    public ConversationAdapter(Context mContext, ArrayList<MessageItem> mArrConsumerMessages, OnItemClickListener mListener) {
         this.mContext = mContext;
         this.mArrConsumerMessages = mArrConsumerMessages;
         this.hashMapPbProgressBar = new HashMap<>();
@@ -65,29 +61,28 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         dp8 = Convert.dpToPx(8, mContext);
         dp12 = Convert.dpToPx(12, mContext);
         dp16 = Convert.dpToPx(16, mContext);
-        dp26 = Convert.dpToPx(26, mContext);
+        dp22 = Convert.dpToPx(22, mContext);
         mPicasso = HomeCaravanApplication.getInstance().buildPicasso();
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder vh;
         if (viewType == VIEW_ITEM) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_item, parent, false);
-            vh = new MessageHolder(v);
+            return new MessageHolder(v);
         } else if (viewType == VIEW_FROM) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_from_item, parent, false);
-            vh = new MessageFromHolder(v);
-        } else {
+            return new MessageFromHolder(v);
+        } else if (viewType == VIEW_TIME) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_time_item, parent, false);
-            vh = new TimeViewHolder(v);
+            return new TimeViewHolder(v);
         }
-        return vh;
+        return null;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        ConsumerMessages message = mArrConsumerMessages.get(position); // tn hiện tại
+        MessageItem message = mArrConsumerMessages.get(position); // tn hiện tại
 
         if (holder instanceof TimeViewHolder) {
             TimeViewHolder timeLineHolder = (TimeViewHolder) holder;
@@ -100,7 +95,7 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
 
         } else {
-            if (message.getMessageItem() == null || Constants.getInstance().MESSAGE_STATUS_DELETED.equals(message.getMessageItem().getStatus())) {
+            if (message == null || MessageItem.STATUS_DELETED.equals(message.getStatus())) {
                 if (holder instanceof MessageHolder) {
                     final MessageHolder myHolder = (MessageHolder) holder;
                     myHolder.mLayoutItem.setVisibility(View.GONE);
@@ -110,13 +105,13 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 }
                 return;
             }
-            ConsumerMessages preMessage;
-            ConsumerMessages nextMessage = null;
+            MessageItem preMessage;
+            MessageItem nextMessage = null;
 
             String preSender, nextSender;
-            String currentSender = message.getMessageItem().getCreatedBy();
+            String currentSender = message.getMessageThreadView().getId();
             if (currentSender == null) {
-                currentSender = message.getMessageItem().getMessageThreadView().getId();
+                currentSender = message.getCreatedBy();
             }
 
             if (currentSender == null) {
@@ -133,87 +128,83 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 preSender = "";
             } else {
                 preMessage = mArrConsumerMessages.get(position - 1); //tn trước tn hiện tại
-                if (preMessage.getMessageItem() == null) {
+                if (preMessage.getId() == null) {
                     preSender = "";
                 } else {
-                    preSender = preMessage.getMessageItem().getCreatedBy();
-                    if (preSender == null) {
-                        preSender = preMessage.getMessageItem().getMessageThreadView().getId();
-                    }
+                    preSender = preMessage.getMessageThreadView().getId() != null ?
+                            preMessage.getCreatedBy() : preMessage.getMessageThreadView().getId();
                 }
             }
             if (position == getItemCount() - 1) {
                 nextSender = "";
             } else {
                 nextMessage = mArrConsumerMessages.get(position + 1); // tn sau tn hiện tại
-                if (nextMessage.getMessageItem() == null) {
+                if (nextMessage.getId() == null) {
                     nextSender = "";
                 } else {
-                    nextSender = nextMessage.getMessageItem().getCreatedBy();
-                    if (nextSender == null) {
-                        nextSender = nextMessage.getMessageItem().getMessageThreadView().getId();
-                    }
+                    nextSender = nextMessage.getMessageThreadView().getId() != null ?
+                            nextMessage.getCreatedBy() : nextMessage.getMessageThreadView().getId();
                 }
             }
 
             if (holder instanceof MessageHolder) {
                 final MessageHolder myHolder = (MessageHolder) holder;
 
-                if (Constants.getInstance().MESSAGE_TYPE_TEXT.equals(message.getMessageItem().getType())) {
-                    boolean isJustEmoji = checkJustEmoji(message.getMessageItem().getContent());
+                if (MessageItem.TYPE_TEXT.equals(message.getType())) {
+                    boolean isJustEmoji = checkJustEmoji(message.getContent());
 
                     if (isJustEmoji) {
-                        myHolder.mTvMessage.setEmojiconSize(dp26);
+                        myHolder.mTvMessage.setEmojiconSize(dp22);
                         myHolder.mLayoutMessage.setPadding(dp8, dp8, dp8, dp8);
                     } else {
                         myHolder.mTvMessage.setEmojiconSize(dp16);
                         myHolder.mLayoutMessage.setPadding(dp12, dp12, dp12, dp8);
                     }
-                    myHolder.mTvMessage.setText(message.getMessageItem().getContent());
+                    myHolder.mTvMessage.setText(message.getContent());
                     myHolder.mTvMessage.setVisibility(View.VISIBLE);
                     myHolder.mLayoutMessage.setVisibility(View.VISIBLE);
                     myHolder.mImgMessage.setVisibility(View.GONE);
 
-                } else if (Constants.getInstance().MESSAGE_TYPE_IMAGE.equals(message.getMessageItem().getType())) {
+                } else if (MessageItem.TYPE_IMAGE.equals(message.getType())) {
                     myHolder.mLayoutMessage.setVisibility(View.GONE);
                     myHolder.mImgMessage.setVisibility(View.VISIBLE);
-                    if (message.getMessageItem().getImage() != null) {
-                        mPicasso.load(message.getMessageItem().getImage()).fit().centerCrop()
+                    if (message.getImage() != null) {
+                        mPicasso.load(message.getImage()).fit().centerCrop()
                                 .placeholder(R.drawable.avatar_default).into(myHolder.mImgMessage);
-                    } else if (message.getMessageItem().getTempImage() != null) {
-                        Glide.with(mContext.getApplicationContext()).load(message.getMessageItem().getTempImage()).asBitmap().fitCenter()
+                    } else if (message.getTempImage() != null) {
+                        Glide.with(mContext.getApplicationContext()).load(message.getTempImage()).asBitmap().fitCenter()
                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                                 .placeholder(R.drawable.no_image_b).dontAnimate().into(myHolder.mImgMessage);
                     } else {
                         mPicasso.load(R.drawable.no_image_b).fit().centerCrop()
                                 .placeholder(R.drawable.avatar_default).into(myHolder.mImgMessage);
                     }
-                } else if (Constants.getInstance().MESSAGE_TYPE_FILE.equals(message.getMessageItem().getType())) {
+                } else if (MessageItem.TYPE_FILE.equals(message.getType())) {
                 }
 
                 if (!currentSender.equals(preSender) && !currentSender.equals(nextSender)) { //single message
-                    mPicasso.load(message.getMessageItem().getMessageThreadView().getPhoto()).fit().centerCrop()
+                    mPicasso.load(message.getMessageThreadView().getPhoto()).fit().centerCrop()
                             .placeholder(R.drawable.avatar_default).into(myHolder.mImgAvatar);
 
-                    myHolder.mTvName.setText(message.getMessageItem().getMessageThreadView().getName());
-                    myHolder.mTvChatTime.setText(getTime(message.getMessageItem().getCreatedDatetime()));
+                    myHolder.mTvName.setText(message.getMessageThreadView().getName());
+                    myHolder.mTvChatTime.setText(TextUtils.getLastTime(message.getCreatedDatetime(), timeStampStartOfToday));
                     myHolder.mTvChatTime.setVisibility(View.VISIBLE);
 //                    myHolder.mVStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.dot_green_online));
                     myHolder.mLayoutChatName.setVisibility(View.VISIBLE);
                     myHolder.mLayoutAvatar.setVisibility(View.VISIBLE);
                 } else if (!currentSender.equals(preSender) && currentSender.equals(nextSender)) { //top message
-                    mPicasso.load(message.getMessageItem().getMessageThreadView().getPhoto()).fit().centerCrop()
+                    mPicasso.load(message.getMessageThreadView().getPhoto()).fit().centerCrop()
                             .placeholder(R.drawable.avatar_default).into(myHolder.mImgAvatar);
 
-                    myHolder.mTvName.setText(message.getMessageItem().getMessageThreadView().getName());
+                    myHolder.mTvName.setText(message.getMessageThreadView().getName());
 //                    myHolder.mVStatus.setBackground(ContextCompat.getDrawable(mContext, R.drawable.dot_green_online));
                     myHolder.mLayoutChatName.setVisibility(View.VISIBLE);
                     myHolder.mLayoutAvatar.setVisibility(View.VISIBLE);
 
-                    long currentMessageTime = Long.parseLong(message.getMessageItem().getCreatedDatetime());
-                    long nextMessageTime = Long.parseLong(nextMessage.getMessageItem().getCreatedDatetime());
+                    long currentMessageTime = Long.parseLong(message.getCreatedDatetime());
+                    long nextMessageTime = Long.parseLong(nextMessage.getCreatedDatetime());
                     if (nextMessageTime - currentMessageTime > 300000) {
-                        myHolder.mTvChatTime.setText(getTime(currentMessageTime));
+                        myHolder.mTvChatTime.setText(TextUtils.getLastTime(currentMessageTime, timeStampStartOfToday));
                         myHolder.mTvChatTime.setVisibility(View.VISIBLE);
                     } else {
                         myHolder.mTvChatTime.setVisibility(View.GONE);
@@ -222,16 +213,16 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     myHolder.mLayoutChatName.setVisibility(View.GONE);
                     myHolder.mLayoutAvatar.setVisibility(View.INVISIBLE);
 
-                    long currentMessageTime = Long.parseLong(message.getMessageItem().getCreatedDatetime());
-                    long nextMessageTime = Long.parseLong(nextMessage.getMessageItem().getCreatedDatetime());
+                    long currentMessageTime = Long.parseLong(message.getCreatedDatetime());
+                    long nextMessageTime = Long.parseLong(nextMessage.getCreatedDatetime());
                     if (nextMessageTime - currentMessageTime > 300000) {
-                        myHolder.mTvChatTime.setText(getTime(currentMessageTime));
+                        myHolder.mTvChatTime.setText(TextUtils.getLastTime(currentMessageTime, timeStampStartOfToday));
                         myHolder.mTvChatTime.setVisibility(View.VISIBLE);
                     } else {
                         myHolder.mTvChatTime.setVisibility(View.GONE);
                     }
                 } else { //bottom message
-                    myHolder.mTvChatTime.setText(getTime(message.getMessageItem().getCreatedDatetime()));
+                    myHolder.mTvChatTime.setText(TextUtils.getLastTime(message.getCreatedDatetime(), timeStampStartOfToday));
                     myHolder.mTvChatTime.setVisibility(View.VISIBLE);
                     myHolder.mLayoutChatName.setVisibility(View.GONE);
                     myHolder.mLayoutAvatar.setVisibility(View.INVISIBLE);
@@ -259,66 +250,66 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             } else if (holder instanceof MessageFromHolder) {
                 final MessageFromHolder myHolder = (MessageFromHolder) holder;
 
-                if (Constants.getInstance().MESSAGE_TYPE_TEXT.equals(message.getMessageItem().getType())) {
-                    boolean isJustEmoji = checkJustEmoji(message.getMessageItem().getContent());
+                if (MessageItem.TYPE_TEXT.equals(message.getType())) {
+                    boolean isJustEmoji = checkJustEmoji(message.getContent());
 
                     if (isJustEmoji) {
-                        myHolder.mTvMessage.setEmojiconSize(dp26);
+                        myHolder.mTvMessage.setEmojiconSize(dp22);
                         myHolder.mLayoutMessage.setPadding(dp8, dp8, dp8, dp8);
                     } else {
                         myHolder.mTvMessage.setEmojiconSize(dp16);
                         myHolder.mLayoutMessage.setPadding(dp12, dp12, dp12, dp8);
                     }
-                    myHolder.mTvMessage.setText(message.getMessageItem().getContent());
+                    myHolder.mTvMessage.setText(message.getContent());
                     myHolder.mTvMessage.setVisibility(View.VISIBLE);
                     myHolder.mLayoutMessage.setVisibility(View.VISIBLE);
                     myHolder.mImgMessage.setVisibility(View.GONE);
-                } else if (Constants.getInstance().MESSAGE_TYPE_IMAGE.equals(message.getMessageItem().getType())) {
+                } else if (MessageItem.TYPE_IMAGE.equals(message.getType())) {
                     myHolder.mTvMessage.setVisibility(View.GONE);
                     myHolder.mLayoutMessage.setVisibility(View.GONE);
                     myHolder.mImgMessage.setVisibility(View.VISIBLE);
-                    if (message.getMessageItem().getImage() != null) {
-                        mPicasso.load(message.getMessageItem().getImage()).fit().centerCrop()
-                                .placeholder(R.drawable.avatar_default).into(myHolder.mImgMessage);
-                    } else if (message.getMessageItem().getTempImage() != null) {
-                        Glide.with(mContext.getApplicationContext()).load(message.getMessageItem().getTempImage()).asBitmap().fitCenter()
+                    if (message.getImage() != null) {
+                        mPicasso.load(message.getImage()).fit().centerCrop()
+                                .placeholder(R.drawable.no_image_b).into(myHolder.mImgMessage);
+                    } else if (message.getTempImage() != null) {
+                        Glide.with(mContext.getApplicationContext()).load(message.getTempImage()).asBitmap().fitCenter()
                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                                 .placeholder(R.drawable.no_image_b).dontAnimate().into(myHolder.mImgMessage);
-                        if (!message.getMessageItem().isHasAppearedOnce()) {
+                        if (!message.isHasAppearedOnce()) {
                             myHolder.mPbUploadImage.setVisibility(View.VISIBLE);
                             hashMapPbProgressBar.put(position, myHolder.mPbUploadImage);
-                            message.getMessageItem().setHasAppearedOnce(true);
+                            message.setHasAppearedOnce(true);
                         }
                     } else {
                         mPicasso.load(R.drawable.no_image_b).fit().centerCrop()
                                 .placeholder(R.drawable.avatar_default).into(myHolder.mImgMessage);
                     }
-                } else if (Constants.getInstance().MESSAGE_TYPE_FILE.equals(message.getMessageItem().getType())) {
+                } else if (MessageItem.TYPE_FILE.equals(message.getType())) {
                 }
 
                 if (!currentSender.equals(preSender) && !currentSender.equals(nextSender)) { //single message
-                    myHolder.mTvChatTime.setText(getTime(message.getMessageItem().getCreatedDatetime()));
+                    myHolder.mTvChatTime.setText(TextUtils.getLastTime(message.getCreatedDatetime(), timeStampStartOfToday));
                     myHolder.mTvChatTime.setVisibility(View.VISIBLE);
                 } else if (!currentSender.equals(preSender) && currentSender.equals(nextSender)) { //top message
-                    long currentMessageTime = Long.parseLong(message.getMessageItem().getCreatedDatetime());
-                    long nextMessageTime = Long.parseLong(nextMessage.getMessageItem().getCreatedDatetime());
+                    long currentMessageTime = Long.parseLong(message.getCreatedDatetime());
+                    long nextMessageTime = Long.parseLong(nextMessage.getCreatedDatetime());
                     if (nextMessageTime - currentMessageTime > 300000) {
-                        myHolder.mTvChatTime.setText(getTime(currentMessageTime));
+                        myHolder.mTvChatTime.setText(TextUtils.getLastTime(currentMessageTime, timeStampStartOfToday));
                         myHolder.mTvChatTime.setVisibility(View.VISIBLE);
                     } else {
                         myHolder.mTvChatTime.setVisibility(View.GONE);
                     }
                 } else if (currentSender.equals(preSender) && currentSender.equals(nextSender)) { //middle message
-                    long currentMessageTime = Long.parseLong(message.getMessageItem().getCreatedDatetime());
-                    long nextMessageTime = Long.parseLong(nextMessage.getMessageItem().getCreatedDatetime());
+                    long currentMessageTime = Long.parseLong(message.getCreatedDatetime());
+                    long nextMessageTime = Long.parseLong(nextMessage.getCreatedDatetime());
                     if (nextMessageTime - currentMessageTime > 300000) {
-                        myHolder.mTvChatTime.setText(getTime(currentMessageTime));
+                        myHolder.mTvChatTime.setText(TextUtils.getLastTime(currentMessageTime, timeStampStartOfToday));
                         myHolder.mTvChatTime.setVisibility(View.VISIBLE);
                     } else {
                         myHolder.mTvChatTime.setVisibility(View.GONE);
                     }
                 } else { //bottom message
-                    myHolder.mTvChatTime.setText(getTime(message.getMessageItem().getCreatedDatetime()));
+                    myHolder.mTvChatTime.setText(TextUtils.getLastTime(message.getCreatedDatetime(), timeStampStartOfToday));
                     myHolder.mTvChatTime.setVisibility(View.VISIBLE);
                 }
 
@@ -355,13 +346,14 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemViewType(int position) {
-        if (mArrConsumerMessages.get(position).getType().equalsIgnoreCase(Constants.getInstance().MESSAGE_ITEM_TYPE_ITEM)) {
+        if (mArrConsumerMessages.get(position).getTypeMessage().equals(MessageItem.TYPE_ITEM)) {
             return VIEW_ITEM;
-        } else if (mArrConsumerMessages.get(position).getType().equalsIgnoreCase(Constants.getInstance().MESSAGE_ITEM_TYPE_FROM_ITEM)) {
+        } else if (mArrConsumerMessages.get(position).getTypeMessage().equals(MessageItem.TYPE_FROM_ITEM)) {
             return VIEW_FROM;
-        } else {
+        } else if (mArrConsumerMessages.get(position).getTypeMessage().equals(MessageItem.TYPE_TIME_LINE)) {
             return VIEW_TIME;
         }
+        return -1;
     }
 
     public class MessageHolder extends RecyclerView.ViewHolder {
@@ -395,7 +387,7 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(final int position, final ConsumerMessages item, final OnItemClickListener listener, final Bitmap bitmap) {
+        public void bind(final int position, final MessageItem item, final OnItemClickListener listener, final Bitmap bitmap) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -445,7 +437,7 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             ButterKnife.bind(this, itemView);
         }
 
-        private void bind(final int position, final ConsumerMessages item, final OnItemClickListener listener, final Bitmap bitmap) {
+        private void bind(final int position, final MessageItem item, final OnItemClickListener listener, final Bitmap bitmap) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -484,54 +476,6 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    private String getTime(String time) {
-        try {
-            long timeStamp = Long.parseLong(time);
-
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(timeStamp);
-//            TimeZone tz = TimeZone.getDefault();
-//            calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.getTimeInMillis()));
-
-            timeStamp /= 1000;
-            SimpleDateFormat sdf;
-            if (timeStamp >= timeStampStartOfToday) {
-                sdf = new SimpleDateFormat("hh:mm a", Locale.US);
-            } else {
-                sdf = new SimpleDateFormat("dd MMM", Locale.US);
-            }
-
-            Date currenTimeZone = calendar.getTime();
-            return sdf.format(currenTimeZone);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
-    private String getTime(long timeStamp) {
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(timeStamp);
-//            TimeZone tz = TimeZone.getDefault();
-//            calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.getTimeInMillis()));
-
-            timeStamp /= 1000;
-            SimpleDateFormat sdf;
-            if (timeStamp >= timeStampStartOfToday) {
-                sdf = new SimpleDateFormat("hh:mm a", Locale.US);
-            } else {
-                sdf = new SimpleDateFormat("dd MMM", Locale.US);
-            }
-
-            Date currenTimeZone = calendar.getTime();
-            return sdf.format(currenTimeZone);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
     private boolean checkJustEmoji(String messageContent) {
         int n = messageContent.length();
         boolean isJustEmoji = false;
@@ -553,8 +497,8 @@ public class ConversationAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public interface OnItemClickListener {
-        void onItemClick(int position, ConsumerMessages item);
+        void onItemClick(int position, MessageItem item);
 
-        void onItemLongClick(int position, ConsumerMessages item, Bitmap bitmap);
+        void onItemLongClick(int position, MessageItem item, Bitmap bitmap);
     }
 }

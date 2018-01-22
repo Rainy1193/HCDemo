@@ -43,11 +43,10 @@ import com.homecaravan.android.consumer.consumermvp.listingmvp.GetListingDetailV
 import com.homecaravan.android.consumer.consumermvp.searchmvp.VoteListingPresenter;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.VoteListingView;
 import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdPresenter;
-import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdView;
+import com.homecaravan.android.consumer.message.messagegetthreadidmvp.IGetThreadIdView;
 import com.homecaravan.android.consumer.model.CaravanQueue;
 import com.homecaravan.android.consumer.model.CurrentConsumerListing;
 import com.homecaravan.android.consumer.model.EventQueueRequest;
-import com.homecaravan.android.consumer.model.EventQueueResponse;
 import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.responseapi.ImageListingDetail;
 import com.homecaravan.android.consumer.model.responseapi.Listing;
@@ -61,7 +60,6 @@ import com.homecaravan.android.ui.MapWrapperLayout;
 import com.homecaravan.android.ui.MySupportMapFragment;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -74,7 +72,7 @@ public class FragmentListingDetail extends BaseFragment implements
         View.OnTouchListener,
         VoteListingView,
         GetListingDetailView,
-        GetThreadIdView {
+        IGetThreadIdView {
 
     private MySupportMapFragment mSupportMapFragment;
     private int mLayoutHeight;

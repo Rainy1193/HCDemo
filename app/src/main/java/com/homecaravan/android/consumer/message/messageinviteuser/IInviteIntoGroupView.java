@@ -6,9 +6,9 @@ import android.support.annotation.StringRes;
  * Created by Anh Dao on 11/29/2017.
  */
 
-public interface InviteIntoGroupView {
+public interface IInviteIntoGroupView {
 
     void invitedSuccess();
-    void invitedFail(String message);
+    void invitedFail();
     void serverError(@StringRes int message);
 }

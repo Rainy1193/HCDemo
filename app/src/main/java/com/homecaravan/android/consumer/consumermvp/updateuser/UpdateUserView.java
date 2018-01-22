@@ -11,7 +11,13 @@ import java.util.ArrayList;
  */
 
 public interface UpdateUserView {
-    void updateUserSuccess();
+    void updateUserSuccess(String firstName, String lastName,
+                           String phone, String email, String avatar,
+                           String companyMappingId, String companyId,
+                           String companyName, String companyTitle,
+                           String extraAddress, String extraUrl,
+                           String extraVideo, String extraFacebook,
+                           String extraAboutMe, String extraIntro);
     void updateUserFail(String message);
     void getCompaniesSuccess(ArrayList<Companies> mArrCompanies);
     void getCompaniesFail(String message);

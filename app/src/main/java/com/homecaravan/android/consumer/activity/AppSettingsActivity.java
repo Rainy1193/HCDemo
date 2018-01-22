@@ -17,6 +17,7 @@ import com.homecaravan.android.R;
 import com.homecaravan.android.api.Constants;
 import com.homecaravan.android.consumer.base.BaseActivity;
 import com.homecaravan.android.consumer.utils.AnimUtils;
+import com.homecaravan.android.consumer.utils.PreferenceUtils;
 import com.homecaravan.android.ui.FontManager;
 import com.kyleduo.switchbutton.SwitchButton;
 
@@ -101,12 +102,45 @@ public class AppSettingsActivity extends BaseActivity {
 
     @OnClick(R.id.sbNotificationMessage)
     public void onNotificationMessageClicked() {
-        HomeCaravanApplication.mReceiverMessageNotification = mSbNotificationMessage.isChecked();
-        if (mPrefs != null) {
-            SharedPreferences.Editor edit = mPrefs.edit();
-            edit.putBoolean(Constants.getInstance().RECEIVER_NEW_MESSAGE_NOTIFICATION, HomeCaravanApplication.mReceiverMessageNotification);
-            edit.apply();
+
+    }
+
+    @OnClick(R.id.ivSettingSave)
+    void onSettingSaveClicked(){
+        int selectedId = mRadioTimeUpdateLocation.getCheckedRadioButtonId();
+        SharedPreferences.Editor editor = mPrefs.edit();
+        // TODO: 12/28/2017 chuyển CIA_FATEST_INTERVAL, CIA_UPDATE_INTERVAL vào PreUlti
+        switch (selectedId) {
+            case R.id.radio1:
+                editor.putInt(Constants.getInstance().CIA_UPDATE_INTERVAL, 605000);
+                editor.putInt(Constants.getInstance().CIA_FATEST_INTERVAL, 600000);
+                break;
+            case R.id.radio2:
+                editor.putInt(Constants.getInstance().CIA_UPDATE_INTERVAL, 305000);
+                editor.putInt(Constants.getInstance().CIA_FATEST_INTERVAL, 300000);
+                break;
+            case R.id.radio3:
+                editor.putInt(Constants.getInstance().CIA_UPDATE_INTERVAL, 65000);
+                editor.putInt(Constants.getInstance().CIA_FATEST_INTERVAL, 60000);
+                break;
+            case R.id.radio4:
+                editor.putInt(Constants.getInstance().CIA_UPDATE_INTERVAL, 35000);
+                editor.putInt(Constants.getInstance().CIA_FATEST_INTERVAL, 30000);
+                break;
+            case R.id.radio5:
+                editor.putInt(Constants.getInstance().CIA_UPDATE_INTERVAL, 20000);
+                editor.putInt(Constants.getInstance().CIA_FATEST_INTERVAL, 15000);
+                break;
+            case R.id.radio6:
+                editor.putInt(Constants.getInstance().CIA_UPDATE_INTERVAL, 10000);
+                editor.putInt(Constants.getInstance().CIA_FATEST_INTERVAL, 5000);
+                break;
         }
+        editor.apply();
+        HomeCaravanApplication.mReceiverMessageNotification = mSbNotificationMessage.isChecked();
+        PreferenceUtils.setSettingsReceiverNewMessageNoti(this, HomeCaravanApplication.mReceiverMessageNotification);
+
+        onBackPressed();
     }
 
     @Override
@@ -136,7 +170,6 @@ public class AppSettingsActivity extends BaseActivity {
             return;
         }
         int fastestInterval = mPrefs.getInt(Constants.getInstance().CIA_FATEST_INTERVAL, 60000);
-
         switch (fastestInterval) {
             case 600000:
                 mRadio1.setChecked(true);
@@ -161,48 +194,13 @@ public class AppSettingsActivity extends BaseActivity {
                 break;
         }
 
-        boolean isNotificationMessage = mPrefs.getBoolean(Constants.getInstance().RECEIVER_NEW_MESSAGE_NOTIFICATION, true);
-        mSbNotificationMessage.setChecked(isNotificationMessage);
-        HomeCaravanApplication.mReceiverMessageNotification = isNotificationMessage;
+        mSbNotificationMessage.setChecked(PreferenceUtils.getSettingsReceiverNewMessageNoti(this));
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        finish();
         overridePendingTransition(R.anim.anim_close_activity_left, R.anim.anim_close_activity_right);
     }
 
-    @Override
-    protected void onPause() {
-        int selectedId = mRadioTimeUpdateLocation.getCheckedRadioButtonId();
-        SharedPreferences.Editor editor = mPrefs.edit();
-        switch (selectedId) {
-            case R.id.radio1:
-                editor.putInt(Constants.getInstance().CIA_UPDATE_INTERVAL, 605000);
-                editor.putInt(Constants.getInstance().CIA_FATEST_INTERVAL, 600000);
-                break;
-            case R.id.radio2:
-                editor.putInt(Constants.getInstance().CIA_UPDATE_INTERVAL, 305000);
-                editor.putInt(Constants.getInstance().CIA_FATEST_INTERVAL, 300000);
-                break;
-            case R.id.radio3:
-                editor.putInt(Constants.getInstance().CIA_UPDATE_INTERVAL, 65000);
-                editor.putInt(Constants.getInstance().CIA_FATEST_INTERVAL, 60000);
-                break;
-            case R.id.radio4:
-                editor.putInt(Constants.getInstance().CIA_UPDATE_INTERVAL, 35000);
-                editor.putInt(Constants.getInstance().CIA_FATEST_INTERVAL, 30000);
-                break;
-            case R.id.radio5:
-                editor.putInt(Constants.getInstance().CIA_UPDATE_INTERVAL, 20000);
-                editor.putInt(Constants.getInstance().CIA_FATEST_INTERVAL, 15000);
-                break;
-            case R.id.radio6:
-                editor.putInt(Constants.getInstance().CIA_UPDATE_INTERVAL, 10000);
-                editor.putInt(Constants.getInstance().CIA_FATEST_INTERVAL, 5000);
-                break;
-        }
-        editor.apply();
-        super.onPause();
-    }
 }

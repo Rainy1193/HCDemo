@@ -76,8 +76,7 @@ public class AppointmentCaravanItem extends AbstractItem<AppointmentCaravanItem,
         holder.mFrmAppointmentMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                mListener.onMessageClicked(mAppointment.getId(), mAppointment.getListing().getId(),
-//                        caravanId, mAppointment.getListing().getAgentName(), mAppointment.getListing().getAgentId());
+                mListener.onMessageClicked("", "", "", mAppointment.getListing().getAgentName(), mAppointment.getListing().getAgentId());
             }
         });
     }

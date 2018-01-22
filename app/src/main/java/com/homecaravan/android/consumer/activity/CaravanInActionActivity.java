@@ -84,7 +84,7 @@ import com.homecaravan.android.consumer.direction.MyDirectionCallback;
 import com.homecaravan.android.consumer.direction.MyGoogleDirection;
 import com.homecaravan.android.consumer.listener.IBottomSheetCIAListener;
 import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdPresenter;
-import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdView;
+import com.homecaravan.android.consumer.message.messagegetthreadidmvp.IGetThreadIdView;
 import com.homecaravan.android.consumer.model.CurrentCaravan;
 import com.homecaravan.android.consumer.model.EventCIA;
 import com.homecaravan.android.consumer.model.UserData;
@@ -142,7 +142,7 @@ public class CaravanInActionActivity extends BaseActivity implements
         FloatingActionMenu.OnMenuToggleListener,
         IBottomSheetCIAListener,
         BuyerCancelApptView,
-        GetThreadIdView {
+        IGetThreadIdView {
 
     private final String TAG = "DaoDiDem";
     // Google client to interact with Google API

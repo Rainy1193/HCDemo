@@ -5,10 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-/**
- * Created by Anh Dao on 9/7/2017.
- */
-
 public class MessageUserData extends RealmObject {
 
     @Expose
@@ -33,18 +29,7 @@ public class MessageUserData extends RealmObject {
     @SerializedName("avatar")
     private String avatar;
 
-    public MessageUserData() {
-    }
-
-    public MessageUserData(String id, String createdDatetime, String modifiedDatetime, String name, String data, String email, String avatar) {
-        this.id = id;
-        this.createdDatetime = createdDatetime;
-        this.modifiedDatetime = modifiedDatetime;
-        this.name = name;
-        this.data = data;
-        this.email = email;
-        this.avatar = avatar;
-    }
+    private String threadId;
 
     public String getId() {
         return id;
@@ -100,5 +85,13 @@ public class MessageUserData extends RealmObject {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getThreadId() {
+        return threadId;
+    }
+
+    public void setThreadId(String threadId) {
+        this.threadId = threadId;
     }
 }

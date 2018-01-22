@@ -24,7 +24,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.homecaravan.android.HomeCaravanApplication;
 import com.homecaravan.android.R;
+import com.homecaravan.android.consumer.activity.ConversationActivity;
 import com.homecaravan.android.consumer.activity.MessageActivity;
 import com.homecaravan.android.consumer.adapter.AgentDashboardAdapter;
 import com.homecaravan.android.consumer.adapter.FeaturedAgentAdapter;
@@ -56,10 +58,11 @@ import com.homecaravan.android.consumer.fragment.FragmentDashboardNew;
 import com.homecaravan.android.consumer.listener.IAgentListener;
 import com.homecaravan.android.consumer.listener.IDashboardListener;
 import com.homecaravan.android.consumer.listener.IPageChange;
+import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdPresenter;
+import com.homecaravan.android.consumer.message.messagegetthreadidmvp.IGetThreadIdView;
 import com.homecaravan.android.consumer.model.BaseDataRecyclerView;
 import com.homecaravan.android.consumer.model.ConsumerTeam;
 import com.homecaravan.android.consumer.model.EventAgentDetail;
-import com.homecaravan.android.consumer.model.EventDeleteSearch;
 import com.homecaravan.android.consumer.model.HeaderRvData;
 import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.ViewAllRvData;
@@ -69,6 +72,7 @@ import com.homecaravan.android.consumer.model.responseapi.Listing;
 import com.homecaravan.android.consumer.model.responseapi.ListingFull;
 import com.homecaravan.android.consumer.model.responseapi.ResponseAllSearch;
 import com.homecaravan.android.consumer.model.responseapi.ResponseFeatured;
+import com.homecaravan.android.consumer.model.responseapi.ResponseMessageGetThreadId;
 import com.homecaravan.android.consumer.model.responseapi.Search;
 import com.homecaravan.android.consumer.utils.Utils;
 import com.homecaravan.android.consumer.widget.CustomNestedScrollView;
@@ -80,7 +84,6 @@ import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -90,7 +93,7 @@ import butterknife.OnClick;
 public class FragmentDashboardMain extends BaseFragment implements ShowingHistoryView,
         FeatureAgentsView, IDashboardListener, GetListSearchView, GetJustListView, GetTrendingView,
         GetListShowingPastView, GetFavoriteListingView,
-        GetFeaturedView, SetAgentView, IAgentListener {
+        GetFeaturedView, SetAgentView, IAgentListener, IGetThreadIdView {
     public static final String TAG = FragmentDashboardMain.class.getSimpleName();
     private JustListedDashboardAdapter mJustListedAdapter;
     private TrendingDashboardAdapter mTrendingAdapter;
@@ -135,6 +138,7 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
     private int mWidthAgent;
     private int mWidthHcHelp;
     private int mWidthHomeInspector;
+    private GetThreadIdPresenter mGetThreadIdPresenter;
 
     @Bind(R.id.layoutMain)
     LinearLayout mLayoutMain;
@@ -194,6 +198,8 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
     TextView mAgentName;
     @Bind(R.id.tvCompany)
     TextView mAgentCompany;
+    @Bind(R.id.tvNewMessagesCount)
+    TextView mTvNewMessagesCount;
 
 
     @OnClick(R.id.rlMessageOnDashBoard)
@@ -283,7 +289,8 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
 
     @OnClick(R.id.ivMessage)
     public void sendMessageAgent() {
-
+        mGetThreadIdPresenter.getThreadId("", "", "", ConsumerUser.getInstance().getData().getAgentFullName(), ConsumerUser.getInstance().getData().getAgentId());
+        showLoading();
     }
 
     @OnClick(R.id.ivCall)
@@ -300,12 +307,9 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
         mArrView.add(mView4);
         mArrView.add(mView5);
         mArrView.add(mView6);
+        mGetThreadIdPresenter = new GetThreadIdPresenter(this);
     }
 
-    @org.greenrobot.eventbus.Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
-    public void onEventDeleteSearch(EventDeleteSearch search) {
-        reloadSaveSearch();
-    }
     public void initData() {
         if (!mInitData) {
             setupMvp();
@@ -381,11 +385,15 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
             mLayoutAgent.setVisibility(View.VISIBLE);
             Glide.with(getContext()).load(ConsumerUser.getInstance().getData().getAgentPhoto())
                     .asBitmap().fitCenter().into(mIvAgent);
-            if (ConsumerUser.getInstance().getData().getAgentCompanyTitle() != null) {
-                mAgentCompany.setText(ConsumerUser.getInstance().getData().getAgentCompanyTitle());
+            if(ConsumerUser.getInstance().getData().getAgentCompany() != null){
+                if (ConsumerUser.getInstance().getData().getAgentCompany().getJobTitle() != null) {
+                    mAgentCompany.setText(ConsumerUser.getInstance().getData().getAgentCompany().getJobTitle());
+                }
             }
-            mAgentName.setText(ConsumerUser.getInstance().getData().getAgentFirstName() + " " +
-                    ConsumerUser.getInstance().getData().getAgentLastName());
+            mAgentName.setText(String.format(getString(R.string.concat_two_word),
+                    ConsumerUser.getInstance().getData().getAgentFirstName(),
+                    ConsumerUser.getInstance().getData().getAgentLastName()));
+
         }
     }
 
@@ -862,6 +870,44 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
         @Override
         public Fragment getItem(int position) {
             return FragmentDashboardNew.getInstance(mArrNew.get(position), mArrSrc.get(position), mArrTitle.get(position));
+        }
+    }
+
+    @Override
+    public void getThreadIdAtCaravanSuccess(ResponseMessageGetThreadId threadId, int position, String threadName) {
+
+    }
+
+    @Override
+    public void getThreadIdSuccess(ResponseMessageGetThreadId threadId, String threadName) {
+        Log.e(TAG, "getThreadIdSuccess: threadId: " + threadId.getThreadId());
+        if(!HomeCaravanApplication.mLoginSocketSuccess){
+            return;
+        }
+        Intent intent = new Intent(getActivity(), ConversationActivity.class);
+        intent.putExtra("THREAD_ID", threadId.getThreadId());
+        String responseMessage1 = "I’m driving right now";
+        intent.putExtra("RESPONSE_MESSAGE_1", responseMessage1);
+        intent.putExtra("MESSAGE_THREAD_NAME", threadName);
+        startActivity(intent);
+        hideLoading();
+    }
+
+    @Override
+    public void getThreadIdFail() {
+        hideLoading();
+        showSnackBar(mLayoutMain, TypeDialog.ERROR, "Failed", "getThreadIdFail");
+    }
+
+    @Override
+    public void getThreadIdFail(@StringRes int message) {
+        hideLoading();
+        showSnackBar(mLayoutMain, TypeDialog.ERROR, message, "getThreadIdFail");
+    }
+
+    public void setNewMessagesCount(int count){
+        if(mTvNewMessagesCount != null){
+            mTvNewMessagesCount.setText(String.valueOf(count));
         }
     }
 

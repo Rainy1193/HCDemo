@@ -11,7 +11,6 @@ import com.homecaravan.android.consumer.base.BaseActivity;
 import com.homecaravan.android.consumer.consumermvp.contactmvp.InviteContactPresenter;
 import com.homecaravan.android.consumer.consumermvp.contactmvp.InviteContactView;
 import com.homecaravan.android.consumer.model.TypeDialog;
-import com.homecaravan.android.consumer.utils.Utils;
 import com.homecaravan.android.handling.ValidateData;
 
 import java.util.ArrayList;

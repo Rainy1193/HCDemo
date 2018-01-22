@@ -10,8 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.homecaravan.android.R;
@@ -34,7 +34,7 @@ public class FragmentEnterCode extends BaseFragment implements IUnlockApi {
     private ScanOrCodePresenter scanOrCodePresenter;
 
     @Bind(R.id.layoutUnlockStepTwo)
-    LinearLayout mLayoutUnlockStepTwo;
+    ScrollView mLayoutUnlockStepTwo;
     @Bind(R.id.ivGlass)
     ImageView mIvGlass;
     @Bind(R.id.tvLinkHide)

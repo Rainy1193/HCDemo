@@ -1,6 +1,7 @@
 package com.homecaravan.android.consumer.message;
 
 import android.app.AlertDialog;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -27,31 +28,38 @@ import com.homecaravan.android.R;
 import com.homecaravan.android.api.Constants;
 import com.homecaravan.android.consumer.adapter.MessageAllAdapter;
 import com.homecaravan.android.consumer.base.BaseFragment;
+import com.homecaravan.android.consumer.consumerbase.ConsumerUser;
+import com.homecaravan.android.consumer.message.leavethreadmvp.ILeaveThreadView;
+import com.homecaravan.android.consumer.message.leavethreadmvp.LeaveThreadPresenter;
 import com.homecaravan.android.consumer.message.messagegetallthreadmvp.GetAllThreadPresenter;
 import com.homecaravan.android.consumer.message.messagegetallthreadmvp.IGetAllThreadView;
+import com.homecaravan.android.consumer.message.messageloginmvp.ILoginView;
+import com.homecaravan.android.consumer.message.messageloginmvp.LoginPresenter;
 import com.homecaravan.android.consumer.model.TypeDialog;
-import com.homecaravan.android.consumer.model.message.ConsumerMessageAll;
-import com.homecaravan.android.consumer.model.message.ConsumerMessages;
-import com.homecaravan.android.consumer.model.message.MessageAddResponse;
+import com.homecaravan.android.consumer.model.message.Mapping;
+import com.homecaravan.android.consumer.model.message.MessageItem;
 import com.homecaravan.android.consumer.model.message.MessageThread;
 import com.homecaravan.android.consumer.model.message.MessageThreadView;
 import com.homecaravan.android.consumer.model.message.MessageUser;
 import com.homecaravan.android.consumer.model.message.MessageUserData;
 import com.homecaravan.android.consumer.model.message.SkeletonMessageThread;
+import com.homecaravan.android.consumer.model.message.reponse.MessageAddResponse;
+import com.homecaravan.android.consumer.model.message.reponse.ThreadDeleteResponse;
+import com.homecaravan.android.consumer.model.message.reponse.ThreadUpdateResponse;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.Iterator;
 
 import butterknife.Bind;
 import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
-import io.socket.emitter.Emitter;
+import io.realm.Sort;
+
+import static com.homecaravan.android.HomeCaravanApplication.TAG;
 
 /**
  * Created by Anh Dao on 10/5/2017.
@@ -59,13 +67,17 @@ import io.socket.emitter.Emitter;
  */
 
 public class FragmentMessageAll extends BaseFragment implements IGetAllThreadView,
-        IMessageThreadAction {
+        IMessageThreadAction,
+        ILeaveThreadView,
+        ILoginView {
 
-    private final String TAG = "DaoDiDem";
     private MessageAllAdapter mMessageAllAdapter;
     private GetAllThreadPresenter mGetAllThreadPresenter;
-    private JSONArray jArrParticipants;
-    private ArrayList<MessageThread> mArrMessageThreadList = new ArrayList<>();
+    private LeaveThreadPresenter mLeaveThreadPresenter;
+    private boolean mFirstOpenMessageAll = true;
+    private Realm mRealm;
+    private ArrayList<MessageThread> mArrThread = new ArrayList<>();
+    private Resources mResources;
 
     @Bind(R.id.layoutMessageThread)
     RelativeLayout mLayoutMessageThread;
@@ -83,174 +95,25 @@ public class FragmentMessageAll extends BaseFragment implements IGetAllThreadVie
         super.onViewCreated(view, savedInstanceState);
 
         mGetAllThreadPresenter = new GetAllThreadPresenter(this);
+        mLeaveThreadPresenter = new LeaveThreadPresenter(this);
 
         setupAdapter();
 
-        if (HomeCaravanApplication.isNetAvailable(getActivity()) && HomeCaravanApplication.mLoginSocketSuccess) {
+        mResources = getResources();
+
+        mRealm = HomeCaravanApplication.getInstance().getRealm();
+
+
+        if (HomeCaravanApplication.mSocket.connected() && HomeCaravanApplication.mLoginSocketSuccess) {
             getAllThread();
         } else {
-            Realm mRealm = HomeCaravanApplication.getInstance().getRealm();
-            loadDataFromRealm(mRealm);
-        }
-
-        socketListener();
-
-//        if (SkeletonMessageThread.getInstance().getData().size() != 0) {
-//            mMessageAllAdapter.notifyDataSetChanged();
-//            mPbLoadThread.setVisibility(View.GONE);
-//            mLayoutEmpty.setVisibility(View.GONE);
-//        }
-    }
-
-    private void socketListener() {
-        HomeCaravanApplication.mSocket.on(Constants.getInstance().THREAD, new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                Log.e(TAG, "socketListening thread: " + args[0].toString());
-                if (args[0] == null) {
-                    return;
-                }
-                final JSONObject data = (JSONObject) args[0];
-                String key, command;
-                try {
-                    key = data.getString(Constants.getInstance().MESSAGE_KEY);
-                    command = data.getString(Constants.getInstance().MESSAGE_COMMAND);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    return;
-                }
-                if (command.equals(Constants.getInstance().MESSAGE_COMMAND_ADD)
-                        && key.equals(Constants.getInstance().MESSAGE_MESSAGE)) {
-                    MessageAddResponse messageAddResponse = new Gson().fromJson(args[0].toString(), MessageAddResponse.class);
-                    if (messageAddResponse != null) {
-                        messageAddResponse.getMessageItem().setCommand(messageAddResponse.getCommand());
-                        ConsumerMessages consumerMessages = new ConsumerMessages();
-                        consumerMessages.setMessageItem(messageAddResponse.getMessageItem());
-
-                        if (SkeletonMessageThread.getInstance().getData().size() != 0) {
-                            for (ConsumerMessageAll cma : SkeletonMessageThread.getInstance().getData()) {
-                                if (cma.getMessageThread().getId()
-                                        .equals(consumerMessages.getMessageItem().getMessageThread().getId())) {
-                                    ConsumerMessageAll consumerMessageAll = new ConsumerMessageAll();
-                                    consumerMessageAll.setType(cma.getType());
-                                    consumerMessageAll.setMessageThread(cma.getMessageThread());
-                                    SkeletonMessageThread.getInstance().getData().remove(cma);
-                                    SkeletonMessageThread.getInstance().getData().add(0, consumerMessageAll);
-                                    mMessageAllAdapter.notifyItemInserted(0);
-                                    saveNewThread(consumerMessageAll, false);
-                                    break;
-                                }
-                            }
-                        } else {
-                            ConsumerMessageAll consumerMessageAll = new ConsumerMessageAll();
-                            int sizeParticipants = consumerMessages.getMessageItem().getMessageThread().getParticipants().size();
-                            if (sizeParticipants > 2)
-                                consumerMessageAll.setType("group");
-                            else if (sizeParticipants == 2)
-                                consumerMessageAll.setType("personal");
-                            else
-                                return;
-                            consumerMessageAll.setMessageThread(consumerMessages.getMessageItem().getMessageThread());
-                            SkeletonMessageThread.getInstance().getData().add(consumerMessageAll);
-                            mMessageAllAdapter.notifyItemInserted(0);
-                            saveNewThread(consumerMessageAll, false);
-                        }
-                    }
-                }
-
-                // TODO: 12/1/2017 chưa làm thread update
+            if (HomeCaravanApplication.isNetAvailable(getActivity())) {
+                Log.e(TAG, "FragmentAll: Socket: " + HomeCaravanApplication.mSocket.connected());
+                reLogin();
+            } else {
+                loadDataFromRealm(mRealm);
             }
-        });
-    }
-
-    @Override
-    public void getAllThreadSuccess(ArrayList<MessageThread> data) {
-        mArrMessageThreadList = data;
-        // TODO: 12/1/2017 bước này đã được cải tiến 
-        getAllParticipants();
-        mGetAllThreadPresenter.getAllUserInfo(jArrParticipants);
-    }
-
-    @Override
-    public void getAllThreadFail() {
-        Toast.makeText(getActivity(), "Failed to get data from server", Toast.LENGTH_SHORT).show();
-        Realm mRealm = HomeCaravanApplication.getInstance().getRealm();
-        loadDataFromRealm(mRealm);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (SkeletonMessageThread.getInstance().getData().size() != 0) {
-            ArrayList<ConsumerMessageAll> mArrTempMessageAll = SkeletonMessageThread.getInstance().getData();
-            SkeletonMessageThread.getInstance().getData().clear();
-            SkeletonMessageThread.getInstance().getData().addAll(mArrTempMessageAll);
-            mMessageAllAdapter.notifyDataSetChanged();
-            mPbLoadThread.setVisibility(View.GONE);
-            mLayoutEmpty.setVisibility(View.GONE);
-        } else {
-//            mPbLoadThread.setVisibility(View.GONE);
-//            mLayoutEmpty.setVisibility(View.VISIBLE);
-            // TODO: 12/4/2017 check empty layout xuất hiện khi mở màn hình này
         }
-
-    }
-
-    @Override
-    public void getAllUserInfoSuccess(ArrayList<MessageUserData> data) {
-        setUserDataEachThread(data);
-
-        ConsumerMessageAll consumerMessageAll;
-        SkeletonMessageThread.getInstance().getData().clear();
-
-        for (MessageThread mt : mArrMessageThreadList) {
-            consumerMessageAll = new ConsumerMessageAll();
-
-            if (mt.getParticipants().size() > 2)
-                consumerMessageAll.setType("group");
-            else if (mt.getParticipants().size() == 2)
-                consumerMessageAll.setType("personal");
-            else
-                continue;
-
-            consumerMessageAll.setMessageThread(mt);
-
-            SkeletonMessageThread.getInstance().getData().add(consumerMessageAll);
-        }
-
-        if (SkeletonMessageThread.getInstance().getData().size() != 0) {
-            if (getActivity() == null)
-                return;
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mMessageAllAdapter.notifyDataSetChanged();
-                    mPbLoadThread.setVisibility(View.GONE);
-                    mLayoutEmpty.setVisibility(View.GONE);
-                }
-            });
-
-            Realm realm = Realm.getDefaultInstance();
-            deleteAllMessagesAll(realm);
-            saveDataToRealm(realm, SkeletonMessageThread.getInstance().getData());
-        } else {
-            if (getActivity() == null)
-                return;
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mLayoutEmpty.setVisibility(View.VISIBLE);
-                    mPbLoadThread.setVisibility(View.GONE);
-                }
-            });
-        }
-    }
-
-    @Override
-    public void getAllUserInfoFail() {
-        Toast.makeText(getActivity(), "Failed to get data from server", Toast.LENGTH_SHORT).show();
-        Realm mRealm = HomeCaravanApplication.getInstance().getRealm();
-        loadDataFromRealm(mRealm);
     }
 
     @Override
@@ -258,8 +121,150 @@ public class FragmentMessageAll extends BaseFragment implements IGetAllThreadVie
         return R.layout.fragment_message_all;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+//        Log.e(TAG, "Fragement --- onResume");
+//        if (mFirstOpenMessageAll) {
+//            mFirstOpenMessageAll = false;
+//        } else {
+//            if (!HomeCaravanApplication.isNetAvailable(getActivity())) {
+//                loadDataFromRealm(mRealm);
+//            } else {
+//                mArrThread.clear();
+//                if (SkeletonMessageThread.getInstance().getData().size() != 0) {
+//                    mArrThread.addAll(SkeletonMessageThread.getInstance().getData());
+//                    mPbLoadThread.setVisibility(View.GONE);
+//                    mLayoutEmpty.setVisibility(View.GONE);
+//                } else {
+//                    mPbLoadThread.setVisibility(View.GONE);
+//                    mLayoutEmpty.setVisibility(View.VISIBLE);
+//                }
+//                mMessageAllAdapter.notifyDataSetChanged();
+//            }
+//        }
+    }
+
+    @Override
+    public void getAllThreadSuccess(ArrayList<MessageThread> data) {
+
+        mArrThread.clear();
+        mArrThread.addAll(data);
+
+        SkeletonMessageThread.getInstance().getData().clear();
+        SkeletonMessageThread.getInstance().getData().addAll(data);
+
+        if (mArrThread.size() != 0) {
+            if (getActivity() == null)
+                return;
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mMessageAllAdapter.notifyDataSetChanged();
+                    mLayoutEmpty.setVisibility(View.GONE);
+                    mPbLoadThread.setVisibility(View.GONE);
+                }
+            });
+
+            Realm realm = Realm.getDefaultInstance();
+            deleteAllMessagesAll(realm);
+            saveDataToRealm(realm, mArrThread);
+        } else {
+            if (getActivity() == null)
+                return;
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mPbLoadThread.setVisibility(View.GONE);
+                    mLayoutEmpty.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void getAllThreadFail() {
+        mArrThread.clear();
+        if (getActivity() == null)
+            return;
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getActivity(), "Failed to get data from server", Toast.LENGTH_SHORT).show();
+                mLayoutEmpty.setVisibility(View.VISIBLE);
+                mPbLoadThread.setVisibility(View.GONE);
+            }
+        });
+
+    }
+
+    @Override
+    public void leaveThreadSuccess(String threadId, final int position) {
+        mArrThread.remove(position);
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mMessageAllAdapter.notifyItemRemoved(position);
+                    mMessageAllAdapter.notifyItemRangeRemoved(position, mArrThread.size());
+                }
+            });
+        }
+        Realm realm = Realm.getDefaultInstance();
+        mLeaveThreadPresenter.deleteThreadFromRealm(realm, threadId);
+    }
+
+    @Override
+    public void leaveThreadFail() {
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getActivity(), "Can't leave this conversation", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    @Override
+    public void deleteThread(int position, String threadId) {
+        showPopupConfirm(position, threadId);
+    }
+
+    @Override
+    public void unRead(int position, String threadId, String timeStamp) {
+        mGetAllThreadPresenter.threadUnRead(threadId);
+    }
+
+    @Override
+    public void loginSuccess() {
+        Log.e(TAG, "FragmentAll: loginSuccess");
+        HomeCaravanApplication.mLoginSocketSuccess = true;
+        getAllThread();
+    }
+
+    @Override
+    public void loginFail() {
+        Log.e(TAG, "FragmentAll: loginFail");
+        HomeCaravanApplication.mLoginSocketSuccess = false;
+        Realm mRealm = HomeCaravanApplication.getInstance().getRealm();
+        loadDataFromRealm(mRealm);
+    }
+
+    private void reLogin() {
+        HomeCaravanApplication.mSocket.connect();
+        if (ConsumerUser.getInstance().getData().getPnUID() == null || ConsumerUser.getInstance().getData().getPnUID().isEmpty()) {
+            HomeCaravanApplication.mLoginSocketSuccess = false;
+            loadDataFromRealm(mRealm);
+        } else {
+            Log.e(TAG, "FragmentAll loginSocket-ID: " + ConsumerUser.getInstance().getData().getPnUID());
+            LoginPresenter mLoginPresenter = new LoginPresenter(this);
+            mLoginPresenter.login(ConsumerUser.getInstance().getData().getPnUID());
+        }
+    }
+
     private void setupAdapter() {
-        mMessageAllAdapter = new MessageAllAdapter(getActivity(), SkeletonMessageThread.getInstance().getData(),
+        mMessageAllAdapter = new MessageAllAdapter(getActivity(), mArrThread,
                 HomeCaravanApplication.getInstance().buildPicasso(), this);
         mRvMessageAll.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         mRvMessageAll.setAdapter(mMessageAllAdapter);
@@ -272,175 +277,64 @@ public class FragmentMessageAll extends BaseFragment implements IGetAllThreadVie
     }
 
     private void loadDataFromRealm(Realm realm) {
-        if (checkRealmIsEmpty(realm)) {
-            if (getActivity() == null)
-                return;
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+        if (!checkRealmIsEmpty(realm)) {
+            Log.e(TAG, "loadDataFromRealm: checkRealmIsEmpty = false");
+            //Sắp xếp lại vì có tường hợp có các event add thêm hoặc edit thread
+            RealmResults<MessageThread> mArr = realm.where(MessageThread.class)
+                    .findAllSorted("modifiedDatetime", Sort.DESCENDING);
+            mArrThread.clear();
+            mArrThread.addAll(mArr);
+            SkeletonMessageThread.getInstance().getData().clear();
+            SkeletonMessageThread.getInstance().getData().addAll(mArrThread);
+        }
+
+        if (getActivity() == null)
+            return;
+
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mArrThread.size() != 0) {
+                    mMessageAllAdapter.notifyDataSetChanged();
+                    mLayoutEmpty.setVisibility(View.GONE);
+                    mPbLoadThread.setVisibility(View.GONE);
+                } else {
                     mLayoutEmpty.setVisibility(View.VISIBLE);
                     mPbLoadThread.setVisibility(View.GONE);
                 }
-            });
-            Log.e(TAG, "loadDataFromRealm: checkRealmIsEmpty = true");
-        } else {
-
-            Log.e(TAG, "loadDataFromRealm: checkRealmIsEmpty = false");
-            RealmResults<ConsumerMessageAll> mArr = realm.where(ConsumerMessageAll.class).findAll();
-            SkeletonMessageThread.getInstance().getData().addAll(realm.where(ConsumerMessageAll.class).findAll());
-
-            //Sắp xếp lại vì có tường hợp có các event add thêm hoặc edit thread
-            Collections.sort(mArr, new Comparator<ConsumerMessageAll>() {
-                @Override
-                public int compare(ConsumerMessageAll cma1, ConsumerMessageAll cma2) {
-
-                    return cma1.getMessageThread().getModifiedDatetime()
-                            .compareTo(cma2.getMessageThread().getModifiedDatetime());
-                }
-            });
-
-            SkeletonMessageThread.getInstance().getData().clear();
-            SkeletonMessageThread.getInstance().getData().addAll(mArr);
-
-            if (getActivity() == null)
-                return;
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mMessageAllAdapter.notifyDataSetChanged();
-                    mPbLoadThread.setVisibility(View.GONE);
-                    mLayoutEmpty.setVisibility(View.GONE);
-                }
-            });
-        }
+            }
+        });
     }
 
     private boolean checkRealmIsEmpty(Realm realm) {
-        return realm.where(ConsumerMessageAll.class).findAll().size() == 0;
-    }
-
-    private void getAllParticipants() {
-        jArrParticipants = new JSONArray();
-        for (MessageThread thread : mArrMessageThreadList) {
-            for (String partId : thread.getParticipants()) {
-                if (!MessageUser.getInstance().getData().getId().equals(partId)) {
-                    jArrParticipants.put(partId);
-                }
-            }
-        }
-    }
-
-    private void setUserDataEachThread(ArrayList<MessageUserData> arrMessageUserData) {
-        int n = mArrMessageThreadList.size();
-        RealmList<MessageUserData> messageUserDatas;
-        for (int i = 0; i < n; i++) {
-            int m = mArrMessageThreadList.get(i).getParticipants().size();
-            messageUserDatas = new RealmList<>();
-            for (int j = 0; j < m; j++) {
-                String idParticipants = mArrMessageThreadList.get(i).getParticipants().get(j);
-                if (!MessageUser.getInstance().getData().getId().equals(idParticipants)) {
-                    for (MessageUserData mud : arrMessageUserData) {
-                        if (mud.getId().equals(idParticipants)) {
-                            messageUserDatas.add(mud);
-                            break;
-                        }
-                    }
-                }
-            }
-            mArrMessageThreadList.get(i).setUserInThread(messageUserDatas);
-        }
+        return realm.where(MessageThread.class).findAll().size() == 0;
     }
 
     private void deleteAllMessagesAll(Realm realm) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(@NonNull Realm realm) {
-                realm.delete(ConsumerMessageAll.class);
+                realm.delete(MessageThread.class);
             }
         });
+        Log.e(TAG, "deleteAllMessagesAll: successful");
     }
 
-    private void saveDataToRealm(Realm realm, final ArrayList<ConsumerMessageAll> mArrMessage) {
-        realm.executeTransaction(new Realm.Transaction() {
-            ConsumerMessageAll message;
-            MessageThread thread;
-            MessageThreadView view;
-            MessageUserData user;
-            RealmList<MessageUserData> arrUser;
-            RealmList<String> participants;
-
-            @Override
-            public void execute(@NonNull Realm realm) {
-                for (ConsumerMessageAll mess : mArrMessage) {
-                    arrUser = new RealmList<>();
-                    for (MessageUserData us : mess.getMessageThread().getUserInThread()) {
-                        user = realm.createObject(MessageUserData.class);
-                        user.setId(us.getId());
-                        if (us.getData() != null)
-                            user.setData(us.getData());
-                        user.setName(us.getName());
-                        user.setEmail(us.getEmail());
-                        user.setAvatar(us.getAvatar());
-                        arrUser.add(user);
-                    }
-
-                    if (mess.getMessageThread().getMessageThreadView() != null) {
-                        view = realm.createObject(MessageThreadView.class);
-                        view.setName(mess.getMessageThread().getMessageThreadView().getName());
-                        view.setContent(mess.getMessageThread().getMessageThreadView().getContent());
-                        view.setPhoto(mess.getMessageThread().getMessageThreadView().getPhoto());
-                        view.setCreatedDatetime(mess.getMessageThread().getMessageThreadView().getCreatedDatetime());
-                    }
-
-                    participants = new RealmList<>();
-                    for (String part : mess.getMessageThread().getParticipants()) {
-                        participants.add(part);
-                    }
-                    thread = realm.createObject(MessageThread.class);
-                    thread.setId(mess.getMessageThread().getId());
-                    thread.setCreatedDatetime(mess.getMessageThread().getCreatedDatetime());
-                    thread.setModifiedDatetime(mess.getMessageThread().getModifiedDatetime());
-                    if (mess.getMessageThread().getCreatedBy() != null)
-                        thread.setCreatedBy(mess.getMessageThread().getCreatedBy());
-                    if (mess.getMessageThread().getModifiedBy() != null)
-                        thread.setCreatedBy(mess.getMessageThread().getModifiedBy());
-                    if (mess.getMessageThread().getName() != null)
-                        thread.setName(mess.getMessageThread().getName());
-                    thread.setParticipants(participants);
-                    thread.setMessageThreadView(view);
-                    thread.setUserInThread(arrUser);
-                    message = realm.createObject(ConsumerMessageAll.class);
-                    message.setMessageThread(thread);
-                    message.setType(mess.getType());
-
-                    Log.e(TAG, "saveDataToRealm success Id: " + mess.getMessageThread().getId());
-                }
-            }
-        });
-    }
-
-    private void saveNewThread(final ConsumerMessageAll consumerMessageAll, boolean isNew) {
-        Realm realm = HomeCaravanApplication.getInstance().getRealm();
+    private void saveDataToRealm(Realm realm, final ArrayList<MessageThread> mArrThreadList) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(@NonNull Realm realm) {
-                realm.insertOrUpdate(consumerMessageAll);
-                realm.commitTransaction();
+                realm.insert(mArrThreadList);
             }
         });
-
-    }
-
-    @Override
-    public void deleteThread(int position, String threadId) {
-        showPopupConfirm(position, threadId);
+        Log.e(TAG, "FragmentAll: Save Thread list to Realm successful");
     }
 
     private void showPopupConfirm(final int position, final String threadId) {
         LayoutInflater layoutInflater1 = LayoutInflater.from(getActivity());
         View view1 = layoutInflater1.inflate(R.layout.dialog_consumer_popup_confirm, null);
         TextView tvMessage = (TextView) view1.findViewById(R.id.tvMessage);
-        tvMessage.setText("Are you sure you want to remove this conversation?");
+        tvMessage.setText(mResources.getString(R.string.confirm_leave_thread));
         FrameLayout frmButtonNo = (FrameLayout) view1.findViewById(R.id.frmButtonNo);
         FrameLayout frmButtonYes = (FrameLayout) view1.findViewById(R.id.frmButtonYes);
 
@@ -456,17 +350,10 @@ public class FragmentMessageAll extends BaseFragment implements IGetAllThreadVie
             public void onClick(View v) {
                 if (!isNetworkConnected()) {
                     showSnackBar(mLayoutMessageThread, TypeDialog.WARNING, R.string.no_network, "no-internet");
+                    alertDialog.dismiss();
                     return;
                 }
-
-                mGetAllThreadPresenter.deleteThread(threadId, MessageUser.getInstance().getData().getId());
-
-                SkeletonMessageThread.getInstance().getData().remove(position);
-                mMessageAllAdapter.notifyItemRemoved(position);
-                mMessageAllAdapter.notifyItemRangeRemoved(position, SkeletonMessageThread.getInstance().getData().size());
-
-                Realm realm = Realm.getDefaultInstance();
-                mGetAllThreadPresenter.deleteThreadFromRealm(realm, threadId);
+                mLeaveThreadPresenter.leaveThread(threadId, position);
                 alertDialog.dismiss();
             }
         });
@@ -478,6 +365,180 @@ public class FragmentMessageAll extends BaseFragment implements IGetAllThreadVie
             }
         });
         alertDialog.show();
+    }
+
+    private void threadUpdateAddParticipants(String command, String key, Object... args) {
+        if (command.equals(Constants.getInstance().MESSAGE_COMMAND_UPDATE)
+                && key.equals(Constants.getInstance().MESSAGE_KEY_PARTICIPANTS)) {
+            ThreadUpdateResponse threadUpdateReponse = new Gson().fromJson(args[0].toString(), ThreadUpdateResponse.class);
+            if (threadUpdateReponse != null) {
+
+                int n = mArrThread.size();
+                if (n != 0) {
+                    for (int i = 0; i < n; i++) {
+                        if (mArrThread.get(i).getId()
+                                .equals(threadUpdateReponse.getMessageThread().getId())) {
+
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    private void threadUpdateLastMessage(String command, String key, Object... args) {
+        if (command.equals(Constants.getInstance().MESSAGE_COMMAND_ADD)
+                && key.equals(Constants.getInstance().MESSAGE_MESSAGE)) {
+            MessageAddResponse response = new Gson().fromJson(args[0].toString(), MessageAddResponse.class);
+
+        }
+    }
+
+    private void insertOrUpdateThreadRealm(final MessageThread thread, boolean isNew) {
+        Realm realm = HomeCaravanApplication.getInstance().getRealm();
+        Log.e(TAG, "-----------saveNewThread-------- ");
+        MessageThread mt = realm.where(MessageThread.class)
+                .equalTo("id", thread.getId())
+                .findFirst();
+        realm.beginTransaction();
+        if (mt == null) {
+            realm.insert(thread);
+        } else {
+            mt.getMessageThreadView()
+                    .setContent(thread.getMessageThreadView().getContent());
+        }
+        realm.commitTransaction();
+    }
+
+    private void removeThreadAfterLeaveRealm(final MessageThread thread) {
+        Realm realm = HomeCaravanApplication.getInstance().getRealm();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(@NonNull Realm realm) {
+                MessageThread result = realm.where(MessageThread.class)
+                        .equalTo("messageThread.id", thread.getId()).findFirst();
+                if (result != null)
+                    result.deleteFromRealm();
+            }
+        });
+    }
+
+    private void updateThreadAfterLeaveRealm(final MessageThread thread) {
+        Realm realm = HomeCaravanApplication.getInstance().getRealm();
+        Log.e(TAG, "-----------saveNewThread-------- ");
+        MessageThread mt = realm.where(MessageThread.class)
+                .equalTo("id", thread.getId())
+                .findFirst();
+        if (mt != null) {
+//            realm.beginTransaction();
+//            mt.setMessageThread(realm.copyToRealm(thread));
+//            mt.setType(consumerMessageAll.getType());
+//            realm.commitTransaction();
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    //Message EventBus
+    @org.greenrobot.eventbus.Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onReceiveMessageListener(MessageAddResponse response) {
+        // TODO: 1/3/2018 nhận last message, update thread vao realm roi khi resume thi lay ra
+        if(response == null)
+            return;
+        response.getMessageItem().setCommand(response.getCommand());
+        MessageItem message = response.getMessageItem();
+
+        for (MessageThread childCMA : mArrThread) {
+            if (childCMA.getId()
+                    .equals(message.getMessageThread().getId())) {
+                MessageThread thread = new MessageThread(childCMA);
+                if (thread.getMessageThreadView() == null) {
+                    MessageThreadView view = new MessageThreadView();
+                    view.setId(message.getCreatedBy());
+                    view.setContent(message.getContent());
+                    view.setType(message.getType());
+                    thread.setMessageThreadView(view);
+                } else {
+                    thread.getMessageThreadView().setId(message.getCreatedBy());
+                    thread.getMessageThreadView().setContent(message.getContent());
+                    thread.getMessageThreadView().setType(message.getType());
+                }
+                thread.setModifiedDatetime(message.getMessageThread().getModifiedDatetime());
+
+                if (thread.getMappings() != null) {
+                    for (Mapping childMap : thread.getMappings()) {
+                        if (childMap.getId().equals(MessageUser.getInstance().getData().getId())) {
+                            childMap.setmNew(true);
+                            childMap.setTime(String.valueOf(System.currentTimeMillis()));
+                        }
+                    }
+                } else {
+                    Mapping map = new Mapping();
+                    map.setId(MessageUser.getInstance().getData().getId());
+                    map.setTime(String.valueOf(System.currentTimeMillis()));
+                    map.setmNew(true);
+                    RealmList<Mapping> mArrMapping = new RealmList<>();
+                    mArrMapping.add(map);
+                    thread.setMappings(mArrMapping);
+                }
+
+                mArrThread.remove(childCMA);
+                mArrThread.add(0, thread);
+                mMessageAllAdapter.notifyDataSetChanged();
+//                                    insertOrUpdateThreadRealm(thread, false);
+                break;
+            }
+        }
+    }
+
+    @org.greenrobot.eventbus.Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onOtherLeaveThreadListener(ThreadDeleteResponse response) {
+        if(response == null)
+            return;
+
+        ArrayList<String> partList = new ArrayList<>();
+        int n = mArrThread.size();
+        for (int i = 0; i < n; i++) {
+            if (mArrThread.get(i).getId().equals(response.getMessageThread().getId())) {
+                partList.addAll(mArrThread.get(i).getParticipants());
+                partList.removeAll(response.getMessageThread().getParticipants());
+                if (partList.size() == 1) {
+                    mArrThread.get(i).getParticipants().remove(partList.get(0));
+
+                    for (Iterator<MessageUserData> it = mArrThread.get(i).getUserInThread().iterator(); it.hasNext(); ) {
+                        MessageUserData messageUserData = it.next();
+                        if (messageUserData.getId().equals(partList.get(0))) {
+                            it.remove();
+                        }
+                    }
+
+                    //bị kích ra khỏi
+                    if(partList.get(0).equals(MessageUser.getInstance().getData().getId())){
+                        mArrThread.remove(i);
+                        mMessageAllAdapter.notifyItemRemoved(i);
+                        mMessageAllAdapter.notifyItemRangeRemoved(i, mArrThread.size());
+//                                            removeThreadAfterKicked(mArrThread.get(position));
+                        return;
+                    }
+
+                    //người khác leave
+                    mMessageAllAdapter.notifyItemChanged(i);
+//                                        updateThreadAfterLeaveRealm(mArrThread.get(position));
+                }
+                return;
+            }
+        }
     }
 
 }

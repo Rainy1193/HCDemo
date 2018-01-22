@@ -21,20 +21,14 @@ import com.homecaravan.android.R;
 import com.homecaravan.android.adapter.FriendListAdapter;
 import com.homecaravan.android.adapter.FriendListPickAdapter;
 import com.homecaravan.android.consumer.base.BaseActivity;
-import com.homecaravan.android.consumer.consumerbase.ConsumerUser;
 import com.homecaravan.android.consumer.consumermvp.contactmvp.CreateContactPresenter;
 import com.homecaravan.android.consumer.consumermvp.contactmvp.CreateContactView;
 import com.homecaravan.android.consumer.consumermvp.contactmvp.InviteContactPresenter;
 import com.homecaravan.android.consumer.consumermvp.contactmvp.InviteContactView;
-import com.homecaravan.android.consumer.model.ContactManagerData;
-import com.homecaravan.android.consumer.model.ContactSingleton;
-import com.homecaravan.android.consumer.model.EventContact;
 import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.listitem.FriendListItem;
 import com.homecaravan.android.consumer.model.responseapi.ContactData;
 import com.homecaravan.android.handling.ValidateData;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Random;

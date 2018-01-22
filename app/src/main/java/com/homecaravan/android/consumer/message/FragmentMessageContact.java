@@ -20,7 +20,7 @@ import com.homecaravan.android.consumer.base.BaseFragment;
 import com.homecaravan.android.consumer.message.messagecontactmvp.IMessageContactView;
 import com.homecaravan.android.consumer.message.messagecontactmvp.MessageContactPresenter;
 import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdPresenter;
-import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdView;
+import com.homecaravan.android.consumer.message.messagegetthreadidmvp.IGetThreadIdView;
 import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.responseapi.ContactData;
 import com.homecaravan.android.consumer.model.responseapi.ResponseMessageGetThreadId;
@@ -37,7 +37,7 @@ import in.myinnos.alphabetsindexfastscrollrecycler.IndexFastScrollRecyclerView;
  * Created by Anh Dao on 10/5/2017.
  */
 
-public class FragmentMessageContact extends BaseFragment implements IMessageContactView, GetThreadIdView {
+public class FragmentMessageContact extends BaseFragment implements IMessageContactView, IGetThreadIdView {
 
 
     private MessageContactAdapter mMessageContactAdapter;

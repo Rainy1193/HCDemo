@@ -38,17 +38,6 @@ public class UserData {
     private String newHomesNotifications;
     private String emailSmsNotifications;
 
-
-    private String companyId;
-    private String companyTitle;
-    private String companyAdd1;
-    private String companyAdd2;
-    private String companyCity;
-    private String companyState;
-    private String companyZip;
-    private String companyPhone;
-    private String companyLogo;
-
     private Companies company;
     private String agentId;
     private String agentEmail;
@@ -71,14 +60,6 @@ public class UserData {
     private String agentRoleType;
     private String agentToken;
     private String agentPnUid;
-
-    private String agentCompanyTitle;
-    private String agentCompanyAdd1;
-    private String agentCompanyAdd2;
-    private String agentCompanyCity;
-    private String agentCompanyState;
-    private String agentCompanyZip;
-
 
     private Companies agentCompany;
     public ConsumerTeam agent;
@@ -529,126 +510,6 @@ public class UserData {
 
     public void setEmailSmsNotifications(String emailSmsNotifications) {
         this.emailSmsNotifications = emailSmsNotifications;
-    }
-
-    public String getAgentCompanyTitle() {
-        return agentCompanyTitle;
-    }
-
-    public void setAgentCompanyTitle(String agentCompanyTitle) {
-        this.agentCompanyTitle = agentCompanyTitle;
-    }
-
-    public String getAgentCompanyAdd1() {
-        return agentCompanyAdd1;
-    }
-
-    public void setAgentCompanyAdd1(String agentCompanyAdd1) {
-        this.agentCompanyAdd1 = agentCompanyAdd1;
-    }
-
-    public String getAgentCompanyAdd2() {
-        return agentCompanyAdd2;
-    }
-
-    public void setAgentCompanyAdd2(String agentCompanyAdd2) {
-        this.agentCompanyAdd2 = agentCompanyAdd2;
-    }
-
-    public String getAgentCompanyCity() {
-        return agentCompanyCity;
-    }
-
-    public void setAgentCompanyCity(String agentCompanyCity) {
-        this.agentCompanyCity = agentCompanyCity;
-    }
-
-    public String getAgentCompanyState() {
-        return agentCompanyState;
-    }
-
-    public void setAgentCompanyState(String agentCompanyState) {
-        this.agentCompanyState = agentCompanyState;
-    }
-
-    public String getAgentCompanyZip() {
-        return agentCompanyZip;
-    }
-
-    public void setAgentCompanyZip(String agentCompanyZip) {
-        this.agentCompanyZip = agentCompanyZip;
-    }
-
-    public String getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId;
-    }
-
-    public String getCompanyTitle() {
-        return companyTitle;
-    }
-
-    public void setCompanyTitle(String companyTitle) {
-        this.companyTitle = companyTitle;
-    }
-
-    public String getCompanyAdd1() {
-        return companyAdd1;
-    }
-
-    public void setCompanyAdd1(String companyAdd1) {
-        this.companyAdd1 = companyAdd1;
-    }
-
-    public String getCompanyAdd2() {
-        return companyAdd2;
-    }
-
-    public void setCompanyAdd2(String companyAdd2) {
-        this.companyAdd2 = companyAdd2;
-    }
-
-    public String getCompanyCity() {
-        return companyCity;
-    }
-
-    public void setCompanyCity(String companyCity) {
-        this.companyCity = companyCity;
-    }
-
-    public String getCompanyState() {
-        return companyState;
-    }
-
-    public void setCompanyState(String companyState) {
-        this.companyState = companyState;
-    }
-
-    public String getCompanyZip() {
-        return companyZip;
-    }
-
-    public void setCompanyZip(String companyZip) {
-        this.companyZip = companyZip;
-    }
-
-    public String getCompanyPhone() {
-        return companyPhone;
-    }
-
-    public void setCompanyPhone(String companyPhone) {
-        this.companyPhone = companyPhone;
-    }
-
-    public String getCompanyLogo() {
-        return companyLogo;
-    }
-
-    public void setCompanyLogo(String companyLogo) {
-        this.companyLogo = companyLogo;
     }
 
     @Override

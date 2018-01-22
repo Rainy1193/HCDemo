@@ -53,9 +53,10 @@ import com.homecaravan.android.consumer.listener.IPickDateListener;
 import com.homecaravan.android.consumer.listener.IShowingListener;
 import com.homecaravan.android.consumer.listener.ShowingMainListener;
 import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdPresenter;
-import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdView;
+import com.homecaravan.android.consumer.message.messagegetthreadidmvp.IGetThreadIdView;
 import com.homecaravan.android.consumer.model.CurrentCaravan;
 import com.homecaravan.android.consumer.model.DayShowing;
+import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.responseapi.AppointmentShowing;
 import com.homecaravan.android.consumer.model.responseapi.CaravanShowing;
 import com.homecaravan.android.consumer.model.responseapi.ResponseCaravan;
@@ -78,7 +79,7 @@ import butterknife.OnClick;
 import jp.wasabeef.recyclerview.animators.ScaleInAnimator;
 
 public class FragmentScheduleUpcoming extends BaseFragment implements
-        IShowingListener, GetListShowingView, IPickDateListener, GetThreadIdView {
+        IShowingListener, GetListShowingView, IPickDateListener, IGetThreadIdView {
 
     private FastItemAdapter<SingleAppointmentItem> mSingleAdapter;
     private FastItemAdapter<CaravanShowingItem> mCaravanAdapter;
@@ -90,6 +91,7 @@ public class FragmentScheduleUpcoming extends BaseFragment implements
 
     private GetListShowingPresenter mGetListCaravanPresenter;
     private GetListShowingPresenter mGetListApptPresenter;
+    private GetThreadIdPresenter mGetThreadIdPresenter;
     private IShowingListener mListener;
     private ShowingMainListener mShowingMainListener;
     private Calendar mMonth = Calendar.getInstance();
@@ -118,6 +120,8 @@ public class FragmentScheduleUpcoming extends BaseFragment implements
     private ItemTouchHelper mItemTouchHelper;
     private ItemTouchHelper.SimpleCallback mSimpleItemTouchCallback;
 
+    @Bind(R.id.layoutMain)
+    FrameLayout mLayoutMain;
     @Bind(R.id.rvCaravan)
     RecyclerView mRvCaravan;
     @Bind(R.id.rvSingleShowings)
@@ -233,6 +237,7 @@ public class FragmentScheduleUpcoming extends BaseFragment implements
         mRvSingleShowings.setAdapter(mSingleAdapter);
         mRvSingleShowings.setLayoutManager(createLayoutManagerVertical());
         mCurrentDay = mDateFormat.format(Calendar.getInstance().getTime());
+        mGetThreadIdPresenter = new GetThreadIdPresenter(this);
         mGetListCaravanPresenter = new GetListShowingPresenter(this);
         mGetListApptPresenter = new GetListShowingPresenter(this);
         mCalendarAdapter = new FastItemAdapter<>();
@@ -456,7 +461,6 @@ public class FragmentScheduleUpcoming extends BaseFragment implements
     @Override
     public void onMessageClicked(String apptId, String listingId, String caravanId, String title, String userId) {
         if(!ConsumerUser.getInstance().getData().getId().equals(userId)){
-            GetThreadIdPresenter mGetThreadIdPresenter = new GetThreadIdPresenter(this);
             mGetThreadIdPresenter.getThreadId(apptId, listingId, caravanId, title, userId);
             showLoading();
         }
@@ -873,6 +877,7 @@ public class FragmentScheduleUpcoming extends BaseFragment implements
 
     @Override
     public void getThreadIdSuccess(ResponseMessageGetThreadId threadId, String threadName) {
+        Log.e("DaoDiDem", "getThreadIdSuccess: threadId: " + threadId.getThreadId());
         if(!HomeCaravanApplication.mLoginSocketSuccess){
             return;
         }
@@ -887,11 +892,13 @@ public class FragmentScheduleUpcoming extends BaseFragment implements
 
     @Override
     public void getThreadIdFail() {
-
+        hideLoading();
+        showSnackBar(mLayoutMain, TypeDialog.ERROR, "Failed", "getThreadIdFail");
     }
 
     @Override
     public void getThreadIdFail(@StringRes int message) {
-
+        hideLoading();
+        showSnackBar(mLayoutMain, TypeDialog.ERROR, message, "getThreadIdFail");
     }
 }

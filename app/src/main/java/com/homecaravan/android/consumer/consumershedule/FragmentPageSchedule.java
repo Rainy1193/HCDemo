@@ -27,6 +27,7 @@ import com.homecaravan.android.consumer.model.responseapi.ListingFull;
 import com.mikepenz.fastadapter.adapters.FooterAdapter;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter_extensions.scroll.EndlessRecyclerOnScrollListener;
+
 import java.util.ArrayList;
 
 import butterknife.Bind;

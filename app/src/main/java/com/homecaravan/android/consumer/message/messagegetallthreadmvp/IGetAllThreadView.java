@@ -1,7 +1,6 @@
 package com.homecaravan.android.consumer.message.messagegetallthreadmvp;
 
 import com.homecaravan.android.consumer.model.message.MessageThread;
-import com.homecaravan.android.consumer.model.message.MessageUserData;
 
 import java.util.ArrayList;
 
@@ -12,7 +11,4 @@ import java.util.ArrayList;
 public interface IGetAllThreadView {
     void getAllThreadSuccess(ArrayList<MessageThread> data);
     void getAllThreadFail();
-
-    void getAllUserInfoSuccess(ArrayList<MessageUserData> data);
-    void getAllUserInfoFail();
 }

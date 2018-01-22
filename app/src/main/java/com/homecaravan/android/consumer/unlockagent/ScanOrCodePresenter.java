@@ -13,6 +13,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.homecaravan.android.HomeCaravanApplication.TAG;
+
 /**
  * Created by Anh Dao on 11/3/2017.
  */
@@ -58,7 +60,7 @@ public class ScanOrCodePresenter {
             public void onResponse(Call<ResponseAgentInfomation> call, Response<ResponseAgentInfomation> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getSuccess()) {
-                        Log.e("DaoDiDem", "setAgent: "+response.body().getData().toString());
+                        Log.e(TAG, "setAgent: "+response.body().getData().toString());
                         if(agent != null){
                             ConsumerUser.getInstance().getData().setHasAgent("yes");
                             ConsumerUser.getInstance().getData().setAgentId(agent.getAgent().getId());
@@ -69,16 +71,16 @@ public class ScanOrCodePresenter {
                             ConsumerUser.getInstance().getData().setAgentPhoto(agent.getAgent().getAvatar());
                         }
                     } else {
-                        Log.e("DaoDiDem", "setAgent: Fail");
+                        Log.e(TAG, "setAgent: Fail");
                     }
                 } else {
-                    Log.e("DaoDiDem", "setAgent: isSuccessful fail");
+                    Log.e(TAG, "setAgent: isSuccessful fail");
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseAgentInfomation> call, Throwable t) {
-                Log.e("DaoDiDem", "setAgent: server fail");
+                Log.e(TAG, "setAgent: server fail");
             }
         });
     }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class SkeletonMessageThread {
     public static SkeletonMessageThread object;
-    public ArrayList<ConsumerMessageAll> data = new ArrayList<>();
+    public ArrayList<MessageThread> data = new ArrayList<>();
 
     public static SkeletonMessageThread getInstance() {
         if (object == null) {
@@ -17,11 +17,11 @@ public class SkeletonMessageThread {
         return object;
     }
 
-    public ArrayList<ConsumerMessageAll> getData() {
+    public ArrayList<MessageThread> getData() {
         return data;
     }
 
-    public void setData(ArrayList<ConsumerMessageAll> data) {
+    public void setData(ArrayList<MessageThread> data) {
         this.data = data;
     }
 }

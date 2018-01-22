@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.homecaravan.android.HomeCaravanApplication;
@@ -22,7 +23,8 @@ import com.homecaravan.android.consumer.fastadapter.CaravanShowingItem;
 import com.homecaravan.android.consumer.fastadapter.SingleAppointmentItem;
 import com.homecaravan.android.consumer.listener.IShowingListener;
 import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdPresenter;
-import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdView;
+import com.homecaravan.android.consumer.message.messagegetthreadidmvp.IGetThreadIdView;
+import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.responseapi.AppointmentShowing;
 import com.homecaravan.android.consumer.model.responseapi.CaravanShowing;
 import com.homecaravan.android.consumer.model.responseapi.ResponseCaravan;
@@ -36,13 +38,17 @@ import java.util.ArrayList;
 import butterknife.Bind;
 
 
-public class FragmentPastReviews extends BaseFragment implements GetListShowingView, IShowingListener, GetThreadIdView {
+public class FragmentPastReviews extends BaseFragment implements GetListShowingView, IShowingListener, IGetThreadIdView {
 
     private FastItemAdapter<SingleAppointmentItem> mSingleAdapter;
     private FastItemAdapter<CaravanShowingItem> mCaravanAdapter;
     private FastItemAdapter<AppointmentCaravanItem> mApptCaravanAdapter;
     private GetListShowingPresenter mGetListCaravanPresenter;
     private GetListShowingPresenter mGetListApptPresenter;
+    private GetThreadIdPresenter mGetThreadIdPresenter;
+
+    @Bind(R.id.layoutMain)
+    FrameLayout mLayoutMain;
     @Bind(R.id.rvCaravan)
     RecyclerView mRvCaravan;
     @Bind(R.id.rvPastSingleShowings)
@@ -61,6 +67,7 @@ public class FragmentPastReviews extends BaseFragment implements GetListShowingV
         mRvCaravan.setAdapter(mCaravanAdapter);
         mRvPastSingleShowings.setAdapter(mSingleAdapter);
         mRvPastSingleShowings.setLayoutManager(createLayoutManagerVertical());
+        mGetThreadIdPresenter = new GetThreadIdPresenter(this);
         mGetListCaravanPresenter = new GetListShowingPresenter(this);
         mGetListApptPresenter = new GetListShowingPresenter(this);
         mGetListCaravanPresenter.getListShowing(Utils.getPreviousMonth(), Utils.getCurrentMonthMinusOneDay(), "caravan");
@@ -156,7 +163,6 @@ public class FragmentPastReviews extends BaseFragment implements GetListShowingV
     @Override
     public void onMessageClicked(String apptId, String listingId, String caravanId, String title, String userId) {
         if(!ConsumerUser.getInstance().getData().getId().equals(userId)){
-            GetThreadIdPresenter mGetThreadIdPresenter = new GetThreadIdPresenter(this);
             mGetThreadIdPresenter.getThreadId(apptId, listingId, caravanId, title, userId);
             showLoading();
         }
@@ -174,6 +180,7 @@ public class FragmentPastReviews extends BaseFragment implements GetListShowingV
 
     @Override
     public void getThreadIdSuccess(ResponseMessageGetThreadId threadId, String threadName) {
+        Log.e("DaoDiDem", "getThreadIdSuccess: threadId: " + threadId.getThreadId());
         if(!HomeCaravanApplication.mLoginSocketSuccess){
             return;
         }
@@ -181,17 +188,20 @@ public class FragmentPastReviews extends BaseFragment implements GetListShowingV
         intent.putExtra("THREAD_ID", threadId.getThreadId());
         String responseMessage1 = "I’m driving right now";
         intent.putExtra("RESPONSE_MESSAGE_1", responseMessage1);
+        intent.putExtra("MESSAGE_THREAD_NAME", threadName);
         startActivity(intent);
         hideLoading();
     }
 
     @Override
     public void getThreadIdFail() {
-
+        hideLoading();
+        showSnackBar(mLayoutMain, TypeDialog.ERROR, "Failed", "getThreadIdFail");
     }
 
     @Override
     public void getThreadIdFail(@StringRes int message) {
-
+        hideLoading();
+        showSnackBar(mLayoutMain, TypeDialog.ERROR, message, "getThreadIdFail");
     }
 }

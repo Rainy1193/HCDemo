@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.homecaravan.android.R;
 import com.homecaravan.android.consumer.model.EventFavorite;
-import com.homecaravan.android.consumer.model.EventListingDetail;
 import com.homecaravan.android.consumer.model.EventQueue;
 import com.homecaravan.android.consumer.model.responseapi.Listing;
 import com.homecaravan.android.consumer.utils.Utils;

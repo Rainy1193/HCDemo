@@ -1,13 +1,14 @@
-package com.homecaravan.android.consumer.model.message;
+package com.homecaravan.android.consumer.model.message.reponse;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.homecaravan.android.consumer.model.message.MessageThread;
 
 /**
- * Created by Anh Dao on 11/2/2017.
+ * Created by Anh Dao on 12/7/2017.
  */
 
-public class MessageRemovedResponse {
+public class ThreadDeleteResponse {
     @Expose
     @SerializedName("command")
     private String command;
@@ -17,6 +18,12 @@ public class MessageRemovedResponse {
     @Expose
     @SerializedName("value")
     private MessageThread messageThread;
+
+    public ThreadDeleteResponse(ThreadDeleteResponse data) {
+        this.command = data.getCommand();
+        this.key = data.getKey();
+        this.messageThread = data.getMessageThread();
+    }
 
     public String getCommand() {
         return command;

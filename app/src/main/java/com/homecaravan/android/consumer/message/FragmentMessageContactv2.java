@@ -21,7 +21,8 @@ import com.homecaravan.android.consumer.base.BaseFragment;
 import com.homecaravan.android.consumer.message.messagecontactmvp.IMessageContactView;
 import com.homecaravan.android.consumer.message.messagecontactmvp.MessageContactPresenter;
 import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdPresenter;
-import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdView;
+import com.homecaravan.android.consumer.message.messagegetthreadidmvp.IGetThreadIdView;
+import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.responseapi.ContactData;
 import com.homecaravan.android.consumer.model.responseapi.ResponseMessageGetThreadId;
 
@@ -32,13 +33,15 @@ import java.util.Comparator;
 import butterknife.Bind;
 import butterknife.OnClick;
 
+import static com.homecaravan.android.HomeCaravanApplication.TAG;
+
 /**
  * Created by Anh Dao on 11/24/2017.
+ * Contact screen
  */
 
-public class FragmentMessageContactv2 extends BaseFragment implements IMessageContactView, GetThreadIdView {
+public class FragmentMessageContactv2 extends BaseFragment implements IMessageContactView, IGetThreadIdView {
 
-    private final String TAG = "DaoDiDem";
     private MessageContactAdapterv2 mMessageContactAdapter;
     private ArrayList<ContactData> mArrMessageContact = new ArrayList<>();
     //mvp
@@ -161,11 +164,13 @@ public class FragmentMessageContactv2 extends BaseFragment implements IMessageCo
 
     @Override
     public void getThreadIdFail() {
-
+        hideLoading();
+        showSnackBar(mLayoutMessageContact, TypeDialog.ERROR, "Failed", "getThreadIdFail");
     }
 
     @Override
     public void getThreadIdFail(@StringRes int message) {
-
+        hideLoading();
+        showSnackBar(mLayoutMessageContact, TypeDialog.ERROR, message, "getThreadIdFail");
     }
 }

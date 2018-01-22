@@ -24,7 +24,6 @@ import com.homecaravan.android.consumer.consumermvp.searchmvp.GetSearchDetailVie
 import com.homecaravan.android.consumer.listener.IFilterListener;
 import com.homecaravan.android.consumer.listener.IUpdateSavedSearchListener;
 import com.homecaravan.android.consumer.listener.IUpdateSavedSearchSuccess;
-import com.homecaravan.android.consumer.model.ContactSingleton;
 import com.homecaravan.android.consumer.model.SingletonFilter;
 import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.responseapi.SearchDetail;

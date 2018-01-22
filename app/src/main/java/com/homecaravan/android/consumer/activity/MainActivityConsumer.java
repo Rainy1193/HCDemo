@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -22,7 +23,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -35,7 +35,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.homecaravan.android.HomeCaravanApplication;
 import com.homecaravan.android.R;
 import com.homecaravan.android.api.Constants;
@@ -87,8 +86,8 @@ import com.homecaravan.android.consumer.model.EventAgentDetail;
 import com.homecaravan.android.consumer.model.EventCIA;
 import com.homecaravan.android.consumer.model.EventDeleteSearch;
 import com.homecaravan.android.consumer.model.EventDialog;
-import com.homecaravan.android.consumer.model.EventFavorite;
 import com.homecaravan.android.consumer.model.EventFavored;
+import com.homecaravan.android.consumer.model.EventFavorite;
 import com.homecaravan.android.consumer.model.EventListingDetail;
 import com.homecaravan.android.consumer.model.EventQueue;
 import com.homecaravan.android.consumer.model.EventQueueRequest;
@@ -98,13 +97,14 @@ import com.homecaravan.android.consumer.model.EventRequestShowing;
 import com.homecaravan.android.consumer.model.EventReviewSubmit;
 import com.homecaravan.android.consumer.model.Predictions;
 import com.homecaravan.android.consumer.model.TypeDialog;
-import com.homecaravan.android.consumer.model.message.MessageAddResponse;
 import com.homecaravan.android.consumer.model.message.SkeletonNewMessage;
+import com.homecaravan.android.consumer.model.message.reponse.MessageAddResponse;
 import com.homecaravan.android.consumer.model.responseapi.Listing;
 import com.homecaravan.android.consumer.model.responseapi.ResponseNotification;
 import com.homecaravan.android.consumer.model.responseapi.ResponseQueue;
 import com.homecaravan.android.consumer.utils.AnimUtils;
 import com.homecaravan.android.consumer.utils.Convert;
+import com.homecaravan.android.consumer.utils.TinyDB;
 import com.homecaravan.android.consumer.utils.TypeConsumer;
 import com.homecaravan.android.consumer.utils.Utils;
 import com.homecaravan.android.consumer.widget.ConsumerDialog;
@@ -115,12 +115,8 @@ import com.homecaravan.android.ui.lib.app.SlidingFragmentActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.ThreadMode;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -129,7 +125,6 @@ import butterknife.OnFocusChange;
 import butterknife.OnTextChanged;
 import butterknife.OnTouch;
 import io.realm.Realm;
-import io.socket.emitter.Emitter;
 
 public class MainActivityConsumer extends SlidingFragmentActivity implements
         IMenuListener,
@@ -147,7 +142,6 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
         AddFavoriteView,
         ILoginView {
 
-    private final String TAG = "DaoDiDem";
     private ConsumerDialog mConsumerDialog;
     private SlidingMenu mSlidingMenu;
     private FragmentBuyIntro mFragmentBuy;
@@ -194,6 +188,8 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     private SharedPreferences mPrefs;
     private String mFavoriteId;
     private String mQueueId;
+    private boolean mActivityStopState;
+
     private ViewPager.OnPageChangeListener myOnPageChangeListener = new ViewPager.OnPageChangeListener() {
         boolean first = true;
 
@@ -594,7 +590,9 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
         checkNotificationClickedBefore();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_consumer);
-        HomeCaravanApplication.mSocket.connect();
+        if(!HomeCaravanApplication.mSocket.connected()){
+            HomeCaravanApplication.mSocket.connect();
+        }
         ButterKnife.bind(this);
         mPrefs = getSharedPreferences(Constants.getInstance().HOME_CARAVAN_CONSUMER, Context.MODE_PRIVATE);
         checkTutorial();
@@ -732,34 +730,18 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        Log.e("onStop", "onStopMain");
-    }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.e("onPause", "onPause");
-        HomeCaravanApplication.mSocket.off(Constants.getInstance().THREAD);
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
-        Log.e("onResume", "onResume");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        socketListening();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        if(HomeCaravanApplication.mSocket.connected()){
+            HomeCaravanApplication.mSocket.disconnect();
+        }
     }
 
     public void addFragmentAgentInformation() {
@@ -1174,16 +1156,12 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
         }
     }
 
+
     public void setBehindView() {
         setBehindContentView(R.layout.slide_menu_consumer);
         mMenuFragmentConsumer = new MenuFragmentConsumer();
         mMenuFragmentConsumer.setListener(this);
         transactionFragments(mMenuFragmentConsumer, R.id.menu_slide);
-        String serialized = mPrefs.getString(Constants.getInstance().NEW_MESSAGE_THREAD_ID_LIST, null);
-        if (serialized != null && !serialized.isEmpty()) {
-            SkeletonNewMessage.getInstance().setData(Arrays.asList(TextUtils.split(serialized, ",")));
-            mMenuFragmentConsumer.setNewMessageCount(SkeletonNewMessage.getInstance().getData().size());
-        }
     }
 
     public void transactionFragments(Fragment fragment, int viewResource) {
@@ -1540,6 +1518,61 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     }
 
 
+    //Message EventBus
+    @org.greenrobot.eventbus.Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onNewMessageNotificationListener(MessageAddResponse response) {
+        if(mActivityStopState || !HomeCaravanApplication.mReceiverMessageNotification || response == null){
+            return;
+        }
+
+        Log.e(TAG, "Main socketListening: new message from " + response.getMessageItem().getMessageThreadView().getName());
+
+        TinyDB tinyDB = new TinyDB(this);
+        ArrayList<String> mArrThreadIdTurnOffNotification =
+                tinyDB.getListString(Constants.getInstance().THREAD_ID_TURN_OFF_NOTIFICATION_LIST);
+
+        String mCurrentThreadId = response.getMessageItem().getMessageThread().getId();
+        String mCurrentUserId = response.getMessageItem().getMessageThreadView().getId();
+        if(mCurrentUserId == null){
+            mCurrentUserId = response.getMessageItem().getCreatedBy();
+        }
+
+        if (mCurrentUserId.equals(ConsumerUser.getInstance().getData().getPnUID())) {
+            return;
+        }
+
+        //turn off notification thread of ThreadTurnOff List
+        if (mArrThreadIdTurnOffNotification != null) {
+            for (String threadTurnOff : mArrThreadIdTurnOffNotification) {
+                if (mCurrentThreadId.equals(threadTurnOff)) {
+                    return;
+                }
+            }
+        }
+
+        // Do not notify sent thread
+        for (String threadId : SkeletonNewMessage.getInstance().getData()) {
+            if (mCurrentThreadId.equals(threadId)) {
+                return;
+            }
+        }
+
+
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (v != null) {
+            v.vibrate(600);
+        }
+
+        showSnackBar(mLayoutMainActivity, TypeDialog.MESSAGES,
+                "You have new message from " + response.getMessageItem().getMessageThreadView().getName(), "MessageNotifications");
+
+        SkeletonNewMessage.getInstance().getData().add(mCurrentThreadId);
+
+        mMenuFragmentConsumer.setNewMessagesCount(SkeletonNewMessage.getInstance().getData().size());
+        mFragmentDashboard.setNewMessagesCount(SkeletonNewMessage.getInstance().getData().size());
+    }
+
+
     @Override
     public void logOut() {
         mConsumerDialog.setAction("singOut");
@@ -1547,7 +1580,6 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
         mConsumerDialog.setMessage("Do you want sign out ?");
         mConsumerDialog.setListener(this);
         mConsumerDialog.show();
-
     }
 
     @Override
@@ -1661,7 +1693,6 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
         startActivity(intent);
 
         HomeCaravanApplication.mSocket.disconnect();
-        HomeCaravanApplication.mSocket.close();
         HomeCaravanApplication.mLoginSocketSuccess = false;
 
         if (mPrefs != null) {
@@ -1670,7 +1701,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
             edit.putInt(Constants.getInstance().NEW_MESSAGE_COUNT, 0);
             edit.apply();
         }
-        SkeletonNewMessage.getInstance().getData().clear();
+        SkeletonNewMessage.getInstance().reset();
         finish();
     }
 
@@ -1869,18 +1900,6 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     public void loginFail() {
         HomeCaravanApplication.mLoginSocketSuccess = false;
     }
-
-    private void loginSocket() {
-        if (HomeCaravanApplication.isNetAvailable(this) && !HomeCaravanApplication.mLoginSocketSuccess) {
-            if (ConsumerUser.getInstance().getData().getPnUID() == null || ConsumerUser.getInstance().getData().getPnUID().isEmpty()) {
-                HomeCaravanApplication.mLoginSocketSuccess = false;
-            } else {
-                Log.e(TAG, "loginSocket-ID: " + ConsumerUser.getInstance().getData().getPnUID());
-                mLoginPresenter.login(ConsumerUser.getInstance().getData().getPnUID());
-            }
-        }
-    }
-
     @Override
     public void addFavoriteSuccess(boolean b) {
         EventBus.getDefault().post(new EventFavored(mFavoriteId, b));
@@ -1891,77 +1910,32 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
 
     }
 
-    private void socketListening() {
-        List<String> mArr = null;
-        String serialized = mPrefs.getString(Constants.getInstance().THREAD_ID_TURN_OFF_NOTIFICATION_LIST, null);
-        if (serialized != null && !serialized.isEmpty()) {
-            mArr = Arrays.asList(TextUtils.split(serialized, ","));
-        }
-        final List<String> mArrThreadIdTurnOffNotification = mArr;
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mActivityStopState = false;
+        TinyDB tinyDB = new TinyDB(this);
+        ArrayList<String> mArrThreadIdTurnOffNotification = tinyDB.getListString(Constants.getInstance().THREAD_ID_TURN_OFF_NOTIFICATION_LIST);
+        mFragmentDashboard.setNewMessagesCount(mArrThreadIdTurnOffNotification.size());
+        mMenuFragmentConsumer.setNewMessagesCount(mArrThreadIdTurnOffNotification.size());
+    }
 
-        HomeCaravanApplication.mSocket.on(Constants.getInstance().THREAD, new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                Log.e(TAG, "Main socketListening: " + args[0].toString());
-                final JSONObject data = (JSONObject) args[0];
-                String key, command;
-                try {
-                    key = data.getString(Constants.getInstance().MESSAGE_KEY);
-                    command = data.getString(Constants.getInstance().MESSAGE_COMMAND);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    return;
-                }
+    @Override
+    protected void onStop(){
+        super.onStop();
+        mActivityStopState = true;
+    }
 
-                //Receiver message
-                if (command.equals(Constants.getInstance().MESSAGE_COMMAND_ADD)
-                        && key.equals(Constants.getInstance().MESSAGE_MESSAGE)) {
-
-                    //turn off all notification message
-                    if (!HomeCaravanApplication.mReceiverMessageNotification) {
-                        return;
-                    }
-
-                    final MessageAddResponse messageAddResponse = new Gson().fromJson(args[0].toString(), MessageAddResponse.class);
-                    if (messageAddResponse != null) {
-                        final String mCurrentThreadId = messageAddResponse.getMessageItem().getMessageThread().getId();
-                        //My message send
-                        if (messageAddResponse.getMessageItem().getMessageThreadView().getId()
-                                .equals(ConsumerUser.getInstance().getData().getPnUID())) {
-                            return;
-                        }
-
-                        //turn off notification thread of ThreadTurnOff List
-                        if (mArrThreadIdTurnOffNotification != null) {
-                            for (String threadTurnOff : mArrThreadIdTurnOffNotification) {
-                                if (mCurrentThreadId.equals(threadTurnOff)) {
-                                    return;
-                                }
-                            }
-                        }
-
-                        //Do not notify sent thread
-                        for (String threadId : SkeletonNewMessage.getInstance().getData()) {
-                            if (mCurrentThreadId.equals(threadId)) {
-                                return;
-                            }
-                        }
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.e(TAG, "Main socketListening: new message from " + messageAddResponse.getMessageItem().getMessageThreadView().getName());
-                                showSnackBar(mLayoutMainActivity, TypeDialog.MESSAGES,
-                                        "You have new message from " + messageAddResponse.getMessageItem().getMessageThreadView().getName(), "MessageNotifications");
-
-                                SkeletonNewMessage.getInstance().getData().add(mCurrentThreadId);
-
-                                mMenuFragmentConsumer.setNewMessageCount(SkeletonNewMessage.getInstance().getData().size());
-                            }
-                        });
-                    }
-                }
+    private void loginSocket() {
+        if (HomeCaravanApplication.isNetAvailable(this) && !HomeCaravanApplication.mLoginSocketSuccess) {
+            if (ConsumerUser.getInstance().getData().getPnUID() == null || ConsumerUser.getInstance().getData().getPnUID().isEmpty()) {
+                HomeCaravanApplication.mLoginSocketSuccess = false;
+            } else {
+                Log.e(TAG, "loginSocket-ID: " + ConsumerUser.getInstance().getData().getPnUID());
+                LoginPresenter mLoginPresenter = new LoginPresenter(this);
+                mLoginPresenter.login(ConsumerUser.getInstance().getData().getPnUID());
             }
-        });
+        }
+
     }
 }

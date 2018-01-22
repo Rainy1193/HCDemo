@@ -33,14 +33,18 @@ public class MenuFragmentConsumer extends Fragment {
         this.mListener = mListener;
     }
 
-    public void setNewMessageCount(int count) {
+    public void setNewMessagesCount(int count){
+        if(mTvNewMessageCount == null){
+            return;
+        }
         mTvNewMessageCount.setText(String.valueOf(count));
-        if (count == 0) {
+        if(count == 0){
             mTvNewMessageCount.setVisibility(View.GONE);
-        } else {
+        }else{
             mTvNewMessageCount.setVisibility(View.VISIBLE);
         }
     }
+
 
     @Nullable
     @Override

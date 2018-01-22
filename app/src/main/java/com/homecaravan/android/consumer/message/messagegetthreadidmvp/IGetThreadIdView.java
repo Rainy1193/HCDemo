@@ -8,7 +8,7 @@ import com.homecaravan.android.consumer.model.responseapi.ResponseMessageGetThre
  * Created by Anh Dao on 10/24/2017.
  */
 
-public interface GetThreadIdView {
+public interface IGetThreadIdView {
 
     void getThreadIdAtCaravanSuccess(ResponseMessageGetThreadId threadId, int position, String threadName);
 

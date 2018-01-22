@@ -27,7 +27,7 @@ public class MessageThreadView extends RealmObject {
     private String createdDatetime;
     @Expose
     @SerializedName("type")
-    private String type;
+    private String type; //IMAGE, DELETED, TEXT
 
     public MessageThreadView() {
     }

@@ -32,7 +32,6 @@ import com.homecaravan.android.consumer.model.responseapi.ContactData;
 import com.homecaravan.android.consumer.utils.Utils;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 

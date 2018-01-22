@@ -30,7 +30,6 @@ import com.homecaravan.android.consumer.listener.IContactManager;
 import com.homecaravan.android.consumer.listener.IUpdateSavedSearchListener;
 import com.homecaravan.android.consumer.model.ContactManagerData;
 import com.homecaravan.android.consumer.model.ContactSingleton;
-import com.homecaravan.android.consumer.model.CurrentSavedSearch;
 import com.homecaravan.android.consumer.model.EventContactManager;
 import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.responseapi.Participant;

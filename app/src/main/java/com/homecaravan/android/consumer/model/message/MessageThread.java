@@ -11,20 +11,9 @@ import io.realm.RealmObject;
  */
 
 public class MessageThread extends RealmObject {
-//
-//    {"id":"59fbef8b0a975a08f8c97e80",
-//            "name":"1600 Pennsylvania Ave Washington, DC 20500|Thu, Nov 9th 15:30pm",
-//            "participants":["59f686b30a975a06fea5fbf2", "595083a10a975a05589b12ab"],
-//        "partUsers":[{"id":"595083a10a975a05589b12ab",
-//            "name":"Nhi Tran",
-//            "avatar":"http://consumer.homecaravan.net/uploads/account_avatar/20171023183019.jpg"},
-//        {"id":"59f686b30a975a06fea5fbf2","name":"Loan Tran","avatar":"http://consumer.homecaravan.net/uploads/account_avatar/20171023183214.jpg"}],
-//        "view":{"id":"595083a10a975a05589b12ab","name":"Nhi Tran","photo":"http://consumer.homecaravan.net/uploads/account_avatar/20171023183019.jpg",
-//            "content":"new notification","createdDatetime":1512357633205,"type":"TEXT"},
-//        "mappings":[{"id":"59f686b30a975a06fea5fbf2","time":0,"new":true},
-//        {"id":"595083a10a975a05589b12ab","time":1512357654935,"new":false}],
-//        "createdDatetime":1509683080000,"modifiedDatetime":1512357633205,
-//            "createdBy":"595083a10a975a05589b12ab"}
+    public static final String TYPE_SINGLE = "SINGLE";
+    public static final String TYPE_GROUP = "GROUP";
+
     @Expose
     @SerializedName("id")
     private String id;
@@ -50,37 +39,37 @@ public class MessageThread extends RealmObject {
     @SerializedName("participants")
     private RealmList<String> participants;
     @Expose
+    @SerializedName("partUsers")
+    private RealmList<MessageUserData> userInThread;
+    @Expose
     @SerializedName("view")
     private MessageThreadView messageThreadView;
-    private RealmList<MessageUserData> userInThread;
+    @Expose
+    @SerializedName("mappings")
+    private RealmList<Mapping> mappings;
+    @Expose
+    @SerializedName("type")
+    private String type; // SINGLE - GROUP
+
+    private RealmList<MessageItem> messageItem;
 
     public MessageThread() {
-
     }
 
-    public MessageThread(String id, String createdDatetime, String modifiedDatetime) {
-        this.id = id;
-        this.createdDatetime = createdDatetime;
-        this.modifiedDatetime = modifiedDatetime;
-    }
-
-    public MessageThread(String id, String createdDatetime, String modifiedDatetime, String modifiedBy,
-                         String createdBy, String data, String name, RealmList<String> participants,
-                         MessageThreadView messageThreadView) {
-        this.id = id;
-        this.createdDatetime = createdDatetime;
-        this.modifiedDatetime = modifiedDatetime;
-        this.createdBy = createdBy;
-        this.data = data;
-        this.name = name;
-        this.participants = participants;
-        this.messageThreadView = messageThreadView;
-        this.modifiedBy = modifiedBy;
-    }
-
-    @Override
-    public String toString() {
-        return id + " " + name + " " + modifiedDatetime + " " + messageThreadView.getPhoto() + " " + messageThreadView.getContent();
+    public MessageThread(MessageThread thread) {
+        this.id = thread.getId();
+        this.createdDatetime = thread.getCreatedDatetime();
+        this.modifiedDatetime = thread.getModifiedDatetime();
+        this.createdBy = thread.getCreatedBy();
+        this.modifiedBy = thread.getModifiedBy();
+        this.data = thread.getData();
+        this.name = thread.getName();
+        this.participants = thread.getParticipants();
+        this.userInThread = thread.getUserInThread();
+        this.messageThreadView = thread.getMessageThreadView();
+        this.mappings = thread.getMappings();
+        this.type = thread.getType();
+        this.messageItem = thread.getMessageItem();
     }
 
     public String getId() {
@@ -147,6 +136,14 @@ public class MessageThread extends RealmObject {
         this.participants = participants;
     }
 
+    public RealmList<MessageUserData> getUserInThread() {
+        return userInThread;
+    }
+
+    public void setUserInThread(RealmList<MessageUserData> userInThread) {
+        this.userInThread = userInThread;
+    }
+
     public MessageThreadView getMessageThreadView() {
         return messageThreadView;
     }
@@ -155,11 +152,27 @@ public class MessageThread extends RealmObject {
         this.messageThreadView = messageThreadView;
     }
 
-    public RealmList<MessageUserData> getUserInThread() {
-        return userInThread;
+    public RealmList<Mapping> getMappings() {
+        return mappings;
     }
 
-    public void setUserInThread(RealmList<MessageUserData> userInThread) {
-        this.userInThread = userInThread;
+    public void setMappings(RealmList<Mapping> mappings) {
+        this.mappings = mappings;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public RealmList<MessageItem> getMessageItem() {
+        return messageItem;
+    }
+
+    public void setMessageItem(RealmList<MessageItem> messageItem) {
+        this.messageItem = messageItem;
     }
 }

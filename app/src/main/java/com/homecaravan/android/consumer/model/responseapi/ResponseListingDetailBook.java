@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.homecaravan.android.models.ListingDetailData;
 
-public class ResponseListingDetailBook extends BaseResponse{
+public class ResponseListingDetailBook extends BaseResponse {
     @Expose
     @SerializedName("data")
     private ListingDetailData data;

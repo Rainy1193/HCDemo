@@ -26,8 +26,8 @@ public class ApplicationService extends Service {
 
     @Override
     public void onTaskRemoved(Intent rootIntent) {
-        HomeCaravanApplication.mSocket.disconnect();
-        HomeCaravanApplication.mSocket.close();
+//        HomeCaravanApplication.mSocket.disconnect();
+//        HomeCaravanApplication.mSocket.close();
         HomeCaravanApplication.mLoginSocketSuccess = false;
         SharedPreferences mPrefs = getSharedPreferences(Constants.getInstance().HOME_CARAVAN_CONSUMER, Context.MODE_PRIVATE);
         if (mPrefs != null) {
@@ -36,7 +36,6 @@ public class ApplicationService extends Service {
             edit.putInt(Constants.getInstance().NEW_MESSAGE_COUNT, SkeletonNewMessage.getInstance().getData().size());
             edit.apply();
         }
-        SkeletonNewMessage.getInstance().getData().clear();
 
         super.onTaskRemoved(rootIntent);
         //stop service

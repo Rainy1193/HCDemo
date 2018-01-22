@@ -112,7 +112,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         View snackBarView = snackbar.getView();
         TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);
-        textView.setMaxLines(3);
+        textView.setMaxLines(4);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         snackbar.show();
     }
@@ -147,7 +147,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         View snackBarView = snackbar.getView();
         TextView textView = (TextView) snackBarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);
-        textView.setMaxLines(3);
+        textView.setMaxLines(4);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         snackbar.show();
 

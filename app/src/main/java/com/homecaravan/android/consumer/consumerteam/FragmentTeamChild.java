@@ -9,6 +9,7 @@ import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -18,7 +19,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.homecaravan.android.HomeCaravanApplication;
 import com.homecaravan.android.R;
+import com.homecaravan.android.consumer.activity.ConversationActivity;
 import com.homecaravan.android.consumer.activity.TeamTabSearchActivity;
 import com.homecaravan.android.consumer.adapter.FeaturedAgentAdapter;
 import com.homecaravan.android.consumer.adapter.HomeInspectorFeaturedAdapter;
@@ -56,11 +59,14 @@ import com.homecaravan.android.consumer.listener.IAgentListener;
 import com.homecaravan.android.consumer.listener.IPageChangeMyTeam;
 import com.homecaravan.android.consumer.listener.ITeamListener;
 import com.homecaravan.android.consumer.listener.TeamMainListener;
+import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadIdPresenter;
+import com.homecaravan.android.consumer.message.messagegetthreadidmvp.IGetThreadIdView;
 import com.homecaravan.android.consumer.model.BaseDataRecyclerView;
 import com.homecaravan.android.consumer.model.ConsumerTeam;
 import com.homecaravan.android.consumer.model.EventAgentDetail;
 import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.responseapi.ResponseFeatured;
+import com.homecaravan.android.consumer.model.responseapi.ResponseMessageGetThreadId;
 import com.homecaravan.android.consumer.utils.Convert;
 import com.homecaravan.android.ui.CircleImageView;
 
@@ -75,10 +81,11 @@ import butterknife.OnClick;
 public class FragmentTeamChild extends BaseFragment implements IRealtorFeaturedView, IRealtorMyResourceView,
         ILenderFeaturedView, ILenderMyResourceView,
         IHomeInspectorFeaturedView, IHomeInspectorMyResourceView,
-        GetFeaturedView, IAgentListener, SetAgentView {
+        GetFeaturedView, IAgentListener, SetAgentView, IGetThreadIdView {
 
     private ITeamListener mHistoryListener;
     private TeamMainListener mTeamMainListener;
+    private GetThreadIdPresenter mGetThreadIdPresenter;
 
     public void setTeamMainListener(TeamMainListener mTeamMainListener) {
         this.mTeamMainListener = mTeamMainListener;
@@ -246,6 +253,12 @@ public class FragmentTeamChild extends BaseFragment implements IRealtorFeaturedV
 //        mHistoryListener.filterHistory(selectedHomeInspector.getId());
     }
 
+    @OnClick(R.id.lnTeamAgentMessage)
+    public void onTeamAgentMessageClicked() {
+        mGetThreadIdPresenter.getThreadId("", "", "", ConsumerUser.getInstance().getData().getAgentFullName(), ConsumerUser.getInstance().getData().getAgentId());
+        showLoading();
+    }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -257,6 +270,7 @@ public class FragmentTeamChild extends BaseFragment implements IRealtorFeaturedV
         initEscrowCompany();
 
         setupMvp();
+
     }
 
     private void initAdapter() {
@@ -272,6 +286,7 @@ public class FragmentTeamChild extends BaseFragment implements IRealtorFeaturedV
 
     private void setupMvp() {
         //mvp
+        mGetThreadIdPresenter = new GetThreadIdPresenter(this);
         RealtorFeaturedPresenter mRealtorFeaturedPresenter;
         RealtorFeaturedHelper mRealtorFeaturedHelper;
         RealtorMyResourcePresenter mRealtorMyResourcePresenter;
@@ -321,11 +336,15 @@ public class FragmentTeamChild extends BaseFragment implements IRealtorFeaturedV
             mLnRealtorList.setVisibility(View.GONE);
             Glide.with(getContext()).load(ConsumerUser.getInstance().getData().getAgentPhoto())
                     .asBitmap().fitCenter().into(mImgAvatarRealtor);
-            if (ConsumerUser.getInstance().getData().getAgentCompanyTitle() != null) {
-                mTvRealtorJob.setText(ConsumerUser.getInstance().getData().getAgentCompanyTitle());
+            if(ConsumerUser.getInstance().getData().getAgentCompany() != null){
+                if (ConsumerUser.getInstance().getData().getAgentCompany().getJobTitle() != null) {
+                    mTvRealtorJob.setText(ConsumerUser.getInstance().getData().getAgentCompany().getJobTitle());
+                }
+
             }
-            mTvRealtorName.setText(ConsumerUser.getInstance().getData().getAgentFirstName() + " " +
-                    ConsumerUser.getInstance().getData().getAgentLastName());
+            mTvRealtorName.setText(String.format(getString(R.string.concat_two_word),
+                            ConsumerUser.getInstance().getData().getAgentFirstName(),
+                            ConsumerUser.getInstance().getData().getAgentLastName()));
         }
     }
 
@@ -696,5 +715,37 @@ public class FragmentTeamChild extends BaseFragment implements IRealtorFeaturedV
     public void setAgentFail(@StringRes int message) {
         showSnackBar(mLayoutMain, TypeDialog.ERROR, message, "setAgent");
 
+    }
+
+    @Override
+    public void getThreadIdAtCaravanSuccess(ResponseMessageGetThreadId threadId, int position, String threadName) {
+
+    }
+
+    @Override
+    public void getThreadIdSuccess(ResponseMessageGetThreadId threadId, String threadName) {
+        Log.e("DaoDiDem", "getThreadIdSuccess: threadId: " + threadId.getThreadId());
+        if(!HomeCaravanApplication.mLoginSocketSuccess){
+            return;
+        }
+        Intent intent = new Intent(getActivity(), ConversationActivity.class);
+        intent.putExtra("THREAD_ID", threadId.getThreadId());
+        String responseMessage1 = "I’m driving right now";
+        intent.putExtra("RESPONSE_MESSAGE_1", responseMessage1);
+        intent.putExtra("MESSAGE_THREAD_NAME", threadName);
+        startActivity(intent);
+        hideLoading();
+    }
+
+    @Override
+    public void getThreadIdFail() {
+        hideLoading();
+        showSnackBar(mLayoutMain, TypeDialog.ERROR, "Failed", "getThreadIdFail");
+    }
+
+    @Override
+    public void getThreadIdFail(@StringRes int message) {
+        hideLoading();
+        showSnackBar(mLayoutMain, TypeDialog.ERROR, message, "getThreadIdFail");
     }
 }

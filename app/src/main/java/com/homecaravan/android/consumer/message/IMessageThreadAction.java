@@ -6,4 +6,5 @@ package com.homecaravan.android.consumer.message;
 
 public interface IMessageThreadAction {
     void deleteThread(int position, String threadId);
+    void unRead(int position, String threadId, String timeStamp);
 }

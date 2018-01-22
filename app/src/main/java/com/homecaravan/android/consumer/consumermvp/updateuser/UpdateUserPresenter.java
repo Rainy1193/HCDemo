@@ -58,13 +58,13 @@ public class UpdateUserPresenter {
         }
     }
 
-    public void updateUser(String firstName, String lastName,
-                           String phone, String email, String avatar,
-                           String companyMappingId, String companyId,
-                           String companyName, String companyTitle,
-                           String extraAddress, String extraUrl,
-                           String extraVideo, String extraFacebook,
-                           String extraAboutMe, String extraIntro, boolean gotCompanies){
+    public void updateUser(final String firstName, final  String lastName,
+                           final String phone, final  String email, final String avatar,
+                           final String companyMappingId, final  String companyId,
+                           final String companyName, final String companyTitle,
+                           final String extraAddress, final String extraUrl,
+                           final String extraVideo, final String extraFacebook,
+                           final String extraAboutMe, final String extraIntro, final boolean gotCompanies){
         UsersAPI usersAPI = ServiceGeneratorConsumer.createService(UsersAPI.class);
         if(gotCompanies){
             usersAPI.updateUser(firstName, lastName, phone, email, avatar,
@@ -74,7 +74,10 @@ public class UpdateUserPresenter {
                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                     if (response.isSuccessful()) {
                         if (response.body().getSuccess()) {
-                            mView.updateUserSuccess();
+                            mView.updateUserSuccess(firstName, lastName, phone, email, avatar,
+                                    companyMappingId, companyId, companyName, companyTitle, extraAddress,
+                                    extraUrl, extraVideo, extraFacebook, extraAboutMe,
+                                    extraIntro);
                         } else{
                             mView.updateUserFail(response.body().getMessages().get(0).getText());
                         }
@@ -95,7 +98,9 @@ public class UpdateUserPresenter {
                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                     if (response.isSuccessful()) {
                         if (response.body().getSuccess()) {
-                            mView.updateUserSuccess();
+                            mView.updateUserSuccess(firstName, lastName, phone, email, avatar, "", "",
+                                    "", "", extraAddress, extraUrl,
+                                    extraVideo, extraFacebook, extraAboutMe, extraIntro);
                         } else {
                             mView.updateUserFail(response.body().getMessages().get(0).getText());
                         }

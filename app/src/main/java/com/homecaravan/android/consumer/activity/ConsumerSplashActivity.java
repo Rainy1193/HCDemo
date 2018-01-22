@@ -202,15 +202,7 @@ public class ConsumerSplashActivity extends BaseActivity implements LoginView, R
             ConsumerUser.getInstance().getData().setEmailSmsNotifications(dataUser.getEmailSmsNotifications());
 
             if (dataUser.getCompany().size() != 0) {
-                ConsumerUser.getInstance().getData().setCompanyId(dataUser.getCompany().get(0).getId());
-                ConsumerUser.getInstance().getData().setCompanyTitle("");
-                ConsumerUser.getInstance().getData().setCompanyAdd1(dataUser.getCompany().get(0).getAddress().getAddress1());
-                ConsumerUser.getInstance().getData().setCompanyAdd2(dataUser.getCompany().get(0).getAddress().getAddress2());
-                ConsumerUser.getInstance().getData().setCompanyCity(dataUser.getCompany().get(0).getAddress().getCity());
-                ConsumerUser.getInstance().getData().setCompanyState(dataUser.getCompany().get(0).getAddress().getState());
-                ConsumerUser.getInstance().getData().setCompanyZip(dataUser.getCompany().get(0).getAddress().getZip());
-                ConsumerUser.getInstance().getData().setCompanyPhone(dataUser.getCompany().get(0).getPhone());
-                ConsumerUser.getInstance().getData().setCompanyLogo(dataUser.getCompany().get(0).getLogo());
+                ConsumerUser.getInstance().getData().setCompany(dataUser.getCompany().get(0));
             }
             if (dataUser.getAgent() != null) {
                 ConsumerUser.getInstance().getData().setHasAgent("yes");
@@ -221,9 +213,9 @@ public class ConsumerSplashActivity extends BaseActivity implements LoginView, R
                 ConsumerUser.getInstance().getData().setAgentFullName(dataUser.getAgent().getFullName());
                 ConsumerUser.getInstance().getData().setAgentMobilePhone(dataUser.getAgent().getPhone());
                 ConsumerUser.getInstance().getData().setAgentPhoto(dataUser.getAgent().getAvatar());
+                ConsumerUser.getInstance().getData().setAgentPnUid(dataUser.getAgent().getPnUid());
                 if (dataUser.getAgent().getCompany().size() != 0)
                     ConsumerUser.getInstance().getData().setAgentCompany(dataUser.getAgent().getCompany().get(0));
-                ConsumerUser.getInstance().getData().setAgentPnUid(dataUser.getAgent().getPnUid());
             } else {
                 ConsumerUser.getInstance().getData().setHasAgent("no");
             }
@@ -242,6 +234,8 @@ public class ConsumerSplashActivity extends BaseActivity implements LoginView, R
             }
             startActivity(intent);
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            HomeCaravanApplication.mLoginHCSuccessful = true;
+            finish();
         } catch (Exception e) {
             Log.e("Error", e.toString());
             e.printStackTrace();

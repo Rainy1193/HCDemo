@@ -107,7 +107,6 @@ public interface CBSApi {
                         @Field("APPT_NOTE") String appt_note,
                         @Field("TOKEN") String token,
                         @Field("COMMUNICATION_METHOD") String COMMUNICATION_METHOD);
-
     @POST("search_api/archive_search")
     @FormUrlEncoded
     Call<BaseResponse> archiveSearch(@Field("search_id") String id);
