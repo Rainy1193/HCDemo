@@ -26,27 +26,27 @@
             android:orientation="vertical">
 
             <TextView
-                android:paddingLeft="10dp"
+                android:paddingStart="16dp"
                 android:id="@+id/tvGallery"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_view"
-                android:gravity="left"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
+                android:gravity="start"
+                android:paddingBottom="12dp"
+                android:paddingTop="12dp"
                 android:text="Photo Library"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_custom_lang"/>
 
             <TextView
-                android:paddingLeft="10dp"
+                android:paddingStart="16dp"
                 android:id="@+id/tvCamera"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_view"
-                android:gravity="left"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
+                android:gravity="start"
+                android:paddingBottom="12dp"
+                android:paddingTop="12dp"
                 android:text="Take a photo"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_custom_lang"/>

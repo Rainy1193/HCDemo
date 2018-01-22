@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layoutMain"
-    android:focusableInTouchMode="true"
     android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="com.homecaravan.android.consumer.activity.UserProfileConsumerActivity">
 
     <RelativeLayout
@@ -40,13 +38,13 @@
 
             <TextView
                 android:id="@+id/tvTitle"
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:textColor="@color/white"
-                android:text="@string/user_profile_user_profile"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:textSize="16sp"/>
+                android:text="@string/user_profile_user_profile"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -66,12 +64,12 @@
 
         <LinearLayout
             android:id="@+id/layoutProfile"
-            android:layout_below="@id/layoutBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="14dp"
+            android:layout_below="@id/layoutBar"
+            android:orientation="vertical"
             android:paddingEnd="14dp"
-            android:orientation="vertical">
+            android:paddingStart="14dp">
 
             <View
                 android:layout_width="match_parent"
@@ -92,7 +90,7 @@
                     android:scaleType="fitXY"
                     app:riv_border_color="@color/colorGrayLine"
                     app:riv_border_width="2dip"
-                    app:riv_corner_radius="30dip" />
+                    app:riv_corner_radius="42dip" />
 
                 <ImageView
                     android:id="@+id/imgUpload"
@@ -128,19 +126,19 @@
                     android:layout_width="50dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="4dp"/>
+                    android:layout_marginTop="4dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <ImageView
@@ -157,8 +155,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
-                            android:text="No phone number"
                             android:maxLines="2"
+                            android:text="No phone number"
                             android:textColor="@color/colorButtonGray"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -174,8 +172,8 @@
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <ImageView
@@ -192,8 +190,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
-                            android:text="No email"
                             android:maxLines="2"
+                            android:text="No email"
                             android:textColor="@color/colorBlueUserProfile"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -229,13 +227,13 @@
                 <FrameLayout
                     android:id="@+id/frmChangePassword"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp"
-                    android:layout_marginBottom="14dp"
+                    android:layout_height="36dp"
                     android:layout_gravity="center"
+                    android:layout_marginBottom="14dp"
                     android:background="@drawable/bg_consumer_popup_remind"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:paddingEnd="20dp"
+                    android:paddingStart="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -278,22 +276,22 @@
                 android:textSize="14sp" />
 
             <LinearLayout
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:id="@+id/lnExtraProfile"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
+                        android:layout_width="58dp"
+                        android:layout_height="58dp"
                         android:layout_gravity="center"
                         android:paddingBottom="5dp"
                         android:paddingTop="5dp"
@@ -312,13 +310,13 @@
                 <LinearLayout
                     android:id="@+id/lnExtraVideo"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
+                        android:layout_width="58dp"
+                        android:layout_height="58dp"
                         android:layout_gravity="center"
                         android:paddingBottom="5dp"
                         android:paddingTop="5dp"
@@ -337,13 +335,13 @@
                 <LinearLayout
                     android:id="@+id/lnExtraFacebook"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
+                        android:layout_width="58dp"
+                        android:layout_height="58dp"
                         android:layout_gravity="center"
                         android:paddingBottom="5dp"
                         android:paddingTop="5dp"
@@ -394,8 +392,8 @@
                     android:layout_gravity="center"
                     android:layout_weight="8"
                     android:gravity="center_vertical"
-                    android:paddingLeft="6dp"
-                    android:text="Notifications"
+                    android:paddingStart="6dp"
+                    android:text="@string/notifications"
                     android:textSize="14sp" />
 
                 <com.kyleduo.switchbutton.SwitchButton
@@ -481,11 +479,11 @@
                 android:background="@color/colorViewSplash" />
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/layoutAgent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -604,7 +602,7 @@
                     app:kswBackColor="@color/colorBackSwitch"
                     app:kswTextMarginH="8dp"
                     app:kswTextOff="   Buyer   "
-                    app:kswTextOn="   Realtor   "
+                    app:kswTextOn="   Seller   "
                     app:kswThumbColor="@color/colorThumbNotIsChecked"
                     app:kswThumbHeight="24dp"
                     app:kswThumbWidth="24dp" />
@@ -644,14 +642,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/layoutEdit"
-            android:paddingStart="14dp"
-            android:paddingEnd="14dp"
-            android:layout_below="@id/layoutBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_below="@id/layoutBar"
+            android:orientation="vertical"
+            android:paddingEnd="14dp"
+            android:paddingStart="14dp"
+            android:visibility="gone">
 
             <View
                 android:layout_width="match_parent"
@@ -667,18 +665,18 @@
                     android:id="@+id/imgUpLoadAvatar"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="14dp"
                     android:layout_gravity="center_horizontal"
-                    app:riv_corner_radius="30dip"
-                    android:src="@drawable/ic_consumer_user_profile_edit_avatar"/>
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/ic_consumer_user_profile_edit_avatar"
+                    app:riv_corner_radius="42dip" />
 
                 <ProgressBar
                     android:id="@+id/pbUploadAvatar"
-                    android:visibility="gone"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="44dp"/>
+                    android:layout_marginTop="44dp"
+                    android:visibility="gone" />
 
             </FrameLayout>
 
@@ -702,15 +700,15 @@
                     android:layout_marginLeft="@dimen/margin_menu1"
                     android:includeFontPadding="false"
                     android:text="@string/user_profile_edit_general"
-                    android:textStyle="bold"
                     android:textColor="@color/colorBuy"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <EditText
                     android:id="@+id/edtEditFirstName"
@@ -718,17 +716,17 @@
                     android:layout_height="wrap_content"
                     android:hint="First name"
                     android:imeOptions="actionNext"
-                    android:textColor="@color/colorButtonGray"
                     android:inputType="textPersonName"
                     android:maxLines="1"
+                    android:textColor="@color/colorButtonGray"
                     android:textSize="@dimen/text_size_custom_lang" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <EditText
                     android:id="@+id/edtEditLastName"
@@ -736,9 +734,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Last name"
                     android:imeOptions="actionNext"
-                    android:textColor="@color/colorButtonGray"
                     android:inputType="textPersonName"
                     android:maxLines="1"
+                    android:textColor="@color/colorButtonGray"
                     android:textSize="@dimen/text_size_custom_lang" />
 
             </android.support.design.widget.TextInputLayout>
@@ -751,8 +749,8 @@
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
                     <EditText
                         android:id="@+id/edtEditPhone"
@@ -772,7 +770,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/us"/>
+                    android:src="@drawable/us" />
 
             </LinearLayout>
 
@@ -795,9 +793,9 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <EditText
                     android:id="@+id/edtEditAddress"
@@ -805,9 +803,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Address"
                     android:imeOptions="actionNext"
-                    android:textColor="@color/colorButtonGray"
                     android:inputType="textPersonName"
                     android:maxLines="1"
+                    android:textColor="@color/colorButtonGray"
                     android:textSize="@dimen/text_size_custom_lang" />
 
             </android.support.design.widget.TextInputLayout>
@@ -832,15 +830,15 @@
                     android:layout_marginLeft="@dimen/margin_menu1"
                     android:includeFontPadding="false"
                     android:text="@string/user_profile_edit_work"
-                    android:textStyle="bold"
                     android:textColor="@color/colorBuy"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <android.support.v7.widget.AppCompatAutoCompleteTextView
                     android:id="@+id/edtEditCompany"
@@ -849,17 +847,17 @@
                     android:completionThreshold="1"
                     android:hint="@string/company_name_2"
                     android:imeOptions="actionNext"
-                    android:textColor="@color/colorButtonGray"
                     android:inputType="textPersonName"
                     android:maxLines="1"
+                    android:textColor="@color/colorButtonGray"
                     android:textSize="@dimen/text_size_custom_lang" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <EditText
                     android:id="@+id/edtEditTitle"
@@ -867,9 +865,9 @@
                     android:layout_height="wrap_content"
                     android:hint="Title"
                     android:imeOptions="actionNext"
-                    android:textColor="@color/colorButtonGray"
                     android:inputType="textPersonName"
                     android:maxLines="1"
+                    android:textColor="@color/colorButtonGray"
                     android:textSize="@dimen/text_size_custom_lang" />
 
             </android.support.design.widget.TextInputLayout>
@@ -894,15 +892,15 @@
                     android:layout_marginStart="@dimen/margin_menu1"
                     android:includeFontPadding="false"
                     android:text="@string/user_profile_edit_extra"
-                    android:textStyle="bold"
                     android:textColor="@color/colorBuy"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <EditText
                     android:id="@+id/edtEditProfileUrl"
@@ -910,17 +908,17 @@
                     android:layout_height="wrap_content"
                     android:hint="Profile"
                     android:imeOptions="actionNext"
-                    android:textColor="@color/colorButtonGray"
                     android:inputType="textUri"
                     android:maxLines="1"
+                    android:textColor="@color/colorButtonGray"
                     android:textSize="@dimen/text_size_custom_lang" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <EditText
                     android:id="@+id/edtEditVideoUrl"
@@ -928,17 +926,17 @@
                     android:layout_height="wrap_content"
                     android:hint="Video"
                     android:imeOptions="actionNext"
-                    android:textColor="@color/colorButtonGray"
                     android:inputType="textUri"
                     android:maxLines="1"
+                    android:textColor="@color/colorButtonGray"
                     android:textSize="@dimen/text_size_custom_lang" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <EditText
                     android:id="@+id/edtEditFacebookUrl"
@@ -946,17 +944,17 @@
                     android:layout_height="wrap_content"
                     android:hint="Facebook"
                     android:imeOptions="actionNext"
-                    android:textColor="@color/colorButtonGray"
                     android:inputType="textUri"
                     android:maxLines="1"
+                    android:textColor="@color/colorButtonGray"
                     android:textSize="@dimen/text_size_custom_lang" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <EditText
                     android:id="@+id/edtEditIntro"
@@ -964,17 +962,17 @@
                     android:layout_height="wrap_content"
                     android:hint="Intro"
                     android:imeOptions="actionNext"
-                    android:textColor="@color/colorButtonGray"
                     android:inputType="textMultiLine"
                     android:maxLines="3"
+                    android:textColor="@color/colorButtonGray"
                     android:textSize="@dimen/text_size_custom_lang" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
                 <EditText
                     android:id="@+id/edtEditAboutMe"
@@ -982,9 +980,9 @@
                     android:layout_height="wrap_content"
                     android:hint="About me"
                     android:imeOptions="actionNext"
-                    android:textColor="@color/colorButtonGray"
                     android:inputType="textMultiLine"
                     android:maxLines="3"
+                    android:textColor="@color/colorButtonGray"
                     android:textSize="@dimen/text_size_custom_lang" />
 
             </android.support.design.widget.TextInputLayout>
@@ -993,9 +991,9 @@
                 android:id="@+id/frmEditDone"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:layout_marginBottom="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_gravity="center"
                 android:background="@drawable/bg_button_filter"
                 android:gravity="center">
 
@@ -1003,95 +1001,193 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textSize="15sp"
                     android:text="Done"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
             </FrameLayout>
 
         </LinearLayout>
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/layoutChangePassword"
-            android:layout_below="@id/layoutBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingStart="16dp"
+            android:layout_below="@id/layoutBar"
+            android:orientation="vertical"
             android:paddingEnd="16dp"
-            android:orientation="vertical">
+            android:paddingStart="16dp"
+            android:visibility="gone">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="4dp"
-                android:text="Old password"
-                android:textSize="15sp"
-                android:textColor="@color/colorButtonGray" />
-
-            <EditText
-                android:id="@+id/edtOldPassword"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorButtonGray"
-                android:textColor="@color/colorButtonGray"
-                android:textSize="15sp"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1" />
+                android:layout_marginTop="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="4dp"
-                android:text="New password"
-                android:textSize="15sp"
-                android:textColor="@color/colorButtonGray" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/colorButtonGray">
 
-            <EditText
-                android:id="@+id/edtNewPassword"
+                    <EditText
+                        android:id="@+id/edtOldPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorButtonGray"
+                        android:hint="@string/old_password"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:paddingEnd="30dp"
+                        android:textColor="@color/colorButtonGray"
+                        android:textSize="@dimen/text_size_custom_large" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgShowOldPassword"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ripple"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_consumer_eye_show_password_color"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/imgRemoveOldPassword"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ripple"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_consumer_caravan_x_close_color"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorButtonGray"
-                android:textColor="@color/colorButtonGray"
-                android:textSize="15sp"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1" />
+                android:layout_marginTop="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="4dp"
-                android:text="Confirm password"
-                android:textSize="15sp"
-                android:textColor="@color/colorButtonGray" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/colorButtonGray">
 
-            <EditText
-                android:id="@+id/edtConfirmPassword"
+                    <EditText
+                        android:id="@+id/edtNewPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorButtonGray"
+                        android:hint="@string/new_password"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:paddingEnd="30dp"
+                        android:textColor="@color/colorButtonGray"
+                        android:textSize="@dimen/text_size_custom_large" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgShowNewPassword"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ripple"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_consumer_eye_show_password_color"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/imgRemoveNewPassword"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ripple"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_consumer_caravan_x_close_color"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorButtonGray"
-                android:textColor="@color/colorButtonGray"
-                android:textSize="15sp"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1" />
+                android:layout_marginTop="10dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/colorButtonGray">
+
+                    <EditText
+                        android:id="@+id/edtConfirmPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorButtonGray"
+                        android:hint="@string/confirm_password"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:paddingEnd="60dp"
+                        android:textColor="@color/colorButtonGray"
+                        android:textSize="@dimen/text_size_custom_large" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imgShowConfirmPassword"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ripple"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_consumer_eye_show_password_color"
+                        android:visibility="invisible" />
+
+                    <ImageView
+                        android:id="@+id/imgRemoveConfirmPassword"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ripple"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_consumer_caravan_x_close_color"
+                        android:visibility="invisible" />
+
+                </LinearLayout>
+
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:orientation="horizontal">
+
                 <FrameLayout
                     android:id="@+id/frmChangePasswordUpdate"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
                     android:background="@drawable/bg_button_filter"
                     android:gravity="center">
 
@@ -1100,17 +1196,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Update"
-                        android:textSize="15sp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
                 </FrameLayout>
 
                 <FrameLayout
                     android:id="@+id/frmChangePasswordCancel"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
                     android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
                     android:background="@drawable/bg_button_filter2"
                     android:gravity="center">
 
@@ -1119,8 +1215,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Cancel"
-                        android:textSize="15sp"
-                        android:textColor="@color/colorButtonGray" />
+                        android:textColor="@color/colorButtonGray"
+                        android:textSize="15sp" />
                 </FrameLayout>
             </LinearLayout>
 

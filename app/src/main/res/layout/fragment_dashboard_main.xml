@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layoutMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:visibility="gone">
+    android:visibility="visible">
 
     <com.homecaravan.android.consumer.widget.CustomNestedScrollView
         android:id="@+id/scrollView"
@@ -162,14 +161,15 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/tvNewMessagesCount"
                             android:layout_width="@dimen/icon_dashboard_tab_top"
                             android:layout_height="@dimen/icon_dashboard_tab_top"
                             android:layout_alignParentBottom="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/margin_dashboard_tab_top"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/margin_dashboard_tab_top"
                             android:background="@drawable/bg_text_view_number_dashboard"
                             android:gravity="center"
-                            android:text="15"
+                            android:text="0"
                             android:textColor="@color/colorWhite"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -178,7 +178,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:layout_marginLeft="@dimen/margin_dashboard_tab_top">
+                        android:layout_marginStart="@dimen/margin_dashboard_tab_top">
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/rvAgentShowing"
@@ -219,6 +219,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+
 
                         android:id="@+id/tvTitle"
                         style="@style/TextViewMain"
@@ -299,12 +300,12 @@
             </HorizontalScrollView>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/layoutAgent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -437,8 +438,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_dashboard_tab_top"
                 android:background="@android:color/white"
-                android:elevation="2dp"
-                android:visibility="visible">
+                android:elevation="2dp">
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
@@ -604,7 +604,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_dashboard_tab_top"
                 android:background="@android:color/white"
-                android:elevation="2dp">
+                android:elevation="2dp"
+                android:visibility="gone">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvJustListed"
@@ -619,7 +620,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_dashboard_tab_top"
                 android:background="@android:color/white"
-                android:elevation="2dp">
+                android:elevation="2dp"
+                android:visibility="gone">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvSaveTrending"
@@ -630,18 +632,292 @@
             </FrameLayout>
 
             <FrameLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_dashboard_tab_top"
                 android:background="@android:color/white"
                 android:elevation="2dp">
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rvShowingHistory"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="150dp"
+                    android:orientation="horizontal">
 
-                </android.support.v7.widget.RecyclerView>
+                    <RelativeLayout
+                        android:id="@+id/layoutHeader"
+                        android:layout_width="40dp"
+                        android:layout_height="150dp"
+                        android:background="@drawable/bg_header_rv_item"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.5"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/schedule_background_dashboard" />
+
+                        <com.homecaravan.android.consumer.widget.VerticalTextView
+                            style="@style/TextViewItemDashboard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:rotation="180"
+                            android:text="@string/dashboard_showing_history" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginLeft="@dimen/margin_header_dashboard_item"
+                                android:layout_marginRight="@dimen/margin_header_dashboard_item">
+
+
+                                <TextView
+                                    android:id="@+id/tvNumberListing"
+                                    style="@style/TextViewItemDashboard2"
+                                    android:layout_width="@dimen/icon_item_dashboard"
+                                    android:layout_height="@dimen/icon_item_dashboard"
+                                    android:layout_alignParentRight="true"
+                                    android:background="@drawable/bg_view_header_dashboard_item"
+                                    android:gravity="center"
+                                    android:textColor="@color/colorWhite"
+                                    android:visibility="gone" />
+                            </RelativeLayout>
+
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_margin="6dp"
+                        android:layout_toEndOf="@+id/layoutHeader">
+
+                        <LinearLayout
+
+                            android:id="@+id/layoutShowingAppt"
+                            android:layout_width="0dp"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:background="#f5f7f8"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_margin="8dp"
+                                    android:src="@drawable/ic_dashboard_appt" />
+
+                                <RelativeLayout
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@drawable/time_appt_dashboard">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/tvDayAppt"
+                                            style="@style/TextViewMain"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:textColor="@color/colorWhite"
+                                            android:textSize="15sp" />
+
+                                        <TextView
+                                            android:id="@+id/tvMonthAppt"
+                                            style="@style/TextViewMain"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:textColor="@color/colorWhite"
+                                            android:textSize="15sp" />
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentTop="true"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="8dp">
+
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:src="@drawable/ic_dashboard_time" />
+
+                                        <TextView
+                                            android:id="@+id/tvTimeAppt"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_marginStart="8dp" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:id="@+id/tvNameAppt"
+                                        style="@style/TextViewMain"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="8dp"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvAddAppt"
+                                        style="@style/TextViewMain"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_marginTop="4dp" />
+                                </LinearLayout>
+
+
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutShowingCaravan"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:background="#f5f7f8"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:layout_margin="8dp"
+                                    android:src="@drawable/ic_dashboard_caravan" />
+
+                                <RelativeLayout
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:background="@drawable/time_caravan_dashboard">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:orientation="vertical">
+
+                                        <TextView
+                                            android:id="@+id/tvDayCaravan"
+                                            style="@style/TextViewMain"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:textColor="@color/colorWhite"
+                                            android:textSize="15sp" />
+
+                                        <TextView
+                                            android:id="@+id/tvMonthCaravan"
+                                            style="@style/TextViewMain"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:textColor="@color/colorWhite"
+                                            android:textSize="15sp" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="8dp">
+
+                                        <ImageView
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:src="@drawable/ic_dashboard_time" />
+
+                                        <TextView
+                                            android:id="@+id/tvTimeCaravan"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_vertical"
+                                            android:layout_marginStart="8dp" />
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:id="@+id/tvNameCaravan"
+                                        style="@style/TextViewMain"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="8dp"
+                                        android:textSize="15sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvAddCaravan"
+                                        style="@style/TextViewMain"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="8dp"
+                                        android:layout_marginTop="4dp" />
+                                </LinearLayout>
+
+
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
             </FrameLayout>
 
             <FrameLayout
@@ -663,4 +939,5 @@
         </LinearLayout>
 
     </com.homecaravan.android.consumer.widget.CustomNestedScrollView>
+
 </LinearLayout>

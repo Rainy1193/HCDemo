@@ -1,6 +1,7 @@
 package com.homecaravan.android.consumer.consumerdashboard;
 
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,8 +52,9 @@ import com.homecaravan.android.consumer.consumermvp.loginmvp.SetAgentView;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.GetFavoriteListingView;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.GetListSearchPresenter;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.GetListSearchView;
-import com.homecaravan.android.consumer.consumermvp.showingmvp.GetListShowingPastPresenter;
-import com.homecaravan.android.consumer.consumermvp.showingmvp.GetListShowingPastView;
+
+import com.homecaravan.android.consumer.consumermvp.showingmvp.GetListShowingPresenter;
+import com.homecaravan.android.consumer.consumermvp.showingmvp.GetListShowingView;
 import com.homecaravan.android.consumer.fastadapter.SaveSearchDashboardItem;
 import com.homecaravan.android.consumer.fragment.FragmentDashboardNew;
 import com.homecaravan.android.consumer.listener.IAgentListener;
@@ -67,6 +69,7 @@ import com.homecaravan.android.consumer.model.HeaderRvData;
 import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.ViewAllRvData;
 import com.homecaravan.android.consumer.model.listitem.ListingDashboard;
+import com.homecaravan.android.consumer.model.responseapi.AppointmentShowing;
 import com.homecaravan.android.consumer.model.responseapi.CaravanShowing;
 import com.homecaravan.android.consumer.model.responseapi.Listing;
 import com.homecaravan.android.consumer.model.responseapi.ListingFull;
@@ -75,6 +78,7 @@ import com.homecaravan.android.consumer.model.responseapi.ResponseFeatured;
 import com.homecaravan.android.consumer.model.responseapi.ResponseMessageGetThreadId;
 import com.homecaravan.android.consumer.model.responseapi.Search;
 import com.homecaravan.android.consumer.utils.Utils;
+import com.homecaravan.android.consumer.utils.viewanimator.ViewAnimator;
 import com.homecaravan.android.consumer.widget.CustomNestedScrollView;
 import com.homecaravan.android.consumer.widget.CustomViewPager;
 import com.homecaravan.android.models.CurrentSaveSearch;
@@ -90,17 +94,17 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-public class FragmentDashboardMain extends BaseFragment implements ShowingHistoryView,
+public class FragmentDashboardMain extends BaseFragment implements
         FeatureAgentsView, IDashboardListener, GetListSearchView, GetJustListView, GetTrendingView,
-        GetListShowingPastView, GetFavoriteListingView,
-        GetFeaturedView, SetAgentView, IAgentListener, IGetThreadIdView {
+        GetFavoriteListingView, GetFeaturedView, SetAgentView, IAgentListener, IGetThreadIdView, GetListShowingView {
     public static final String TAG = FragmentDashboardMain.class.getSimpleName();
     private JustListedDashboardAdapter mJustListedAdapter;
     private TrendingDashboardAdapter mTrendingAdapter;
-    private ShowingHistoryDashboardAdapter mShowingHistoryAdapter;
+
     private FeaturedAgentAdapter mFeaturedAgentAdapter;
     private AgentDashboardAdapter mAgentAdapter;
-
+    private GetListShowingPresenter mGetListCaravanPresenter;
+    private GetListShowingPresenter mGetListApptPresenter;
     private FastItemAdapter<SaveSearchDashboardItem> mSaveSearchAdapter;
     private ArrayList<Search> mArrSearch = new ArrayList<>();
     private ArrayList<ConsumerTeam> mArrTeam = new ArrayList<>();
@@ -116,7 +120,7 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
     private GetTrendingPresenter mGetTrendingPresenter;
     private GetJustListPresenter mGetJustListPresenter;
     private GetListSearchPresenter mGetListSearchPresenter;
-    private GetListShowingPastPresenter mGetShowingPastPresenter;
+
     private FeatureAgentsPresenter mFeatureAgentsPresenter;
     private FeatureAgentsHelper mFeatureAgentsHelper;
     private GetFeaturedPresenter mGetFeaturedPresenter;
@@ -146,8 +150,6 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
     RecyclerView mSaveSearch;
     @Bind(R.id.rvJustListed)
     RecyclerView mJustListed;
-    @Bind(R.id.rvShowingHistory)
-    RecyclerView mShowingHistory;
     @Bind(R.id.rvSaveTrending)
     RecyclerView mTrending;
     @Bind(R.id.rvAgent)
@@ -201,6 +203,31 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
     @Bind(R.id.tvNewMessagesCount)
     TextView mTvNewMessagesCount;
 
+    @Bind(R.id.layoutShowingAppt)
+    LinearLayout mLayoutShowingAppt;
+    @Bind(R.id.layoutShowingCaravan)
+    LinearLayout mLayoutShowingCaravan;
+    @Bind(R.id.tvDayAppt)
+    TextView mTvDayAppt;
+    @Bind(R.id.tvMonthAppt)
+    TextView mTvMonthAppt;
+    @Bind(R.id.tvTimeAppt)
+    TextView mTvTimeAppt;
+    @Bind(R.id.tvNameAppt)
+    TextView mTvNameAppt;
+    @Bind(R.id.tvAddAppt)
+    TextView mTvAddAppt;
+
+    @Bind(R.id.tvDayCaravan)
+    TextView mTvDayCaravan;
+    @Bind(R.id.tvMonthCaravan)
+    TextView mTvMonthCaravan;
+    @Bind(R.id.tvTimeCaravan)
+    TextView mTvTimeCaravan;
+    @Bind(R.id.tvNameCaravan)
+    TextView mTvNameCaravan;
+    @Bind(R.id.tvAddCaravan)
+    TextView mTvAddCaravan;
 
     @OnClick(R.id.rlMessageOnDashBoard)
     public void onMessageOnDashBoardClicked() {
@@ -340,6 +367,8 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
     public void setupMvp() {
 
         setUpViewPager();
+        mGetListCaravanPresenter = new GetListShowingPresenter(this);
+        mGetListApptPresenter = new GetListShowingPresenter(this);
         mGetTrendingPresenter = new GetTrendingPresenter(this);
         mGetJustListPresenter = new GetJustListPresenter(this);
         mJustListedAdapter = new JustListedDashboardAdapter(getActivity(), mArrListingJustList, this);
@@ -348,9 +377,6 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
         mTrendingAdapter = new TrendingDashboardAdapter(getActivity(), mArrListingTrending, this);
         mTrending.setLayoutManager(createLayoutManager());
 
-        mShowingHistoryAdapter = new ShowingHistoryDashboardAdapter(getActivity(), mArrBaseListing, this);
-        mShowingHistory.setLayoutManager(createLayoutManager());
-
         mAgentAdapter = new AgentDashboardAdapter(getActivity(), mArrTeam);
         mRvAgentShowing.setLayoutManager(createLayoutManager());
 
@@ -358,7 +384,7 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
 
         mJustListed.setAdapter(mJustListedAdapter);
         mTrending.setAdapter(mTrendingAdapter);
-        mShowingHistory.setAdapter(mShowingHistoryAdapter);
+
 
         mRvAgentShowing.setAdapter(mAgentAdapter);
         mSaveSearch.setLayoutManager(createLayoutManager());
@@ -367,8 +393,6 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
         mGetListSearchPresenter = new GetListSearchPresenter(this);
         mGetListSearchPresenter.getListSearch("1", "", "", "");
 
-        mGetShowingPastPresenter = new GetListShowingPastPresenter(this);
-        mGetShowingPastPresenter.getListShowingPast("caravan");
 
         mFeatureAgentsHelper = new FeatureAgentsHelper();
         mFeatureAgentsPresenter = new FeatureAgentsPresenter(mFeatureAgentsHelper, this);
@@ -385,7 +409,7 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
             mLayoutAgent.setVisibility(View.VISIBLE);
             Glide.with(getContext()).load(ConsumerUser.getInstance().getData().getAgentPhoto())
                     .asBitmap().fitCenter().into(mIvAgent);
-            if(ConsumerUser.getInstance().getData().getAgentCompany() != null){
+            if (ConsumerUser.getInstance().getData().getAgentCompany() != null) {
                 if (ConsumerUser.getInstance().getData().getAgentCompany().getJobTitle() != null) {
                     mAgentCompany.setText(ConsumerUser.getInstance().getData().getAgentCompany().getJobTitle());
                 }
@@ -397,20 +421,6 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
         }
     }
 
-
-    @Override
-    public void showShowingHistory(ArrayList<ConsumerListingFullStatus> showing) {
-
-        mArrListing.clear();
-        mArrBaseListing.clear();
-        mArrListing.addAll(showing);
-        mArrBaseListing.add(new HeaderRvData());
-        for (int i = 0; i < mArrListing.size(); i++) {
-            mArrBaseListing.add(mArrListing.get(i));
-        }
-        mArrBaseListing.add(new ViewAllRvData());
-        mShowingHistoryAdapter.notifyDataSetChanged();
-    }
 
     @Override
     public void showFeatureAgents(ArrayList<ConsumerTeam> teams) {
@@ -763,12 +773,57 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
     }
 
     @Override
+    public void getShowingApptSuccess(ArrayList<AppointmentShowing> appointments) {
+        if (appointments.size() != 0) {
+            mLayoutShowingAppt.setVisibility(View.VISIBLE);
+            AppointmentShowing appointmentShowing = appointments.get(0);
+            mTvNameAppt.setText(appointmentShowing.getTitle());
+            mTvAddAppt.setText(appointmentShowing.getRefAppointment().getListing().getAddress().getFullAddress().getTwoLine().get(1));
+            if (appointmentShowing.getStart() != null) {
+                mTvDayAppt.setText(Utils.getDayShowingDashboard(appointmentShowing.getStart()));
+                mTvMonthAppt.setText(Utils.getMonthShowingDashboard(appointmentShowing.getStart()));
+            }
+            if (appointmentShowing.getEnd() != null) {
+                mTvTimeAppt.setText(Utils.getTimeShowingDashboard(appointmentShowing.getStart()) + " - " +
+                        Utils.getTimeShowingDashboard(appointmentShowing.getEnd()));
+            } else {
+                mTvTimeAppt.setText(Utils.getTimeShowingDashboard(appointmentShowing.getStart()));
+            }
+        }
+    }
+
+    @Override
     public void getShowingCaravanSuccess(ArrayList<CaravanShowing> caravans) {
+        if (caravans.size() != 0) {
+            mLayoutShowingCaravan.setVisibility(View.VISIBLE);
+            CaravanShowing caravanShowing = caravans.get(0);
+            mTvNameCaravan.setText(caravanShowing.getTitle());
+            mTvAddCaravan.setText(String.valueOf(caravanShowing.getRefCaravan().getDestinations().size()) + " appointments");
+            if (caravanShowing.getStart() != null) {
+                mTvDayCaravan.setText(Utils.getDayShowingDashboard(caravanShowing.getStart()));
+                mTvMonthCaravan.setText(Utils.getMonthShowingDashboard(caravanShowing.getStart()));
+            }
+            if (caravanShowing.getEnd() != null) {
+                mTvTimeCaravan.setText(Utils.getTimeShowingDashboard(caravanShowing.getStart()) + " - " +
+                        Utils.getTimeShowingDashboard(caravanShowing.getEnd()));
+            } else {
+                mTvTimeCaravan.setText(Utils.getTimeShowingDashboard(caravanShowing.getStart()));
+            }
+        }
+    }
+
+    @Override
+    public void getShowingApptFail(String message) {
 
     }
 
     @Override
     public void getShowingCaravanFail(String message) {
+
+    }
+
+    @Override
+    public void getShowingApptFail(@StringRes int message) {
 
     }
 
@@ -881,7 +936,7 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
     @Override
     public void getThreadIdSuccess(ResponseMessageGetThreadId threadId, String threadName) {
         Log.e(TAG, "getThreadIdSuccess: threadId: " + threadId.getThreadId());
-        if(!HomeCaravanApplication.mLoginSocketSuccess){
+        if (!HomeCaravanApplication.mLoginSocketSuccess) {
             return;
         }
         Intent intent = new Intent(getActivity(), ConversationActivity.class);
@@ -905,8 +960,8 @@ public class FragmentDashboardMain extends BaseFragment implements ShowingHistor
         showSnackBar(mLayoutMain, TypeDialog.ERROR, message, "getThreadIdFail");
     }
 
-    public void setNewMessagesCount(int count){
-        if(mTvNewMessagesCount != null){
+    public void setNewMessagesCount(int count) {
+        if (mTvNewMessagesCount != null) {
             mTvNewMessagesCount.setText(String.valueOf(count));
         }
     }

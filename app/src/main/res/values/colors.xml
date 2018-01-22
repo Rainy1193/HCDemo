@@ -23,6 +23,7 @@
     <color name="colorGrey">#BDBDBD</color>
     <color name="colorGrey1">#E0E0E0</color>
     <color name="colorGrey2">#EEEEEE</color>
+    <color name="backgroupLogin">#2591e9</color>
 
     <!-- new color-->
     <color name="colorWhite">#FFFFFF</color>
@@ -369,6 +370,7 @@
 
     //Message consumer
     <color name="consumer_message_bg_recyclerview">#F2F7FA</color>
+    <color name="consumer_message_bg_recyclerview_2">#dde5ea</color>
     <color name="consumer_message_blue">#179feb</color>
     <color name="consumer_message_conversation_blue">#0FA0EC</color>
     <color name="consumer_message_line">#c6dfed</color>

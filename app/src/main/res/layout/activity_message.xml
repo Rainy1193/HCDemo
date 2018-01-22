@@ -12,8 +12,6 @@
         android:id="@+id/layoutBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:background="@color/colorBuy"
         android:orientation="horizontal">
 
@@ -37,71 +35,20 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_action_bar_consumer"
+            android:gravity="center"
             android:orientation="horizontal">
 
-            <RelativeLayout
-                android:id="@+id/layoutChangeType"
-                android:layout_width="@dimen/icon_search_bar_size"
-                android:layout_height="@dimen/icon_search_bar_size"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="2dp"
-                android:background="@drawable/bg_buy_pick">
-
-                <TextView
-                    android:id="@+id/tvType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:text="B"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-            <EditText
-                android:id="@+id/etSearch"
-                style="@style/SearchDashboardStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="4dp"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                android:imeActionId="@+id/searchEvent"
-                android:imeActionLabel="action_search"
-                android:imeOptions="actionSearch"
-                android:inputType="text"
-                android:lines="1" />
-
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="4dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="@string/message"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
-                <ImageView
-                    android:id="@+id/ivCloseSearch"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="4dp"
-                    android:background="@drawable/ripple"
-                    android:src="@drawable/ic_close_search_main"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/ivSearch"
-                    android:layout_width="@dimen/icon_search_bar_size"
-                    android:layout_height="@dimen/icon_search_bar_size"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="4dp"
-                    android:background="@drawable/ripple"
-                    android:padding="1dp"
-                    android:src="@drawable/ic_search_consumer" />
-
-            </LinearLayout>
         </LinearLayout>
 
         <RelativeLayout

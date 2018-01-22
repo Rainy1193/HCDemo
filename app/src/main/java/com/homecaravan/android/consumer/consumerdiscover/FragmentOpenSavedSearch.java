@@ -135,6 +135,7 @@ public class FragmentOpenSavedSearch extends BaseFragment implements IAddAgentLi
 
     @Override
     public void getListSearchFail(String message) {
+        mIsEnd = false;
         mLoadMore.clear();
         mProgressBar.setVisibility(View.GONE);
         showSnackBar(mLayoutMain, TypeDialog.WARNING, message, "getListSaveSearchFail");
@@ -142,6 +143,7 @@ public class FragmentOpenSavedSearch extends BaseFragment implements IAddAgentLi
 
     @Override
     public void getListSearchFail(@StringRes int message) {
+        mIsEnd = false;
         mLoadMore.clear();
         mProgressBar.setVisibility(View.GONE);
         showSnackBar(mLayoutMain, TypeDialog.ERROR, message, "getListSaveSearchFail");

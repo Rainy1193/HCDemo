@@ -183,7 +183,7 @@ public class Utils {
 
         View view = LayoutInflater.from(context).inflate(R.layout.layout_cluster_search, null, false);
         TextView textView = (TextView) view.findViewById(R.id.tvCount);
-        textView.setText(getPriceFilter(clustersSearchMap.getDocCount()));
+        textView.setText(getListingCluster(clustersSearchMap.getDocCount()));
         iconGenerator.setBackground(null);
         iconGenerator.setContentView(view);
         return iconGenerator;
@@ -233,6 +233,31 @@ public class Utils {
                 m = m.substring(0, 3);
             }
             return String.valueOf(price / 1000000) + "," + m + "M";
+        }
+    }
+
+    public static String getListingCluster(int listings) {
+        Log.e("listings", String.valueOf(listings));
+        if (listings < 1000) {
+            return String.valueOf(listings);
+        } else if (listings > 1000 && listings < 1000000) {
+            String sf = String.valueOf((float) listings / 1000);
+            if (listings % 1000 == 0) {
+                return String.valueOf(listings / 1000) + "K";
+            }
+            return String.valueOf(listings / 1000) + " " + "K";
+        } else {
+            int p = listings / 1000000;
+            int d = listings - p * 1000000;
+            if (d == 0) {
+                return String.valueOf(listings / 1000000) + "M";
+            }
+            String sf = String.valueOf((float) listings / 1000000);
+            String m = sf.substring(sf.indexOf(".") + 1);
+            if (m.length() > 3) {
+                m = m.substring(0, 3);
+            }
+            return String.valueOf(listings / 1000000) + " " + "M";
         }
     }
 
@@ -757,5 +782,28 @@ public class Utils {
         }
     }
 
+    public static String getDayShowingDashboard(String raw) {
+        DateFormat df = new SimpleDateFormat("d", Locale.US);
+        return df.format(createDateFromString(raw));
+    }
+
+    public static String getMonthShowingDashboard(String raw) {
+        DateFormat df = new SimpleDateFormat("MMM", Locale.US);
+        return df.format(createDateFromString(raw));
+    }
+
+    public static String getTimeShowingDashboard(String raw) {
+        DateFormat df = new SimpleDateFormat("hh:mm a", Locale.US);
+        return df.format(createDateFromString(raw));
+    }
+
+    public static int getStatusBarHeight(Context context) {
+        int result = 0;
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
 
 }

@@ -857,7 +857,7 @@ public class FragmentSchedule extends BaseFragment implements ISchedulePropertyL
         mViewPagerSavedSearch.getAdapter().notifyDataSetChanged();
         mViewPagerSavedSearch.setOffscreenPageLimit(mViewPagerSavedSearch.getAdapter().getCount());
         if (mSavedSearchAdapter.getCount() != 0) {
-            if (mSavedSearchAdapter.getCount() <= 10) {
+            if (mSavedSearchAdapter.getCount() <= 10 && arrSearch.size() != 0) {
                 FragmentPageSchedule pageSchedule = (FragmentPageSchedule) mSavedSearchAdapter.getFragment(mTotalSearch - arrSearch.size());
                 pageSchedule.setAdapter();
                 mViewPagerSavedSearch.setCurrentItem(mTotalSearch - arrSearch.size(), true);

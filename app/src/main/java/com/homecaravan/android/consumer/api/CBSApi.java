@@ -1,6 +1,8 @@
 package com.homecaravan.android.consumer.api;
 
 import com.homecaravan.android.consumer.model.responseapi.BaseResponse;
+import com.homecaravan.android.consumer.model.responseapi.PolygonDetail;
+import com.homecaravan.android.consumer.model.responseapi.PolygonSearch;
 import com.homecaravan.android.consumer.model.responseapi.ResponseAllSearch;
 import com.homecaravan.android.consumer.model.responseapi.ResponseFavorite;
 import com.homecaravan.android.consumer.model.responseapi.ResponseGetListingPrePage;
@@ -11,6 +13,7 @@ import com.homecaravan.android.consumer.model.responseapi.ResponseParticipant;
 import com.homecaravan.android.consumer.model.responseapi.ResponseSearchDetail;
 import com.homecaravan.android.consumer.model.responseapi.ResponseSearchMap;
 import com.homecaravan.android.consumer.model.responseapi.ResponseVote;
+import com.homecaravan.android.consumer.model.responseapi.SearchAddress;
 
 import java.util.Map;
 
@@ -107,7 +110,19 @@ public interface CBSApi {
                         @Field("APPT_NOTE") String appt_note,
                         @Field("TOKEN") String token,
                         @Field("COMMUNICATION_METHOD") String COMMUNICATION_METHOD);
+
     @POST("search_api/archive_search")
     @FormUrlEncoded
     Call<BaseResponse> archiveSearch(@Field("search_id") String id);
+
+    @POST("search_api/search_address")
+    @FormUrlEncoded
+    Call<String> searchAddress(@Field("address") String address);
+
+    @POST("search_api/save_polygon")
+    @FormUrlEncoded
+    Call<PolygonSearch> savePolygon(@Field("DATA") String data);
+
+    @GET
+    Call<PolygonDetail> getPolygon(@Url String url);
 }

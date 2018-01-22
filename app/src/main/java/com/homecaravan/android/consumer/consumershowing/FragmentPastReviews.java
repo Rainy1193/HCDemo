@@ -37,7 +37,6 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 
-
 public class FragmentPastReviews extends BaseFragment implements GetListShowingView, IShowingListener, IGetThreadIdView {
 
     private FastItemAdapter<SingleAppointmentItem> mSingleAdapter;

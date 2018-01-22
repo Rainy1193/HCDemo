@@ -9,6 +9,7 @@
     <dimen name="text_size_custom_small">10sp</dimen>
     <dimen name="text_size_custom_normal">12sp</dimen>
     <dimen name="text_size_custom_lang">14sp</dimen>
+    <dimen name="text_size_custom_large">15sp</dimen>
     <dimen name="text_size_custom_big">16sp</dimen>
     <dimen name="text_size_custom_title">18sp</dimen>
     <dimen name="text_size_custom_xlang">20sp</dimen>
@@ -144,6 +145,6 @@
 
     <dimen name="borderLine">16dp</dimen>
     <dimen name="margin_unlock_agent">20dp</dimen>
-    <dimen name="text_size_agent_unlock">20sp</dimen>
+    <dimen name="text_size_agent_unlock">19sp</dimen>
 
 </resources>

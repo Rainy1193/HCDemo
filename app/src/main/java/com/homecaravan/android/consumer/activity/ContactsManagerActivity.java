@@ -70,6 +70,7 @@ public class ContactsManagerActivity extends BaseActivity implements IContactMan
     private int mPositionEdit;
     private boolean mStartActivityFromMessage = false;
     private boolean mIsAdmin;
+    private String mFromActivity;
     @Bind(R.id.layoutMain)
     RelativeLayout mLayoutMain;
     @Bind(R.id.layoutRole)
@@ -276,7 +277,7 @@ public class ContactsManagerActivity extends BaseActivity implements IContactMan
         mViewPager.setAdapter(mViewPagerAdapter);
         mViewPager.setOffscreenPageLimit(mViewPagerAdapter.getCount());
         mArrContactInvited.addAll(ContactSingleton.getInstance().getArrContact());
-        mAdapter = new ContactInvitedAdapter(mArrContactInvited, this, this);
+        mAdapter = new ContactInvitedAdapter(mArrContactInvited, this, this,true);
         mRvInvited.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mRvInvited.setAdapter(mAdapter);
         mRvInvited.setItemAnimator(new FadeInRightAnimator());
@@ -284,7 +285,11 @@ public class ContactsManagerActivity extends BaseActivity implements IContactMan
         mCreateContactPresenter = new CreateContactPresenter(this);
         mDeleteContactPresenter = new DeleteContactPresenter(this);
         EventBus.getDefault().register(this);
-
+        if (getIntent().getExtras() != null) {
+            if (getIntent().getExtras().getString("from") != null) {
+                mFromActivity = getIntent().getExtras().getString("from");
+            }
+        }
     }
 
     private void checkIntent() {

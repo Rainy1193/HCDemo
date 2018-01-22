@@ -225,7 +225,7 @@ public class MyTeamContactsActivity extends BaseActivity implements IContactMana
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.setAdapter(mViewPagerAdapter);
         mViewPager.setOffscreenPageLimit(mViewPagerAdapter.getCount());
-        mAdapter = new ContactInvitedAdapter(mArrContactInvited, this, this);
+        mAdapter = new ContactInvitedAdapter(mArrContactInvited, this, this, true);
         mRvInvited.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mRvInvited.setAdapter(mAdapter);
         mRvInvited.setItemAnimator(new FadeInRightAnimator());

@@ -9,7 +9,7 @@
         android:id="@+id/layoutMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2591e9"
+        android:background="@color/backgroupLogin"
         android:gravity="center_horizontal">
 
         <FrameLayout
@@ -29,6 +29,7 @@
             android:id="@+id/layoutUnlockAgent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/backgroupLogin"
             android:visibility="gone">
 
             <include layout="@layout/layout_unlock_agent" />
@@ -175,91 +176,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layoutForgotPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                style="@style/TextViewMain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/forgot_password"
-                android:textColor="@color/colorWhite"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="4dp"
-                    android:layout_weight="4"
-                    android:background="@color/colorWhite" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="4dp"
-                    android:layout_weight="6" />
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="60dp"
-                android:background="@drawable/bg_splash_image_children_consumer">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:padding="4dp"
-                    android:src="@drawable/ic_consumer_verify_email"/>
-
-                <EditText
-                    android:id="@+id/edtForgotPasswordEmailOrPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/prompt_email"
-                    android:textColorHint="@color/white"
-                    android:imeOptions="actionDone"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@android:color/transparent"
-                    android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_custom_lang" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/rlForgotPassword"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/button_login_selector_login_consumer">
-
-                <TextView
-                    style="@style/TextViewMain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="REQUEST A NEW PASSWORD"
-                    android:textColor="@color/color_bt_login"
-                    android:textSize="@dimen/text_size_custom_lang" />
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/layoutLoginRegister"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -279,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="35dp"
                 android:focusableInTouchMode="true"
                 android:orientation="horizontal">
 
@@ -379,7 +295,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                android:background="#2591e9"
+                android:background="@color/backgroupLogin"
                 app:elevation="0dp">
 
                 <android.support.design.widget.TabLayout

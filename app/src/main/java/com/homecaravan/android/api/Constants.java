@@ -25,19 +25,21 @@ public class Constants {
 
     //Message
     public final String URL_BASE_CONSUMER_MESSAGE = "http://services.homecaravan.com:8000";
-    //    public final String URL_BASE_CONSUMER_MESSAGE = "http://service.homecaravan.net:8282";
-    public final String URL_BASE_CONSUMER_MESSAGE_UPLOAD_IMAGE = "http://service.homecaravan.net:9292";
+    public final String URL_BASE_CONSUMER_MESSAGE_UPLOAD_IMAGE = "http://services.homecaravan.com:8001";
     public final String USER_LOGIN = "user.login";
     public final String USER_LOAD_BY_IDS = "user.loadByIds";
     public final String THREAD = "thread";
+    public final String THREAD_KEY_REMOVE_PARTICIPANTS = "removeParticipant";
     public final String THREAD_LOAD = "thread.load";
     public final String THREAD_UPDATE = "thread.update";
     public final String THREAD_ID = "threadId";
     public final String THREAD_GET_ALL = "thread.getAll";
+    public final String THREAD_READ = "thread.read";
     public final String THREAD_GET_MESSAGE = "thread.getMessages";
     public final String THREAD_CREATE = "thread.create";
     public final String THREAD_CREATE_TIME = "createTime";
     public final String THREAD_REMOVE_PARTICIPANTS = "thread.removeParticipants";
+    public final String THREAD_LEAVE = "thread.leave";
     public final String THREAD_ADD_PARTICIPANTS = "thread.addParticipants";
     public final String MESSAGE_SEND_MESSAGE = "message.sendToThread";
     public final String MESSAGE_THREAD_TYPING = "thread.typing";
@@ -58,24 +60,17 @@ public class Constants {
     public final String MESSAGE_NAME = "name";
     public final String MESSAGE_PHOTO = "photo";
     public final String MESSAGE_CONTENT = "content";
-    public final String MESSAGE_STATUS_NORMAL = "NORMAL";
-    public final String MESSAGE_STATUS_DELETED = "DELETED";
-    public final String MESSAGE_TYPE_TEXT = "TEXT";
-    public final String MESSAGE_TYPE_IMAGE = "IMAGE";
-    public final String MESSAGE_TYPE_FILE = "FILE";
-    public final String MESSAGE_ITEM_TYPE_FROM_ITEM = "from_item";
-    public final String MESSAGE_ITEM_TYPE_ITEM = "item";
-    public final String MESSAGE_ITEM_TYPE_TIME_LINE = "timeline";
     public final String MESSAGE_COMMAND = "command";
     public final String MESSAGE_COMMAND_ADD = "ADD";
     public final String MESSAGE_COMMAND_UPDATE = "UPDATE";
     public final String MESSAGE_COMMAND_DELETE = "DELETE";
     public final String MESSAGE_COMMAND_TYPING = "TYPING";
     public final String MESSAGE_KEY = "key";
+    public final String MESSAGE_KEY_PARTICIPANTS = "participants";
     public final String MESSAGE_VALUE = "value";
 
     //CIA
-    public final String URL_BASE_CONSUMER_CIA = "http://service.homecaravan.net:7173";
+    public final String URL_BASE_CONSUMER_CIA = "http://service.homecaravan.com:8002";
     public final String CIA_GOOGLE_DIRECTION_API_KEY = "AIzaSyDZy0BfgLMN-n-BVv-6WPoRs0rGfdOd5lM";
     public final String CIA_LOGIN = "user.login";
     public final String CIA_USERNAME = "username";
@@ -95,6 +90,8 @@ public class Constants {
     public final String CIA_FATEST_INTERVAL = "CIA_FATEST_INTERVAL";
     public final String CIA_UPDATE_INTERVAL = "CIA_UPDATE_INTERVAL";
     public final String CONTACT_LIST_INVITED = "CONTACT_LIST_INVITED";
+    public final String MESSAGE_HAS_GET_ALL_THREAD = "MESSAGE_HAS_GET_ALL_THREAD";
+    public final String MESSAGE_LAST_TIME_STAMP_GET_THREAD = "MESSAGE_LAST_TIME_STAMP_GET_THREAD";
 
 
 

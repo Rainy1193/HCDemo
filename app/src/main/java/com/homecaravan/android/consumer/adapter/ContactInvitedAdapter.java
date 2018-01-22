@@ -24,11 +24,13 @@ public class ContactInvitedAdapter extends RecyclerView.Adapter<ContactInvitedAd
     private ArrayList<ContactManagerData> mArrContact;
     private Context mContext;
     private IContactManager mListener;
+    private boolean mShowEdit;
 
-    public ContactInvitedAdapter(ArrayList<ContactManagerData> mArrContact, Context mContext, IContactManager mListener) {
+    public ContactInvitedAdapter(ArrayList<ContactManagerData> mArrContact, Context mContext, IContactManager mListener, boolean mShowEdit) {
         this.mArrContact = mArrContact;
         this.mContext = mContext;
         this.mListener = mListener;
+        this.mShowEdit = mShowEdit;
     }
 
     @Override

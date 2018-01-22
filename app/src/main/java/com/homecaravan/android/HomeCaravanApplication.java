@@ -59,7 +59,7 @@ public class HomeCaravanApplication extends Application {
     private OkHttp3Downloader okHttp3Downloader;
     private Realm realm;
     private ImageLoader mImageLoader;
-
+    public static final String TAG = "HomeCaravan";
     public static String code;
     public static String location;
     public static String register_email = "";
@@ -88,7 +88,7 @@ public class HomeCaravanApplication extends Application {
     //Message module
     public static boolean mLoginSocketSuccess = false;
     public static boolean mReceiverMessageNotification = true;
-
+    public static boolean mLoginHCSuccessful = false;
     @Override
     public void onCreate() {
         super.onCreate();

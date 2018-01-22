@@ -23,6 +23,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -91,7 +92,6 @@ import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-
 
 public class ConsumerRegisterLoginActivity extends BaseActivity implements LoginView,
         RegisterView,
@@ -557,6 +557,7 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
                 finish();
             }
         }
+
         getCountryZipCode();
         mPrefs = getSharedPreferences(Constants.getInstance().HOME_CARAVAN_CONSUMER, MODE_PRIVATE);
         mLoginFacebook.setReadPermissions(Collections.singletonList("public_profile, email"));
@@ -619,7 +620,7 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
         addTextChangedListener();
     }
 
-    private void addTextChangedListener(){
+    private void addTextChangedListener() {
 
         mEtEmailPhoneLogin.addTextChangedListener(new TextWatcher() {
             @Override
@@ -634,9 +635,9 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(mEtEmailPhoneLogin.getText().length() > 0 && mImgRemoveEmail.getVisibility() == View.INVISIBLE){
+                if (mEtEmailPhoneLogin.getText().length() > 0 && mImgRemoveEmail.getVisibility() == View.INVISIBLE) {
                     mImgRemoveEmail.setVisibility(View.VISIBLE);
-                }else if(mEtEmailPhoneLogin.getText().length() == 0){
+                } else if (mEtEmailPhoneLogin.getText().length() == 0) {
                     mImgRemoveEmail.setVisibility(View.INVISIBLE);
                 }
             }
@@ -655,9 +656,9 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(mEtPasswordLogin.getText().length() > 0 && mImgRemovePassword.getVisibility() == View.INVISIBLE){
+                if (mEtPasswordLogin.getText().length() > 0 && mImgRemovePassword.getVisibility() == View.INVISIBLE) {
                     mImgRemovePassword.setVisibility(View.VISIBLE);
-                }else if(mEtPasswordLogin.getText().length() == 0){
+                } else if (mEtPasswordLogin.getText().length() == 0) {
                     mImgRemovePassword.setVisibility(View.INVISIBLE);
                 }
             }
@@ -676,9 +677,9 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(mFirstName.getText().length() > 0 && mImgRemoveFirstName.getVisibility() == View.INVISIBLE){
+                if (mFirstName.getText().length() > 0 && mImgRemoveFirstName.getVisibility() == View.INVISIBLE) {
                     mImgRemoveFirstName.setVisibility(View.VISIBLE);
-                }else if(mFirstName.getText().length() == 0){
+                } else if (mFirstName.getText().length() == 0) {
                     mImgRemoveFirstName.setVisibility(View.INVISIBLE);
                 }
             }
@@ -697,9 +698,9 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(mLastName.getText().length() > 0 && mImgRemoveLastName.getVisibility() == View.INVISIBLE){
+                if (mLastName.getText().length() > 0 && mImgRemoveLastName.getVisibility() == View.INVISIBLE) {
                     mImgRemoveLastName.setVisibility(View.VISIBLE);
-                }else if(mLastName.getText().length() == 0){
+                } else if (mLastName.getText().length() == 0) {
                     mImgRemoveLastName.setVisibility(View.INVISIBLE);
                 }
             }
@@ -718,9 +719,9 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(mEmail.getText().length() > 0 && mImgRemoveRegisterEmail.getVisibility() == View.INVISIBLE){
+                if (mEmail.getText().length() > 0 && mImgRemoveRegisterEmail.getVisibility() == View.INVISIBLE) {
                     mImgRemoveRegisterEmail.setVisibility(View.VISIBLE);
-                }else if(mEmail.getText().length() == 0){
+                } else if (mEmail.getText().length() == 0) {
                     mImgRemoveRegisterEmail.setVisibility(View.INVISIBLE);
                 }
             }
@@ -739,9 +740,9 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(mPassword.getText().length() > 0 && mImgRemoveRegisterPassword.getVisibility() == View.INVISIBLE){
+                if (mPassword.getText().length() > 0 && mImgRemoveRegisterPassword.getVisibility() == View.INVISIBLE) {
                     mImgRemoveRegisterPassword.setVisibility(View.VISIBLE);
-                }else if(mPassword.getText().length() == 0){
+                } else if (mPassword.getText().length() == 0) {
                     mImgRemoveRegisterPassword.setVisibility(View.INVISIBLE);
                 }
             }
@@ -760,9 +761,9 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(mConfirmPassword.getText().length() > 0 && mImgRemoveRegisterConfirmPassword.getVisibility() == View.INVISIBLE){
+                if (mConfirmPassword.getText().length() > 0 && mImgRemoveRegisterConfirmPassword.getVisibility() == View.INVISIBLE) {
                     mImgRemoveRegisterConfirmPassword.setVisibility(View.VISIBLE);
-                }else if(mConfirmPassword.getText().length() == 0){
+                } else if (mConfirmPassword.getText().length() == 0) {
                     mImgRemoveRegisterConfirmPassword.setVisibility(View.INVISIBLE);
                 }
             }
@@ -1391,12 +1392,12 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
 //    }
 
     @OnClick(R.id.imgRemoveEmail)
-    void onRemoveEmail(){
+    void onRemoveEmail() {
         mEtEmailPhoneLogin.setText(null);
     }
 
     @OnClick(R.id.imgRemovePassword)
-    void onRemovePassword(){
+    void onRemovePassword() {
         if (mEtPasswordLogin.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
             mEtPasswordLogin.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             Glide.with(this).load(R.drawable.ic_consumer_eye_hide_password).asBitmap().into(mImgRemovePassword);
@@ -1407,22 +1408,22 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
     }
 
     @OnClick(R.id.imgRemoveFirstName)
-    void onRemoveFirstName(){
+    void onRemoveFirstName() {
         mFirstName.setText(null);
     }
 
     @OnClick(R.id.imgRemoveLastName)
-    void onRemoveLastName(){
+    void onRemoveLastName() {
         mLastName.setText(null);
     }
 
     @OnClick(R.id.imgRemoveRegisterEmail)
-    void onRemoveRegisterEmail(){
+    void onRemoveRegisterEmail() {
         mEmail.setText(null);
     }
 
     @OnClick(R.id.imgRemoveRegisterPassword)
-    void onRemoveRegisterPassword(){
+    void onRemoveRegisterPassword() {
         if (mPassword.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
             mPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             Glide.with(this).load(R.drawable.ic_consumer_eye_hide_password).asBitmap().into(mImgRemoveRegisterPassword);
@@ -1433,7 +1434,7 @@ public class ConsumerRegisterLoginActivity extends BaseActivity implements Login
     }
 
     @OnClick(R.id.imgRemoveRegisterConfirmPassword)
-    void onRemoveRegisterConfirmPassword(){
+    void onRemoveRegisterConfirmPassword() {
         if (mConfirmPassword.getTransformationMethod() == PasswordTransformationMethod.getInstance()) {
             mConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             Glide.with(this).load(R.drawable.ic_consumer_eye_hide_password).asBitmap().into(mImgRemoveRegisterConfirmPassword);

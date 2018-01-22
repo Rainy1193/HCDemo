@@ -1,6 +1,7 @@
 package com.homecaravan.android.consumer.consumerteam;
 
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,9 +22,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.homecaravan.android.HomeCaravanApplication;
 import com.homecaravan.android.R;
+import com.homecaravan.android.consumer.activity.ContactsManagerActivity;
 import com.homecaravan.android.consumer.activity.ConversationActivity;
 import com.homecaravan.android.consumer.activity.TeamTabSearchActivity;
 import com.homecaravan.android.consumer.adapter.FeaturedAgentAdapter;
+import com.homecaravan.android.consumer.adapter.FriendFamilyAdapter;
 import com.homecaravan.android.consumer.adapter.HomeInspectorFeaturedAdapter;
 import com.homecaravan.android.consumer.adapter.HomeInspectorMyResourceAdapter;
 import com.homecaravan.android.consumer.adapter.LenderFeaturedAdapter;
@@ -63,14 +66,19 @@ import com.homecaravan.android.consumer.message.messagegetthreadidmvp.GetThreadI
 import com.homecaravan.android.consumer.message.messagegetthreadidmvp.IGetThreadIdView;
 import com.homecaravan.android.consumer.model.BaseDataRecyclerView;
 import com.homecaravan.android.consumer.model.ConsumerTeam;
+import com.homecaravan.android.consumer.model.ContactManagerData;
+import com.homecaravan.android.consumer.model.ContactSingleton;
 import com.homecaravan.android.consumer.model.EventAgentDetail;
+import com.homecaravan.android.consumer.model.EventContactManager;
 import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.responseapi.ResponseFeatured;
 import com.homecaravan.android.consumer.model.responseapi.ResponseMessageGetThreadId;
 import com.homecaravan.android.consumer.utils.Convert;
 import com.homecaravan.android.ui.CircleImageView;
+import com.homecaravan.android.ui.CustomLinearLayoutManager;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -119,6 +127,9 @@ public class FragmentTeamChild extends BaseFragment implements IRealtorFeaturedV
     private ConsumerTeam selectedRealtor, selectedLender, selectedHomeInspector;
     private IPageChangeMyTeam mPageChange;
     private GetFeaturedPresenter mGetFeaturedPresenter;
+    private FriendFamilyAdapter mFriendFamilyAdapter;
+    private int REQUEST_ADD_FRIEND = 1;
+    private ArrayList<ContactManagerData> mArrContact = new ArrayList<>();
 
     @Bind(R.id.layoutMain)
     RelativeLayout mLayoutMain;
@@ -227,7 +238,19 @@ public class FragmentTeamChild extends BaseFragment implements IRealtorFeaturedV
     //Escrow company
     @Bind(R.id.rvEscrowCompany)
     RecyclerView mRvEscrowCompany;
-
+    @Bind(R.id.rvFriendFamily)
+    RecyclerView mRvFriendFamily;
+    @Bind(R.id.layoutFriend)
+    RelativeLayout mLayoutFriend;
+    @OnClick(R.id.layoutFriend)
+    public void addFriend() {
+        ContactSingleton.getInstance().getArrContact().clear();
+        ContactSingleton.getInstance().getArrContact().addAll(mArrContact);
+        Intent intent = new Intent(getContext(), ContactsManagerActivity.class);
+        intent.putExtra("from", "team");
+        startActivityForResult(intent, REQUEST_ADD_FRIEND);
+        getActivity().overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
+    }
 
     @OnClick(R.id.ivSearchRealtor)
     public void openSearchRealtor() {
@@ -262,14 +285,22 @@ public class FragmentTeamChild extends BaseFragment implements IRealtorFeaturedV
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        EventBus.getDefault().register(this);
         initAdapter();
         initRealtorFeatured();
         initLenderFeatured();
         initHomeInspectorFeatured();
         initTitleInsurance();
         initEscrowCompany();
-
         setupMvp();
+        mFriendFamilyAdapter = new FriendFamilyAdapter(mArrContact, getContext());
+        mRvFriendFamily.setAdapter(mFriendFamilyAdapter);
+        mRvFriendFamily.setLayoutManager(new CustomLinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+    }
+
+
+    @org.greenrobot.eventbus.Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    public void onEventContact(EventContactManager contactManager) {
 
     }
 
@@ -336,15 +367,15 @@ public class FragmentTeamChild extends BaseFragment implements IRealtorFeaturedV
             mLnRealtorList.setVisibility(View.GONE);
             Glide.with(getContext()).load(ConsumerUser.getInstance().getData().getAgentPhoto())
                     .asBitmap().fitCenter().into(mImgAvatarRealtor);
-            if(ConsumerUser.getInstance().getData().getAgentCompany() != null){
+            if (ConsumerUser.getInstance().getData().getAgentCompany() != null) {
                 if (ConsumerUser.getInstance().getData().getAgentCompany().getJobTitle() != null) {
                     mTvRealtorJob.setText(ConsumerUser.getInstance().getData().getAgentCompany().getJobTitle());
                 }
 
             }
             mTvRealtorName.setText(String.format(getString(R.string.concat_two_word),
-                            ConsumerUser.getInstance().getData().getAgentFirstName(),
-                            ConsumerUser.getInstance().getData().getAgentLastName()));
+                    ConsumerUser.getInstance().getData().getAgentFirstName(),
+                    ConsumerUser.getInstance().getData().getAgentLastName()));
         }
     }
 
@@ -656,6 +687,34 @@ public class FragmentTeamChild extends BaseFragment implements IRealtorFeaturedV
 
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_ADD_FRIEND) {
+            if (resultCode == Activity.RESULT_OK) {
+                ArrayList<ContactManagerData> arr = ContactSingleton.getInstance().getArrContact();
+                int count = 0;
+                for (int i = 0; i < arr.size(); i++) {
+                    for (int j = 0; j < mArrContact.size(); j++) {
+                        if (!arr.get(i).getId().equalsIgnoreCase(mArrContact.get(j).getId())) {
+                            count++;
+                        }
+                    }
+                    if (count == mArrContact.size()) {
+                        Log.e("arr", arr.get(i).toString());
+                        //addCreateCollaborator(arr.get(i));
+                    }
+                }
+                mArrContact.clear();
+                mArrContact.addAll(ContactSingleton.getInstance().getArrContact());
+                mFriendFamilyAdapter.notifyDataSetChanged();
+//                mArrContact.clear();
+//                mArrContact.addAll(arr);
+//                mAdapter.notifyDataSetChanged();
+                //addCreateCollaborator();
+            }
+        }
+    }
+
+    @Override
     public void openAgent(final ResponseFeatured.Featured featuredAgent) {
         mFeaturedAgent = featuredAgent;
         android.support.v7.app.AlertDialog alertDialog = new android.support.v7.app.AlertDialog.Builder(getActivity())
@@ -725,7 +784,7 @@ public class FragmentTeamChild extends BaseFragment implements IRealtorFeaturedV
     @Override
     public void getThreadIdSuccess(ResponseMessageGetThreadId threadId, String threadName) {
         Log.e("DaoDiDem", "getThreadIdSuccess: threadId: " + threadId.getThreadId());
-        if(!HomeCaravanApplication.mLoginSocketSuccess){
+        if (!HomeCaravanApplication.mLoginSocketSuccess) {
             return;
         }
         Intent intent = new Intent(getActivity(), ConversationActivity.class);
@@ -748,4 +807,12 @@ public class FragmentTeamChild extends BaseFragment implements IRealtorFeaturedV
         hideLoading();
         showSnackBar(mLayoutMain, TypeDialog.ERROR, message, "getThreadIdFail");
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
+    }
+
+
 }

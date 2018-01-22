@@ -43,6 +43,13 @@ public class ValidateData {
         return false;
     }
 
+    public static boolean isPassword2(String password) {
+        if (password.trim().length() >= 6 && password.trim().length() < 25) {
+            return true;
+        }
+        return false;
+    }
+
     public static boolean isCode(String code) {
         return Pattern.compile("[a-zA-Z0-9]*", Pattern.CASE_INSENSITIVE).matcher(code).matches() && code.length() == 5;
     }

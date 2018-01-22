@@ -53,7 +53,7 @@ import com.homecaravan.android.consumer.model.TypeDialog;
 import com.homecaravan.android.consumer.model.responseapi.Companies;
 import com.homecaravan.android.handling.ValidateData;
 import com.homecaravan.android.models.Country;
-import com.homecaravan.android.signup.PickCountry;
+
 import com.homecaravan.android.ui.CircleImageView;
 import com.kyleduo.switchbutton.SwitchButton;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -420,9 +420,9 @@ public class UserProfileConsumerActivity extends BaseActivity implements IAccoun
 
     @OnClick(R.id.imgCountry)
     void onCountryClicked() {
-        Intent pickCountry = new Intent(this, PickCountry.class);
-        startActivityForResult(pickCountry, PICK_COUNTRY);
-        overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
+//        Intent pickCountry = new Intent(this, PickCountry.class);
+//        startActivityForResult(pickCountry, PICK_COUNTRY);
+//        overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
     }
 
     @OnClick(R.id.frmChangePassword)

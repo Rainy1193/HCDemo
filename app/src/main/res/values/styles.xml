@@ -181,9 +181,9 @@
 
     <style name="LoginThemeConsumer" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorTextTransparentWhiteLogin80</item>
+        <item name="colorPrimary">@color/colorDashboardStatusBar</item>
         <item name="colorPrimaryDark">@color/colorStatusBarLogin</item>
-        <item name="colorAccent">@color/colorTextTransparentWhiteLogin80</item>
+        <item name="colorAccent">@color/colorDashboardStatusBar</item>
     </style>
 
 
@@ -370,5 +370,4 @@
     <style name="ProgressBarStyle">
         <item name="colorAccent">#2C65D5</item>
     </style>
-
 </resources>

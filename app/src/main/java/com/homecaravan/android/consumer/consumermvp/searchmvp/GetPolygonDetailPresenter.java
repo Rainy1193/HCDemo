@@ -9,17 +9,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GetPolygonSearch {
+public class GetPolygonDetailPresenter {
     private GetPolygonView mView;
+    private Call<PolygonDetail> mCall;
 
-    public GetPolygonSearch(GetPolygonView mView) {
+    public GetPolygonDetailPresenter(GetPolygonView mView) {
         this.mView = mView;
     }
 
     public void getPolygonDetail(String id) {
         CBSApi cbsApi = ServiceGeneratorConsumer.createService(CBSApi.class);
-        cbsApi.getPolygon(Constants.getInstance().getURL_BASE_CONSUMER() + "v2/search_api/polygon/" + id)
-                .enqueue(new Callback<PolygonDetail>() {
+        mCall = cbsApi.getPolygon(Constants.getInstance().getURL_BASE_CONSUMER() + "v2/search_api/polygon/" + id);
+        mCall.enqueue(new Callback<PolygonDetail>() {
             @Override
             public void onResponse(Call<PolygonDetail> call, Response<PolygonDetail> response) {
                 if (response.isSuccessful()) {
@@ -34,5 +35,10 @@ public class GetPolygonSearch {
 
             }
         });
+    }
+
+
+    public Call<PolygonDetail> getCall() {
+        return mCall;
     }
 }

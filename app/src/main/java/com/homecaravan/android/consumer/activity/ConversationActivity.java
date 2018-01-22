@@ -142,7 +142,7 @@ public class ConversationActivity extends BaseActivity implements IMessagesActio
     private String sCreateBy;
     private ArrayList<MessageItem> mArrConsumerMessages = new ArrayList<>();
     private ArrayList<MessageUserData> mArrGroupUser = new ArrayList<>();
-
+    public static final String TAG = "HC";
     private boolean mIsEditingGroupName;
     private boolean detailClicked;
     private boolean attachImageClicked;

@@ -30,11 +30,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layoutPersonal"
         android:background="@drawable/bg_message_thread_item"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="94dp"
-        android:id="@+id/layoutPersonal"
         android:padding="10dp">
 
         <RelativeLayout

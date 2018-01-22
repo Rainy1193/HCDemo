@@ -151,6 +151,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     private float mXCenterBuy, mXCenterRent, mXCenterSell;
     private float mXCenterDashboard, mXCenterDiscover, mXCenterSchedule, mXCenterShowing, mXCenterMyTeam;
     private FragmentManager mManager;
+
     private FragmentTransaction mTransaction;
     public DisplayMetrics mDisplayMetrics = new DisplayMetrics();
     public static float sHeightFragment;
@@ -189,7 +190,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     private String mFavoriteId;
     private String mQueueId;
     private boolean mActivityStopState;
-
+    public static final String TAG = "HC";
     private ViewPager.OnPageChangeListener myOnPageChangeListener = new ViewPager.OnPageChangeListener() {
         boolean first = true;
 
@@ -590,7 +591,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
         checkNotificationClickedBefore();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_consumer);
-        if(!HomeCaravanApplication.mSocket.connected()){
+        if (!HomeCaravanApplication.mSocket.connected()) {
             HomeCaravanApplication.mSocket.connect();
         }
         ButterKnife.bind(this);
@@ -739,7 +740,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
-        if(HomeCaravanApplication.mSocket.connected()){
+        if (HomeCaravanApplication.mSocket.connected()) {
             HomeCaravanApplication.mSocket.disconnect();
         }
     }
@@ -1521,7 +1522,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     //Message EventBus
     @org.greenrobot.eventbus.Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onNewMessageNotificationListener(MessageAddResponse response) {
-        if(mActivityStopState || !HomeCaravanApplication.mReceiverMessageNotification || response == null){
+        if (mActivityStopState || !HomeCaravanApplication.mReceiverMessageNotification || response == null) {
             return;
         }
 
@@ -1533,7 +1534,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
 
         String mCurrentThreadId = response.getMessageItem().getMessageThread().getId();
         String mCurrentUserId = response.getMessageItem().getMessageThreadView().getId();
-        if(mCurrentUserId == null){
+        if (mCurrentUserId == null) {
             mCurrentUserId = response.getMessageItem().getCreatedBy();
         }
 
@@ -1900,6 +1901,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     public void loginFail() {
         HomeCaravanApplication.mLoginSocketSuccess = false;
     }
+
     @Override
     public void addFavoriteSuccess(boolean b) {
         EventBus.getDefault().post(new EventFavored(mFavoriteId, b));
@@ -1921,7 +1923,7 @@ public class MainActivityConsumer extends SlidingFragmentActivity implements
     }
 
     @Override
-    protected void onStop(){
+    protected void onStop() {
         super.onStop();
         mActivityStopState = true;
     }

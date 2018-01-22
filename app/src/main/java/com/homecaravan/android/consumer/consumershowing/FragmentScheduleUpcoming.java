@@ -101,6 +101,7 @@ public class FragmentScheduleUpcoming extends BaseFragment implements
     private ArrayList<String> mDateString = new ArrayList<>();
     private String mCurrentDay;
     private boolean mExpand;
+    private boolean mFirstExpand;
     private int mCountMonth = 0;
     private int mOldPosition = -1;
     private int mCurrentPosition = -1;
@@ -251,6 +252,7 @@ public class FragmentScheduleUpcoming extends BaseFragment implements
         mRvCalendar.setHasFixedSize(true);
         mRvCalendar.setItemAnimator(new ScaleInAnimator());
         mRvCalendar.setAdapter(mCalendarAdapter);
+
         mGetListCaravanPresenter.getListShowing(mCurrentDay, mCurrentDay, "caravan");
         mGetListApptPresenter.getListShowing(mCurrentDay, mCurrentDay, "single");
         mSimpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -359,6 +361,7 @@ public class FragmentScheduleUpcoming extends BaseFragment implements
                 mFullHeight = mRvCalendar.getHeight();
             }
         });
+        Log.e("getAllDayCaravan", "getAllDayCaravan");
     }
 
     public void getDayInWeekOfCurrentDay() {
@@ -460,7 +463,7 @@ public class FragmentScheduleUpcoming extends BaseFragment implements
 
     @Override
     public void onMessageClicked(String apptId, String listingId, String caravanId, String title, String userId) {
-        if(!ConsumerUser.getInstance().getData().getId().equals(userId)){
+        if (!ConsumerUser.getInstance().getData().getId().equals(userId)) {
             mGetThreadIdPresenter.getThreadId(apptId, listingId, caravanId, title, userId);
             showLoading();
         }
@@ -582,6 +585,39 @@ public class FragmentScheduleUpcoming extends BaseFragment implements
                 mCalendarAdapterWeek.getAdapterItem(i).updateApproved(hasCaravan);
             }
         }
+        mRvCalendar.setVisibility(View.INVISIBLE);
+        if (!mExpand && !mFirstExpand) {
+            ValueAnimator animator = AnimUtils.resizeCalendar(mRvCalendar, mFullHeight, mFullHeight / 6);
+            animator.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
+                    mExpand = true;
+                    mFirstExpand = true;
+                    mCalendarAdapterClone.clear();
+                    mCalendarAdapterClone.add(mCalendarAdapter.getAdapterItems());
+                    mCalendarAdapter.clear();
+                    mCalendarAdapterWeek.add(mCalendarAdapterWeekClone.getAdapterItems());
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    mRvCalendar.setVisibility(View.VISIBLE);
+                    mRvCalendar.swapAdapter(mCalendarAdapterWeek, true);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animator) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animator) {
+
+                }
+            });
+            animator.start();
+        }
+
     }
 
     @Override
@@ -702,8 +738,6 @@ public class FragmentScheduleUpcoming extends BaseFragment implements
                 android.R.anim.slide_in_left);
         Animation out = AnimationUtils.loadAnimation(getActivity(),
                 android.R.anim.slide_out_right);
-
-
         mTvMonth.setInAnimation(in);
         mTvMonth.setOutAnimation(out);
     }
@@ -869,16 +903,16 @@ public class FragmentScheduleUpcoming extends BaseFragment implements
         Log.d("DaoDiDem", "checkToShowPopupWhenCurrentItemIsShowing: clicked !!");
         checkNotificationToShowPopup();
     }
-    
+
     @Override
     public void getThreadIdAtCaravanSuccess(ResponseMessageGetThreadId threadId, int position, String threadName) {
-        
+
     }
 
     @Override
     public void getThreadIdSuccess(ResponseMessageGetThreadId threadId, String threadName) {
         Log.e("DaoDiDem", "getThreadIdSuccess: threadId: " + threadId.getThreadId());
-        if(!HomeCaravanApplication.mLoginSocketSuccess){
+        if (!HomeCaravanApplication.mLoginSocketSuccess) {
             return;
         }
         Intent intent = new Intent(getActivity(), ConversationActivity.class);

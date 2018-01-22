@@ -31,7 +31,7 @@ public class MessageActivity extends BaseActivity implements INotificationsView 
     ViewPager mViewPager;
     @Bind(R.id.tvNotificationCount)
     TextView mTvNotificationCount;
-
+    public static final String TAG = "HC";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

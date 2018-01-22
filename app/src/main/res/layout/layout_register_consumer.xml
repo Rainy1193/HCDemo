@@ -9,119 +9,214 @@
         android:id="@+id/layoutRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="30dp"
-        android:orientation="vertical"
-        android:visibility="visible">
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@color/colorTextTransparentWhiteLogin65">
+            android:layout_height="50dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_splash_image_children_consumer">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_consumer_login_firstname"/>
 
             <EditText
-                android:textSize="@dimen/text_size_custom_lang"
                 android:id="@+id/edtFirstName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorTextTransparentWhiteLogin55"
+                android:layout_height="match_parent"
                 android:hint="@string/first_name_register"
-                android:imeActionLabel="@string/action_register_short"
+                android:textColorHint="@color/white"
                 android:imeOptions="actionNext"
+                android:gravity="center_vertical"
+                android:layout_marginStart="54dp"
+                android:layout_marginEnd="30dp"
+                android:background="@android:color/transparent"
                 android:inputType="textPersonName"
                 android:maxLines="1"
-                android:textColor="@color/colorTextTransparentWhiteLogin80" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_custom_lang" />
 
-        </android.support.design.widget.TextInputLayout>
+            <ImageView
+                android:id="@+id/imgRemoveFirstName"
+                android:visibility="invisible"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ripple"
+                android:padding="5dp"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_consumer_caravan_x_close" />
 
-        <android.support.design.widget.TextInputLayout
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColorHint="@color/colorTextTransparentWhiteLogin65">
+            android:layout_height="50dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_splash_image_children_consumer">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_consumer_login_lastname"/>
 
             <EditText
                 android:id="@+id/edtLastName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorTextTransparentWhiteLogin55"
+                android:layout_height="match_parent"
                 android:hint="@string/last_name_register"
-                android:imeActionLabel="@string/action_register_short"
+                android:textColorHint="@color/white"
                 android:imeOptions="actionNext"
+                android:gravity="center_vertical"
+                android:layout_marginStart="54dp"
+                android:layout_marginEnd="30dp"
+                android:background="@android:color/transparent"
                 android:inputType="textPersonName"
                 android:maxLines="1"
-                android:textSize="@dimen/text_size_custom_lang"
-                android:textColor="@color/colorTextTransparentWhiteLogin80" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_custom_lang" />
 
-        </android.support.design.widget.TextInputLayout>
+            <ImageView
+                android:id="@+id/imgRemoveLastName"
+                android:visibility="invisible"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ripple"
+                android:padding="5dp"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_consumer_caravan_x_close" />
 
-        <android.support.design.widget.TextInputLayout
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColorHint="@color/colorTextTransparentWhiteLogin65">
+            android:layout_height="50dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_splash_image_children_consumer">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_consumer_verify_email"/>
 
             <EditText
                 android:id="@+id/actvEmail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorTextTransparentWhiteLogin55"
+                android:layout_height="match_parent"
                 android:hint="@string/prompt_email"
+                android:textColorHint="@color/white"
                 android:imeOptions="actionNext"
+                android:gravity="center_vertical"
+                android:layout_marginStart="54dp"
+                android:layout_marginEnd="30dp"
+                android:background="@android:color/transparent"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:textSize="@dimen/text_size_custom_lang"
-                android:textColor="@color/colorTextTransparentWhiteLogin80" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_custom_lang" />
 
-        </android.support.design.widget.TextInputLayout>
+            <ImageView
+                android:id="@+id/imgRemoveRegisterEmail"
+                android:visibility="invisible"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ripple"
+                android:padding="5dp"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_consumer_caravan_x_close" />
 
-        <android.support.design.widget.TextInputLayout
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColorHint="@color/colorTextTransparentWhiteLogin65">
+            android:layout_height="50dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_splash_image_children_consumer">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_consumer_login_password"/>
 
             <EditText
                 android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorTextTransparentWhiteLogin55"
+                android:layout_height="match_parent"
                 android:hint="@string/prompt_password"
+                android:textColorHint="@color/white"
                 android:imeOptions="actionNext"
+                android:gravity="center_vertical"
+                android:layout_marginStart="54dp"
+                android:layout_marginEnd="30dp"
+                android:background="@android:color/transparent"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:textSize="@dimen/text_size_custom_lang"
-                android:textColor="@color/colorTextTransparentWhiteLogin80" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_custom_lang" />
 
-        </android.support.design.widget.TextInputLayout>
+            <ImageView
+                android:id="@+id/imgRemoveRegisterPassword"
+                android:visibility="invisible"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ripple"
+                android:padding="5dp"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_consumer_eye_show_password" />
 
-        <android.support.design.widget.TextInputLayout
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColorHint="@color/colorTextTransparentWhiteLogin65">
+            android:layout_height="50dp"
+            android:layout_marginBottom="18dp"
+            android:background="@drawable/bg_splash_image_children_consumer">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_consumer_login_confirm_password"/>
 
             <EditText
                 android:id="@+id/edtConfirmPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorTextTransparentWhiteLogin55"
+                android:layout_height="match_parent"
                 android:hint="@string/confirm_password_register"
-                android:imeOptions="actionDone"
+                android:textColorHint="@color/white"
+                android:imeOptions="actionNext"
+                android:gravity="center_vertical"
+                android:layout_marginStart="54dp"
+                android:layout_marginEnd="30dp"
+                android:background="@android:color/transparent"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:textSize="@dimen/text_size_custom_lang"
-                android:textColor="@color/colorTextTransparentWhiteLogin80" />
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_custom_lang" />
 
-        </android.support.design.widget.TextInputLayout>
+            <ImageView
+                android:id="@+id/imgRemoveRegisterConfirmPassword"
+                android:visibility="invisible"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ripple"
+                android:padding="5dp"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_consumer_eye_show_password" />
 
+        </FrameLayout>
 
         <RelativeLayout
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="18dp"
+            android:layout_height="50dp"
             android:background="@drawable/button_login_selector_login_consumer">
 
             <TextView

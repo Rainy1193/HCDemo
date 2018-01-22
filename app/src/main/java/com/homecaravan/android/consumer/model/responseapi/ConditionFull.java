@@ -75,6 +75,12 @@ public class ConditionFull {
     @SerializedName("ra")
     @Expose
     private String ra;
+    @SerializedName("poly")
+    @Expose
+    private String poly;
+    @SerializedName("area")
+    @Expose
+    private String area;
 
     private ArrayList<String> arrFt;
 
@@ -190,6 +196,14 @@ public class ConditionFull {
 
     public String getRa() {
         return ra;
+    }
+
+    public String getPoly() {
+        return poly;
+    }
+
+    public String getArea() {
+        return area;
     }
 
     @Override

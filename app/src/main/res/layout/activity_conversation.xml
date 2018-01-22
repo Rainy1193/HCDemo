@@ -43,8 +43,8 @@
                 android:layout_width="@dimen/consumer_message_icon_layout_bar"
                 android:layout_height="@dimen/consumer_message_icon_layout_bar"
                 android:background="@drawable/ripple"
-                android:padding="16dp"
-                android:src="@drawable/ic_consumer_right_arrow" />
+                android:padding="12dp"
+                android:src="@drawable/ic_consumer_message_detail" />
         </LinearLayout>
 
         <LinearLayout
@@ -204,6 +204,7 @@
                 android:layout_weight="5"
                 android:layout_gravity="center"
                 android:background="@null"
+                android:imeOptions="actionDone"
                 android:hint="Type something to send"
                 android:inputType="textMultiLine|textShortMessage"
                 android:maxLines="5"
@@ -482,6 +483,28 @@
 
             </LinearLayout>
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp">
+
+                <TextView
+                    android:id="@+id/tvConversationCreatedBy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="13sp"
+                    android:textColor="@color/consumer_message_chat_time_color"
+                    android:text="Created by: "
+                    android:maxLines="1"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
@@ -540,6 +563,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:orientation="horizontal">
@@ -572,6 +596,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:orientation="horizontal">

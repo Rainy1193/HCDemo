@@ -64,8 +64,12 @@ import com.homecaravan.android.consumer.activity.MainActivityConsumer;
 import com.homecaravan.android.consumer.api.IGeocode;
 import com.homecaravan.android.consumer.api.ServiceGeneratorConsumer;
 import com.homecaravan.android.consumer.base.BaseFragment;
+import com.homecaravan.android.consumer.consumermvp.searchmvp.GetPolygonDetailPresenter;
+import com.homecaravan.android.consumer.consumermvp.searchmvp.GetPolygonView;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.SaveSearchPresenter;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.SaveSearchView;
+import com.homecaravan.android.consumer.consumermvp.searchmvp.SearchAddressPresenter;
+import com.homecaravan.android.consumer.consumermvp.searchmvp.SearchAddressView;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.SearchMapPresenter;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.SearchMapView;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.VoteListingPresenter;
@@ -103,6 +107,7 @@ import com.homecaravan.android.consumer.model.responseapi.Geocode;
 import com.homecaravan.android.consumer.model.responseapi.ListingFull;
 import com.homecaravan.android.consumer.model.responseapi.ListingListSearchMap;
 import com.homecaravan.android.consumer.model.responseapi.ListingSearchMap;
+import com.homecaravan.android.consumer.model.responseapi.PolygonDetail;
 import com.homecaravan.android.consumer.model.responseapi.ResponseSearchMap;
 import com.homecaravan.android.consumer.model.responseapi.SearchDetail;
 import com.homecaravan.android.consumer.utils.AnimUtils;
@@ -121,6 +126,9 @@ import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -146,6 +154,7 @@ public class FragmentDiscover extends BaseFragment implements
         GoogleMap.OnCameraMoveStartedListener,
         GoogleMap.OnCameraIdleListener,
 
+
         View.OnTouchListener,
         TouchableWrapper.EventOnMap,
         FloatingActionMenu.OnMenuToggleListener,
@@ -156,7 +165,7 @@ public class FragmentDiscover extends BaseFragment implements
         SaveSearchView,
         IClusterListener,
         IVoteListing,
-        VoteListingView {
+        VoteListingView, SearchAddressView, GetPolygonView {
 
     private static final String TAG = FragmentDiscover.class.getSimpleName();
     private static final long ACCURACY = 0;
@@ -173,7 +182,7 @@ public class FragmentDiscover extends BaseFragment implements
     private MySupportMapFragment mMapFragment;
     private ArrayList<Polyline> mArrPolyline = new ArrayList<>();
     private ArrayList<LatLng> mArrLatLng = new ArrayList<>();
-
+    private ArrayList<ArrayList<LatLng>> mArrPolygonAddress = new ArrayList<>();
     private ArrayList<ListingItem> mArrListingSearch = new ArrayList<>();
     private ArrayList<ListingItem> mArrListingSearchBase = new ArrayList<>();
     private ArrayList<DiscoverMarker> mArrMarker = new ArrayList<>();
@@ -188,8 +197,10 @@ public class FragmentDiscover extends BaseFragment implements
     private int mCurrentPosition = -1;
     private int mOldPosition = -1;
     private int mStroke = 5;
-
+    private SearchAddressPresenter mSearchAddressPresenter;
+    private GetPolygonDetailPresenter mGetPolygonSearch;
     private int mPosition;
+    private ArrayList<Double> mArrPolygon = new ArrayList<>();
     private String mFt = "sale";
     private String mMaxPrice = "";
     private String mMinPrice = "";
@@ -207,6 +218,8 @@ public class FragmentDiscover extends BaseFragment implements
     private String mNameSavedSearch = "New Search";
     private String mNe;
     private String mSw;
+    private String mArea = "";
+    private String mPolyGonId = "";
     private CustomLayoutManager mCustomLayoutManager;
 
     private LatLng mBeginArea;
@@ -220,6 +233,7 @@ public class FragmentDiscover extends BaseFragment implements
     private Point mPointNe;
     private IPageChange mPageChange;
     private IMainListener mMainListener;
+    private String mSearchResult;
     private boolean mShowMap = true;
     private boolean mIsAttack;
     private boolean mShowFilter;
@@ -229,6 +243,8 @@ public class FragmentDiscover extends BaseFragment implements
     private boolean mShowSaveSearchDetail;
     private boolean mCallApiDev;
     private boolean mSaveBeforeVote;
+    private boolean mSearchAddress;
+    private boolean mSearchPolygon;
     private EditText mEtSearch;
     @Bind(R.id.layoutMain)
     RelativeLayout mLayoutMain;
@@ -299,7 +315,6 @@ public class FragmentDiscover extends BaseFragment implements
         Intent intent = new Intent(getActivity(), SaveSearchActivity.class);
         intent.putExtra("sw", Utils.pointToLocationString(mPointSw, mGoogleMap));
         intent.putExtra("ne", Utils.pointToLocationString(mPointNe, mGoogleMap));
-
         intent.putExtra("mFt", mFt);
         intent.putExtra("mMaxPrice", mMaxPrice);
         intent.putExtra("mMinPrice", mMinPrice);
@@ -315,6 +330,22 @@ public class FragmentDiscover extends BaseFragment implements
         intent.putExtra("mKeyword", mKeyword);
         intent.putExtra("mDc", mDc);
         intent.putExtra("name", mNameSavedSearch);
+        intent.putExtra("area", mArea);
+        JSONArray jsonArray = new JSONArray();
+        if (!mArrPolyline.isEmpty()) {
+            try {
+                for (int i = 0; i < mArrLatLng.size(); i++) {
+                    JSONObject jsonObject = new JSONObject();
+                    jsonObject.put("lat", mArrLatLng.get(i).latitude);
+                    jsonObject.put("lng", mArrLatLng.get(i).longitude);
+                    jsonArray.put(jsonObject);
+                }
+            } catch (Exception e) {
+                Log.e("Exception", e.getMessage());
+            }
+        }
+        Log.e("jsonArray", jsonArray.toString());
+        intent.putExtra("poly", jsonArray.toString());
         startActivityForResult(intent, 3);
         getActivity().overridePendingTransition(R.anim.anim_open_activity_left, R.anim.anim_open_activity_right);
     }
@@ -568,7 +599,6 @@ public class FragmentDiscover extends BaseFragment implements
         buildLocationSettingsRequest();
 //        createFragmentFilter();
 //        createFragmentOpenSavedSearch();
-
 //        createFragmentSavedSearchDetail();
         mItemTouchHelperCallback = new ItemTouchHelperCallback();
         mItemTouchHelperCallback.setHelper(this);
@@ -577,6 +607,8 @@ public class FragmentDiscover extends BaseFragment implements
         mSearchMapPresenter = new SearchMapPresenter(this);
         mVotePresenter = new VoteListingPresenter(this);
         mSaveSearchPresenter = new SaveSearchPresenter(this);
+        mSearchAddressPresenter = new SearchAddressPresenter(this);
+        mGetPolygonSearch = new GetPolygonDetailPresenter(this);
         mLayoutDraw.setOnTouchListener(this);
         mFabActionMap.setOnMenuToggleListener(this);
         mCustomLayoutManager = new CustomLayoutManager(CustomLayoutManager.HORIZONTAL);
@@ -714,7 +746,6 @@ public class FragmentDiscover extends BaseFragment implements
         }
     }
 
-
     public void initData() {
         if (!mInitData) {
             if (mGoogleMap != null) {
@@ -732,7 +763,7 @@ public class FragmentDiscover extends BaseFragment implements
     public Map<String, RequestBody> setRequestParams(String id, String searchName, String ne, String sw, String minPrice, String maxPrice, String minBedRoom, String minBathRoom, String squareFeet,
                                                      String lotSize, String textSearch, String filterType, String softBy, String sortMode,
                                                      String source, String status, String minLostSize, String maxLotSize, String minSquareFeet,
-                                                     String maxSquareFeet, String minYear, String maxYear, String dayCaravan, String properType) {
+                                                     String maxSquareFeet, String minYear, String maxYear, String dayCaravan, String properType, String area, String polygon) {
         Map<String, RequestBody> map = new HashMap<>();
         if (searchName != null) {
             map.put("NAME", Utils.creteRbSearchMap(searchName));
@@ -776,6 +807,8 @@ public class FragmentDiscover extends BaseFragment implements
         map.put("max_yb", Utils.creteRbSearchMap(maxYear));
         map.put("dc", Utils.creteRbSearchMap(dayCaravan));
         map.put("pt", Utils.creteRbSearchMap(properType));
+        map.put("area", Utils.creteRbSearchMap(area));
+        map.put("poly", Utils.creteRbSearchMap(polygon));
         map.put("zm", Utils.creteRbSearchMap(String.valueOf((int) mGoogleMap.getCameraPosition().zoom)));
 
         return map;
@@ -940,8 +973,10 @@ public class FragmentDiscover extends BaseFragment implements
     }
 
     public void openDiscoverAfterSearch(String searchResult, boolean fromResult) {
-        getAddressFromSearch(searchResult);
+        //getAddressFromSearch(searchResult);
         //showLayout();
+        mSearchResult = searchResult;
+        mSearchAddressPresenter.searchAddress(searchResult);
         resetFragmentAfterSearch(false);
         mCallApiDev = true;
     }
@@ -1033,11 +1068,10 @@ public class FragmentDiscover extends BaseFragment implements
         Log.e("mDc", mDc);
         cancelFilter();
 
-
         mLayoutLoading.setVisibility(View.VISIBLE);
         mSearchMapPresenter.searchMap(setRequestParams(null, null, mNe, mSw, mMinPrice, mMaxPrice, mBed, mBath, "", "", mKeyword, mFt,
                 "", "", "", "", mMinLs, mMaxLs, mMinLsf,
-                mMaxLsf, mMinYb, mMaxYb, mDc, mPt));
+                mMaxLsf, mMinYb, mMaxYb, mDc, mPt, mArea, mPolyGonId));
         mClusterManager.onCameraIdle();
     }
 
@@ -1337,6 +1371,14 @@ public class FragmentDiscover extends BaseFragment implements
         mLayoutErrorZoom.setVisibility(View.GONE);
         mSaveBeforeVote = true;
         if (i == REASON_GESTURE) {
+            mArea = "";
+            mPolyGonId = "";
+            if (mSearchAddressPresenter.getCall() != null) {
+                mSearchAddressPresenter.getCall().cancel();
+            }
+            if (mGetPolygonSearch.getCall() != null) {
+                mGetPolygonSearch.getCall().cancel();
+            }
             mMoreNotCallApi = false;
             if (mLayoutRvListing.getVisibility() == View.VISIBLE) {
                 AnimUtils.hideViewFromBottom(mLayoutRvListing);
@@ -1353,6 +1395,7 @@ public class FragmentDiscover extends BaseFragment implements
             mSearchMapPresenter.cancelSearch();
             mLayoutLoading.setVisibility(View.GONE);
         }
+
     }
 
     @Override
@@ -1365,11 +1408,12 @@ public class FragmentDiscover extends BaseFragment implements
         Log.e("zoom", String.valueOf(mGoogleMap.getCameraPosition().zoom));
         mNe = Utils.pointToLocationString(mPointNe, mGoogleMap);
         mSw = Utils.pointToLocationString(mPointSw, mGoogleMap);
+        Log.e("mPolyGonId", mPolyGonId);
         if (mInitData && !mMoreNotCallApi) {
             mLayoutLoading.setVisibility(View.VISIBLE);
             mSearchMapPresenter.searchMap(setRequestParams(null, null, mNe, mSw, mMinPrice, mMaxPrice, mBed, mBath, "", "", mKeyword, mFt,
                     "", "", "", "", mMinLs, mMaxLs, mMinLsf,
-                    mMaxLsf, mMinYb, mMaxYb, mDc, mPt));
+                    mMaxLsf, mMinYb, mMaxYb, mDc, mPt, mArea, mPolyGonId));
             mClusterManager.onCameraIdle();
             mCallApiDev = false;
         } else {
@@ -1377,7 +1421,7 @@ public class FragmentDiscover extends BaseFragment implements
                 mLayoutLoading.setVisibility(View.VISIBLE);
                 mSearchMapPresenter.searchMap(setRequestParams(null, null, mNe, mSw, mMinPrice, mMaxPrice, mBed, mBath, "", "", mKeyword, mFt,
                         "", "", "", "", mMinLs, mMaxLs, mMinLsf,
-                        mMaxLsf, mMinYb, mMaxYb, mDc, mPt));
+                        mMaxLsf, mMinYb, mMaxYb, mDc, mPt, mArea, mPolyGonId));
                 mClusterManager.onCameraIdle();
                 mCallApiDev = false;
             }
@@ -1457,70 +1501,31 @@ public class FragmentDiscover extends BaseFragment implements
         mArrListingSearch.clear();
         mArrListingSearchBase.clear();
         mArrMarker.clear();
-        mGoogleMap.clear();
+        if (!mPolyGonId.isEmpty()) {
+            mGoogleMap.clear();
+        }
         mArrClusterMarker.clear();
-
-        Log.e("mCurrentPosition", String.valueOf(mCurrentPosition));
-        Log.e("mOldPosition", String.valueOf(mOldPosition));
-
         mCurrentMarker = null;
         mOldMarker = null;
         mCurrentPosition = -1;
         mOldPosition = -1;
         mIsAttack = false;
-
-//        ArrayList<ListingSearchMap> listingSearchMap = new ArrayList<>();
-//        listingSearchMap.addAll(responseSearchMap.getData().getArrListing());
-//        ArrayList<ListingSearchMap> listingSearchMap1 = new ArrayList<>();
-//        listingSearchMap1.addAll(responseSearchMap.getData().getArrListing());
-//        Log.e("listingSearchMap", String.valueOf(listingSearchMap.size()));
-//        Log.e("mArrListingSearch", String.valueOf(mArrListingSearch.size()));
-//        Log.e("mArrListingSearchBase", String.valueOf(mArrListingSearchBase.size()));
-//        for (int i = 0; i < listingSearchMap.size(); i++) {
-//            for (int j = 0; j < mArrListingSearch.size(); j++) {
-//                if (listingSearchMap.get(i).getId().equalsIgnoreCase(mArrListingSearch.get(j).getListing().getId())) {
-//                    Log.e("Cc", "Cc");
-//                    listingSearchMap.remove(i);
-//                    i--;
-//                }
-//            }
-//        }
-//
-//        ArrayList<ListingItem> listingItem = new ArrayList<>();
-//        int count = 0;
-//        for (int i = 0; i < mArrListingSearch.size(); i++) {
-//            for (int j = 0; j < listingSearchMap1.size(); j++) {
-//                if (!mArrListingSearch.get(i).getListing().getId().equalsIgnoreCase(listingSearchMap1.get(j).getId())) {
-//                    count++;
-//                }
-//            }
-//            if (count == listingSearchMap1.size()) {
-//                listingItem.add(mArrListingSearch.get(i));
-//                mArrListingSearch.remove(i);
-//                i--;
-//            }
-//            count = 0;
-//        }
-//
-//        for (int i = 0; i < listingItem.size(); i++) {
-//            for (int j = 0; j < mArrMarker.size(); j++) {
-//                if (listingItem.get(i).getListing().getId().equalsIgnoreCase(mArrMarker.get(j).getData().getListing().getId())) {
-//                    mArrMarker.get(j).getMarker().remove();
-//                    mArrMarker.remove(j);
-//                    j--;
-//                }
-//            }
-//        }
-//
-//        for (int i = 0; i < listingItem.size(); i++) {
-//            for (int j = 0; j < mMapAdapterSearch.getItemCount(); j++) {
-//                if (listingItem.get(i).getListing().getId().equalsIgnoreCase(mMapAdapterSearch.getAdapterItem(j).getListing().getListing().getId())) {
-//                    mMapAdapterSearch.remove(j);
-//                    j--;
-//                }
-//            }
-//        }
-
+        if (!mPolyGonId.isEmpty()) {
+            mGetPolygonSearch.getPolygonDetail(mPolyGonId);
+        }
+        if (mSearchAddress) {
+            for (int i = 0; i < mArrPolygonAddress.size(); i++) {
+                mRectOptions = new PolygonOptions();
+                mRectOptions.addAll(mArrPolygonAddress.get(i));
+                mRectOptions.strokeWidth(mStroke);
+                mRectOptions.strokeColor(ContextCompat.getColor(getActivity(), R.color.colorMenuConsumer));
+                mPolyGon = mGoogleMap.addPolygon(mRectOptions);
+                mPolyGon.setFillColor(ContextCompat.getColor(getActivity(), R.color.colorFillArea));
+                mSearchAddress = false;
+            }
+        } else {
+            mArea = "";
+        }
         createCluster(responseSearchMap.getData().getArrCluster());
         createMarker(responseSearchMap.getData().getArrListing());
         createList();
@@ -1707,6 +1712,15 @@ public class FragmentDiscover extends BaseFragment implements
                 discoverMarker.getMarker().setVisible(false);
             }
         }
+        for (int i = 0; i < mArrClusterMarker.size(); i++) {
+            ClusterMarker discoverMarker = mArrClusterMarker.get(i);
+            if (PolyUtil.containsLocation(new LatLng(discoverMarker.getMarker().getPosition().latitude,
+                    discoverMarker.getMarker().getPosition().latitude), mArrLatLng, true)) {
+                discoverMarker.getMarker().setVisible(true);
+            } else {
+                discoverMarker.getMarker().setVisible(false);
+            }
+        }
         ArrayList<Marker> markers = new ArrayList<>();
         markers.addAll(mClusterManager.getClusterMarkerCollection().getMarkers());
         for (int i = 0; i < markers.size(); i++) {
@@ -1867,17 +1881,34 @@ public class FragmentDiscover extends BaseFragment implements
         mPt = conditionFull.getPt() == null ? "" : conditionFull.getPt();
         mKeyword = conditionFull.getKeyword() == null ? "" : conditionFull.getKeyword();
         mDc = conditionFull.getDc() == null ? "" : conditionFull.getDc();
+        mArea = conditionFull.getArea() == null ? "" : conditionFull.getArea();
+        mPolyGonId = conditionFull.getPoly() == null ? "" : conditionFull.getPoly();
+        Log.e("mPolyGonId", mPolyGonId);
+        if (!mArea.isEmpty()) {
+            mSearchAddressPresenter.searchAddress(mArea);
+            mCallApiDev = true;
+        } else {
+            if (CurrentSaveSearch.getInstance().getSearchDetail().getConditions().size() != 0) {
+                if (CurrentSaveSearch.getInstance().getSearchDetail().getConditions().get(0).getSw() != null) {
+                    LatLngBounds latLngBounds = new LatLngBounds(
+                            Utils.getPositionFromLocation(CurrentSaveSearch.getInstance().getSearchDetail().getConditions().get(0).getSw()),
+                            Utils.getPositionFromLocation(CurrentSaveSearch.getInstance().getSearchDetail().getConditions().get(0).getNe()));
+                    mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 0), new GoogleMap.CancelableCallback() {
+                        @Override
+                        public void onFinish() {
+                            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mGoogleMap.getCameraPosition().target, mGoogleMap.getCameraPosition().zoom));
+                        }
 
+                        @Override
+                        public void onCancel() {
 
-        if (CurrentSaveSearch.getInstance().getSearchDetail().getConditions().size() != 0) {
-            if (CurrentSaveSearch.getInstance().getSearchDetail().getConditions().get(0).getSw() != null) {
-                LatLngBounds latLngBounds = new LatLngBounds(
-                        Utils.getPositionFromLocation(CurrentSaveSearch.getInstance().getSearchDetail().getConditions().get(0).getSw()),
-                        Utils.getPositionFromLocation(CurrentSaveSearch.getInstance().getSearchDetail().getConditions().get(0).getNe()));
-                mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 0));
-                mCallApiDev = true;
+                        }
+                    });
+                    mCallApiDev = true;
+                }
             }
         }
+
     }
 
 
@@ -2121,7 +2152,7 @@ public class FragmentDiscover extends BaseFragment implements
         mSaveSearchPresenter.saveSearch(setRequestParams(CurrentSaveSearch.getInstance().getId(), CurrentSaveSearch.getInstance().getName(),
                 mNe, mSw, mMinPrice, mMaxPrice, mBed, mBath, "", "", mKeyword, mFt,
                 "", "", "", "", mMinLs, mMaxLs, mMinLsf,
-                mMaxLsf, mMinYb, mMaxYb, mDc, mPt));
+                mMaxLsf, mMinYb, mMaxYb, mDc, mPt, mArea, mPolyGonId));
         showLoading();
     }
 
@@ -2156,6 +2187,7 @@ public class FragmentDiscover extends BaseFragment implements
     }
 
     @Override
+
     public void saveSearchFail(String message) {
         hideLoading();
         showSnackBar(mLayoutMain, TypeDialog.WARNING, message, "saveSearchFail");
@@ -2174,7 +2206,8 @@ public class FragmentDiscover extends BaseFragment implements
                 @Override
                 public void run() {
                     int height = mLayoutDiscoverContent.getHeight();
-                    mLayoutDiscoverContent.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height + Convert.dpToPx(50, getActivity())));
+                    mLayoutDiscoverContent.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                            height + Convert.dpToPx(50, getActivity())));
                 }
             });
             mLayoutMap.post(new Runnable() {
@@ -2191,5 +2224,108 @@ public class FragmentDiscover extends BaseFragment implements
                 }
             }, 200);
         }
+    }
+
+    @Override
+    public void searchAddressSuccess(final JSONObject searchAddress) {
+        try {
+            final JSONObject areaData = searchAddress.getJSONObject("area_data");
+            JSONObject northeast = searchAddress.getJSONObject("bounds").getJSONObject("northeast");
+            JSONObject southwest = searchAddress.getJSONObject("bounds").getJSONObject("southwest");
+
+            if (areaData == null) {
+                getAddressFromSearch(mSearchResult);
+            } else {
+                final JSONObject data = areaData.getJSONObject("data");
+                mArea = areaData.getString("url_key");
+                LatLngBounds latLngBounds = new LatLngBounds(
+                        new LatLng(southwest.getDouble("lat"), southwest.getDouble("lng")),
+                        new LatLng(northeast.getDouble("lat"), northeast.getDouble("lng")));
+                mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 0), new GoogleMap.CancelableCallback() {
+                    @Override
+                    public void onFinish() {
+                        mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(mGoogleMap.getCameraPosition().target, mGoogleMap.getCameraPosition().zoom - 0.5f));
+                        mSearchAddress = true;
+                        mRectOptions = new PolygonOptions();
+                        mArrPolygonAddress.clear();
+                        try {
+                            if (data.getString("type").equalsIgnoreCase("MultiPolygon")) {
+                                JSONArray jsonArray = data.getJSONArray("coordinates");
+                                if (jsonArray.length() != 0) {
+                                    for (int j = 0; j < jsonArray.length(); j++) {
+                                        JSONArray parent = jsonArray.getJSONArray(j);
+                                        ArrayList<LatLng> latLngs = new ArrayList<LatLng>();
+                                        JSONArray jsonArray1 = parent.getJSONArray(0);
+                                        for (int i = 0; i < jsonArray1.length(); i++) {
+                                            JSONArray jsonArray2 = jsonArray1.getJSONArray(i);
+                                            LatLng latLng = new LatLng(jsonArray2.getDouble(1), jsonArray2.getDouble(0));
+                                            latLngs.add(latLng);
+                                        }
+                                        mArrPolygonAddress.add(latLngs);
+                                    }
+
+                                }
+                            }
+                            if (data.getString("type").equalsIgnoreCase("Polygon")) {
+                                JSONArray jsonArray = data.getJSONArray("coordinates");
+                                if (jsonArray.length() != 0) {
+                                    ArrayList<LatLng> latLngs = new ArrayList<LatLng>();
+                                    JSONArray jsonArray1 = jsonArray.getJSONArray(0);
+                                    for (int i = 0; i < jsonArray1.length(); i++) {
+                                        JSONArray jsonArray2 = jsonArray1.getJSONArray(i);
+                                        LatLng latLng = new LatLng(jsonArray2.getDouble(1), jsonArray2.getDouble(0));
+                                        latLngs.add(latLng);
+                                    }
+                                    mArrPolygonAddress.add(latLngs);
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        Log.e("mArrPolygonAddress", String.valueOf(mArrPolygonAddress.size()));
+                        Log.e("mArrPolygonAddress1", mArrPolygonAddress.toString());
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
+                });
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void searchAddressFail(String message) {
+        getAddressFromSearch(mSearchResult);
+    }
+
+    @Override
+    public void searchAddressFail(@StringRes int message) {
+        getAddressFromSearch(mSearchResult);
+    }
+
+    @Override
+    public void getPolygonSuccess(PolygonDetail polygon) {
+        Log.e("getPolygonSuccess", "getPolygonSuccess");
+        mArrLatLng.clear();
+        ArrayList<PolygonDetail.Location> locations = polygon.data.locations;
+        for (int i = 0; i < locations.size(); i++) {
+            LatLng latLng = new LatLng(locations.get(i).lat, locations.get(i).lng);
+            mArrLatLng.add(latLng);
+        }
+        Log.e("mArrLatLng", String.valueOf(mArrLatLng.size()));
+        mRectOptions = new PolygonOptions();
+        mRectOptions.addAll(mArrLatLng);
+        mRectOptions.strokeWidth(mStroke);
+        mRectOptions.strokeColor(ContextCompat.getColor(getActivity(), R.color.colorMenuConsumer));
+        mPolyGon = mGoogleMap.addPolygon(mRectOptions);
+        mPolyGon.setFillColor(ContextCompat.getColor(getActivity(), R.color.colorFillArea));
     }
 }

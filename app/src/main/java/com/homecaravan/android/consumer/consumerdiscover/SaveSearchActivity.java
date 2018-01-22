@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,6 +25,8 @@ import com.homecaravan.android.consumer.adapter.ContactManagerAdapter;
 import com.homecaravan.android.consumer.base.BaseActivity;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.AddParticipantSearchPresenter;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.AddParticipantSearchView;
+import com.homecaravan.android.consumer.consumermvp.searchmvp.SavePolygonPresenter;
+import com.homecaravan.android.consumer.consumermvp.searchmvp.SavePolygonView;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.SaveSearchPresenter;
 import com.homecaravan.android.consumer.consumermvp.searchmvp.SaveSearchView;
 import com.homecaravan.android.consumer.listener.IContactManager;
@@ -33,6 +36,7 @@ import com.homecaravan.android.consumer.model.CurrentCreateSavedSearch;
 import com.homecaravan.android.consumer.model.EventNewSaveSearch;
 import com.homecaravan.android.consumer.model.EventReloadSaveSearch;
 import com.homecaravan.android.consumer.model.TypeDialog;
+import com.homecaravan.android.consumer.model.responseapi.PolygonSearch;
 import com.homecaravan.android.consumer.model.responseapi.SearchDetail;
 import com.homecaravan.android.consumer.utils.AnimUtils;
 import com.homecaravan.android.consumer.utils.Utils;
@@ -50,7 +54,7 @@ import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import okhttp3.RequestBody;
 
-public class SaveSearchActivity extends BaseActivity implements SaveSearchView, IContactManager, AddParticipantSearchView {
+public class SaveSearchActivity extends BaseActivity implements SaveSearchView, IContactManager, AddParticipantSearchView, SavePolygonView {
     private int mStep = 1;
     private int mWidthPage;
 
@@ -72,10 +76,14 @@ public class SaveSearchActivity extends BaseActivity implements SaveSearchView, 
     private String mPt = "";
     private String mKeyword = "";
     private String mDc = "";
+    private String mPolygon = "";
+    private String mPolygonId = "";
     private String mNamSavedSearch = "New Search";
+    private String mArea = "";
     private String mLocationNe;
     private String mLocationSw;
     private SaveSearchPresenter mSaveSearchPresenter;
+    private SavePolygonPresenter mSavePolygonPresenter;
     private boolean mSavedSearch;
     private String mRole = "admin";
     private String mWeight = "1";
@@ -273,7 +281,7 @@ public class SaveSearchActivity extends BaseActivity implements SaveSearchView, 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ContactSingleton.getInstance().getArrContact().clear();
-        mAddParticipantSearchPresenter=new AddParticipantSearchPresenter(this);
+        mAddParticipantSearchPresenter = new AddParticipantSearchPresenter(this);
         if (getIntent().getExtras() != null) {
             mNamSavedSearch = getIntent().getExtras().getString("name");
             mLocationNe = getIntent().getExtras().getString("ne");
@@ -292,7 +300,10 @@ public class SaveSearchActivity extends BaseActivity implements SaveSearchView, 
             mPt = getIntent().getExtras().getString("mPt");
             mKeyword = getIntent().getExtras().getString("mKeyword");
             mDc = getIntent().getExtras().getString("mDc");
+            mArea = getIntent().getExtras().getString("area");
+            mPolygon = getIntent().getExtras().getString("poly");
         }
+        Log.e("mPolygon", mPolygon);
         mNameSearch.requestFocus();
         //HomeCaravanApplication.getInstance().getInput().showSoftInput(mNameSearch, InputMethodManager.SHOW_IMPLICIT);
         mNameSearch.setText("");//mNameSearch;
@@ -308,6 +319,14 @@ public class SaveSearchActivity extends BaseActivity implements SaveSearchView, 
         mAdapter = new ContactManagerAdapter(mArrContact, this, this);
         mRvCollaborator.setAdapter(mAdapter);
         mSaveSearchPresenter = new SaveSearchPresenter(this);
+        mSavePolygonPresenter = new SavePolygonPresenter(this);
+        mNameSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                onNext();
+                return false;
+            }
+        });
     }
 
     @Override
@@ -365,21 +384,40 @@ public class SaveSearchActivity extends BaseActivity implements SaveSearchView, 
         mAddParticipantSearchPresenter.addParticipant(fName, lName, email,
                 phone, role, weight, CurrentSaveSearch.getInstance().getId(), "");
     }
+
     public void savedSearch() {
         showLoading();
-        if (mSavedSearch) {
-            mSaveSearchPresenter.saveSearch(setRequestParams(CurrentSaveSearch.getInstance().getId(), mNameSearch.getText().toString(), mMinPrice, mMaxPrice, mBed, mBath, "", "", mKeyword, mFt, "", "", "", "", mMinLs, mMaxLs, mMinLsf,
-                    mMaxLsf, mMinYb, mMaxYb, mDc, mPt));
+        if (mPolygon.isEmpty()) {
+            if (mSavedSearch) {
+                mSaveSearchPresenter.saveSearch(setRequestParams(CurrentSaveSearch.getInstance().getId(), mNameSearch.getText().toString(),
+                        mMinPrice, mMaxPrice, mBed, mBath, "", "", mKeyword, mFt, "", "", "", "", mMinLs, mMaxLs, mMinLsf,
+                        mMaxLsf, mMinYb, mMaxYb, mDc, mPt, mArea, ""));
+            } else {
+                mSaveSearchPresenter.saveSearch(setRequestParams(null, mNameSearch.getText().toString(),
+                        mMinPrice, mMaxPrice, mBed, mBath, "", "", mKeyword, mFt, "", "", "", "", mMinLs, mMaxLs, mMinLsf,
+                        mMaxLsf, mMinYb, mMaxYb, mDc, mPt, mArea, ""));
+            }
         } else {
-            mSaveSearchPresenter.saveSearch(setRequestParams(null, mNameSearch.getText().toString(), mMinPrice, mMaxPrice, mBed, mBath, "", "", mKeyword, mFt, "", "", "", "", mMinLs, mMaxLs, mMinLsf,
-                    mMaxLsf, mMinYb, mMaxYb, mDc, mPt));
+            if (mPolygonId.isEmpty()) {
+                mSavePolygonPresenter.savePolygon(mPolygon);
+            } else {
+                if (mSavedSearch) {
+                    mSaveSearchPresenter.saveSearch(setRequestParams(CurrentSaveSearch.getInstance().getId(), mNameSearch.getText().toString(),
+                            mMinPrice, mMaxPrice, mBed, mBath, "", "", mKeyword, mFt, "", "", "", "", mMinLs, mMaxLs, mMinLsf,
+                            mMaxLsf, mMinYb, mMaxYb, mDc, mPt, mArea, mPolygonId));
+                } else {
+                    mSaveSearchPresenter.saveSearch(setRequestParams(null, mNameSearch.getText().toString(),
+                            mMinPrice, mMaxPrice, mBed, mBath, "", "", mKeyword, mFt, "", "", "", "", mMinLs, mMaxLs, mMinLsf,
+                            mMaxLsf, mMinYb, mMaxYb, mDc, mPt, mArea, mPolygonId));
+                }
+            }
         }
     }
 
     public Map<String, RequestBody> setRequestParams(String id, String searchName, String minPrice, String maxPrice, String minBedRoom, String minBathRoom, String squareFeet,
                                                      String lotSize, String textSearch, String filterType, String softBy, String sortMode,
                                                      String source, String status, String minLostSize, String maxLotSize, String minSquareFeet,
-                                                     String maxSquareFeet, String minYear, String maxYear, String dayCaravan, String properType) {
+                                                     String maxSquareFeet, String minYear, String maxYear, String dayCaravan, String properType, String area, String polygon) {
         Map<String, RequestBody> map = new HashMap<>();
         if (id != null) {
             map.put("id", Utils.creteRbSearchMap(CurrentSaveSearch.getInstance().getId()));
@@ -407,7 +445,8 @@ public class SaveSearchActivity extends BaseActivity implements SaveSearchView, 
         map.put("max_yb", Utils.creteRbSearchMap(maxYear));
         map.put("dc", Utils.creteRbSearchMap(dayCaravan));
         map.put("pt", Utils.creteRbSearchMap(properType));
-
+        map.put("area", Utils.creteRbSearchMap(area));
+        map.put("poly", Utils.creteRbSearchMap(polygon));
         return map;
     }
 
@@ -571,5 +610,29 @@ public class SaveSearchActivity extends BaseActivity implements SaveSearchView, 
     @Override
     public void addParticipantFail(@StringRes int message) {
 
+    }
+
+    @Override
+    public void savePolygonSuccess(PolygonSearch.PolygonSearchData data) {
+        mPolygonId = data.id;
+        if (mSavedSearch) {
+            mSaveSearchPresenter.saveSearch(setRequestParams(CurrentSaveSearch.getInstance().getId(), mNameSearch.getText().toString(),
+                    mMinPrice, mMaxPrice, mBed, mBath, "", "", mKeyword, mFt, "", "", "", "", mMinLs, mMaxLs, mMinLsf,
+                    mMaxLsf, mMinYb, mMaxYb, mDc, mPt, mArea, mPolygonId));
+        } else {
+            mSaveSearchPresenter.saveSearch(setRequestParams(null, mNameSearch.getText().toString(),
+                    mMinPrice, mMaxPrice, mBed, mBath, "", "", mKeyword, mFt, "", "", "", "", mMinLs, mMaxLs, mMinLsf,
+                    mMaxLsf, mMinYb, mMaxYb, mDc, mPt, mArea, mPolygonId));
+        }
+    }
+
+    @Override
+    public void savePolygonFail(String message) {
+        hideLoading();
+    }
+
+    @Override
+    public void savePolygonFail(@StringRes int message) {
+        hideLoading();
     }
 }
